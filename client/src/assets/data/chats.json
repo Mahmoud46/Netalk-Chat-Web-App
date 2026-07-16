@@ -1,0 +1,98 @@
+[
+  {
+    "_id": "chat_001",
+    "participants": ["u_auth_002", "u003"],
+    "lastMessage": {
+      "_id": "msg_1005",
+      "chatId": "chat_001",
+      "sender": "u003",
+      "text": "Perfect, that will scale better.",
+      "status": "delivered",
+      "createdAt": "2026-05-08T09:49:00.000Z"
+    },
+    "unreadMessages": 1
+  },
+  {
+    "_id": "chat_002",
+    "participants": ["u_auth_002", "u004"],
+    "lastMessage": {
+      "_id": "msg_2006",
+      "chatId": "chat_002",
+      "sender": "u004",
+      "text": "Perfect, this version is exactly what we needed.",
+      "status": "read",
+      "createdAt": "2026-05-08T10:15:00.000Z"
+    },
+    "unreadMessages": 10,
+    "sharedMedia": [
+      {
+        "fileId": "file_ui_003",
+        "url": "/mocks/ui-kit-v2.jpg",
+        "type": "image",
+        "name": "ui-kit-v2.jpg",
+        "size": "896KB"
+      }
+    ],
+    "sharedFiles": [
+      {
+        "fileId": "file_ui_002",
+        "url": "https://cdn.example.com/files/ui-kit-v2.fig",
+        "type": "file",
+        "name": "ui-kit-v2.fig",
+        "size": "5.8MB"
+      }
+    ]
+  },
+  {
+    "_id": "chat_003",
+    "participants": ["u_auth_002", "u006"],
+    "lastMessage": {
+      "_id": "msg_3004",
+      "chatId": "chat_003",
+      "sender": "u_auth_002",
+      "text": "Then you should store refresh tokens in httpOnly cookies.",
+      "status": "delivered",
+      "createdAt": "2026-05-08T08:28:00.000Z"
+    },
+    "unreadMessages": 0
+  },
+  {
+    "_id": "chat_004",
+    "participants": ["u_auth_002", "u008"],
+    "lastMessage": {
+      "_id": "msg_4004",
+      "chatId": "chat_004",
+      "sender": "u_auth_002",
+      "text": "Yes, I’ll adjust contrast if needed.",
+      "status": "sent",
+      "createdAt": "2026-05-08T07:53:00.000Z"
+    },
+    "unreadMessages": 0
+  },
+  {
+    "_id": "chat_005",
+    "participants": ["u_auth_002", "u001"],
+    "lastMessage": {
+      "_id": "msg_5005",
+      "chatId": "chat_005",
+      "sender": "u001",
+      "text": "Perfect, let’s deploy soon.",
+      "status": "read",
+      "createdAt": "2026-05-08T06:19:00.000Z"
+    },
+    "unreadMessages": 0
+  },
+  {
+    "_id": "chat_006",
+    "participants": ["u_auth_002", "u005"],
+    "lastMessage": {
+      "_id": "msg_6004",
+      "chatId": "chat_006",
+      "sender": "u_auth_002",
+      "text": "Share the link when you go live.",
+      "status": "read",
+      "createdAt": "2026-05-08T10:18:00.000Z"
+    },
+    "unreadMessages": 0
+  }
+]

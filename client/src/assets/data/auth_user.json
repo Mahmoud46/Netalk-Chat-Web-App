@@ -1,0 +1,55 @@
+{
+  "_id": "u_auth_002",
+  "username": "omarhassan1548",
+  "firstName": "Omar",
+  "lastName": "Hassan",
+  "birthdate": "1998-11-05T00:00:00.000Z",
+  "gender": "male",
+  "address": "Giza, Egypt",
+  "title": "Software engineer",
+  "bio": "Software engineer building scalable backend systems and real-time communication platforms.",
+  "profileImage": "/profile_pics/omar_hassan.png",
+  "contactInfo": {
+    "emails": ["omar.hassan.dev@gmail.com"],
+    "socialLinks": [
+      {
+        "type": "github",
+        "url": "https://github.com/omarhassan-dev"
+      },
+      {
+        "type": "linkedin",
+        "url": "https://linkedin.com/in/omarhassan"
+      },
+      {
+        "type": "website",
+        "url": "https://omarhassan.dev"
+      }
+    ],
+    "phoneNumbers": ["+201023456789"]
+  },
+  "isActive": true,
+  "lastSeen": "2026-05-08T10:30:00.000Z",
+  "email": "omar.hassan.dev@gmail.com",
+  "phoneNumber": "+201023456789",
+  "contacts": [
+    {
+      "userId": "u003",
+      "customName": "Mohamed Adel (Backend Engineer)"
+    },
+    {
+      "userId": "u004",
+      "customName": "Nour Khaled (UI/UX Designer)"
+    },
+    {
+      "userId": "u006",
+      "customName": "Laila Mostafa (Medical Student)"
+    },
+    {
+      "userId": "u008",
+      "customName": "Mariam Tarek (Designer)"
+    }
+  ],
+  "mutedUsers": ["u007"],
+  "archivedChats": ["chat_001", "chat_004"],
+  "blockedUsers": ["u009"]
+}

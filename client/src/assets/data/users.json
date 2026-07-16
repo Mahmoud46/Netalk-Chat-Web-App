@@ -1,0 +1,290 @@
+[
+  {
+    "_id": "u001",
+    "username": "ahmedhassan458",
+    "firstName": "Ahmed",
+    "lastName": "Hassan",
+    "birthdate": "1998-04-12T00:00:00.000Z",
+    "gender": "male",
+    "address": "Cairo, Egypt",
+    "bio": "Frontend developer and UI designer.",
+    "profileImage": "/profile_pics/ahmed_hassan.png",
+    "contactInfo": {
+      "emails": ["ahmed.hassan@gmail.com"],
+      "socialLinks": [
+        {
+          "type": "github",
+          "url": "https://github.com/ahmedhassan"
+        },
+        {
+          "type": "linkedin",
+          "url": "https://linkedin.com/in/ahmedhassan"
+        }
+      ],
+      "phoneNumbers": ["+201001112233"]
+    },
+    "isActive": true,
+    "lastSeen": "2026-05-08T10:15:00.000Z"
+  },
+  {
+    "_id": "u002",
+    "username": "saraali756",
+    "firstName": "Sara",
+    "lastName": "Ali",
+    "birthdate": "2000-09-25T00:00:00.000Z",
+    "gender": "female",
+    "address": "Alexandria, Egypt",
+    "bio": "Photographer and content creator.",
+    "profileImage": "/profile_pics/sara_ali.png",
+    "contactInfo": {
+      "emails": ["sara.ali@gmail.com"],
+      "socialLinks": [
+        {
+          "type": "instagram",
+          "url": "https://instagram.com/saraali"
+        },
+        {
+          "type": "tiktok",
+          "url": "https://tiktok.com/@saraali"
+        }
+      ],
+      "phoneNumbers": ["+201055667788"]
+    },
+    "isActive": true,
+    "lastSeen": "2026-05-08T10:10:00.000Z"
+  },
+  {
+    "_id": "u003",
+    "username": "mohamedadel726",
+    "firstName": "Mohamed",
+    "lastName": "Adel",
+    "birthdate": "1995-01-18T00:00:00.000Z",
+    "gender": "male",
+    "bio": "Backend engineer specialized in Node.js.",
+    "profileImage": "/profile_pics/mohamed_adel.png",
+    "contactInfo": {
+      "emails": ["m.adel@outlook.com"],
+      "socialLinks": [
+        {
+          "type": "github",
+          "url": "https://github.com/mohamedadel"
+        }
+      ],
+      "phoneNumbers": ["+201122334455"]
+    },
+    "isActive": false,
+    "lastSeen": "2026-05-08T06:45:00.000Z"
+  },
+  {
+    "_id": "u004",
+    "username": "nourkhaled7841",
+    "firstName": "Nour",
+    "lastName": "Khaled",
+    "birthdate": "1999-07-11T00:00:00.000Z",
+    "gender": "female",
+    "address": "Giza, Egypt",
+    "profileImage": "/profile_pics/nour_khaled.png",
+    "contactInfo": {
+      "emails": ["nour.khaled@gmail.com"],
+      "socialLinks": [
+        {
+          "type": "linkedin",
+          "url": "https://linkedin.com/in/nourkhaled"
+        },
+        {
+          "type": "behance",
+          "url": "https://behance.net/nourkhaled"
+        }
+      ],
+      "phoneNumbers": ["+201233445566"]
+    },
+    "isActive": true,
+    "lastSeen": "2026-05-08T09:55:00.000Z"
+  },
+  {
+    "_id": "u005",
+    "username": "youssefsamir78541",
+    "firstName": "Youssef",
+    "lastName": "Samir",
+    "birthdate": "1997-03-09T00:00:00.000Z",
+    "gender": "male",
+    "bio": "Gaming streamer and tech enthusiast.",
+    "profileImage": "/profile_pics/youssef_samir.png",
+    "contactInfo": {
+      "emails": ["youssef.samir@gmail.com"],
+      "socialLinks": [
+        {
+          "type": "twitch",
+          "url": "https://twitch.tv/youssefsamir"
+        },
+        {
+          "type": "youtube",
+          "url": "https://youtube.com/@youssefsamir"
+        }
+      ],
+      "phoneNumbers": ["+201277889900"]
+    },
+    "isActive": false,
+    "lastSeen": "2026-05-07T20:30:00.000Z"
+  },
+  {
+    "_id": "u006",
+    "username": "lailamostafa563",
+    "firstName": "Laila",
+    "lastName": "Mostafa",
+    "birthdate": "2001-12-02T00:00:00.000Z",
+    "gender": "female",
+    "address": "Mansoura, Egypt",
+    "bio": "Medical student and blogger.",
+    "profileImage": "/profile_pics/laila_mostafa.png",
+    "contactInfo": {
+      "emails": ["laila.mostafa@gmail.com"],
+      "socialLinks": [
+        {
+          "type": "medium",
+          "url": "https://medium.com/@lailamostafa"
+        }
+      ],
+      "phoneNumbers": ["+201299887766"]
+    },
+    "isActive": true,
+    "lastSeen": "2026-05-08T10:18:00.000Z"
+  },
+  {
+    "_id": "u007",
+    "username": "omarfathy754",
+    "firstName": "Omar",
+    "lastName": "Fathy",
+    "birthdate": "1994-06-30T00:00:00.000Z",
+    "gender": "male",
+    "address": "Tanta, Egypt",
+    "profileImage": "/profile_pics/omar_fathy.png",
+    "contactInfo": {
+      "emails": ["omar.fathy@gmail.com"],
+      "socialLinks": [
+        {
+          "type": "facebook",
+          "url": "https://facebook.com/omarfathy"
+        },
+        {
+          "type": "x",
+          "url": "https://x.com/omarfathy"
+        }
+      ],
+      "phoneNumbers": ["+201188776655"]
+    },
+    "isActive": false,
+    "lastSeen": "2026-05-02T14:20:00.000Z"
+  },
+  {
+    "_id": "u008",
+    "username": "mariamtarek712",
+    "firstName": "Mariam",
+    "lastName": "Tarek",
+    "birthdate": "2002-05-16T00:00:00.000Z",
+    "gender": "female",
+    "bio": "Fashion designer and illustrator.",
+    "profileImage": "/profile_pics/mariam_tarek.png",
+    "contactInfo": {
+      "emails": ["mariam.tarek@gmail.com"],
+      "socialLinks": [
+        {
+          "type": "dribbble",
+          "url": "https://dribbble.com/mariamtarek"
+        },
+        {
+          "type": "instagram",
+          "url": "https://instagram.com/mariamtarek"
+        }
+      ],
+      "phoneNumbers": ["+201211223344"]
+    },
+    "isActive": true,
+    "lastSeen": "2026-05-08T10:19:00.000Z"
+  },
+  {
+    "_id": "u009",
+    "username": "karimnabil112",
+
+    "firstName": "Karim",
+    "lastName": "Nabil",
+    "birthdate": "1996-11-21T00:00:00.000Z",
+    "gender": "male",
+    "address": "Aswan, Egypt",
+    "profileImage": "/profile_pics/karim_nabil.png",
+    "contactInfo": {
+      "emails": ["karim.nabil@gmail.com"],
+      "socialLinks": [
+        {
+          "type": "reddit",
+          "url": "https://reddit.com/user/karimnabil"
+        },
+        {
+          "type": "discord",
+          "url": "https://discord.com/users/karimnabil"
+        }
+      ],
+      "phoneNumbers": ["+201344556677"]
+    },
+    "isActive": false,
+    "lastSeen": "2026-06-02T02:10:00.000Z"
+  },
+  {
+    "_id": "u010",
+    "username": "hanamagdy5653",
+    "firstName": "Hana",
+    "lastName": "Magdy",
+    "birthdate": "1999-08-14T00:00:00.000Z",
+    "gender": "others",
+    "address": "Luxor, Egypt",
+    "bio": "Travel blogger and digital nomad.",
+    "profileImage": "/profile_pics/hana_magdy.png",
+    "contactInfo": {
+      "emails": ["hana.magdy@gmail.com", "contact@hanamagdy.com"],
+      "socialLinks": [
+        {
+          "type": "website",
+          "url": "https://hanamagdy.com"
+        },
+        {
+          "type": "youtube",
+          "url": "https://youtube.com/@hanamagdy"
+        }
+      ],
+      "phoneNumbers": ["+201366778899"]
+    },
+    "isActive": true,
+    "lastSeen": "2026-05-08T10:20:00.000Z"
+  },
+  {
+    "_id": "u011",
+    "username": "yassinmostafa545",
+    "firstName": "Yassin",
+    "lastName": "Mostafa",
+    "birthdate": "2001-09-14T00:00:00.000Z",
+    "gender": "male",
+    "address": "Nasr City, Cairo, Egypt",
+    "bio": "Computer science student passionate about cybersecurity, backend engineering, and open-source projects.",
+    "profileImage": "/profile_pics/yassin_mostafa.png",
+    "contactInfo": {
+      "emails": ["yassin.mostafa@gmail.com"],
+      "socialLinks": [
+        {
+          "type": "github",
+          "url": "https://github.com/yassinmostafa"
+        },
+        {
+          "type": "linkedin",
+          "url": "https://linkedin.com/in/yassin-mostafa"
+        },
+        {
+          "type": "x",
+          "url": "https://x.com/yassin_codes"
+        }
+      ],
+      "phoneNumbers": ["+201155667788"]
+    },
+    "isActive": false,
+    "lastSeen": "2026-05-15T04:18:00.000Z"
+  }
+]
