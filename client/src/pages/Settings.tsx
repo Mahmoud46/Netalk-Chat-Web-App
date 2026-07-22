@@ -4,7 +4,7 @@ import { ArrowIcon } from "../components/ui/Icons";
 import Label from "../components/common/Label";
 import { SETTINGS_SIDEBAR_ITEMS } from "../config/navigation";
 import { capitalize, isRouteActive } from "../utils/helpers";
-import { SettingsSidebarIcon } from "../components/icons/Sidebar/SidebarIcon";
+import { SettingsSidebarIcon } from "../components/icons/sidebar/SidebarIcon";
 import CommonIcon from "../components/icons/common/CommonIcon";
 
 const SettingsSidebar = (): ReactNode => {

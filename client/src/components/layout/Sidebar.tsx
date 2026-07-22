@@ -5,7 +5,7 @@ import { SIDEBAR_ITEMS } from "../../config/navigation";
 import { capitalize, isRouteActive } from "../../utils/helpers";
 import { useAuth, useTheme } from "../../hooks";
 import Label from "../common/Label";
-import { MainSidebarIcon } from "../icons/Sidebar/SidebarIcon";
+import { MainSidebarIcon } from "../icons/sidebar/SidebarIcon";
 
 export default function Sidebar(): ReactNode {
   const pathname = useLocation().pathname,
