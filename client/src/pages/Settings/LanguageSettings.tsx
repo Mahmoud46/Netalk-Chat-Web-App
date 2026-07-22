@@ -106,7 +106,7 @@ const LanguageOptions = () => {
 export default function LanguageSettings() {
   return (
     <>
-      <SettingsHeader title="Account Settings" />
+      <SettingsHeader title="Language Settings" />
       <div className="flex flex-wrap w-full px-3 gap-6">
         <div className="flex flex-col flex-1 gap-6">
           <TranslateMessageOptions />

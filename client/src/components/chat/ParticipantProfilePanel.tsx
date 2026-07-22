@@ -34,13 +34,18 @@ const ParticipantProfilePanel = (): ReactNode => {
   return (
     <aside className="sticky top-0 w-70 flex flex-col bg-background-light-surface-2 dark:bg-background-dark-surface-2">
       <div className="relative flex flex-col -mb-10">
-        <button className="absolute top-0 bg-background-light-base dark:bg-background-dark-base p-1 rounded-br-3xl cursor-pointer group top-left-cornered-toggle-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
-          <CommonIcon
-            label="chevron_right"
-            weight="thin"
-            className="size-7 transition-all ease-in-out group-hover:translate-x-2"
-          />
-        </button>
+        <div className="size-15 w-full absolute">
+          <div className="absolute top-0 left-0 bg-background-light-base dark:bg-background-dark-base p-2 rounded-br-3xl top-left-cornered-btn  [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+            <button className="relative group cursor-pointer p-1 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+              <CommonIcon
+                label="chevron_right"
+                weight="thin"
+                className="size-7 transition-all ease-in-out"
+              />
+              <Label text="Close" />
+            </button>
+          </div>
+        </div>
         <img
           src={
             currentParticipant?.profileCover ??
