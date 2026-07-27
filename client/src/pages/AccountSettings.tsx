@@ -5,8 +5,8 @@ import { formatDate, formatPhoneNumber } from "../utils/format";
 import { calculateAge } from "../utils/helpers";
 
 import Label from "../components/common/Label";
-import SocialIcon from "../components/icons/social/SocialIcon";
-import CommonIcon from "../components/icons/common/CommonIcon";
+import SocialIcon from "../components/icons/SocialIcon";
+import CommonIcon from "../components/icons/CommonIcon";
 
 const NameField = () => {
   const { authNUser } = useAuth();
@@ -248,13 +248,13 @@ const ContactsInfo = () => {
         {authNUser?.contactInfo.emails.map((email) => (
           <div
             key={email}
-            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full p-0 px-3 hover:py-2 rounded-3xl group/card hover:bg-background-light-surface-2 dark:hover:bg-background-dark-surface-2 cursor-pointer"
+            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full p-0 px-3 pr-1 hover:py-1 rounded-3xl group/card hover:bg-background-light-surface-2 dark:hover:bg-background-dark-surface-2 cursor-pointer"
           >
             <div className="flex gap-3 items-center">
               <CommonIcon
                 label="envelope_alt"
-                weight="thin"
-                className="size-6 flex-none opacity-60"
+                weight="base"
+                className="size-5 flex-none opacity-60"
               />
 
               <p className="line-clamp-1 flex-1">{email}</p>
@@ -274,13 +274,13 @@ const ContactsInfo = () => {
         {authNUser?.contactInfo.phoneNumbers.map((phoneNumber) => (
           <div
             key={phoneNumber}
-            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full p-0 px-3 hover:py-2 rounded-3xl group/card hover:bg-background-light-surface-2 dark:hover:bg-background-dark-surface-2 cursor-pointer"
+            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full p-0 px-3 pr-1 hover:py-1 rounded-3xl group/card hover:bg-background-light-surface-2 dark:hover:bg-background-dark-surface-2 cursor-pointer"
           >
             <div className="flex gap-3 items-center">
               <CommonIcon
                 label="phone"
-                weight="thin"
-                className="size-6 flex-none opacity-60"
+                weight="base"
+                className="size-5 flex-none opacity-60"
               />
               <p className="line-clamp-1 flex-1">
                 {formatPhoneNumber(phoneNumber)}
@@ -301,13 +301,13 @@ const ContactsInfo = () => {
         {authNUser?.contactInfo.socialLinks.map((socialLink) => (
           <div
             key={socialLink.url}
-            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full p-0 px-3 hover:py-2 rounded-3xl group/card hover:bg-background-light-surface-2 dark:hover:bg-background-dark-surface-2 cursor-pointer"
+            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full p-0 px-3 pr-1 hover:py-1 rounded-3xl group/card hover:bg-background-light-surface-2 dark:hover:bg-background-dark-surface-2 cursor-pointer"
           >
             <div className="flex gap-3 items-center">
               <SocialIcon
                 platform={socialLink.type}
-                className="size-6 flex-none opacity-60"
-                weight="thin"
+                className="size-5 flex-none opacity-60"
+                weight="base"
               />
               <p className="line-clamp-1 flex-1">{socialLink.url}</p>
             </div>

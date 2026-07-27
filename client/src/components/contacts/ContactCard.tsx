@@ -4,7 +4,7 @@ import { useChat } from "../../hooks";
 import moment from "moment";
 import Label from "../common/Label";
 import React, { useState } from "react";
-import CommonIcon from "../icons/common/CommonIcon";
+import CommonIcon from "../icons/CommonIcon";
 
 const ContactEntryDropList = React.lazy(() =>
   import("../common/DropList").then((module) => ({

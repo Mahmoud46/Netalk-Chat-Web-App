@@ -4,8 +4,9 @@ import Label from "../common/Label";
 import default_cover from "../../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../../assets/images/default_profile_cover_dark.jpg";
 import { formatPhoneNumber } from "../../utils/format";
-import CommonIcon from "../icons/common/CommonIcon";
-import SocialIcon from "../icons/social/SocialIcon";
+import CommonIcon from "../icons/CommonIcon";
+import SocialIcon from "../icons/SocialIcon";
+import { UsernameHolder } from "../../pages/Profile";
 
 const ContactEntryProfilePanel = () => {
   const { currentContactEntry, contacts, setCurrentContactEntry } = useChat(),
@@ -63,18 +64,17 @@ const ContactEntryProfilePanel = () => {
                 )}
               </div>
             </div>
-            <div className="flex flex-col justify-center p-4 -translate-y-13 gap-1">
-              <p className="text-center font-bold text-base text-foreground-light-secondary dark:text-foreground-dark-secondary line-clamp-1">
+            <div className="flex flex-col justify-center p-4 pt-2 -translate-y-13 gap-1 items-center">
+              <UsernameHolder
+                username={currentContactEntry?.username}
+                isXs={true}
+              />
+              <p className="text-center font-bold text-base text-foreground-light-secondary dark:text-foreground-dark-secondary line-clamp-2">
                 {contacts[currentContactEntry._id ?? ""]}
               </p>
               <div className="flex flex-col gap-1">
-                {currentContactEntry.bio && (
-                  <p className="text-center text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary line-clamp-1">
-                    {currentContactEntry.bio}
-                  </p>
-                )}
                 {currentContactEntry.address && (
-                  <p className="text-xs flex items-center gap-2 justify-center text-foreground-light-secondary dark:text-foreground-dark-secondary">
+                  <p className="text-sm flex items-center gap-2 justify-center text-foreground-light-secondary dark:text-foreground-dark-secondary">
                     <CommonIcon
                       label="location_alt"
                       weight="thin"
@@ -121,7 +121,13 @@ const ContactEntryProfilePanel = () => {
             </div>
           </div>
           <div className="flex-1 overflow-auto bg-background-light-surface-3 dark:bg-background-dark-surface-3 flex flex-col transition-all ease-in-out">
-            <div className="h-full overflow-y-auto px-3 py-3 flex flex-col gap-6">
+            <div className="h-full overflow-y-auto px-3 py-3 pt-0 flex flex-col gap-6">
+              {currentContactEntry?.bio && (
+                <div className="flex gap-2 text-sm flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
+                  <h2 className="font-semibold">About</h2>
+                  <p>{currentContactEntry?.bio}</p>
+                </div>
+              )}
               <div className="flex gap-2 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
                 <h2 className="font-semibold text-sm">Contact Info</h2>
                 <div className="flex flex-col gap-2">
@@ -134,8 +140,8 @@ const ContactEntryProfilePanel = () => {
                     >
                       <CommonIcon
                         label="envelope_alt"
-                        weight="thin"
-                        className="size-6 opacity-60"
+                        weight="base"
+                        className="size-5 opacity-60"
                       />
 
                       {email}
@@ -158,8 +164,8 @@ const ContactEntryProfilePanel = () => {
                       >
                         <CommonIcon
                           label="phone"
-                          weight="thin"
-                          className="size-6 opacity-60"
+                          weight="base"
+                          className="size-5 opacity-60"
                         />
                         {formatPhoneNumber(phoneNumber)}
 
@@ -184,7 +190,7 @@ const ContactEntryProfilePanel = () => {
                         <SocialIcon
                           platform={socialLink.type}
                           className="size-5 opacity-60"
-                          weight="thin"
+                          weight="base"
                         />
                         <p className="line-clamp-1 flex-1">{socialLink.url}</p>
 

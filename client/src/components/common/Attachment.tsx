@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Attachment } from "../../types";
-import CommonIcon from "../icons/common/CommonIcon";
-import FileIcon from "../icons/files/FileIcon";
+import CommonIcon from "../icons/CommonIcon";
+import FileIcon from "../icons/FileIcon";
 
 export const AttachmentCard = ({
   attachment,

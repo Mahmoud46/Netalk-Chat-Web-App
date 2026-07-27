@@ -91,3 +91,19 @@ export const calculateAge = (birthdate: string) => {
   // whether the birthday has passed. Floor-dividing by 10000 strips them away.
   return Math.floor((todaySum - birthSum) / 10000);
 };
+
+export async function copyToClipboard(text: string): Promise<boolean> {
+  // Check if the modern Clipboard API is available in the current environment
+  if (!navigator?.clipboard?.writeText) {
+    return false;
+  }
+
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (error) {
+    console.error("Failed to copy using Clipboard API:", error);
+    // Fall back to document.execCommand if writeText fails (e.g., permissions issue)
+    return false;
+  }
+}

@@ -8,7 +8,7 @@ import { ToggleButton } from "./AppearanceSettings";
 import type { User } from "../types";
 import moment from "moment";
 import { BlockedCardDropList } from "../components/common/DropList";
-import CommonIcon from "../components/icons/common/CommonIcon";
+import CommonIcon from "../components/icons/CommonIcon";
 
 const BlockedUserCard = ({ user }: { user: User }) => {
   const { contacts } = useChat();

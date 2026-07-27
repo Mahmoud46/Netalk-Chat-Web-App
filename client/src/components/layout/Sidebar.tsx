@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
-import { NetalkIcon } from "../ui/Icons";
 import { Link, useLocation } from "react-router-dom";
 import { SIDEBAR_ITEMS } from "../../config/navigation";
 import { capitalize, isRouteActive } from "../../utils/helpers";
 import { useAuth, useTheme } from "../../hooks";
 import Label from "../common/Label";
-import { MainSidebarIcon } from "../icons/sidebar/SidebarIcon";
+import { MainSidebarIcon } from "../icons/SidebarIcon";
+import { BrandIcon } from "../icons/BrandIcon";
 
 export default function Sidebar(): ReactNode {
   const pathname = useLocation().pathname,
@@ -16,7 +16,7 @@ export default function Sidebar(): ReactNode {
   return (
     <aside className="flex flex-col items-center h-ful py-4 bg-background-light-surface-1 dark:bg-background-dark-surface-1 gap-8">
       <Link to="/">
-        <NetalkIcon className="size-8" theme={theme} />
+        <BrandIcon className="size-8" theme={theme} />
       </Link>
       <div className="flex flex-col justify-between flex-1">
         <div className="flex flex-col items-center">

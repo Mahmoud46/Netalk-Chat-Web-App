@@ -3,7 +3,7 @@ import React, { Suspense, type ReactNode } from "react";
 import Loader from "../common/Loader";
 import type { Chat } from "../../types";
 import Label from "../common/Label";
-import CommonIcon from "../icons/common/CommonIcon";
+import CommonIcon from "../icons/CommonIcon";
 
 const ChatCard = React.lazy(() => import("./ChatCard"));
 

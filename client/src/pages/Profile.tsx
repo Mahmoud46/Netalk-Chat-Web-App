@@ -1,11 +1,42 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { useAuth, useTheme } from "../hooks";
 import default_cover from "../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../assets/images/default_profile_cover_dark.jpg";
-import CommonIcon from "../components/icons/common/CommonIcon";
+import CommonIcon from "../components/icons/CommonIcon";
 import Label from "../components/common/Label";
-import SocialIcon from "../components/icons/social/SocialIcon";
+import SocialIcon from "../components/icons/SocialIcon";
 import { formatPhoneNumber } from "../utils/format";
+import { copyToClipboard } from "../utils/helpers";
+
+export const UsernameHolder = ({
+  username = "",
+  isXs = false,
+}: {
+  username?: string;
+  isXs?: boolean;
+}) => {
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+  return (
+    <p
+      className={`group flex relative w-fit items-center opacity-80 hover:opacity-100 cursor-pointer transition-all ease-in-out pt-2 pl-0 ${isXs ? "text-xs" : "text-sm"} text-foreground-light-secondary dark:text-foreground-dark-secondary`}
+      onClick={async () => {
+        const copied = await copyToClipboard(username);
+        setIsCopied(copied);
+
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 1000);
+      }}
+    >
+      @{username}
+      <Label text={isCopied ? "Copied" : "Copy"} />
+      <CommonIcon
+        label={isCopied ? "copy_check" : "copy"}
+        className="size-4.5 ml-2"
+      />
+    </p>
+  );
+};
 
 export default function Profile(): ReactNode {
   const { authNUser } = useAuth(),
@@ -43,7 +74,7 @@ export default function Profile(): ReactNode {
                   />
                 )}
 
-                <div className="absolute -right-1.5 -bottom-1.5 bg-background-light-base dark:bg-background-dark-base rounded-full">
+                <div className="absolute -right-5 -bottom-5 bg-background-light-base dark:bg-background-dark-base rounded-full p-2">
                   <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
                     <CommonIcon label="edit" weight="thin" className="size-6" />
                     <Label text="Edit" />
@@ -53,9 +84,7 @@ export default function Profile(): ReactNode {
             </div>
             <div className="flex-1 flex flex-col gap-4 pt-4">
               <div className="flex flex-col gap-2">
-                <p className="opacity-80 hover:opacity-100 cursor-pointer transition-all ease-in-out pt-2 pl-0 text-sm">
-                  @{authNUser?.username}
-                </p>
+                <UsernameHolder username={authNUser?.username} />
                 <p className="text-6xl">
                   {authNUser?.firstName}{" "}
                   <span className="font-semibold gradient bg-clip-text text-transparent">
@@ -97,8 +126,8 @@ export default function Profile(): ReactNode {
                   >
                     <CommonIcon
                       label="envelope_alt"
-                      weight="thin"
-                      className="size-6 opacity-60"
+                      weight="base"
+                      className="size-5 opacity-60"
                     />
 
                     {email}
@@ -120,8 +149,8 @@ export default function Profile(): ReactNode {
                   >
                     <CommonIcon
                       label="phone"
-                      weight="thin"
-                      className="size-6 opacity-60"
+                      weight="base"
+                      className="size-5 opacity-60"
                     />
                     {formatPhoneNumber(phoneNumber)}
 
@@ -144,7 +173,7 @@ export default function Profile(): ReactNode {
                     <SocialIcon
                       platform={socialLink.type}
                       className="size-5 opacity-60"
-                      weight="thin"
+                      weight="base"
                     />
                     <p className="line-clamp-1">{socialLink.url}</p>
 

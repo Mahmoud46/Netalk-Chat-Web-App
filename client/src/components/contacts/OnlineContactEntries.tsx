@@ -3,7 +3,7 @@ import type { User } from "../../types";
 import Label from "../common/Label";
 import Loader from "../common/Loader";
 import React from "react";
-import CommonIcon from "../icons/common/CommonIcon";
+import CommonIcon from "../icons/CommonIcon";
 
 const ContactsOnlineCard = React.lazy(() =>
   import("./ContactCard").then((module) => ({

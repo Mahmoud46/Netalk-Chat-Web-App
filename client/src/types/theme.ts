@@ -1,6 +1,6 @@
 export type ThemeMode = "light" | "dark" | "system";
 
-export type IconWeight = "thin" | "normal" | "bold";
+export type IconWeight = "thin" | "base" | "bold";
 
 export interface ThemeContextValue {
   theme: ThemeMode;

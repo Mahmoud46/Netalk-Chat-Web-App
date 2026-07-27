@@ -2,7 +2,7 @@ import { useState, type ReactNode } from "react";
 import { useChat } from "../../hooks";
 import moment from "moment";
 import { ChatDropList } from "../common/DropList";
-import CommonIcon from "../icons/common/CommonIcon";
+import CommonIcon from "../icons/CommonIcon";
 
 const ChatHeader = (): ReactNode => {
   const { currentParticipant, contacts } = useChat(),

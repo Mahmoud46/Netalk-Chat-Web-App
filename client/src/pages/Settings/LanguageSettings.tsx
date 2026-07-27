@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { SettingsHeader } from "../../components/common/Header";
-import { ArrowIcon } from "../../components/ui/Icons";
 import { ToggleButton } from "../AppearanceSettings";
-import { SettingsSidebarIcon } from "../../components/ui/icons/SidebarIcon";
 import { LANGUAGES, LANGUAGES_CODE_MAP } from "../../config/languages";
 import type { LanguageCode } from "../../types";
 import Label from "../../components/common/Label";
-import CommonIcon from "../../components/icons/common/CommonIcon";
+import CommonIcon from "../../components/icons/CommonIcon";
+import { SettingsSidebarIcon } from "../../components/icons/SidebarIcon";
 
 const ShowTranslateButton = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -70,7 +69,9 @@ const LanguageOptions = () => {
           </div>
 
           <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-            <ArrowIcon
+            <CommonIcon
+              label="chevron_right"
+              weight="thin"
               className={`size-7 transition-all ease-in-out ${isActive ? "-rotate-90" : "rotate-90"}`}
             />
             <Label text={isActive ? "Close" : "Open"} />

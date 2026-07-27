@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import { useAuth, useChat } from "../../hooks";
-import ChatIcon from "../icons/chat/ChatIcon";
-import CommonIcon from "../icons/common/CommonIcon";
+import ChatIcon from "../icons/ChatIcon";
+import CommonIcon from "../icons/CommonIcon";
 import { EMOJIS_LIST } from "../../config/emojis";
-import EmojiIcon from "../icons/emojis/EmojiIcon";
+import EmojiIcon from "../icons/EmojiIcon";
 
 export const ChatDropList = ({
   isActive = false,

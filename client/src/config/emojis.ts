@@ -1,4 +1,4 @@
-import type { EmojiType } from "../components/icons/emojis/EmojiIcon";
+import type { EmojiType } from "../components/icons/EmojiIcon";
 
 export const EMOJIS_LIST: EmojiType[] = [
   "winking_face",

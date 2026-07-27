@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import type { Chat, User } from "../../types";
 import { useAuth, useChat } from "../../hooks";
 import Label from "../common/Label";
-import { MessageStatusIcon } from "../icons/chat/ChatIcon";
+import { MessageStatusIcon } from "../icons/ChatIcon";
 
 const ChatCard = ({ chat }: { chat: Chat }): ReactNode => {
   const [participant, setParticipant] = useState<User | null>(null),
@@ -46,7 +46,7 @@ const ChatCard = ({ chat }: { chat: Chat }): ReactNode => {
           chat.lastMessage.sender == authNUser?._id && (
             <span className="absolute bg-background-light-base dark:bg-background-dark-base w-4 h-4 aspect-square flex items-center justify-center rounded-full -top-0.5 -right-0.5">
               <MessageStatusIcon
-                weight={chat.lastMessage.status == "sent" ? "normal" : "thin"}
+                weight={chat.lastMessage.status == "sent" ? "base" : "thin"}
                 status={chat.lastMessage.status}
                 className={`${chat.lastMessage.status === "sent" && "size-2.5"}`}
               />

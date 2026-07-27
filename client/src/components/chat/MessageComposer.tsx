@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import React from "react";
-import CommonIcon from "../icons/common/CommonIcon";
-import ChatIcon from "../icons/chat/ChatIcon";
+import CommonIcon from "../icons/CommonIcon";
+import ChatIcon from "../icons/ChatIcon";
 
 const AttachmentDropList = React.lazy(() =>
     import("../common/DropList").then((module) => ({

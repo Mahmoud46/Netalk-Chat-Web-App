@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { User } from "../../types";
-import CommonIcon from "../icons/common/CommonIcon";
-import EmojiIcon from "../icons/emojis/EmojiIcon";
+import CommonIcon from "../icons/CommonIcon";
+import EmojiIcon from "../icons/EmojiIcon";
 
 const ChatFreshThread = ({
   currentParticipant,

@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth, useChat, useTheme } from "../../hooks";
 import type { Message } from "../../types";
 import { formatTime12Hours } from "../../utils/format";
-import { MessageStatusIcon } from "../icons/chat/ChatIcon";
+import { MessageStatusIcon } from "../icons/ChatIcon";
 
 const AttachmentCard = React.lazy(() =>
   import("../common/Attachment").then((module) => ({
@@ -47,7 +47,7 @@ const MessageBubble = ({
           </time>
           {flowRight && (
             <MessageStatusIcon
-              weight={message.status == "sent" ? "normal" : "thin"}
+              weight={message.status == "sent" ? "base" : "thin"}
               status={message.status}
               className={message.status == "sent" ? "size-3" : "size-5"}
             />
