@@ -33,7 +33,7 @@ const ChatFreshThread = ({
         </p>
       </div>
       <button className="relative gradient text-white flex gap-2 items-center p-2 pr-4 rounded-full cursor-pointer text-sm group transition-all ease-in-out hover:scale-105">
-        <EmojiIcon label="waving_hand" className="size-7" />
+        <EmojiIcon label="waving_hand" className="size-6" />
         <p className="">Say Hello!</p>
         <CommonIcon
           label="stroke_freehand"

@@ -36,7 +36,7 @@ const NameField = () => {
             setFirstName(e.target.value);
             setShowSaveButton(e.target.value.trim() != authNUser?.firstName);
           }}
-          className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary"
+          className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
         />
         <input
           type="text"
@@ -46,7 +46,7 @@ const NameField = () => {
             setLastName(e.target.value);
             setShowSaveButton(e.target.value.trim() != authNUser?.lastName);
           }}
-          className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary"
+          className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
         />
       </div>
       {showSaveButton && (
@@ -83,7 +83,7 @@ const TitleField = () => {
           setTitle(e.target.value);
           setShowSaveButton(e.target.value.trim() != authNUser?.title);
         }}
-        className="w-full resize-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary"
+        className="w-full resize-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
       />
 
       {showSaveButton && (
@@ -121,7 +121,7 @@ const BioField = () => {
           setShowSaveButton(e.target.value.trim() != authNUser?.bio);
         }}
         rows={6}
-        className="w-full resize-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary"
+        className="w-full resize-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
       />
 
       {showSaveButton && (
@@ -216,7 +216,7 @@ const AddressField = () => {
           setShowSaveButton(e.target.value.trim() != authNUser?.address);
         }}
         placeholder="Address"
-        className="flex items-center gap-2 w-full rounded-full bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary"
+        className="flex items-center gap-2 w-full rounded-full bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
       />
 
       {showSaveButton && (

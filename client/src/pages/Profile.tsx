@@ -32,7 +32,7 @@ export const UsernameHolder = ({
       <Label text={isCopied ? "Copied" : "Copy"} />
       <CommonIcon
         label={isCopied ? "copy_check" : "copy"}
-        className="size-4.5 ml-2"
+        className={`${isXs ? "size-4 ml-1" : "size-4.5 ml-2"}`}
       />
     </p>
   );

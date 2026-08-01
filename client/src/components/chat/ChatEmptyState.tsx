@@ -17,7 +17,7 @@ const ChatEmptyStateWindow = (): ReactNode => {
         </p>
       </div>
       <button className="relative gradient text-white flex gap-2 items-center p-2 pr-3 rounded-full cursor-pointer text-sm group transition-all ease-in-out hover:scale-105">
-        <CommonIcon label="plus" soild={true} className="size-7" />
+        <CommonIcon label="plus" soild={true} className="size-6" />
         <p>Start Chat</p>
 
         <CommonIcon

@@ -28,6 +28,8 @@ import arrow_out_up_right_circle_icon from "../../assets/icons/common/arrow_out_
 import loader_lines_alt from "../../assets/icons/common/loader_lines_alt.png";
 import copy_icon from "../../assets/icons/common/copy.png";
 import copy_check_icon from "../../assets/icons/common/copy_check.png";
+import eye_icon from "../../assets/icons/common/eye.png";
+import eye_slash_icon from "../../assets/icons/common/eye_slash.png";
 
 // Thin icons
 import search_big_thin_icon from "../../assets/icons/common/search_big_thin.png";
@@ -58,6 +60,12 @@ import arrow_out_up_right_circle_thin_icon from "../../assets/icons/common/arrow
 import loader_lines_alt_thin from "../../assets/icons/common/loader_lines_alt_thin.png";
 import copy_thin_icon from "../../assets/icons/common/copy_thin.png";
 import copy_check_thin_icon from "../../assets/icons/common/copy_check_thin.png";
+import eye_thin_icon from "../../assets/icons/common/eye_thin.png";
+import eye_slash_thin_icon from "../../assets/icons/common/eye_slash_thin.png";
+
+// Bold
+import eye_bold_icon from "../../assets/icons/common/eye_bold.png";
+import eye_slash_bold_icon from "../../assets/icons/common/eye_slash_bold.png";
 
 // Soild base icons
 import dots_vertical_rounded_solid_icon from "../../assets/icons/common/dots_vertical_rounded_solid.png";
@@ -340,6 +348,34 @@ export default function CommonIcon({
       return (
         <img
           src={weight == "thin" ? copy_check_thin_icon : copy_check_icon}
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "eye":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? eye_thin_icon
+              : weight == "bold"
+                ? eye_bold_icon
+                : eye_icon
+          }
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "eye_slash":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? eye_slash_thin_icon
+              : weight == "bold"
+                ? eye_slash_bold_icon
+                : eye_slash_icon
+          }
           loading="lazy"
           className={`main-icon ${className ?? ""}`}
         />
