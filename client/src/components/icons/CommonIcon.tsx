@@ -30,6 +30,8 @@ import copy_icon from "../../assets/icons/common/copy.png";
 import copy_check_icon from "../../assets/icons/common/copy_check.png";
 import eye_icon from "../../assets/icons/common/eye.png";
 import eye_slash_icon from "../../assets/icons/common/eye_slash.png";
+import male_icon from "../../assets/icons/common/male.png";
+import female_icon from "../../assets/icons/common/female.png";
 
 // Thin icons
 import search_big_thin_icon from "../../assets/icons/common/search_big_thin.png";
@@ -62,10 +64,14 @@ import copy_thin_icon from "../../assets/icons/common/copy_thin.png";
 import copy_check_thin_icon from "../../assets/icons/common/copy_check_thin.png";
 import eye_thin_icon from "../../assets/icons/common/eye_thin.png";
 import eye_slash_thin_icon from "../../assets/icons/common/eye_slash_thin.png";
+import male_thin_icon from "../../assets/icons/common/male_thin.png";
+import female_thin_icon from "../../assets/icons/common/female_thin.png";
 
 // Bold
 import eye_bold_icon from "../../assets/icons/common/eye_bold.png";
 import eye_slash_bold_icon from "../../assets/icons/common/eye_slash_bold.png";
+import male_bold_icon from "../../assets/icons/common/male_bold.png";
+import female_bold_icon from "../../assets/icons/common/female_bold.png";
 
 // Soild base icons
 import dots_vertical_rounded_solid_icon from "../../assets/icons/common/dots_vertical_rounded_solid.png";
@@ -378,6 +384,34 @@ export default function CommonIcon({
           }
           loading="lazy"
           className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "male":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? male_thin_icon
+              : weight == "bold"
+                ? male_bold_icon
+                : male_icon
+          }
+          loading="lazy"
+          className={`${soild ? "invert-100" : "main-icon"} ${className ?? ""}`}
+        />
+      );
+    case "female":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? female_thin_icon
+              : weight == "bold"
+                ? female_bold_icon
+                : female_icon
+          }
+          loading="lazy"
+          className={`${soild ? "invert-100" : "main-icon"} ${className ?? ""}`}
         />
       );
 

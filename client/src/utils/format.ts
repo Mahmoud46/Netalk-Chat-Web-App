@@ -47,3 +47,19 @@ export const formatPhoneNumber = (phone: string): string => {
 
   return countryCode + parts.join(" ");
 };
+
+/**
+ * Gets the date from 16 years ago formatted for an HTML date input (YYYY-MM-DD).
+ * @returns A string formatted as "YYYY-MM-DD"
+ */
+export const getDateSixteenYearsAgo = (): string => {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() - 16);
+
+  const year = date.getFullYear();
+  // padStart ensures months and days always have 2 digits (e.g., "08" instead of "8")
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};
