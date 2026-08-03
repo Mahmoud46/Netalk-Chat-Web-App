@@ -3,7 +3,7 @@ import type { AuthContextValue, AuthNUser } from "../types";
 import { AuthContext } from "./AuthContext";
 import auth_user from "../assets/data/auth_user.json";
 export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
-  const [isAuthenticated] = useState<boolean>(false),
+  const [isAuthenticated] = useState<boolean>(true),
     [authNUser, setAuthNUser] = useState<AuthNUser | null>(
       auth_user as AuthNUser,
     );
