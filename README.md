@@ -10,7 +10,7 @@ Current Status: Frontend Development Phase
 ✓ User Profiles
 ✓ Theme Switching (Light/Dark)
 ✓ Mock Data Integration (JSON Files)
-⏳ Login and Signup pages
+✓ Login and Signup pages
 
 ⏳ Backend Development
 ⏳ Database Integration

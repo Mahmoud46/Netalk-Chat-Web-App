@@ -329,7 +329,14 @@ export const SignupForm = () => {
   );
 
   return (
-    <form className="flex flex-col gap-8">
+    <form
+      className="flex flex-col gap-8"
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        setPart((prev) => (prev == 1 ? 2 : 1));
+      }}
+    >
       <div className="flex flex-col gap-6">
         {part == 1 && (
           <>
@@ -376,14 +383,10 @@ export const SignupForm = () => {
             Previous
           </button>
         )}
+
         <button
           type="submit"
           className="gradient p-2.5 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 flex-1 gap-2"
-          onClick={(e) => {
-            e.preventDefault();
-
-            setPart((prev) => (prev == 1 ? 2 : 1));
-          }}
         >
           {part == 1 ? "Next" : "Submit"}
         </button>

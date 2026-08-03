@@ -70,45 +70,47 @@ export default function Auth(): ReactNode {
               weight="thin"
               className={`size-9 transition-all ease-in-out ${authMode == "signup" && "rotate-180"}`}
             />
-            <Label text={authMode == "login" ? "Sign up" : "Log in"} />
+            <Label text={authMode == "login" ? "Signup" : "Login"} />
           </button>
         </Link>
       </div>
-      <div
-        className={`flex-1 h-full text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col p-12 gap-16 z-10`}
-      >
-        <div className="">
-          <h2 className="flex items-center text-2xl font-semibold">
-            {authMode == "signup" ? "Get started on" : "Log in into"}{" "}
-            <BrandWordmark className="h-11 mx-1" />
-          </h2>
-          {authMode == "login" && (
-            <p className="text-sm">
-              Don't have an account?{" "}
-              <Link
-                className="hover:text-foreground-light-primary transition-all hover:underline"
-                to={"/auth?mode=signup"}
-              >
-                Sign up
-              </Link>
-            </p>
-          )}
-          {authMode == "signup" && (
-            <p className="text-sm">
-              Already have an account?{" "}
-              <Link
-                className="hover:text-foreground-light-primary transition-all hover:underline"
-                to={"/auth?mode=login"}
-              >
-                Log in
-              </Link>
-            </p>
-          )}
+      <div className="flex-1 h-full text-foreground-light-secondary dark:text-foreground-dark-secondary ">
+        <div
+          className={`flex flex-col p-12 gap-16 z-10 max-h-full overflow-auto`}
+        >
+          <div className="">
+            <h2 className="flex items-center text-2xl font-semibold">
+              {authMode == "signup" ? "Get started on" : "Log in into"}{" "}
+              <BrandWordmark className="h-11 mx-1" />
+            </h2>
+            {authMode == "login" && (
+              <p className="text-sm">
+                Don't have an account?{" "}
+                <Link
+                  className="hover:text-foreground-light-primary transition-all hover:underline"
+                  to={"/auth?mode=signup"}
+                >
+                  Sign up
+                </Link>
+              </p>
+            )}
+            {authMode == "signup" && (
+              <p className="text-sm">
+                Already have an account?{" "}
+                <Link
+                  className="hover:text-foreground-light-primary transition-all hover:underline"
+                  to={"/auth?mode=login"}
+                >
+                  Log in
+                </Link>
+              </p>
+            )}
+          </div>
+          <Suspense fallback={<Loader />}>
+            {authMode == "login" && <LoginForm />}
+            {authMode == "signup" && <SignupForm />}
+          </Suspense>
         </div>
-        <Suspense fallback={<Loader />}>
-          {authMode == "login" && <LoginForm />}
-          {authMode == "signup" && <SignupForm />}
-        </Suspense>
       </div>
     </div>
   );
