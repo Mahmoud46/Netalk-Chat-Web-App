@@ -253,8 +253,8 @@ const ContactsInfo = () => {
             <div className="flex gap-3 items-center">
               <CommonIcon
                 label="envelope_alt"
-                weight="base"
-                className="size-5 flex-none opacity-60"
+                weight="thin"
+                className="size-6 flex-none opacity-60"
               />
 
               <p className="line-clamp-1 flex-1">{email}</p>
@@ -279,8 +279,8 @@ const ContactsInfo = () => {
             <div className="flex gap-3 items-center">
               <CommonIcon
                 label="phone"
-                weight="base"
-                className="size-5 flex-none opacity-60"
+                weight="thin"
+                className="size-6 flex-none opacity-60"
               />
               <p className="line-clamp-1 flex-1">
                 {formatPhoneNumber(phoneNumber)}
@@ -306,8 +306,8 @@ const ContactsInfo = () => {
             <div className="flex gap-3 items-center">
               <SocialIcon
                 platform={socialLink.type}
-                className="size-5 flex-none opacity-60"
-                weight="base"
+                className="size-6 flex-none opacity-60"
+                weight="thin"
               />
               <p className="line-clamp-1 flex-1">{socialLink.url}</p>
             </div>

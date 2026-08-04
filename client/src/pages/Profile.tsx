@@ -7,6 +7,7 @@ import Label from "../components/common/Label";
 import SocialIcon from "../components/icons/SocialIcon";
 import { formatPhoneNumber } from "../utils/format";
 import { copyToClipboard } from "../utils/helpers";
+import type { AuthNUser } from "../types";
 
 export const UsernameHolder = ({
   username = "",
@@ -28,7 +29,7 @@ export const UsernameHolder = ({
         }, 1000);
       }}
     >
-      @{username}
+      <span className="font-semibold">@{username}</span>
       <Label text={isCopied ? "Copied" : "Copy"} />
       <CommonIcon
         label={isCopied ? "copy_check" : "copy"}
@@ -38,13 +39,96 @@ export const UsernameHolder = ({
   );
 };
 
+export const ContactsInfo = ({
+  authNUser,
+}: {
+  authNUser?: AuthNUser | null;
+}) => {
+  return (
+    <div className="max-w-100 min-w-80 flex flex-col gap-2">
+      <h2 className="font-semibold">Contact Info</h2>
+      <div className="flex flex-col gap-2">
+        {authNUser?.contactInfo.emails.map((email) => (
+          <a
+            href={`mailto:${email}`}
+            key={email}
+            target="_blank"
+            className="group text-sm relative flex hover:underline items-center gap-3 transition-all ease-in-out w-fit max-w-full line-clamp-1"
+          >
+            <CommonIcon
+              label="envelope_alt"
+              weight="thin"
+              className="size-6 opacity-60"
+            />
+
+            {email}
+            <div className="absolute right-0 scale-0 transition-all ease-in-out group-hover:scale-100 bg-linear-to-r from-transparent to-background-light-base dark:to-background-dark-base w-full flex justify-end items-center">
+              <CommonIcon
+                label="arrow_out_up_right_circle"
+                className="size-6"
+                weight="thin"
+              />
+            </div>
+          </a>
+        ))}
+        {authNUser?.contactInfo.phoneNumbers.map((phoneNumber) => (
+          <a
+            href={`tel:${phoneNumber}`}
+            key={phoneNumber}
+            target="_blank"
+            className="group text-sm relative flex items-center gap-3 transition-all ease-in-out w-fit max-w-full line-clamp-1"
+          >
+            <CommonIcon
+              label="phone"
+              weight="thin"
+              className="size-6 opacity-60"
+            />
+            {formatPhoneNumber(phoneNumber)}
+
+            <div className="absolute right-0 scale-0 transition-all ease-in-out group-hover:scale-100 bg-linear-to-r from-transparent to-background-light-base dark:to-background-dark-base w-full flex justify-end items-center">
+              <CommonIcon
+                label="arrow_out_up_right_circle"
+                className="size-6"
+                weight="thin"
+              />
+            </div>
+          </a>
+        ))}
+        {authNUser?.contactInfo.socialLinks.map((socialLink) => (
+          <a
+            href={socialLink.url}
+            key={socialLink.url}
+            target="_blank"
+            className="group text-sm relative flex items-center gap-3 transition-all ease-in-out w-fit max-w-full line-clamp-1"
+          >
+            <SocialIcon
+              platform={socialLink.type}
+              className="size-6 opacity-60"
+              weight="thin"
+            />
+            <p className="line-clamp-1">{socialLink.url}</p>
+
+            <div className="absolute right-0 scale-0 transition-all ease-in-out group-hover:scale-100 bg-linear-to-r from-transparent to-background-light-base dark:to-background-dark-base w-full flex justify-end items-center">
+              <CommonIcon
+                label="arrow_out_up_right_circle"
+                className="size-6"
+                weight="thin"
+              />
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function Profile(): ReactNode {
   const { authNUser } = useAuth(),
     { theme } = useTheme();
   return (
     <div className="text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <div className="h-40 w-full -mb-15 relative overflow-hidden cursor-pointer">
-        <div className="absolute top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-2 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+      <div className="h-40 w-full -mb-15 relative overflow-hidden cursor-pointer group/cover">
+        <div className="absolute top-0 right-0 opacity-0 group-hover/cover:opacity-100 transition-all ease-in-out bg-background-light-base dark:bg-background-dark-base p-2 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
           <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
             <CommonIcon label="edit" weight="thin" className="size-6" />
             <Label text="Edit" />
@@ -64,7 +148,7 @@ export default function Profile(): ReactNode {
         <div className="flex flex-col">
           <div className="flex flex-wrap items-start gap-6 bg-background-light-base/50 dark:bg-background-dark-base/50 flex-1 p-4 pl-0 pt-0 backdrop-blur-md rounded-t-3xl rounded-tl-[55px]">
             <div className="flex-none bg-background-light-base dark:bg-background-dark-base p-3 rounded-full rounded-bl-none">
-              <div className="relative cursor-pointer">
+              <div className="relative cursor-pointer group/avatar">
                 {authNUser?.profileImage && (
                   <img
                     src={authNUser?.profileImage}
@@ -74,7 +158,7 @@ export default function Profile(): ReactNode {
                   />
                 )}
 
-                <div className="absolute -right-5 -bottom-5 bg-background-light-base dark:bg-background-dark-base rounded-full p-2">
+                <div className="absolute opacity-0 group-hover/avatar:opacity-100 transition-all ease-in-out -right-4 -bottom-4 bg-background-light-base dark:bg-background-dark-base rounded-full p-1.5">
                   <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
                     <CommonIcon label="edit" weight="thin" className="size-6" />
                     <Label text="Edit" />
@@ -114,80 +198,7 @@ export default function Profile(): ReactNode {
                 <p>{authNUser?.bio}</p>
               </div>
             )}
-            <div className="max-w-100 min-w-80 flex flex-col gap-2">
-              <h2 className="font-semibold">Contact Info</h2>
-              <div className="flex flex-col gap-2">
-                {authNUser?.contactInfo.emails.map((email) => (
-                  <a
-                    href={`mailto:${email}`}
-                    key={email}
-                    target="_blank"
-                    className="group text-sm relative flex hover:underline items-center gap-3 transition-all ease-in-out w-fit max-w-full line-clamp-1"
-                  >
-                    <CommonIcon
-                      label="envelope_alt"
-                      weight="base"
-                      className="size-5 opacity-60"
-                    />
-
-                    {email}
-                    <div className="absolute right-0 scale-0 transition-all ease-in-out group-hover:scale-100 bg-linear-to-r from-transparent to-background-light-base dark:to-background-dark-base w-full flex justify-end items-center">
-                      <CommonIcon
-                        label="arrow_out_up_right_circle"
-                        className="size-6"
-                        weight="thin"
-                      />
-                    </div>
-                  </a>
-                ))}
-                {authNUser?.contactInfo.phoneNumbers.map((phoneNumber) => (
-                  <a
-                    href={`tel:${phoneNumber}`}
-                    key={phoneNumber}
-                    target="_blank"
-                    className="group text-sm relative flex items-center gap-3 transition-all ease-in-out w-fit max-w-full line-clamp-1"
-                  >
-                    <CommonIcon
-                      label="phone"
-                      weight="base"
-                      className="size-5 opacity-60"
-                    />
-                    {formatPhoneNumber(phoneNumber)}
-
-                    <div className="absolute right-0 scale-0 transition-all ease-in-out group-hover:scale-100 bg-linear-to-r from-transparent to-background-light-base dark:to-background-dark-base w-full flex justify-end items-center">
-                      <CommonIcon
-                        label="arrow_out_up_right_circle"
-                        className="size-6"
-                        weight="thin"
-                      />
-                    </div>
-                  </a>
-                ))}
-                {authNUser?.contactInfo.socialLinks.map((socialLink) => (
-                  <a
-                    href={socialLink.url}
-                    key={socialLink.url}
-                    target="_blank"
-                    className="group text-sm relative flex items-center gap-3 transition-all ease-in-out w-fit max-w-full line-clamp-1"
-                  >
-                    <SocialIcon
-                      platform={socialLink.type}
-                      className="size-5 opacity-60"
-                      weight="base"
-                    />
-                    <p className="line-clamp-1">{socialLink.url}</p>
-
-                    <div className="absolute right-0 scale-0 transition-all ease-in-out group-hover:scale-100 bg-linear-to-r from-transparent to-background-light-base dark:to-background-dark-base w-full flex justify-end items-center">
-                      <CommonIcon
-                        label="arrow_out_up_right_circle"
-                        className="size-6"
-                        weight="thin"
-                      />
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
+            <ContactsInfo authNUser={authNUser} />
           </div>
         </div>
       </div>

@@ -155,8 +155,8 @@ const ParticipantProfilePanel = (): ReactNode => {
                 >
                   <CommonIcon
                     label="envelope_alt"
-                    weight="base"
-                    className="size-5 opacity-60"
+                    weight="thin"
+                    className="size-6 opacity-60"
                   />
 
                   {email}
@@ -179,8 +179,8 @@ const ParticipantProfilePanel = (): ReactNode => {
                   >
                     <CommonIcon
                       label="phone"
-                      weight="base"
-                      className="size-5 opacity-60"
+                      weight="thin"
+                      className="size-6 opacity-60"
                     />
                     {formatPhoneNumber(phoneNumber)}
 
@@ -203,8 +203,8 @@ const ParticipantProfilePanel = (): ReactNode => {
                 >
                   <SocialIcon
                     platform={socialLink.type}
-                    className="size-5 opacity-60"
-                    weight="base"
+                    className="size-6 opacity-60"
+                    weight="thin"
                   />
                   <p className="line-clamp-1">{socialLink.url}</p>
 

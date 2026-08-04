@@ -140,8 +140,8 @@ const ContactEntryProfilePanel = () => {
                     >
                       <CommonIcon
                         label="envelope_alt"
-                        weight="base"
-                        className="size-5 opacity-60"
+                        weight="thin"
+                        className="size-6 opacity-60"
                       />
 
                       {email}
@@ -164,8 +164,8 @@ const ContactEntryProfilePanel = () => {
                       >
                         <CommonIcon
                           label="phone"
-                          weight="base"
-                          className="size-5 opacity-60"
+                          weight="thin"
+                          className="size-6 opacity-60"
                         />
                         {formatPhoneNumber(phoneNumber)}
 
@@ -189,8 +189,8 @@ const ContactEntryProfilePanel = () => {
                       >
                         <SocialIcon
                           platform={socialLink.type}
-                          className="size-5 opacity-60"
-                          weight="base"
+                          className="size-6 opacity-60"
+                          weight="thin"
                         />
                         <p className="line-clamp-1 flex-1">{socialLink.url}</p>
 
