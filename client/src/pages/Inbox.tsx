@@ -35,7 +35,7 @@ export default function Inbox(): ReactNode {
       />
       {currentParticipant && (
         <>
-          <div className="flex-1 h-full flex items-center flex-col px-10 py-4 overflow-auto dark:text-foreground-dark-secondary gap-4 scrollbar-thin mr-2">
+          <div className="flex-1 h-full flex items-center flex-col px-10 py-4 overflow-auto stable-gutter-container dark:text-foreground-dark-secondary gap-4 scrollbar-thin mr-2">
             <Suspense fallback={<Loader />}>
               <ChatHeader />
             </Suspense>

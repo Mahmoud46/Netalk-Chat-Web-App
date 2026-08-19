@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import type { ThemeContextValue, ThemeMode } from "../types";
+import type { LanguageCode, ThemeContextValue, ThemeMode } from "../types";
 import { ThemeContext } from "./ThemeContext";
 
 export function ThemeProvider({
@@ -13,6 +13,15 @@ export function ThemeProvider({
     [messageFontSize, setMessageFontSize] = useState<number>(
       (parseInt(localStorage.getItem("message-font-size") ?? "14") as number) ??
         14,
+    ),
+    [isMessageTranslateButtonShown, setIsMessageTranslateButtonShown] =
+      useState<boolean>(
+        (JSON.parse(
+          localStorage.getItem("show-translate-button") ?? "false",
+        ) as boolean) ?? false,
+      ),
+    [langCode, setLangCode] = useState<LanguageCode>(
+      (localStorage.getItem("lang-code") ?? "en") as LanguageCode,
     );
 
   const toggleTheme = () => {
@@ -25,6 +34,15 @@ export function ThemeProvider({
     changeMessageFontSize = (fontSize: number) => {
       setMessageFontSize(fontSize);
       localStorage.setItem("message-font-size", `${fontSize}`);
+    },
+    toggleShowTranslateButton = () => {
+      const isShowTranslateButton: boolean = !isMessageTranslateButtonShown;
+      setIsMessageTranslateButtonShown(isShowTranslateButton);
+      localStorage.setItem("show-translate-button", `${isShowTranslateButton}`);
+    },
+    changeLangCode = (langCode: LanguageCode) => {
+      setLangCode(langCode);
+      localStorage.setItem("lang-code", langCode);
     };
 
   const themeContextValue: ThemeContextValue = {
@@ -33,6 +51,10 @@ export function ThemeProvider({
     toggleTheme,
     messageFontSize,
     changeMessageFontSize,
+    toggleShowTranslateButton,
+    isMessageTranslateButtonShown,
+    langCode,
+    changeLangCode,
   };
 
   useEffect(() => {

@@ -10,11 +10,11 @@ export const ToggleButton = ({
   action: () => void;
 }) => (
   <div
-    className={`cursor-pointer w-12 h-6 flex items-center p-0.5 rounded-full transition-all ease-in-out ${isActive ? "bg-background-light-primary dark:bg-background-dark-primary" : "bg-background-light-surface-2 dark:bg-background-dark-surface-2"}`}
+    className={`cursor-pointer w-11 h-6 flex items-center p-0.5 rounded-full transition-all ease-in-out ${isActive ? "bg-background-light-primary dark:bg-background-dark-primary" : "bg-background-light-surface-2 dark:bg-background-dark-surface-2"}`}
     onClick={action}
   >
     <div
-      className={`aspect-square h-5 rounded-full transition-all ease-in-out ${isActive ? "translate-x-6 bg-white" : "bg-foreground-dark-secondary/50 dark:bg-foreground-dark-secondary/50"}`}
+      className={`aspect-square h-5 rounded-full transition-all ease-in-out ${isActive ? "translate-x-5 bg-white" : "bg-foreground-dark-secondary/50 dark:bg-foreground-dark-secondary/50"}`}
     ></div>
   </div>
 );
@@ -31,12 +31,20 @@ const DarkModeToggle = () => {
 
   return (
     <div className="flex font-semibold items-center justify-between text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <p>
+      <label htmlFor="theme" className="cursor-pointer flex-1">
         Dark Theme{" "}
         <span className="opacity-50 text-xs">
           ({isActive ? "Active" : "Inactive"})
         </span>
-      </p>
+      </label>
+      <input
+        type="checkbox"
+        name="theme"
+        id="theme"
+        className="absolute right-0 opacity-0 cursor-pointer"
+        onChange={toggleTheme}
+        checked={isActive}
+      />
       <ToggleButton isActive={isActive} action={toggleTheme} />
     </div>
   );
@@ -74,7 +82,7 @@ const MessageFontSize = () => {
               ))}
             </div>
             <div
-              className={`h-full absolute bg-background-dark-primary rounded-l-3xl ${messageFontSize == 30 && "rounded-r-3xl"}`}
+              className={`h-full absolute bg-background-dark-primary transition-all ease-in-out rounded-l-3xl ${messageFontSize == 30 && "rounded-r-3xl"}`}
               style={{
                 width: `${((messageFontSize - 12) / (30 - 12)) * 100}%`,
               }}

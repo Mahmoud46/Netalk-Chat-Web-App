@@ -6,6 +6,7 @@ import paperclip_icon from "../../assets/icons/chat/paperclip.png";
 import sticker_icon from "../../assets/icons/chat/sticker.png";
 import image_icon from "../../assets/icons/chat/image.png";
 import file_icon from "../../assets/icons/chat/file.png";
+import reply_icon from "../../assets/icons/chat/reply.png";
 
 import check_thin_icon from "../../assets/icons/chat/check_thin.png";
 import checks_thin_icon from "../../assets/icons/chat/checks_thin.png";
@@ -15,8 +16,10 @@ import paperclip_thin_icon from "../../assets/icons/chat/paperclip_thin.png";
 import sticker_thin_icon from "../../assets/icons/chat/sticker_thin.png";
 import image_thin_icon from "../../assets/icons/chat/image_thin.png";
 import file_thin_icon from "../../assets/icons/chat/file_thin.png";
+import reply_thin_icon from "../../assets/icons/chat/reply_thin.png";
 
 import check_bold_icon from "../../assets/icons/chat/check_bold.png";
+import reply_bold_icon from "../../assets/icons/chat/reply_bold.png";
 
 import type { IconWeight, MessageStatus } from "../../types";
 
@@ -128,6 +131,20 @@ export default function ChatIcon({
       return (
         <img
           src={weight == "thin" ? file_thin_icon : file_icon}
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "reply":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? reply_thin_icon
+              : weight == "bold"
+                ? reply_bold_icon
+                : reply_icon
+          }
           loading="lazy"
           className={`main-icon ${className ?? ""}`}
         />

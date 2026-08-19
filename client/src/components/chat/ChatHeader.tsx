@@ -10,7 +10,7 @@ const ChatHeader = (): ReactNode => {
 
   const toggleChatDropList = () => setIsChatDropListActive((prev) => !prev);
   return (
-    <header className="sticky top-0 w-full flex flex-col gap-3 z-1">
+    <header className="sticky top-0 w-full flex flex-col gap-3 z-20">
       <div className="relative">
         <div className="bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-3 rounded-full w-full flex items-center justify-between">
           <div className="flex gap-4 items-center">

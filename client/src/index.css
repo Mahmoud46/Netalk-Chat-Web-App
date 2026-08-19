@@ -82,6 +82,10 @@ a:focus {
   .success-icon {
     @apply filter-[invert(64%)_sepia(37%)_saturate(1335%)_hue-rotate(94deg)_brightness(101%)_contrast(91%)];
   }
+
+  .stable-gutter-container {
+    scrollbar-gutter: stable;
+  }
 }
 
 /* Sidebar elements */

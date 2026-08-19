@@ -8,6 +8,10 @@ export interface ThemeContextValue {
   toggleTheme: () => void;
   messageFontSize: number;
   changeMessageFontSize: (fontSize: number) => void;
+  toggleShowTranslateButton: () => void;
+  isMessageTranslateButtonShown: boolean;
+  changeLangCode: (langCode: LanguageCode) => void;
+  langCode: LanguageCode;
 }
 
 export type LanguageCode =

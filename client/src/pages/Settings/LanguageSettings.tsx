@@ -1,25 +1,42 @@
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { SettingsHeader } from "../../components/common/Header";
 import { ToggleButton } from "../AppearanceSettings";
-import { LANGUAGES, LANGUAGES_CODE_MAP } from "../../config/languages";
-import type { LanguageCode } from "../../types";
+import { LANGUAGES_CODE_MAP } from "../../config/languages";
 import Label from "../../components/common/Label";
 import CommonIcon from "../../components/icons/CommonIcon";
 import { SettingsSidebarIcon } from "../../components/icons/SidebarIcon";
+import { useTheme } from "../../hooks";
+
+const LanguageDropList = lazy(() =>
+  import("../../components/common/DropList").then((module) => ({
+    default: module.LanguageDropList,
+  })),
+);
 
 const ShowTranslateButton = () => {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const toggleShowTranslateButton = () => setIsActive((prev) => !prev);
+  const { toggleShowTranslateButton, isMessageTranslateButtonShown } =
+    useTheme();
 
   return (
-    <div className="flex font-semibold items-center justify-between pl-3 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <p>
+    <div className="flex relative font-semibold items-center justify-between pl-3 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
+      <label htmlFor="show-translate-button" className="cursor-pointer flex-1">
         Show Translate Button{" "}
         <span className="opacity-50 text-xs">
-          ({isActive ? "Active" : "Inactive"})
+          ({isMessageTranslateButtonShown ? "Active" : "Inactive"})
         </span>
-      </p>
-      <ToggleButton isActive={isActive} action={toggleShowTranslateButton} />
+      </label>
+      <input
+        type="checkbox"
+        name="show-translate-button"
+        id="show-translate-button"
+        className="absolute right-0 opacity-0 cursor-pointer"
+        onChange={toggleShowTranslateButton}
+        checked={isMessageTranslateButtonShown}
+      />
+      <ToggleButton
+        isActive={isMessageTranslateButtonShown}
+        action={toggleShowTranslateButton}
+      />
     </div>
   );
 };
@@ -37,17 +54,14 @@ const TranslateMessageOptions = () => {
 };
 
 const LanguageOptions = () => {
-  const [languageCode, setLanguageCode] = useState<LanguageCode>("en"),
+  const { langCode, changeLangCode } = useTheme(),
     [isActive, setIsActive] = useState<boolean>(false);
-
-  const selectLanguage = (languageCode: LanguageCode) =>
-    setLanguageCode(languageCode);
 
   const toggleLanguageList = () => setIsActive((prev) => !prev);
 
   return (
     <div className="flex flex-col gap-3 w-full text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center relative">
         <div className="flex items-center gap-2 font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
           <SettingsSidebarIcon label="language" className="size-6.5" />
           <p>Language</p>
@@ -59,16 +73,16 @@ const LanguageOptions = () => {
         >
           <div className="flex flex-col justify-start">
             <p className="text-base">
-              {LANGUAGES_CODE_MAP[languageCode].nativeName}
+              {LANGUAGES_CODE_MAP[langCode].nativeName}
             </p>
-            {languageCode != "en" && (
+            {langCode != "en" && (
               <p className="text-xs">
-                {LANGUAGES_CODE_MAP[languageCode].englishName}
+                {LANGUAGES_CODE_MAP[langCode].englishName}
               </p>
             )}
           </div>
 
-          <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+          <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out z-30">
             <CommonIcon
               label="chevron_right"
               weight="thin"
@@ -78,28 +92,13 @@ const LanguageOptions = () => {
           </button>
         </div>
       </div>
-
-      {isActive && (
-        <ul className="flex flex-col">
-          {LANGUAGES.map((language) => (
-            <li
-              key={language.code}
-              className="cursor-pointer flex justify-between items-center px-3 py-1 transition-all ease-in-out hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary rounded-3xl hover:py-3"
-              onClick={() => selectLanguage(language.code as LanguageCode)}
-            >
-              <div className="flex flex-col">
-                <p className="text-base">{language.nativeName}</p>
-                <p className="text-xs">{language.englishName}</p>
-              </div>
-              <div className="aspect-square h-6 rounded-full bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex items-center justify-center">
-                <div
-                  className={`transition-all ease-in-out aspect-square h-5 scale-0 bg-background-light-primary rounded-full ${languageCode == language.code && "scale-100"}`}
-                ></div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="relative w-full max-h-80">
+        <LanguageDropList
+          isActive={isActive}
+          langCode={langCode}
+          changeLangCode={changeLangCode}
+        />
+      </div>
     </div>
   );
 };
