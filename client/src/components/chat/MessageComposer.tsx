@@ -31,7 +31,7 @@ const MessageComposer = (): ReactNode => {
     };
 
   return (
-    <footer className="sticky bottom-0 w-full flex flex-col gap-3">
+    <footer className="sticky bottom-0 w-full flex flex-col gap-3 z-20">
       <div className="relative">
         <AttachmentDropList isActive={isAttchmentDropListActive} />
         <EmojisDropList isActive={isEmojisDropListActive} />
