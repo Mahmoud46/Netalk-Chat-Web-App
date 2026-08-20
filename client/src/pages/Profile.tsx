@@ -26,7 +26,7 @@ export const UsernameHolder = ({
 }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
   return (
-    <p
+    <div
       className={`group flex relative w-fit items-center opacity-80 hover:opacity-100 cursor-pointer transition-all ease-in-out pt-2 pl-0 ${isXs ? "text-xs" : "text-sm"} text-foreground-light-secondary dark:text-foreground-dark-secondary ${className}`}
       onClick={async () => {
         const copied = await copyToClipboard(username);
@@ -43,7 +43,7 @@ export const UsernameHolder = ({
         label={isCopied ? "copy_check" : "copy"}
         className={`${isXs ? "size-4 ml-1" : "size-4.5 ml-2"}`}
       />
-    </p>
+    </div>
   );
 };
 
@@ -253,62 +253,3 @@ export default function Profile(): ReactNode {
     </div>
   );
 }
-
-//  <div className="px-18">
-//         <div className="flex flex-col">
-//           <div className="flex flex-wrap items-start gap-6 bg-background-light-base/50 dark:bg-background-dark-base/50 flex-1 p-4 pl-0 pt-0 backdrop-blur-md rounded-t-3xl rounded-tl-[55px]">
-//             <div className="flex-none bg-background-light-base dark:bg-background-dark-base p-3 rounded-full rounded-bl-none">
-//               <div className="relative cursor-pointer group/avatar">
-//                 {authNUser?.profileImage && (
-//                   <img
-//                     src={authNUser?.profileImage}
-//                     alt="profile-image"
-//                     loading="lazy"
-//                     className="size-30 rounded-full"
-//                   />
-//                 )}
-
-//                 <div className="absolute opacity-0 group-hover/avatar:opacity-100 transition-all ease-in-out -right-4 -bottom-4 bg-background-light-base dark:bg-background-dark-base rounded-full p-1.5">
-//                   <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-//                     <CommonIcon label="edit" weight="thin" className="size-6" />
-//                     <Label text="Edit" />
-//                   </button>
-//                 </div>
-//               </div>
-//             </div>
-//             <div className="flex-1 flex flex-col gap-4 pt-4">
-//               <div className="flex flex-col gap-2">
-//                 <UsernameHolder username={authNUser?.username} />
-//                 <p className="text-6xl">
-//                   {authNUser?.firstName}{" "}
-//                   <span className="font-semibold gradient bg-clip-text text-transparent">
-//                     {authNUser?.lastName}
-//                   </span>
-//                 </p>
-//                 {authNUser?.title && (
-//                   <p className="font-semibold text-xl">{authNUser?.title}</p>
-//                 )}
-//                 {authNUser?.address && (
-//                   <p className="flex items-center text-sm gap-2 justify-start text-foreground-light-secondary dark:text-foreground-dark-secondary">
-//                     <CommonIcon
-//                       label="location_alt"
-//                       weight="thin"
-//                       className="size-5.5"
-//                     />
-//                     {authNUser?.address}
-//                   </p>
-//                 )}
-//               </div>
-//             </div>
-//           </div>
-//           <div className="flex items-start gap-6 p-4 pl-34 flex-wrap">
-//             {authNUser?.bio && (
-//               <div className="flex flex-col gap-2 min-w-80">
-//                 <h2 className="font-semibold">About</h2>
-//                 <p>{authNUser?.bio}</p>
-//               </div>
-//             )}
-//             <ContactsInfo authNUser={authNUser} />
-//           </div>
-//         </div>
-//       </div>
