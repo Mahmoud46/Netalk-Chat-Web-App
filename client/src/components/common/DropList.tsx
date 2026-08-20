@@ -275,7 +275,7 @@ export const BlockedUsersDropList = ({
 };
 
 //
-const CopyContactButton = ({ text }: { text: string }) => {
+export const CopyContactButton = ({ text }: { text: string }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
   const copyText = async () => {

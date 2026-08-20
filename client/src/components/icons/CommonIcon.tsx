@@ -32,6 +32,8 @@ import eye_icon from "../../assets/icons/common/eye.png";
 import eye_slash_icon from "../../assets/icons/common/eye_slash.png";
 import male_icon from "../../assets/icons/common/male.png";
 import female_icon from "../../assets/icons/common/female.png";
+import share_icon from "../../assets/icons/common/share.png";
+import cog_icon from "../../assets/icons/common/cog.png";
 
 // Thin icons
 import search_big_thin_icon from "../../assets/icons/common/search_big_thin.png";
@@ -66,12 +68,16 @@ import eye_thin_icon from "../../assets/icons/common/eye_thin.png";
 import eye_slash_thin_icon from "../../assets/icons/common/eye_slash_thin.png";
 import male_thin_icon from "../../assets/icons/common/male_thin.png";
 import female_thin_icon from "../../assets/icons/common/female_thin.png";
+import share_thin_icon from "../../assets/icons/common/share_thin.png";
+import cog_thin_icon from "../../assets/icons/common/cog_thin.png";
 
 // Bold
 import eye_bold_icon from "../../assets/icons/common/eye_bold.png";
 import eye_slash_bold_icon from "../../assets/icons/common/eye_slash_bold.png";
 import male_bold_icon from "../../assets/icons/common/male_bold.png";
 import female_bold_icon from "../../assets/icons/common/female_bold.png";
+import share_bold_icon from "../../assets/icons/common/share_bold.png";
+import cog_bold_icon from "../../assets/icons/common/cog_bold.png";
 
 // Soild base icons
 import dots_vertical_rounded_solid_icon from "../../assets/icons/common/dots_vertical_rounded_solid.png";
@@ -412,6 +418,34 @@ export default function CommonIcon({
           }
           loading="lazy"
           className={`${soild ? "invert-100" : "main-icon"} ${className ?? ""}`}
+        />
+      );
+    case "share":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? share_thin_icon
+              : weight == "bold"
+                ? share_bold_icon
+                : share_icon
+          }
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "cog":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? cog_thin_icon
+              : weight == "bold"
+                ? cog_bold_icon
+                : cog_icon
+          }
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
         />
       );
 
