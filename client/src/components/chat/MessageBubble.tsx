@@ -6,16 +6,20 @@ import { MessageStatusIcon } from "../icons/ChatIcon";
 import CommonIcon from "../icons/CommonIcon";
 
 const AttachmentCard = lazy(() =>
-  import("../common/Attachment").then((module) => ({
-    default: module.AttachmentCard,
-  })),
-);
-
-const MessageDropList = lazy(() =>
-  import("../common/DropList").then((module) => ({
-    default: module.MessageDropList,
-  })),
-);
+    import("../common/Attachment").then((module) => ({
+      default: module.AttachmentCard,
+    })),
+  ),
+  MessageDropList = lazy(() =>
+    import("../common/DropList").then((module) => ({
+      default: module.MessageDropList,
+    })),
+  ),
+  EmojiDropListHorizontal = lazy(() =>
+    import("../common/DropList").then((module) => ({
+      default: module.EmojiDropListHorizontal,
+    })),
+  );
 
 const MessageBubble = ({
   message,
@@ -31,9 +35,12 @@ const MessageBubble = ({
 
   const [isMessageDropListActive, setIsMessageDropListActive] =
     useState<boolean>(false);
+  const [isEmojieDropListActive, setIsEmojiDropListActive] =
+    useState<boolean>(false);
 
   const toggleMessageDropList = () =>
     setIsMessageDropListActive((prev) => !prev);
+  const toggleEmojiDropList = () => setIsEmojiDropListActive((prev) => !prev);
 
   return (
     <div
@@ -53,7 +60,7 @@ const MessageBubble = ({
 
       <div className={`flex flex-col max-w-100`}>
         <div
-          className={`flex flex-col w-fit max-w-100 min-w-40 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl gap-1.5`}
+          className={`flex flex-col relative w-fit max-w-100 min-w-40 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl gap-1.5`}
         >
           {message.attachment && (
             <AttachmentCard attachment={message.attachment} />
@@ -85,6 +92,20 @@ const MessageBubble = ({
               )}
             </div>
           </div>
+
+          <button
+            type="button"
+            className={`absolute -bottom-4 ${flowRight ? "left-0" : "right-0"} group cursor-pointer p-2 rounded-full bg-background-light-surface-3 dark:bg-background-dark-surface-3 hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
+            onClick={toggleEmojiDropList}
+          >
+            <CommonIcon
+              label="plus"
+              className={`size-4.5 ${isEmojieDropListActive && "rotate-45"} ease-in-out transition-all`}
+              soild={false}
+            />
+          </button>
+
+          <EmojiDropListHorizontal isActive={isEmojieDropListActive} />
         </div>
 
         {showProfileImage && (

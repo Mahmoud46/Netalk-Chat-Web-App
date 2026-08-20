@@ -167,6 +167,29 @@ export const EmojiDropList = ({
     </div>
   );
 };
+export const EmojiDropListHorizontal = ({
+  isActive = false,
+}: {
+  isActive?: boolean;
+}): ReactNode => {
+  return (
+    <div
+      className={`absolute flex max-w-65 bottom-5 left-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-2xl p-2 overflow-auto scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
+    >
+      {EMOJIS_LIST.map((emoji) => (
+        <button
+          key={emoji}
+          className="group cursor-pointer p-2 flex-none text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary flex justify-start items-center rounded-xl"
+        >
+          <EmojiIcon
+            label={emoji}
+            className="size-6 group-hover:scale-150 ease-in-out transition-all"
+          />
+        </button>
+      ))}
+    </div>
+  );
+};
 
 export const MessageDropList = ({
   isActive = false,

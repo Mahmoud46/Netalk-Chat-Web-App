@@ -190,7 +190,7 @@ export const ProfileHeader = ({
         />
       </div>
       {/* Header buttons */}
-      <div className="absolute bg-background-light-base dark:bg-background-dark-base bottom-0 right-0 p-3 rounded-tl-3xl">
+      <div className="absolute bg-background-light-base dark:bg-background-dark-base bottom-0 right-0 p-2 rounded-tl-3xl">
         <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
           <CommonIcon label="cog" weight="thin" className="size-6.5" />
           <Label text="Settings" />
@@ -207,6 +207,7 @@ export const ProfileHeader = ({
 export default function Profile(): ReactNode {
   const { authNUser } = useAuth(),
     { theme } = useTheme();
+
   return (
     <div className="w-full min-h-dvh overflow-x-hidden text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20">
       <ProfileHeader authNUser={authNUser} theme={theme} />
