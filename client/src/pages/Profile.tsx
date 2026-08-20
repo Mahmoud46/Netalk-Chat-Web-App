@@ -218,7 +218,7 @@ export default function Profile(): ReactNode {
   return (
     <div className="w-full min-h-dvh overflow-x-hidden text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20">
       <ProfileHeader authNUser={authNUser} theme={theme} />
-      <div className="relative pl-30 flex items-start gap-6">
+      <div className="relative pl-30 pr-8 flex items-start gap-6">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
             <h2 className="text-5xl">
