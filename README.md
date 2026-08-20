@@ -29,6 +29,6 @@ The current version focuses exclusively on the frontend application, featuring f
 
 At this stage, no backend server, database, or API integration has been implemented. All interactions are client-side demonstrations intended to showcase the application's planned user experience and design system. Development of the backend infrastructure, database integration, authentication services, GraphQL APIs, and real-time messaging capabilities is currently in progress.
 
-![alt text](./screenshots/image_01.png)
-![alt text](./screenshots/image_02.png)
-![alt text](./screenshots/image_03.png)
+![alt text](./screenshots/1.png)
+![alt text](./screenshots/2.png)
+![alt text](./screenshots/3.png)
