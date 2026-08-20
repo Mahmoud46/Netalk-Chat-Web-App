@@ -95,7 +95,7 @@ const MessageBubble = ({
 
           <button
             type="button"
-            className={`absolute -bottom-4 ${flowRight ? "left-0" : "right-0"} group cursor-pointer p-2 rounded-full bg-background-light-surface-3 dark:bg-background-dark-surface-3 hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
+            className={`absolute z-10 -bottom-4 ${flowRight ? "left-0" : "right-0"} group cursor-pointer p-2 rounded-full bg-background-light-surface-3 dark:bg-background-dark-surface-3 hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
             onClick={toggleEmojiDropList}
           >
             <CommonIcon

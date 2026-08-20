@@ -181,13 +181,20 @@ export const ProfileHeader = ({
         className="h-full w-full rounded-b-3xl object-cover"
       />
       {/* Profile pic */}
-      <div className="absolute -bottom-19 rounded-full left-30 bg-background-light-base dark:bg-background-dark-base p-3 flex">
+      <div className="absolute group/avatar -bottom-19 rounded-full left-30 bg-background-light-base dark:bg-background-dark-base p-3 flex">
         <img
           src={authNUser?.profileImage}
           alt="profile-image"
           loading="lazy"
           className="size-35 rounded-full"
         />
+
+        <div className="bg-background-light-base dark:bg-background-dark-base scale-0 group-hover/avatar:scale-100 p-2 absolute rounded-full bottom-0 right-0 transition-all ease-in-out">
+          <button className="relative group cursor-pointer z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+            <CommonIcon label="edit" weight="thin" className="size-6" />
+            <Label text="Edit" />
+          </button>
+        </div>
       </div>
       {/* Header buttons */}
       <div className="absolute bg-background-light-base dark:bg-background-dark-base bottom-0 right-0 p-2 rounded-tl-3xl">

@@ -174,7 +174,7 @@ export const EmojiDropListHorizontal = ({
 }): ReactNode => {
   return (
     <div
-      className={`absolute flex max-w-65 bottom-5 left-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-2xl p-2 overflow-auto scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
+      className={`absolute flex max-w-full bottom-5 left-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-2xl p-2 overflow-auto scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
     >
       {EMOJIS_LIST.map((emoji) => (
         <button
