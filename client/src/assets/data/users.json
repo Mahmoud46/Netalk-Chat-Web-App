@@ -7,7 +7,8 @@
     "birthdate": "1998-04-12T00:00:00.000Z",
     "gender": "male",
     "address": "Cairo, Egypt",
-    "bio": "Frontend developer and UI designer.",
+    "title": "Frontend Engineer & UI Designer",
+    "bio": "Frontend Engineer specializing in scalable web applications, responsive user interfaces, and intuitive digital experiences.",
     "profileImage": "/profile_pics/ahmed_hassan.png",
     "contactInfo": {
       "emails": ["ahmed.hassan@gmail.com"],
@@ -34,7 +35,8 @@
     "birthdate": "2000-09-25T00:00:00.000Z",
     "gender": "female",
     "address": "Alexandria, Egypt",
-    "bio": "Photographer and content creator.",
+    "title": "Visual Storyteller & Digital Content Strategist",
+    "bio": "Commercial photographer and content creator driving brand engagement through high-impact visual media and digital storytelling.",
     "profileImage": "/profile_pics/sara_ali.png",
     "contactInfo": {
       "emails": ["sara.ali@gmail.com"],
@@ -60,7 +62,8 @@
     "lastName": "Adel",
     "birthdate": "1995-01-18T00:00:00.000Z",
     "gender": "male",
-    "bio": "Backend engineer specialized in Node.js.",
+    "title": "Senior Backend Engineer",
+    "bio": "Backend Engineer specializing in building scalable Node.js microservices, robust RESTful APIs, and cloud-native architecture.",
     "profileImage": "/profile_pics/mohamed_adel.png",
     "contactInfo": {
       "emails": ["m.adel@outlook.com"],
@@ -83,6 +86,8 @@
     "birthdate": "1999-07-11T00:00:00.000Z",
     "gender": "female",
     "address": "Giza, Egypt",
+    "title": "Lead UI/UX Designer & Brand Strategist",
+    "bio": "UI/UX Designer and Brand Strategist focused on crafting intuitive digital product experiences and cohesive brand identities.",
     "profileImage": "/profile_pics/nour_khaled.png",
     "contactInfo": {
       "emails": ["nour.khaled@gmail.com"],
@@ -108,7 +113,8 @@
     "lastName": "Samir",
     "birthdate": "1997-03-09T00:00:00.000Z",
     "gender": "male",
-    "bio": "Gaming streamer and tech enthusiast.",
+    "title": "Digital Content Creator & Gaming Broadcaster",
+    "bio": "Digital content creator and livestreamer focused on interactive gaming broadcasts, hardware reviews, and consumer technology insights.",
     "profileImage": "/profile_pics/youssef_samir.png",
     "contactInfo": {
       "emails": ["youssef.samir@gmail.com"],
@@ -135,7 +141,8 @@
     "birthdate": "2001-12-02T00:00:00.000Z",
     "gender": "female",
     "address": "Mansoura, Egypt",
-    "bio": "Medical student and blogger.",
+    "title": "Medical Researcher & Science Communicator",
+    "bio": "Medical scholar and healthcare writer passionate about clinical research, public health awareness, and evidence-based science communication.",
     "profileImage": "/profile_pics/laila_mostafa.png",
     "contactInfo": {
       "emails": ["laila.mostafa@gmail.com"],
@@ -155,6 +162,8 @@
     "username": "omarfathy754",
     "firstName": "Omar",
     "lastName": "Fathy",
+    "title": "Digital Media Strategist & Communications Specialist",
+    "bio": "Digital media strategist specializing in public relations, social media management, and community engagement campaigns.",
     "birthdate": "1994-06-30T00:00:00.000Z",
     "gender": "male",
     "address": "Tanta, Egypt",
@@ -183,7 +192,8 @@
     "lastName": "Tarek",
     "birthdate": "2002-05-16T00:00:00.000Z",
     "gender": "female",
-    "bio": "Fashion designer and illustrator.",
+    "title": "Fashion Designer & Creative Illustrator",
+    "bio": "Fashion designer and illustrator crafting bespoke apparel concepts, trend-focused visual assets, and digital fashion illustrations.",
     "profileImage": "/profile_pics/mariam_tarek.png",
     "contactInfo": {
       "emails": ["mariam.tarek@gmail.com"],
@@ -205,9 +215,10 @@
   {
     "_id": "u009",
     "username": "karimnabil112",
-
     "firstName": "Karim",
     "lastName": "Nabil",
+    "title": "Community Manager & Online Moderator",
+    "bio": "Community manager and digital moderator specializing in fostering engaged online communities, discord architecture, and social platform engagement.",
     "birthdate": "1996-11-21T00:00:00.000Z",
     "gender": "male",
     "address": "Aswan, Egypt",
@@ -237,7 +248,8 @@
     "birthdate": "1999-08-14T00:00:00.000Z",
     "gender": "others",
     "address": "Luxor, Egypt",
-    "bio": "Travel blogger and digital nomad.",
+    "title": "Travel Journalist & Digital Nomad Strategist",
+    "bio": "Travel journalist and video producer creating location-independent lifestyle guides, culture features, and destination media content.",
     "profileImage": "/profile_pics/hana_magdy.png",
     "contactInfo": {
       "emails": ["hana.magdy@gmail.com", "contact@hanamagdy.com"],
@@ -264,7 +276,8 @@
     "birthdate": "2001-09-14T00:00:00.000Z",
     "gender": "male",
     "address": "Nasr City, Cairo, Egypt",
-    "bio": "Computer science student passionate about cybersecurity, backend engineering, and open-source projects.",
+    "title": "Cybersecurity Researcher & Backend Engineer",
+    "bio": "Computer science researcher focused on backend system architecture, network security, and active open-source security tool development.",
     "profileImage": "/profile_pics/yassin_mostafa.png",
     "contactInfo": {
       "emails": ["yassin.mostafa@gmail.com"],
