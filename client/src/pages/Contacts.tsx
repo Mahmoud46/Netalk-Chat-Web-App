@@ -5,22 +5,23 @@ import type { User } from "../types";
 import React from "react";
 import Loader from "../components/common/Loader";
 
-const ContactEntryProfilePanel = React.lazy(
-    () => import("../components/contacts/ContactEntryProfilePanel"),
-  ),
-  OnlineContactEntries = React.lazy(
+const OnlineContactEntries = React.lazy(
     () => import("../components/contacts/OnlineContactEntries"),
   ),
   ContactsFeed = React.lazy(
     () => import("../components/contacts/ContactsFeed"),
+  ),
+  SideProfilePanel = React.lazy(
+    () => import("../components/chat/SideProfilePanel"),
   );
 
 export default function Contacts(): ReactNode {
-  const { authNUser } = useAuth(),
+  const { currentContactEntry, contacts, setCurrentContactEntry } = useChat(),
+    { authNUser } = useAuth(),
     { getUser } = useChat();
 
   const [contactEntries, setContactEntries] = useState<User[]>([]);
-
+  const toggleButtonClickAction = () => setCurrentContactEntry(null);
   useEffect(() => {
     const getContactEntries = async () => {
       const contactEntries: User[] = [];
@@ -51,9 +52,17 @@ export default function Contacts(): ReactNode {
           <ContactsFeed contactEntries={contactEntries} />
         </Suspense>
       </div>
-      <Suspense fallback={<Loader />}>
-        <ContactEntryProfilePanel />
-      </Suspense>
+
+      {currentContactEntry && (
+        <Suspense fallback={<Loader />}>
+          <SideProfilePanel
+            user={currentContactEntry}
+            contacts={contacts}
+            isContactPanel={true}
+            toggleButtonClickAction={toggleButtonClickAction}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

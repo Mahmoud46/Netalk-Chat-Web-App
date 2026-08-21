@@ -18,12 +18,12 @@ const ChatsSidebar = React.lazy(
   ChatEmptyStateWindow = React.lazy(
     () => import("../components/chat/ChatEmptyState"),
   ),
-  ParticipantProfilePanel = React.lazy(
-    () => import("../components/chat/ParticipantProfilePanel"),
+  SideProfilePanel = React.lazy(
+    () => import("../components/chat/SideProfilePanel"),
   );
 
 export default function Archive(): ReactNode {
-  const { currentChat, currentParticipant, chats } = useChat(),
+  const { currentChat, currentParticipant, chats, contacts } = useChat(),
     { authNUser } = useAuth();
 
   return (
@@ -52,7 +52,11 @@ export default function Archive(): ReactNode {
             )}
             <MessageComposer />
           </div>
-          <ParticipantProfilePanel />
+          <SideProfilePanel
+            user={currentParticipant}
+            contacts={contacts}
+            currentChat={currentChat}
+          />
         </>
       )}
       {!(currentParticipant || currentChat) && <ChatEmptyStateWindow />}
