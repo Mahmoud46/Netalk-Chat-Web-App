@@ -1,57 +1,44 @@
-export interface IUser {
+export interface User {
   _id: string;
-
+  username: string;
   firstName: string;
   lastName: string;
-  birthdate: Date;
+  birthdate: string;
   gender: Gender;
 
-  password: string;
   address?: string;
+  title?: string;
   bio?: string;
-
-  // Verification
-  email?: string;
-  phoneNumber?: string;
-
-  isEmailVerified?: boolean;
-  isPhoneVerified?: boolean;
 
   // More
   profileImage?: string;
   profileCover?: string;
 
+  contactInfo: Contact;
+
   isActive: boolean;
   lastSeen: string;
-
-  //
-  contactInfo: Contact;
-  contacts: ContactEntry[];
-
-  mutedUsers: string[];
-  archivedChats: string[];
-  blockedUsers: string[];
 }
 
-type Gender = "male" | "female" | "others";
-
-interface Contact {
+export interface Contact {
   emails: string[];
   socialLinks: SocialLink[];
   phoneNumbers: string[];
 }
 
-interface ContactEntry {
+export interface ContactEntry {
   userId: string;
   customName: string;
 }
 
-interface SocialLink {
+export interface SocialLink {
   type: SocialPlatform | "website" | string;
   url: string;
 }
 
-type SocialPlatform =
+export type Gender = "male" | "female" | "others";
+
+export type SocialPlatform =
   | "facebook"
   | "instagram"
   | "x"
