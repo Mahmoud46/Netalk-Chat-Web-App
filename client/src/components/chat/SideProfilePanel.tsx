@@ -202,7 +202,7 @@ const ProfilePanelMinorInfo = ({
         {user?.bio && (
           <div className="flex gap-2 text-sm flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
             <h2 className="font-semibold">About</h2>
-            <ClampText text={user?.bio} clampLines={2} />
+            <ClampText text={user?.bio} clampLines={1} />
           </div>
         )}
         {user && (
