@@ -1,4 +1,4 @@
-import type { ContactEntry, Gender, User } from "./index.ts";
+import type { User, ContactEntry, Gender } from "./user.ts";
 
 export type AuthMode = "login" | "signup";
 
