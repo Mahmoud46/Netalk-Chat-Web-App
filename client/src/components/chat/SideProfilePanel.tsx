@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { useAuth, useTheme } from "../../hooks";
 import Label from "../common/Label";
 
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense } from "react";
 
 import default_cover from "../../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../../assets/images/default_profile_cover_dark.jpg";
@@ -29,26 +29,7 @@ const SharedMedia = lazy(() =>
     })),
   );
 
-const ClampText = ({
-  text,
-  className = "",
-  clampLines = 1,
-}: {
-  text: string;
-  className?: string;
-  clampLines?: number;
-}) => {
-  const [isClamp, setIsClamp] = useState<boolean>(true);
-  const toggleClamp = () => setIsClamp((prev) => !prev);
-  return (
-    <p
-      className={`${className} ${isClamp && `line-clamp-${clampLines}`} cursor-pointer`}
-      onClick={toggleClamp}
-    >
-      {text}
-    </p>
-  );
-};
+const ClampText = lazy(() => import("../common/ClampText"));
 
 const ProfilePanelHeader = ({
   user,
@@ -202,7 +183,7 @@ const ProfilePanelMinorInfo = ({
         {user?.bio && (
           <div className="flex gap-2 text-sm flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
             <h2 className="font-semibold">About</h2>
-            <ClampText text={user?.bio} clampLines={1} />
+            <ClampText text={user?.bio} clampLines={2} />
           </div>
         )}
         {user && (
