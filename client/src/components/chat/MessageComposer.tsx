@@ -31,11 +31,11 @@ const MessageComposer = (): ReactNode => {
     };
 
   return (
-    <footer className="sticky bottom-0 w-full flex flex-col gap-3">
+    <footer className="sticky bottom-0 w-full flex flex-col gap-3 max-w-200">
       <div className="relative">
         <AttachmentDropList isActive={isAttchmentDropListActive} />
         <EmojisDropList isActive={isEmojisDropListActive} />
-        <form className=" bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-full w-full flex justify-between items-center">
+        <form className=" bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-1.5 rounded-full w-full flex justify-between items-center">
           <div className="flex-none">
             <button
               type="button"

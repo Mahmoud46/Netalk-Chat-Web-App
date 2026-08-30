@@ -18,7 +18,7 @@ const OnlineContactEntries = ({
 }): ReactNode => {
   return (
     <div className="sticky top-0 w-full flex flex-col gap-3 z-1">
-      <div className="gap-8 bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-3 rounded-full w-full flex items-center">
+      <div className="gap-8 bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-1.5 pl-3 rounded-full w-full flex items-center">
         <button className="relative group p-1.5 cursor-pointer rounded-full bg-background-light-secondary dark:bg-background-dark-secondary transition-all ease-in-out hover:scale-110">
           <CommonIcon label="search" weight="thin" className="size-7" />
           <Label text="Search" />

@@ -53,16 +53,17 @@ export default function Contacts(): ReactNode {
         </Suspense>
       </div>
 
-      {currentContactEntry && (
+      {
         <Suspense fallback={<Loader />}>
           <SideProfilePanel
             user={currentContactEntry}
             contacts={contacts}
             isContactPanel={true}
             toggleButtonClickAction={toggleButtonClickAction}
+            isActive={currentContactEntry ? true : false}
           />
         </Suspense>
-      )}
+      }
     </div>
   );
 }

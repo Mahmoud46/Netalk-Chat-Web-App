@@ -31,10 +31,10 @@ const ChatFeed = ({ currentChatId }: { currentChatId: string }): ReactNode => {
   }, [currentChatId, messagesTimeline]);
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-3 px-4">
+    <div className="flex-1 w-full flex flex-col gap-3 items-center px-4">
       {Object.keys(messagesTimeline).length > 0 &&
         Object.entries(messagesTimeline).map(([date, messages]) => (
-          <div key={date} className="flex flex-col gap-3 px-4">
+          <div key={date} className="flex flex-col gap-3 px-4 max-w-200 w-full">
             <time
               dateTime={date}
               className="self-center bg-background-light-surface-2 dark:bg-background-dark-surface-2 text-foreground-light-third dark:text-foreground-dark-secondary p-2 text-xs rounded-full px-4"

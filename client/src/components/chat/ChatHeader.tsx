@@ -4,16 +4,23 @@ import moment from "moment";
 import { ChatDropList } from "../common/DropList";
 import CommonIcon from "../icons/CommonIcon";
 
-const ChatHeader = (): ReactNode => {
+const ChatHeader = ({
+  toggleButtonClickAction = () => {},
+}: {
+  toggleButtonClickAction?: () => void;
+}): ReactNode => {
   const { currentParticipant, contacts } = useChat(),
     [isChatDropListActive, setIsChatDropListActive] = useState<boolean>(false);
 
   const toggleChatDropList = () => setIsChatDropListActive((prev) => !prev);
   return (
-    <header className="sticky top-0 w-full flex flex-col gap-3 z-20">
+    <header className="sticky top-0 w-full flex flex-col gap-3 z-20 max-w-200">
       <div className="relative">
-        <div className="bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-3 rounded-full w-full flex items-center justify-between">
-          <div className="flex gap-4 items-center">
+        <div className="bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-1.5 rounded-full w-full flex items-center justify-between">
+          <div
+            className="flex gap-4 items-center flex-1 cursor-pointer"
+            onClick={toggleButtonClickAction}
+          >
             <div className="relative flex-none">
               {currentParticipant?.isActive && (
                 <span className="absolute flex items-center w-3.5 h-3.5 bg-background-light-base dark:bg-background-dark-base justify-center rounded-full bottom-0 right-0">
