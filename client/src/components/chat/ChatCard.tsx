@@ -3,8 +3,15 @@ import type { Chat, User } from "../../types";
 import { useAuth, useChat } from "../../hooks";
 import Label from "../common/Label";
 import { MessageStatusIcon } from "../icons/ChatIcon";
+import { formatDate, formatTime12Hours } from "../../utils/format";
 
-const ChatCard = ({ chat }: { chat: Chat }): ReactNode => {
+const ChatCard = ({
+  chat,
+  isSidebarOpen,
+}: {
+  chat: Chat;
+  isSidebarOpen: boolean;
+}): ReactNode => {
   const [participant, setParticipant] = useState<User | null>(null),
     { getUser, currentChat, setCurrentChat, setCurrentParticipant } = useChat(),
     { authNUser } = useAuth();
@@ -30,20 +37,33 @@ const ChatCard = ({ chat }: { chat: Chat }): ReactNode => {
 
   return (
     <li
-      className={`relative group cursor-pointer transition-all ease-in-out rounded-full p-2 ${isActive ? "bg-background-light-base dark:bg-background-dark-base translate-x-9 chat-card-shrink-active [--shadow-color:#fff] dark:[--shadow-color:#0f1115]" : "bg-transparent"} group`}
+      className={`relative flex group cursor-pointer transition-all ease-in-out rounded-full p-2 ${
+        isSidebarOpen
+          ? `gap-2 max-w-67 items-start hover:bg-background-light-base hover:dark:bg-background-dark-base ${
+              isActive
+                ? "bg-background-light-base dark:bg-background-dark-base"
+                : "bg-transparent"
+            }`
+          : `gap-0 ${
+              isActive
+                ? "bg-background-light-base dark:bg-background-dark-base translate-x-9 chat-card-shrink-active [--shadow-color:#fff] dark:[--shadow-color:#0f1115]"
+                : "bg-transparent"
+            }`
+      }`}
       onClick={selectChat}
     >
       <div
-        className={`relative transition-all ease-in-out rounded-full p-1 flex items-center justify-center aspect-square ${chat.unreadMessages > 0 && !isActive ? "bg-background-light-primary" : "bg-background-light-base dark:bg-background-dark-base"} ${isActive && "bg-background-light-surface-2 dark:bg-background-dark-surface-2"} group-hover:scale-110`}
+        className={`relative flex-none transition-all ease-in-out rounded-full p-1 flex items-center justify-center aspect-square ${chat.unreadMessages > 0 && !isActive && !isSidebarOpen ? "bg-background-light-primary" : "bg-background-light-base dark:bg-background-dark-base"} ${isActive && "bg-background-light-surface-2 dark:bg-background-dark-surface-2"} ${isSidebarOpen ? "" : "group-hover:scale-110"}`}
       >
-        {chat.unreadMessages > 0 && !isActive && (
+        {chat.unreadMessages > 0 && !isActive && !isSidebarOpen && (
           <span className="text-white absolute text-[11px] bg-background-light-primary w-4 h-4 aspect-square flex items-center justify-center rounded-full -top-0.5 -right-0.5">
             {chat.unreadMessages > 9 ? `+${9}` : chat.unreadMessages}
           </span>
         )}
 
         {chat.unreadMessages === 0 &&
-          chat.lastMessage.sender == authNUser?._id && (
+          chat.lastMessage.sender == authNUser?._id &&
+          !isSidebarOpen && (
             <span className="absolute bg-background-light-base dark:bg-background-dark-base w-4 h-4 aspect-square flex items-center justify-center rounded-full -top-0.5 -right-0.5">
               <MessageStatusIcon
                 weight={chat.lastMessage.status == "sent" ? "base" : "thin"}
@@ -66,8 +86,50 @@ const ChatCard = ({ chat }: { chat: Chat }): ReactNode => {
           loading="lazy"
         />
       </div>
-
-      <Label text={participant?.firstName ?? ""} isSide={true} />
+      {isSidebarOpen && (
+        <div className="flex flex-1 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
+          <div className="flex gap-1 justify-between items-center">
+            <p className="line-clamp-1 text-sm font-semibold flex-1">
+              {participant?.firstName} {participant?.lastName}
+            </p>
+            <time
+              dateTime={chat.lastMessage?.createdAt}
+              className={`${chat.unreadMessages > 0 && !isActive ? "text-foreground-light-primary" : "text-foreground-light-secondary dark:text-foreground-dark-secondary"} text-xs self-end`}
+            >
+              {formatDate(new Date(chat.lastMessage?.createdAt)) ==
+              formatDate(new Date())
+                ? formatTime12Hours(new Date(chat.lastMessage?.createdAt))
+                : formatDate(new Date(chat.lastMessage?.createdAt))}
+            </time>
+          </div>
+          <div className="flex items-center">
+            {
+              <p className="line-clamp-1 text-xs flex-1">
+                {chat.lastMessage.text}
+              </p>
+            }
+            {chat.unreadMessages > 0 && !isActive && isSidebarOpen && (
+              <span className="text-white text-xs flex-none p-0.5 w-5 bg-background-light-primary aspect-square flex items-center justify-center rounded-full">
+                {chat.unreadMessages > 9 ? `+${9}` : chat.unreadMessages}
+              </span>
+            )}
+            {chat.unreadMessages === 0 &&
+              chat.lastMessage.sender == authNUser?._id &&
+              isSidebarOpen && (
+                <span className="flex items-center justify-center rounded-full size-6">
+                  <MessageStatusIcon
+                    weight={chat.lastMessage.status == "sent" ? "base" : "thin"}
+                    status={chat.lastMessage.status}
+                    className={`${chat.lastMessage.status === "sent" && "size-3"}`}
+                  />
+                </span>
+              )}
+          </div>
+        </div>
+      )}
+      {!isSidebarOpen && (
+        <Label text={participant?.firstName ?? ""} isSide={true} />
+      )}
     </li>
   );
 };

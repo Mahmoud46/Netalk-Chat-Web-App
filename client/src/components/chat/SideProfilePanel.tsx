@@ -246,7 +246,7 @@ const SideProfilePanel = ({
     isMuted: boolean = authNUser?.mutedUsers.includes(user?._id ?? "") ?? false;
   return (
     <aside
-      className={`sticky  top-0 shrink-0 h-dvh overflow-hidden transition-all duration-300 ease-in-out flex flex-col bg-background-light-surface-2 dark:bg-background-dark-surface-2 ${isActive ? "w-80 opacity-100" : "w-0 opacity-0"}`}
+      className={`sticky top-0 shrink-0 h-dvh overflow-hidden transition-all duration-300 ease-in-out flex flex-col bg-background-light-surface-2 dark:bg-background-dark-surface-2 ${isActive ? "w-80 opacity-100" : "w-0 opacity-0"}`}
       // className={`fixed top-0 h-dvh w-80 flex flex-col bg-background-light-surface-2 dark:bg-background-dark-surface-2 z-30 transition-all ease-in-out duration-300 right-0 ${isActive ? "scale-100" : "scale-0"} self-start`}
     >
       <ProfilePanelHeader

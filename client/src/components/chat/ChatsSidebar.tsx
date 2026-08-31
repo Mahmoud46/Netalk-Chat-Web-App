@@ -30,14 +30,17 @@ const ChatsSidebar = ({ chats }: { chats: Chat[] }): ReactNode => {
           </button>
         </div>
       </div>
-      <button className="relative group p-1.5 cursor-pointer rounded-full bg-background-light-secondary dark:bg-background-dark-secondary transition-all ease-in-out hover:scale-110">
-        <CommonIcon label="search" className="size-7" weight="thin" />
-        <Label text="Search" isSide={true} />
-      </button>
+      <div className="bg-background-light-secondary dark:bg-background-dark-secondary rounded-full">
+        <button className="relative group p-1.5 cursor-pointer rounded-full bg-background-light-secondary dark:bg-background-dark-secondary transition-all ease-in-out hover:scale-110">
+          <CommonIcon label="search" className="size-7" weight="thin" />
+          <Label text="Search" isSide={true} />
+        </button>
+        {open && <input type="text" className="flex-1" />}
+      </div>
       <ul className="flex flex-col">
         {chats.map((chat) => (
           <Suspense fallback={<Loader />} key={chat._id}>
-            <ChatCard chat={chat} />
+            <ChatCard chat={chat} isSidebarOpen={open} />
           </Suspense>
         ))}
       </ul>
