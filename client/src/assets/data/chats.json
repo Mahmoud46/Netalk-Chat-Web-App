@@ -1,11 +1,14 @@
 [
   {
     "_id": "chat_001",
-    "participants": ["u_auth_002", "u003"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "U5k1b9f49R0MXXj3bUDEVqPkhKTP1r"
+    ],
     "lastMessage": {
       "_id": "msg_1005",
       "chatId": "chat_001",
-      "sender": "u003",
+      "sender": "U5k1b9f49R0MXXj3bUDEVqPkhKTP1r",
       "text": "Perfect, that will scale better.",
       "status": "delivered",
       "createdAt": "2026-05-08T09:49:00.000Z"
@@ -14,11 +17,14 @@
   },
   {
     "_id": "chat_002",
-    "participants": ["u_auth_002", "u004"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "j28m8o6naMLU4863413jyRNbD_FHvH"
+    ],
     "lastMessage": {
       "_id": "msg_2006",
       "chatId": "chat_002",
-      "sender": "u004",
+      "sender": "j28m8o6naMLU4863413jyRNbD_FHvH",
       "text": "Perfect, this version is exactly what we needed.",
       "status": "read",
       "createdAt": "2026-05-08T10:15:00.000Z"
@@ -45,11 +51,14 @@
   },
   {
     "_id": "chat_003",
-    "participants": ["u_auth_002", "u006"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "3zlNOoXpBd4obI0PGNs49na1IPQILY"
+    ],
     "lastMessage": {
       "_id": "msg_3004",
       "chatId": "chat_003",
-      "sender": "u_auth_002",
+      "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
       "text": "Then you should store refresh tokens in httpOnly cookies.",
       "status": "delivered",
       "createdAt": "2026-05-08T08:28:00.000Z"
@@ -58,11 +67,14 @@
   },
   {
     "_id": "chat_004",
-    "participants": ["u_auth_002", "u008"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "cKDItq1szgkgXwHJ3m7hZgoYFoqJY9"
+    ],
     "lastMessage": {
       "_id": "msg_4004",
       "chatId": "chat_004",
-      "sender": "u_auth_002",
+      "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
       "text": "Yes, I’ll adjust contrast if needed.",
       "status": "sent",
       "createdAt": "2026-05-08T07:53:00.000Z"
@@ -71,11 +83,14 @@
   },
   {
     "_id": "chat_005",
-    "participants": ["u_auth_002", "u001"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo"
+    ],
     "lastMessage": {
       "_id": "msg_5005",
       "chatId": "chat_005",
-      "sender": "u001",
+      "sender": "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo",
       "text": "Perfect, let’s deploy soon.",
       "status": "read",
       "createdAt": "2026-05-08T06:19:00.000Z"
@@ -84,11 +99,14 @@
   },
   {
     "_id": "chat_006",
-    "participants": ["u_auth_002", "u005"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "voQRVDoL4HIsqIOACNDxSQJ-3982vM"
+    ],
     "lastMessage": {
       "_id": "msg_6004",
       "chatId": "chat_006",
-      "sender": "u_auth_002",
+      "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
       "text": "Share the link when you go live.",
       "status": "read",
       "createdAt": "2026-05-08T10:18:00.000Z"

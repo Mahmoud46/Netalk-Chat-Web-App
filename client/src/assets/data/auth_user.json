@@ -1,5 +1,5 @@
 {
-  "_id": "u_auth_002",
+  "_id": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
   "username": "omarhassan1548",
   "firstName": "Omar",
   "lastName": "Hassan",
@@ -33,23 +33,23 @@
   "phoneNumber": "+201023456789",
   "contacts": [
     {
-      "userId": "u003",
+      "userId": "U5k1b9f49R0MXXj3bUDEVqPkhKTP1r",
       "customName": "Mohamed Adel (Backend Engineer)"
     },
     {
-      "userId": "u004",
+      "userId": "j28m8o6naMLU4863413jyRNbD_FHvH",
       "customName": "Nour Khaled (UI/UX Designer)"
     },
     {
-      "userId": "u006",
+      "userId": "3zlNOoXpBd4obI0PGNs49na1IPQILY",
       "customName": "Laila Mostafa (Medical Student)"
     },
     {
-      "userId": "u008",
+      "userId": "cKDItq1szgkgXwHJ3m7hZgoYFoqJY9",
       "customName": "Mariam Tarek (Designer)"
     }
   ],
-  "mutedUsers": ["u007"],
+  "mutedUsers": ["z1l30QH8Tzmb7c_cgs8n81nYNsbLlP"],
   "archivedChats": ["chat_001", "chat_004"],
-  "blockedUsers": ["u009"]
+  "blockedUsers": ["uovrvlZTOKBPEKHyJkkjnJsbGE0dmL"]
 }
