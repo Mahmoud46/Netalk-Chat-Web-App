@@ -1,5 +1,5 @@
-import { lazy, useState, type ReactNode } from "react";
-import { useAuth, useTheme } from "../hooks";
+import { lazy, useEffect, useState, type ReactNode } from "react";
+import { useAuth, useChat, useTheme } from "../hooks";
 import default_cover from "../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../assets/images/default_profile_cover_dark.jpg";
 import CommonIcon from "../components/icons/CommonIcon";
@@ -7,7 +7,8 @@ import Label from "../components/common/Label";
 import SocialIcon from "../components/icons/SocialIcon";
 import { formatPhoneNumber } from "../utils/format";
 import { copyToClipboard } from "../utils/helpers";
-import type { AuthNUser, ThemeMode } from "../types";
+import type { AuthNUser, ThemeMode, User } from "../types";
+import { useParams } from "react-router-dom";
 
 const CopyContactButton = lazy(() =>
   import("../components/common/DropList").then((module) => ({
@@ -50,7 +51,7 @@ export const UsernameHolder = ({
 export const ContactsInfo = ({
   authNUser,
 }: {
-  authNUser?: AuthNUser | null;
+  authNUser?: AuthNUser | User | null;
 }) => {
   return (
     <div
@@ -156,18 +157,22 @@ export const ContactsInfo = ({
 export const ProfileHeader = ({
   authNUser,
   theme,
+  isAuthNUser,
 }: {
-  authNUser: AuthNUser | null;
+  authNUser: AuthNUser | User | null;
   theme: ThemeMode;
+  isAuthNUser: boolean;
 }) => {
   return (
     <div className="h-60 w-full relative cursor-pointer group/cover">
-      <div className="absolute top-0 right-0 opacity-0 group-hover/cover:opacity-100 bg-background-light-base dark:bg-background-dark-base p-2 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
-        <button className="relative group cursor-pointer scale-0 group-hover/cover:scale-100 z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-          <CommonIcon label="edit" weight="thin" className="size-6" />
-          <Label text="Edit" />
-        </button>
-      </div>
+      {isAuthNUser && (
+        <div className="absolute top-0 right-0 opacity-0 group-hover/cover:opacity-100 bg-background-light-base dark:bg-background-dark-base p-2 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+          <button className="relative group cursor-pointer scale-0 group-hover/cover:scale-100 z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+            <CommonIcon label="edit" weight="thin" className="size-6" />
+            <Label text="Edit" />
+          </button>
+        </div>
+      )}
       <div className="absolute top-0 left-1/2 bg-background-light-base dark:bg-background-dark-base -translate-x-1/2 p-4 pt-2 rounded-b-3xl">
         <UsernameHolder username={authNUser?.username} />
       </div>
@@ -189,19 +194,23 @@ export const ProfileHeader = ({
           className="size-35 rounded-full"
         />
 
-        <div className="bg-background-light-base dark:bg-background-dark-base scale-0 group-hover/avatar:scale-100 p-2 absolute rounded-full bottom-0 right-0 transition-all ease-in-out">
-          <button className="relative group cursor-pointer z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-            <CommonIcon label="edit" weight="thin" className="size-6" />
-            <Label text="Edit" />
-          </button>
-        </div>
+        {isAuthNUser && (
+          <div className="bg-background-light-base dark:bg-background-dark-base scale-0 group-hover/avatar:scale-100 p-2 absolute rounded-full bottom-0 right-0 transition-all ease-in-out">
+            <button className="relative group cursor-pointer z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+              <CommonIcon label="edit" weight="thin" className="size-6" />
+              <Label text="Edit" />
+            </button>
+          </div>
+        )}
       </div>
       {/* Header buttons */}
       <div className="absolute bg-background-light-base dark:bg-background-dark-base bottom-0 right-0 p-2 rounded-tl-3xl">
-        <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-          <CommonIcon label="cog" weight="thin" className="size-6.5" />
-          <Label text="Settings" />
-        </button>
+        {isAuthNUser && (
+          <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+            <CommonIcon label="cog" weight="thin" className="size-6.5" />
+            <Label text="Settings" />
+          </button>
+        )}
         <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
           <CommonIcon label="share" weight="thin" className="size-6.5" />
           <Label text="Share" />
@@ -212,23 +221,42 @@ export const ProfileHeader = ({
 };
 
 export default function Profile(): ReactNode {
+  const { username } = useParams();
   const { authNUser } = useAuth(),
-    { theme } = useTheme();
+    { theme } = useTheme(),
+    { getUserByUsername } = useChat();
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const isAuthNUser: boolean = username?.trim() == authNUser?.username;
+
+  useEffect(() => {
+    const init = async () => {
+      if (username && !isAuthNUser) {
+        const user = await getUserByUsername(username);
+        if (user) setCurrentUser(user);
+      }
+    };
+    init();
+  }, [username]);
 
   return (
     <div className="w-full min-h-dvh overflow-x-hidden text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20">
-      <ProfileHeader authNUser={authNUser} theme={theme} />
+      <ProfileHeader
+        authNUser={isAuthNUser ? authNUser : currentUser}
+        theme={theme}
+      />
       <div className="relative pl-30 pr-8 flex items-start gap-6">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
             <h2 className="text-5xl">
-              {authNUser?.firstName}{" "}
+              {isAuthNUser ? authNUser?.firstName : currentUser?.firstName}{" "}
               <span className="font-semibold gradient bg-clip-text text-transparent">
-                {authNUser?.lastName}{" "}
+                {isAuthNUser ? authNUser?.lastName : currentUser?.lastName}{" "}
               </span>
             </h2>
             {authNUser?.title && (
-              <h3 className="text-xl">{authNUser?.title}</h3>
+              <h3 className="text-xl">
+                {isAuthNUser ? authNUser?.title : currentUser?.title}
+              </h3>
             )}
             {authNUser?.address && (
               <p className="flex items-center text-base gap-2 text-foreground-light-secondary dark:text-foreground-dark-secondary">
@@ -237,18 +265,18 @@ export default function Profile(): ReactNode {
                   weight="thin"
                   className="size-6"
                 />
-                {authNUser?.address}
+                {isAuthNUser ? authNUser?.address : currentUser?.address}
               </p>
             )}
           </div>
           {authNUser?.bio && (
             <div className="flex flex-col gap-2 min-w-80">
               <h2 className="font-semibold">About</h2>
-              <p>{authNUser?.bio}</p>
+              <p>{isAuthNUser ? authNUser?.bio : currentUser?.bio}</p>
             </div>
           )}
         </div>
-        <ContactsInfo authNUser={authNUser} />
+        <ContactsInfo authNUser={isAuthNUser ? authNUser : currentUser} />
       </div>
     </div>
   );

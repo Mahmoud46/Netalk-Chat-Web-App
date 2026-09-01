@@ -47,6 +47,14 @@ export default function App(): ReactNode {
             }
           />
           <Route
+            path="inbox/:id"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Inbox />
+              </Suspense>
+            }
+          />
+          <Route
             path="contacts"
             element={
               <Suspense fallback={<Loader />}>
@@ -56,6 +64,14 @@ export default function App(): ReactNode {
           />
           <Route
             path="archive"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Archive />
+              </Suspense>
+            }
+          />
+          <Route
+            path="archive/:id"
             element={
               <Suspense fallback={<Loader />}>
                 <Archive />
@@ -106,7 +122,7 @@ export default function App(): ReactNode {
             />
           </Route>
           <Route
-            path="profile"
+            path="profile/:username"
             element={
               <Suspense fallback={<Loader />}>
                 <Profile />

@@ -13,6 +13,8 @@ export interface ChatContextValue {
   setContacts: (contacts: Record<string, string>) => void;
   currentContactEntry: User | null;
   setCurrentContactEntry: (currentContactEntry: User | null) => void;
+  getChatByParticipantId: (participantId: string) => Promise<Chat | undefined>;
+  getUserByUsername: (username: string) => Promise<User | undefined>;
 }
 
 export interface Chat {

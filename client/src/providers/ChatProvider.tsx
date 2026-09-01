@@ -20,8 +20,18 @@ export function ChatProvider({ children }: { children: ReactNode }): ReactNode {
   const getUser = async (userId: string): Promise<User | undefined> =>
     (users as User[]).find((user) => user._id === userId);
 
+  const getUserByUsername = async (
+    username: string,
+  ): Promise<User | undefined> =>
+    (users as User[]).find((user) => user.username === username);
+
   const getMessages = async (chatId: string): Promise<Message[]> =>
     (messages as Message[]).filter((message) => message.chatId == chatId);
+
+  const getChatByParticipantId = async (
+    participantId: string,
+  ): Promise<Chat | undefined> =>
+    (chats as Chat[]).find((chat) => chat.participants.includes(participantId));
 
   useEffect(() => {
     // const test = async () => {
@@ -44,6 +54,8 @@ export function ChatProvider({ children }: { children: ReactNode }): ReactNode {
     setContacts,
     currentContactEntry,
     setCurrentContactEntry,
+    getChatByParticipantId,
+    getUserByUsername,
   };
 
   return (

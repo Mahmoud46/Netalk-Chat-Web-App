@@ -58,7 +58,7 @@ export default function Sidebar(): ReactNode {
         </div>
         <div className="flex flex-col items-center">
           <Link
-            to={lastItem?.path ?? "/"}
+            to={`${lastItem?.path ?? "/"}/${authNUser?.username}`}
             className={`relative group aspect-square flex justify-center items-center p-2 rounded-full ${isLastItemActive ? `sidebar-element-active [--shadow-color:#fff] translate-x-7 bg-background-light-base dark:bg-background-dark-base dark:[--shadow-color:#0f1115]` : "hover:bg-background-light-secondary/50 dark:hover:bg-background-light-secondary/10"} transition-all ease-in-out`}
           >
             <div

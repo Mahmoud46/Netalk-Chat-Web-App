@@ -4,6 +4,7 @@ import { useAuth, useChat } from "../../hooks";
 import Label from "../common/Label";
 import { MessageStatusIcon } from "../icons/ChatIcon";
 import { formatDate, formatTime12Hours } from "../../utils/format";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ChatCard = ({
   chat,
@@ -13,14 +14,19 @@ const ChatCard = ({
   isSidebarOpen: boolean;
 }): ReactNode => {
   const [participant, setParticipant] = useState<User | null>(null),
-    { getUser, currentChat, setCurrentChat, setCurrentParticipant } = useChat(),
+    { getUser, currentChat } = useChat(),
     { authNUser } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const isActive = chat._id === currentChat?._id;
 
-  const selectChat = () => {
-    setCurrentChat(chat);
-    setCurrentParticipant(participant);
+  const selectChat = (participantId: string) => {
+    navigate(
+      location.pathname.includes("inbox")
+        ? `/app/inbox/${participantId}`
+        : `/app/archive/${participantId}`,
+    );
   };
 
   useEffect(() => {
@@ -50,7 +56,7 @@ const ChatCard = ({
                 : "bg-transparent"
             }`
       }`}
-      onClick={selectChat}
+      onClick={() => selectChat(participant?._id ?? "")}
     >
       <div
         className={`relative flex-none transition-all ease-in-out rounded-full p-1 flex items-center justify-center aspect-square ${chat.unreadMessages > 0 && !isActive && !isSidebarOpen ? "bg-background-light-primary" : "bg-background-light-base dark:bg-background-dark-base"} ${isActive && "bg-background-light-surface-2 dark:bg-background-dark-surface-2"} ${isSidebarOpen ? "" : "group-hover:scale-110"}`}

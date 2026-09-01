@@ -1,8 +1,9 @@
-import { lazy, Suspense, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { type ReactNode } from "react";
 import Loader from "../components/common/Loader";
 
 import { useAuth, useChat } from "../hooks";
+import { useParams } from "react-router-dom";
 
 const ChatsSidebar = lazy(() => import("../components/chat/ChatsSidebar"));
 const ChatHeader = lazy(() => import("../components/chat/ChatHeader"));
@@ -21,8 +22,18 @@ const SideProfilePanel = lazy(
 );
 
 export default function Inbox(): ReactNode {
-  const { currentChat, currentParticipant, chats, contacts } = useChat();
+  const {
+    currentChat,
+    setCurrentChat,
+    currentParticipant,
+    setCurrentParticipant,
+    chats,
+    contacts,
+    getChatByParticipantId,
+    getUser,
+  } = useChat();
   const { authNUser } = useAuth();
+  const { id } = useParams();
 
   const [activeSideProfilePanel, setActiveSideProfilePanel] =
     useState<boolean>(false);
@@ -32,6 +43,21 @@ export default function Inbox(): ReactNode {
     const archived = authNUser?.archivedChats || [];
     return chats.filter((chat) => !archived.includes(chat._id));
   }, [chats, authNUser?.archivedChats]);
+
+  useEffect(() => {
+    const init = async () => {
+      if (id) {
+        const user = await getUser(id);
+        const chat = await getChatByParticipantId(id);
+        setCurrentParticipant(user ?? null);
+        setCurrentChat(chat ?? null);
+      } else {
+        setCurrentParticipant(null);
+        setCurrentChat(null);
+      }
+    };
+    init();
+  }, [id]);
 
   return (
     <div className="h-full w-full flex">
