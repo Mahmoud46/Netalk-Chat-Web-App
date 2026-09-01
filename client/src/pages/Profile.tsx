@@ -243,6 +243,7 @@ export default function Profile(): ReactNode {
       <ProfileHeader
         authNUser={isAuthNUser ? authNUser : currentUser}
         theme={theme}
+        isAuthNUser={isAuthNUser}
       />
       <div className="relative pl-30 pr-8 flex items-start gap-6">
         <div className="flex flex-col gap-4">
