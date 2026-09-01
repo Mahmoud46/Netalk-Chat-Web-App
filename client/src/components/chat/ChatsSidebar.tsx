@@ -30,12 +30,23 @@ const ChatsSidebar = ({ chats }: { chats: Chat[] }): ReactNode => {
           </button>
         </div>
       </div>
-      <div className="bg-background-light-secondary dark:bg-background-dark-secondary rounded-full">
-        <button className="relative group p-1.5 cursor-pointer rounded-full bg-background-light-secondary dark:bg-background-dark-secondary transition-all ease-in-out hover:scale-110">
+      <div
+        className={`bg-background-light-secondary dark:bg-background-dark-secondary rounded-full flex ${open ? "w-full items-center" : ""}`}
+      >
+        <button
+          className={`relative group p-1.5 cursor-pointer rounded-full bg-background-light-secondary dark:bg-background-dark-secondary transition-all ease-in-out ${open ? "" : "hover:scale-110"}`}
+          onClick={() => (!open ? toggleActive() : null)}
+        >
           <CommonIcon label="search" className="size-7" weight="thin" />
-          <Label text="Search" isSide={true} />
+          {!open && <Label text="Search" isSide={true} />}
         </button>
-        {open && <input type="text" className="flex-1" />}
+        {open && (
+          <input
+            type="text"
+            className="flex-1 bg-transparent text-sm h-full outline-none text-foreground-light-secondary dark:text-foreground-dark-secondary"
+            placeholder="Search ..."
+          />
+        )}
       </div>
       <ul className="flex flex-col">
         {chats.map((chat) => (

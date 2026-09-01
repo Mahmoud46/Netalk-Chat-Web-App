@@ -39,7 +39,7 @@ const ChatCard = ({
     <li
       className={`relative flex group cursor-pointer transition-all ease-in-out rounded-full p-2 ${
         isSidebarOpen
-          ? `gap-2 max-w-67 items-start hover:bg-background-light-base hover:dark:bg-background-dark-base ${
+          ? `gap-2 max-w-67 items-start hover:bg-background-light-base hover:dark:bg-background-dark-base pr-3 ${
               isActive
                 ? "bg-background-light-base dark:bg-background-dark-base"
                 : "bg-transparent"

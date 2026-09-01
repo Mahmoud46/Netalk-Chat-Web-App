@@ -1,6 +1,7 @@
 import type { IconWeight } from "../../types";
 // Base icons
 import search_big_icon from "../../assets/icons/common/search_big.png";
+import search_big_x_icon from "../../assets/icons/common/search_big_x.png";
 import chevron_right_icon from "../../assets/icons/common/chevron_right.png";
 import trash_icon from "../../assets/icons/common/trash.png";
 import dots_vertical_rounded_icon from "../../assets/icons/common/dots_vertical_rounded.png";
@@ -37,6 +38,7 @@ import cog_icon from "../../assets/icons/common/cog.png";
 
 // Thin icons
 import search_big_thin_icon from "../../assets/icons/common/search_big_thin.png";
+import search_big_x_thin_icon from "../../assets/icons/common/search_big_x_thin.png";
 import chevron_right_thin_icon from "../../assets/icons/common/chevron_right_thin.png";
 import trash_thin_icon from "../../assets/icons/common/trash_thin.png";
 import dots_vertical_rounded_thin_icon from "../../assets/icons/common/dots_vertical_rounded_thin.png";
@@ -106,6 +108,14 @@ export default function CommonIcon({
       return (
         <img
           src={weight == "thin" ? search_big_thin_icon : search_big_icon}
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "search_x":
+      return (
+        <img
+          src={weight == "thin" ? search_big_x_thin_icon : search_big_x_icon}
           loading="lazy"
           className={`main-icon ${className ?? ""}`}
         />
