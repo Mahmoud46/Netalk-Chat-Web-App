@@ -12,8 +12,9 @@ const SettingsSearchDropList = lazy(() =>
 export const SettingsHeader = ({ title }: { title: string }) => {
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const toggleSearchOpen = () => {
+    const search = searchOpen;
     setSearchOpen((prev) => !prev);
-    setIsActive(false);
+    setIsActive(!search);
   };
   const [searchValue, setSearchValue] = useState<string>("");
   const [isActive, setIsActive] = useState<boolean>(false);

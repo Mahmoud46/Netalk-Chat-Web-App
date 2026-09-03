@@ -55,7 +55,7 @@ export const ContactsInfo = ({
 }) => {
   return (
     <div
-      className={`w-90 z-10 gap-2 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-2 flex flex-col items-start transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`w-130 z-10 gap-2 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-2 flex flex-col items-start transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <h2 className="font-semibold pt-2">Contact Info</h2>
       <div className="flex flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary w-full">

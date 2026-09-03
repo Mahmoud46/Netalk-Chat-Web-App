@@ -456,10 +456,15 @@ export const SettingsSearchDropList = ({
 }) => {
   return (
     <div
-      className={`absolute top-7/6 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3  self-end rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50 w-full`}
+      className={`absolute max-h-[85dvh] overflow-auto top-7/6 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3  self-end rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50 w-full`}
     >
       {suggList.map((sug) => (
-        <Link to={sug.path}>{sug.label}</Link>
+        <Link
+          to={sug.path}
+          className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+        >
+          {sug.label}
+        </Link>
       ))}
     </div>
   );

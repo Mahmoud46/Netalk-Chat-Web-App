@@ -11,6 +11,7 @@ import CommonIcon from "../icons/CommonIcon";
 import { UsernameHolder } from "../../pages/Profile";
 import Loader from "../common/Loader";
 import type { Chat, ThemeMode, User } from "../../types";
+import { Link } from "react-router-dom";
 
 const ProfilePanelContactInfo = lazy(() =>
   import("../layout/Snap").then((module) => ({
@@ -120,10 +121,12 @@ const ProfilePanelMainInfo = ({
 };
 
 const ProfilePanelControlButtons = ({
+  username,
   isContact,
   isMuted,
   isBlocked,
 }: {
+  username: string | undefined;
   isContact: boolean;
   isMuted: boolean;
   isBlocked: boolean;
@@ -131,6 +134,13 @@ const ProfilePanelControlButtons = ({
   return (
     <div className="bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-t-3xl flex flex-col transition-all ease-in-out">
       <div className="flex items-center -translate-y-3 w-fit bg-background-light-surface-2 dark:bg-background-dark-surface-2 self-center p-2 pt-0 rounded-b-3xl relative profile-main-buttons-container [--shadow-color:#f9f1ff] dark:[--shadow-color:#16181d]">
+        <Link
+          to={`/app/profile/${username}`}
+          className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+        >
+          <CommonIcon label="user" weight="thin" className="size-6.5" />
+          <Label text="Profile" />
+        </Link>
         {isContact && (
           <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
             <CommonIcon label="edit" weight="thin" className="size-6.5" />
@@ -256,6 +266,7 @@ const SideProfilePanel = ({
       />
       <ProfilePanelMainInfo user={user} contacts={contacts} />
       <ProfilePanelControlButtons
+        username={user?.username}
         isContact={isContact}
         isBlocked={isBlocked}
         isMuted={isMuted}

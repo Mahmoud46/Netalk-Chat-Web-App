@@ -10,9 +10,11 @@ import { BrandIcon } from "../icons/BrandIcon";
 export default function Sidebar(): ReactNode {
   const pathname = useLocation().pathname,
     lastItem = SIDEBAR_ITEMS.at(-1),
-    isLastItemActive = isRouteActive(location.pathname, lastItem?.path ?? "/"),
     { theme } = useTheme(),
-    { authNUser } = useAuth();
+    { authNUser } = useAuth(),
+    isLastItemActive =
+      isRouteActive(location.pathname, lastItem?.path ?? "/") &&
+      location.pathname.split("/").includes(authNUser?.username ?? "");
   return (
     <aside className="flex flex-col items-center h-ful py-4 bg-background-light-surface-1 dark:bg-background-dark-surface-1 gap-8">
       <Link to="/">

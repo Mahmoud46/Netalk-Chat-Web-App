@@ -35,6 +35,7 @@ import male_icon from "../../assets/icons/common/male.png";
 import female_icon from "../../assets/icons/common/female.png";
 import share_icon from "../../assets/icons/common/share.png";
 import cog_icon from "../../assets/icons/common/cog.png";
+import user_icon from "../../assets/icons/common/user.png";
 
 // Thin icons
 import search_big_thin_icon from "../../assets/icons/common/search_big_thin.png";
@@ -72,6 +73,7 @@ import male_thin_icon from "../../assets/icons/common/male_thin.png";
 import female_thin_icon from "../../assets/icons/common/female_thin.png";
 import share_thin_icon from "../../assets/icons/common/share_thin.png";
 import cog_thin_icon from "../../assets/icons/common/cog_thin.png";
+import user_thin_icon from "../../assets/icons/common/user_thin.png";
 
 // Bold
 import eye_bold_icon from "../../assets/icons/common/eye_bold.png";
@@ -108,6 +110,14 @@ export default function CommonIcon({
       return (
         <img
           src={weight == "thin" ? search_big_thin_icon : search_big_icon}
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "user":
+      return (
+        <img
+          src={weight == "thin" ? user_thin_icon : user_icon}
           loading="lazy"
           className={`main-icon ${className ?? ""}`}
         />
