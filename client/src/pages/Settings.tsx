@@ -4,28 +4,11 @@ import Label from "../components/common/Label";
 import { SETTINGS_SIDEBAR_ITEMS } from "../config/navigation";
 import { capitalize, isRouteActive } from "../utils/helpers";
 import { SettingsSidebarIcon } from "../components/icons/SidebarIcon";
-import CommonIcon from "../components/icons/CommonIcon";
 
 const SettingsSidebar = (): ReactNode => {
   const pathname = useLocation().pathname;
   return (
-    <aside className="min-w-20 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 pl-10 flex flex-col items-center gap-4">
-      <div className="size-15 w-full relative -translate-y-2 translate-x-2">
-        <div className="absolute top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-2 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
-          <button className="relative group cursor-pointer p-1 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-            <CommonIcon
-              label="chevron_right"
-              weight="thin"
-              className="size-7 transition-all ease-in-out"
-            />
-            <Label text="Expand" />
-          </button>
-        </div>
-      </div>
-      <button className="relative group p-1.5 cursor-pointer rounded-full bg-background-light-secondary dark:bg-background-dark-secondary transition-all ease-in-out hover:scale-110">
-        <CommonIcon label="search" className="size-7" weight="thin" />
-        <Label text="Search" isSide={true} />
-      </button>
+    <aside className="min-w-20 pt-20 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 pl-10 flex flex-col items-center gap-4">
       <div className="flex flex-col items-center flex-1">
         {SETTINGS_SIDEBAR_ITEMS.map((item) => {
           const isActive = isRouteActive(pathname, item.path);

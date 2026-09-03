@@ -34,10 +34,14 @@ const ChatsSidebar = ({ chats }: { chats: Chat[] }): ReactNode => {
         className={`bg-background-light-secondary dark:bg-background-dark-secondary rounded-full flex ${open ? "w-full items-center" : ""}`}
       >
         <button
-          className={`relative group p-1.5 cursor-pointer rounded-full bg-background-light-secondary dark:bg-background-dark-secondary transition-all ease-in-out ${open ? "" : "hover:scale-110"}`}
+          className={`relative group p-1.5 cursor-pointer rounded-full bg-background-light-secondary dark:bg-background-dark-secondary transition-all ease-in-out ${open ? "pointer-events-none" : "hover:scale-110"}`}
           onClick={() => (!open ? toggleActive() : null)}
         >
-          <CommonIcon label="search" className="size-7" weight="thin" />
+          <CommonIcon
+            label="search"
+            className={`size-7 ${open ? "opacity-50" : ""}`}
+            weight="thin"
+          />
           {!open && <Label text="Search" isSide={true} />}
         </button>
         {open && (

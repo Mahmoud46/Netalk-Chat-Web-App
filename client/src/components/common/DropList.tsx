@@ -10,6 +10,7 @@ import Label from "./Label";
 import { copyToClipboard } from "../../utils/helpers";
 import { formatPhoneNumber } from "../../utils/format";
 import SocialIcon from "../icons/SocialIcon";
+import { Link } from "react-router-dom";
 
 const BlockedUserCard = lazy(() =>
   import("../common/Card").then((module) => ({
@@ -438,6 +439,28 @@ export const ContactInfoDropList = ({
           </div>
         ))}
       </div>
+    </div>
+  );
+};
+
+export const SettingsSearchDropList = ({
+  suggList,
+  isActive = false,
+}: {
+  suggList: {
+    keywords: string[];
+    label: string;
+    path: string;
+  }[];
+  isActive?: boolean;
+}) => {
+  return (
+    <div
+      className={`absolute top-7/6 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3  self-end rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50 w-full`}
+    >
+      {suggList.map((sug) => (
+        <Link to={sug.path}>{sug.label}</Link>
+      ))}
     </div>
   );
 };
