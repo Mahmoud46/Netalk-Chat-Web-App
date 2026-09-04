@@ -462,6 +462,7 @@ export const SettingsSearchDropList = ({
         <Link
           to={sug.path}
           className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+          key={`${sug.label}-${sug.keywords.join("-")}-${sug.path}`}
         >
           {sug.label}
         </Link>
