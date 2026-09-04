@@ -128,7 +128,7 @@ export const BlockedCardDropList = ({
       className={`absolute bottom-5/6 z-10 -right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <button
-        className={`cursor-pointer p-2 text-sm ${isBlocked ? "hover:bg-background-light-success/10 dark:hover:bg-background-dark-success/20 text-background-dark-success" : "hover:bg-background-light-danger dark:hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl`}
+        className={`cursor-pointer p-2 text-sm ${isBlocked ? "hover:bg-background-dark-success/9 text-background-dark-success" : "bg-foreground-light-danger dark:bg-foreground-dark-danger hover:bg-background-light-danger dark:hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl`}
       >
         <CommonIcon label="user_check" weight="thin" className="size-6.5" />
         Unblock

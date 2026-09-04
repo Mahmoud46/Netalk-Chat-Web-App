@@ -27,7 +27,7 @@ export const SettingsHeader = ({ title }: { title: string }) => {
         className={`z-10 relative rounded-full transition-all ease-in-out duration-300 ${searchOpen ? "flex items-center pr-2 gap-2 bg-background-light-surface-2 dark:bg-background-dark-surface-2" : "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
       >
         <button
-          className={`relative group p-1.5 cursor-pointer rounded-full bg-background-light-secondary dark:bg-background-dark-secondary transition-all ease-in-out hover:scale-110`}
+          className={`relative group p-1.5 cursor-pointer rounded-full transition-all ease-in-out hover:scale-110 z-50`}
           onClick={toggleSearchOpen}
         >
           <CommonIcon
