@@ -81,7 +81,7 @@ const ChatCard = ({
 
         {participant?.isActive && (
           <span className="absolute flex items-center w-3.5 h-3.5 bg-background-light-base dark:bg-background-dark-base justify-center rounded-full bottom-0 right-0">
-            <span className="bg-background-dark-success w-2 h-2 aspect-square rounded-full"></span>
+            <span className="bg-foreground-dark-success w-2 h-2 aspect-square rounded-full"></span>
           </span>
         )}
 

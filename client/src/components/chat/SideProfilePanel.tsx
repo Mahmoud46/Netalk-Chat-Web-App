@@ -78,7 +78,7 @@ const ProfilePanelHeader = ({
         )}
         {user?.isActive && (
           <span className="absolute flex items-center p-1.5 aspect-square bg-background-light-surface-2 dark:bg-background-dark-surface-2 justify-center rounded-full bottom-1 right-1">
-            <span className="bg-background-dark-success size-4 aspect-square rounded-full"></span>
+            <span className="bg-foreground-dark-success size-4 aspect-square rounded-full"></span>
           </span>
         )}
       </div>
@@ -164,10 +164,10 @@ const ProfilePanelControlButtons = ({
           <Label text={isMuted ? "Unmute" : "Mute"} />
         </button>
         <button
-          className={`relative group cursor-pointer p-2 rounded-full ${isBlocked ? "hover:bg-green-400/10 dark:hover:bg-green-700/20" : "hover:bg-background-light-danger dark:hover:bg-background-dark-danger"} transition-all ease-in-out`}
+          className={`relative group cursor-pointer p-2 rounded-full ${isBlocked ? "text-foreground-dark-success hover:bg-background-dark-success" : "text-foreground-dark-danger hover:bg-background-dark-danger"} transition-all ease-in-out`}
         >
           <CommonIcon
-            label={isBlocked ? "" : "user_x"}
+            label={isBlocked ? "user_check" : "user_x"}
             weight="thin"
             className="size-6.5"
           />

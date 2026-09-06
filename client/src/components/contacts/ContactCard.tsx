@@ -64,7 +64,7 @@ export const ContactCard = ({
           <span
             className={`absolute flex items-center size-4.5 aspect-square bg-background-light-base dark:bg-background-dark-base justify-center rounded-full ${isActive ? "bottom-3 right-3" : "bottom-1.5 right-1.5"}`}
           >
-            <span className="bg-background-dark-success size-3 aspect-square rounded-full"></span>
+            <span className="bg-foreground-dark-success size-3 aspect-square rounded-full"></span>
           </span>
         )}
       </div>
@@ -115,7 +115,7 @@ export const ContactsOnlineCard = ({
           loading="lazy"
         />
         <span className="absolute flex items-center size-3.5 aspect-square bg-background-light-base dark:bg-background-dark-base justify-center rounded-full bottom-0 right-0">
-          <span className="bg-background-dark-success size-2 aspect-square rounded-full"></span>
+          <span className="bg-foreground-dark-success size-2 aspect-square rounded-full"></span>
         </span>
       </div>
       <Label text={contactEntry.firstName} />

@@ -33,13 +33,14 @@ a:focus {
   --color-background-light-surface-3: #fef7ff;
   --color-background-light-primary: #fd5b5d;
   --color-background-light-secondary: #ede5f4;
-  --color-background-light-success: #22c55e;
-  --color-background-light-danger: #fee2e2;
+  --color-background-light-success: #22c55e1a;
+  --color-background-light-danger: #dc16161a;
 
   --color-foreground-light-primary: #fd5b5d;
   --color-foreground-light-secondary: #635d6c;
   --color-foreground-light-third: #a6a6a6;
   --color-foreground-light-danger: #dc1616;
+  --color-foreground-light-success: #22c55e;
 
   /* Dark theme */
   --color-background-dark-base: #0f1115;
@@ -48,12 +49,13 @@ a:focus {
   --color-background-dark-surface-3: #2a2d35;
   --color-background-dark-primary: #fd5b5d;
   --color-background-dark-secondary: #25282f;
-  --color-background-dark-success: #22c55e;
-  --color-background-dark-danger: #401a1d;
+  --color-background-dark-success: #22c55e1a;
+  --color-background-dark-danger: #dc16161a;
 
   --color-foreground-dark-primary: #fd5b5d;
   --color-foreground-dark-secondary: #a6a6a6;
-  --color-foreground-dark-danger: #c00000;
+  --color-foreground-dark-danger: #dc1616;
+  --color-foreground-dark-success: #22c55e;
 }
 
 @layer utilities {
