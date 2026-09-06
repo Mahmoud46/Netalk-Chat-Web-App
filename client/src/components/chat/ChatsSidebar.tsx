@@ -48,7 +48,7 @@ const ChatsSidebar = ({ chats }: { chats: Chat[] }): ReactNode => {
           <input
             type="text"
             className="flex-1 bg-transparent text-sm h-full outline-none text-foreground-light-secondary dark:text-foreground-dark-secondary"
-            placeholder="Search ..."
+            placeholder="Search chat"
           />
         )}
       </div>

@@ -316,7 +316,7 @@ export const LoginForm = () => {
 
 export const SignupForm = () => {
   const [part, setPart] = useState<number>(1);
-
+  const partsMaxCount = 2;
   const [firstName, setFirstName] = useState<string>(""),
     [lastName, setLastName] = useState<string>("");
   const [birthdate, setBirthdate] = useState<string>(getDateSixteenYearsAgo());
@@ -369,27 +369,47 @@ export const SignupForm = () => {
       </div>
 
       <div className="flex items-center w-full gap-2">
-        {part == 2 && (
-          <button
-            type="button"
-            className="p-2.5 flex items-center justify-center rounded-3xl cursor-pointer transition-all ease-in-out hover:scale-105 flex-1 gap-2 bg-background-light-secondary dark:bg-background-dark-secondary"
-            onClick={() => setPart(1)}
-          >
-            <CommonIcon
-              label="chevron_right"
-              weight="thin"
-              className="rotate-180 size-6.5"
-            />
-            Previous
-          </button>
+        {part <= partsMaxCount && (
+          <>
+            {part != 1 && (
+              <button
+                type="button"
+                className="p-2.5 flex items-center justify-center rounded-3xl cursor-pointer transition-all ease-in-out hover:scale-105 flex-1 gap-2 bg-background-light-secondary dark:bg-background-dark-secondary"
+                onClick={() => setPart((prev) => prev - 1)}
+              >
+                <CommonIcon
+                  label="chevron_right"
+                  weight="thin"
+                  className="rotate-180 size-6.5"
+                />
+                Previous
+              </button>
+            )}
+            {part != partsMaxCount && (
+              <button
+                type="submit"
+                className="p-2.5 flex items-center justify-center rounded-3xl cursor-pointer transition-all ease-in-out hover:scale-105 flex-1 gap-2 bg-background-light-secondary dark:bg-background-dark-secondary"
+                onClick={() => setPart((prev) => prev + 1)}
+              >
+                Next
+                <CommonIcon
+                  label="chevron_right"
+                  weight="thin"
+                  className="size-6.5"
+                />
+              </button>
+            )}
+          </>
         )}
 
-        <button
-          type="submit"
-          className="gradient p-2.5 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 flex-1 gap-2"
-        >
-          {part == 1 ? "Next" : "Submit"}
-        </button>
+        {part == partsMaxCount && (
+          <button
+            type="submit"
+            className="gradient p-2.5 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 flex-1 gap-2"
+          >
+            Submit
+          </button>
+        )}
       </div>
     </form>
   );

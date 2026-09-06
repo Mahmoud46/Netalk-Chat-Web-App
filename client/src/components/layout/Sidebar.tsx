@@ -11,12 +11,19 @@ export default function Sidebar(): ReactNode {
   const pathname = useLocation().pathname,
     lastItem = SIDEBAR_ITEMS.at(-1),
     { theme } = useTheme(),
-    { authNUser } = useAuth(),
+    { authNUser, logout } = useAuth(),
     isLastItemActive =
       isRouteActive(location.pathname, lastItem?.path ?? "/") &&
       location.pathname.split("/").includes(authNUser?.username ?? "");
+
+  const isAnyItemActive =
+    SIDEBAR_ITEMS.slice(0, 4).some((item) =>
+      isRouteActive(pathname, item.path),
+    ) || isLastItemActive;
   return (
-    <aside className="flex flex-col items-center h-ful py-4 bg-background-light-surface-1 dark:bg-background-dark-surface-1 gap-8">
+    <aside
+      className={`flex flex-col items-center h-ful py-4 bg-background-light-surface-1 dark:bg-background-dark-surface-1 gap-8 ${isAnyItemActive ? "" : "px-1.5"}`}
+    >
       <Link to="/">
         <BrandIcon className="size-8" theme={theme} />
       </Link>
@@ -81,7 +88,10 @@ export default function Sidebar(): ReactNode {
             )}
           </Link>
 
-          <button className="aspect-square relative group transition-all ease-in-out hover:bg-background-light-secondary/50 dark:hover:bg-background-light-secondary/10 flex justify-center items-center p-2.5 rounded-full cursor-pointer">
+          <button
+            className="aspect-square relative group transition-all ease-in-out hover:bg-background-light-secondary/50 dark:hover:bg-background-light-secondary/10 flex justify-center items-center p-2.5 rounded-full cursor-pointer"
+            onClick={logout}
+          >
             <MainSidebarIcon className="size-7" weight="thin" />
             <Label text="Logout" isSide={true} />
           </button>

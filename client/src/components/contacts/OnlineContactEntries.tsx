@@ -38,7 +38,7 @@ const OnlineContactEntries = ({
           <input
             type="text"
             className={`flex-1 text-sm outline-none text-foreground-light-secondary dark:text-foreground-dark-secondary transition-all ease-in-out ${searchOpen ? "max-w-80 min-w-60 leading-8" : "max-w-0 min-w-0"}`}
-            placeholder={searchOpen ? "Search ..." : ""}
+            placeholder={searchOpen ? "Search contact" : ""}
           />
         </div>
         <div className="flex items-center gap-2">

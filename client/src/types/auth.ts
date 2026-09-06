@@ -5,6 +5,7 @@ export interface AuthContextValue {
   isAuthenticated: boolean;
   authNUser: AuthNUser | null;
   setAuthNUser: (authNUser: AuthNUser | null) => void;
+  logout: () => Promise<void>;
 }
 
 export interface AuthNUser extends User {

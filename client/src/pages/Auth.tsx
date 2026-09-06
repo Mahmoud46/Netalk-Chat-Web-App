@@ -61,7 +61,7 @@ export default function Auth(): ReactNode {
         </div>
         {/* Signup and login arrows  */}
         <Link
-          className={`z-20 absolute aspect-square rounded-full bg-background-light-base dark:bg-background-dark-base top-1/2 -translate-y-1/2 p-3 ${authMode == "login" ? "-left-10" : "-right-10"} flex items-center justify-center`}
+          className={`z-20 absolute aspect-square rounded-full bg-background-light-base dark:bg-background-dark-base top-1/2 -translate-y-1/2 p-1.5 ${authMode == "login" ? "-left-8" : "-right-8"} flex items-center justify-center`}
           to={authMode == "login" ? "/auth?mode=signup" : "/auth?mode=login"}
         >
           <button className="relative group cursor-pointer p-1 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
@@ -76,7 +76,7 @@ export default function Auth(): ReactNode {
       </div>
       <div className="flex-1 h-full text-foreground-light-secondary dark:text-foreground-dark-secondary ">
         <div
-          className={`flex flex-col p-12 gap-16 z-10 max-h-full overflow-auto`}
+          className={`flex flex-col p-12 ${authMode == "signup" ? "gap-4" : "gap-16"} z-10 max-h-full overflow-auto`}
         >
           <div className="">
             <h2 className="flex items-center text-2xl font-semibold">
