@@ -5,11 +5,12 @@
 
 html {
   scrollbar-color: #888 transparent;
-  color-scheme: light;
+  background-color: #ffffff;
 }
 
 html[data-theme="dark"] {
   color-scheme: dark;
+  background-color: #0f1115;
 }
 
 * {
