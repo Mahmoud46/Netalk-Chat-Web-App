@@ -5,6 +5,11 @@
 
 html {
   scrollbar-color: #888 transparent;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 * {
