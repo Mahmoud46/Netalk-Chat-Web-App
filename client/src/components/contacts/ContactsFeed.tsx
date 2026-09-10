@@ -17,7 +17,7 @@ const AlphabetIndexer = ({
   indexedContactEntries: Record<string, User[]>;
 }): ReactNode => {
   return (
-    <div className="text-sm h-fit sticky top-1/2 -translate-y-1/2 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 rounded-full text-center flex flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary max-h-700 overflow-auto">
+    <div className="text-sm h-fit flex-none sticky top-1/2 -translate-y-1/2 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 rounded-full text-center flex flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary max-h-700 overflow-auto">
       {Object.entries(indexedContactEntries).map((alphabet) => (
         <a
           href={`#${alphabet[0]}`}

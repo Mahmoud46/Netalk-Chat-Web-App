@@ -77,7 +77,7 @@ const ProfilePanelHeader = ({
           />
         )}
         {user?.isActive && (
-          <span className="absolute flex items-center p-1.5 aspect-square bg-background-light-surface-2 dark:bg-background-dark-surface-2 justify-center rounded-full bottom-1 right-1">
+          <span className="absolute flex items-center p-1.5 aspect-square bg-background-light-surface-2 dark:bg-background-dark-surface-2 justify-center rounded-full bottom-1.5 right-1.5">
             <span className="bg-foreground-dark-success size-4 aspect-square rounded-full"></span>
           </span>
         )}

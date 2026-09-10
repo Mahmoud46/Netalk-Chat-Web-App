@@ -1,10 +1,13 @@
 import type { ReactNode } from "react";
 import type { User } from "../../types";
-import { useChat } from "../../hooks";
+import { useChat, useTheme } from "../../hooks";
 import moment from "moment";
 import Label from "../common/Label";
 import React, { useState } from "react";
 import CommonIcon from "../icons/CommonIcon";
+import { Link } from "react-router-dom";
+import default_cover from "../../assets/images/default_profile_cover.jpg";
+import default_cover_dark from "../../assets/images/default_profile_cover_dark.jpg";
 
 const ContactEntryDropList = React.lazy(() =>
   import("../common/DropList").then((module) => ({
@@ -12,83 +15,94 @@ const ContactEntryDropList = React.lazy(() =>
   })),
 );
 
-export const ContactCard = ({
-  contactEntry,
-}: {
-  contactEntry: User;
-}): ReactNode => {
-  const { contacts, currentContactEntry, setCurrentContactEntry } = useChat();
+export const ContactCard = ({ contactEntry }: { contactEntry: User }) => {
+  const { contacts } = useChat();
   const [isActiveContactEntryDropList, setIsActiveContactEntryDropList] =
     useState<boolean>(false);
-  const isActive: boolean =
-    (currentContactEntry && currentContactEntry?._id == contactEntry._id) ??
-    false;
+  const { theme } = useTheme();
 
-  const activateContactEntry = () => setCurrentContactEntry(contactEntry),
-    toggleContactEntryDropList = () =>
-      setIsActiveContactEntryDropList((prev) => !prev);
+  const toggleContactEntryDropList = () =>
+    setIsActiveContactEntryDropList((prev) => !prev);
 
   return (
-    <div
-      className={`w-50 relative flex flex-col items-center ${isActive ? "justify-center" : "justify-start"} aspect-4/5`}
-    >
-      <ContactEntryDropList isActive={isActiveContactEntryDropList} />
-      <div
-        className={`p-4 ${isActive ? "h-35 translate-y-6" : "h-[calc(100%-30px)]"} rounded-3xl text-center bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex flex-col items-center justify-center cursor-pointer transition-all ease-in-out`}
-        onClick={activateContactEntry}
-      >
-        <p
-          className={`line-clamp-1 ${isActive ? "translate-y-0" : "translate-y-6"} font-semibold text-base text-black dark:text-background-light-surface-3`}
+    <div className="w-50 aspect-4/5 relative">
+      <div className="w-full flex flex-col items-center bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl">
+        <ContactEntryDropList isActive={isActiveContactEntryDropList} />
+        <Link
+          to={`/app/profile/${contactEntry.username}`}
+          className="relative h-20 w-full cursor-pointer"
         >
-          {contacts[contactEntry._id]}
-        </p>
-        <p
-          className={`text-xs ${isActive ? "translate-y-0" : "translate-y-6"} text-foreground-light-third dark:text-foreground-dark-secondary`}
-        >
-          {contactEntry.isActive
-            ? "Active Now"
-            : `Active ${moment(new Date(contactEntry.lastSeen)).fromNow()}`}
-        </p>
-      </div>
-      <div
-        className={`absolute ${isActive ? "top-5 p-3 contacts-card-profile-image-active-corners [--shadow-color:#ffffff] dark:[--shadow-color:#0f1115]" : "top-4 p-1.5"} bg-background-light-base dark:bg-background-dark-base rounded-full cursor-pointer transition-all ease-in-out`}
-        onClick={activateContactEntry}
-      >
-        <img
-          src={contactEntry.profileImage}
-          alt={contactEntry.firstName}
-          loading="lazy"
-          className="rounded-full size-18"
-        />
-        {contactEntry.isActive && (
-          <span
-            className={`absolute flex items-center size-4.5 aspect-square bg-background-light-base dark:bg-background-dark-base justify-center rounded-full ${isActive ? "bottom-3 right-3" : "bottom-1.5 right-1.5"}`}
-          >
-            <span className="bg-foreground-dark-success size-3 aspect-square rounded-full"></span>
-          </span>
-        )}
-      </div>
-
-      <div className="absolute p-3 bottom-0 rounded-full flex items-center contacts-card-corners [--shadow-color:#ffffff] dark:[--shadow-color:#0f1115] bg-background-light-base dark:bg-background-dark-base">
-        <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-          <CommonIcon label="paper_plane" className="size-6" weight="thin" />
-          <Label text="Chat" />
-        </button>
-        <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-          <CommonIcon label="phone" className="size-6" weight="thin" />
-          <Label text="Call" />
-        </button>
-        <button
-          className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-          onClick={toggleContactEntryDropList}
-        >
-          <CommonIcon
-            label="dots_vertical_rounded"
-            className="size-6"
-            soild={true}
+          <img
+            src={
+              contactEntry?.profileCover ??
+              (theme == "dark" ? default_cover_dark : default_cover)
+            }
+            alt="participant-profile-cover"
+            loading="lazy"
+            className="w-full rounded-3xl object-cover h-full"
           />
-          <Label text="More" />
-        </button>
+
+          <div
+            className={`absolute -bottom-11 left-1/2 -translate-x-1/2 p-1.5 rounded-full transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2`}
+          >
+            <img
+              src={contactEntry.profileImage}
+              alt={contactEntry.firstName}
+              loading="lazy"
+              className="rounded-full size-18"
+            />
+            {contactEntry.isActive && (
+              <span
+                className={`absolute flex items-center p-1 aspect-square bg-background-light-surface-2 dark:bg-background-dark-surface-2 justify-center rounded-full bottom-1.5 right-1.5`}
+              >
+                <span className="bg-foreground-dark-success size-3 aspect-square rounded-full"></span>
+              </span>
+            )}
+          </div>
+        </Link>
+        <Link
+          to={`/app/profile/${contactEntry.username}`}
+          className="px-4 flex flex-col text-center mt-11 cursor-pointer"
+        >
+          <p
+            className={`line-clamp-1 font-semibold text-base text-black dark:text-background-light-surface-3`}
+          >
+            {contacts[contactEntry._id]}
+          </p>
+          <p
+            className={`text-xs text-foreground-light-third dark:text-foreground-dark-secondary`}
+          >
+            {contactEntry.isActive
+              ? "Active Now"
+              : `Active ${moment(new Date(contactEntry.lastSeen)).fromNow()}`}
+          </p>
+        </Link>
+        <div className="p-2 translate-y-7 rounded-full flex items-center contacts-card-corners [--shadow-color:#ffffff] dark:[--shadow-color:#0f1115] bg-background-light-base dark:bg-background-dark-base">
+          <button className="relative group mr-2 cursor-pointer p-2 rounded-full gradient transition-all ease-in-out">
+            <CommonIcon
+              label="paper_plane"
+              className="size-6 transition-all ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1"
+              weight="thin"
+              soild={true}
+            />
+            <Label text="Chat" />
+          </button>
+          <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+            <CommonIcon label="phone" className="size-6" weight="thin" />
+            <Label text="Call" />
+          </button>
+          <button
+            className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+            onClick={toggleContactEntryDropList}
+          >
+            <CommonIcon
+              label="dots_vertical_rounded"
+              className="size-6"
+              soild={true}
+            />
+            <Label text="More" />
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -99,26 +113,23 @@ export const ContactsOnlineCard = ({
 }: {
   contactEntry: User;
 }): ReactNode => {
-  const { setCurrentContactEntry } = useChat();
-
-  const activateContactEntry = () => setCurrentContactEntry(contactEntry);
   return (
-    <div
-      className="flex-none gradient p-1 rounded-full cursor-pointer relative group"
-      onClick={activateContactEntry}
+    <Link
+      className="flex-none cursor-pointer relative group"
+      to={`/app/profile/${contactEntry.username}`}
     >
-      <div className="bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-1 rounded-full relative">
-        <img
-          src={contactEntry.profileImage}
-          alt={contactEntry.firstName}
-          className="size-10 rounded-full"
-          loading="lazy"
-        />
-        <span className="absolute flex items-center size-3.5 aspect-square bg-background-light-base dark:bg-background-dark-base justify-center rounded-full bottom-0 right-0">
-          <span className="bg-foreground-dark-success size-2 aspect-square rounded-full"></span>
+      {contactEntry?.isActive && (
+        <span className="absolute flex items-center w-3.5 h-3.5 bg-background-light-surface-3 dark:bg-background-dark-surface-3 justify-center rounded-full bottom-0 right-0">
+          <span className="bg-foreground-dark-success w-2 h-2 aspect-square rounded-full"></span>
         </span>
-      </div>
+      )}
+      <img
+        src={contactEntry?.profileImage}
+        alt={contactEntry?.firstName}
+        loading="lazy"
+        className="size-10.5 rounded-full flex-none"
+      />
       <Label text={contactEntry.firstName} />
-    </div>
+    </Link>
   );
 };

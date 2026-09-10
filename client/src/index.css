@@ -88,7 +88,7 @@ a:focus {
   }
 
   .success-icon {
-    @apply filter-[invert(64%)_sepia(37%)_saturate(1335%)_hue-rotate(94deg)_brightness(101%)_contrast(91%)];
+    @apply filter-[brightness(0)_saturate(100%)_invert(48%)_sepia(79%)_saturate(1100%)_hue-rotate(96deg)_brightness(91%)_contrast(91%)] dark:filter-[invert(64%)_sepia(37%)_saturate(1335%)_hue-rotate(94deg)_brightness(101%)_contrast(91%)];
   }
 
   .stable-gutter-container {
