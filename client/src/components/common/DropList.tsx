@@ -256,7 +256,7 @@ export const LanguageDropList = ({
 }): ReactNode => {
   return (
     <ul
-      className={`absolute max-h-80 overflow-auto -top-3 min-w-80 w-full z-10 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-1.5 flex flex-col items-start stable-gutter-container scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute max-h-80 overflow-auto -top-3 min-w-80 w-full z-10 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-3 flex flex-col items-start stable-gutter-container scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       {LANGUAGES.map((language) => (
         <li
@@ -336,7 +336,7 @@ export const ContactInfoDropList = ({
 }): ReactNode => {
   return (
     <div
-      className={`absolute max-h-80 -top-10 -auto w-full min-w-80 z-10  bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute max-h-80 -top-10 -auto w-full min-w-80 z-10  bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-3 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <div className="flex flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary w-full">
         {authNUser?.contactInfo.emails.map((email) => (

@@ -4,6 +4,7 @@ import type { User } from "../../types";
 import moment from "moment";
 import CommonIcon from "../icons/CommonIcon";
 import Label from "./Label";
+import { Link } from "react-router-dom";
 
 const BlockedCardDropList = lazy(() =>
   import("./DropList").then((module) => ({
@@ -21,7 +22,7 @@ export const BlockedUserCard = ({ user }: { user: User }) => {
     <div className="relative flex p-2 rounded-full justify-between items-center transition-all ease-in-out cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2">
       <BlockedCardDropList isActive={isActiveCardDropList} userId={user._id} />
 
-      <div className="flex gap-4 flex-1">
+      <Link to={`/app/profile/${user.username}`} className="flex gap-4 flex-1">
         <div className="relative flex-none">
           {user?.isActive && (
             <span className="absolute flex items-center w-3.5 h-3.5 bg-background-light-base dark:bg-background-dark-base justify-center rounded-full bottom-0 right-0">
@@ -49,7 +50,7 @@ export const BlockedUserCard = ({ user }: { user: User }) => {
                 ).fromNow()}`}
           </p>
         </div>
-      </div>
+      </Link>
 
       <button
         className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"

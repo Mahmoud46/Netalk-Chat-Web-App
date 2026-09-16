@@ -78,7 +78,10 @@ export const ContactCard = ({ contactEntry }: { contactEntry: User }) => {
           </p>
         </Link>
         <div className="p-2 translate-y-7 rounded-full flex items-center contacts-card-corners [--shadow-color:#ffffff] dark:[--shadow-color:#0f1115] bg-background-light-base dark:bg-background-dark-base">
-          <button className="relative group mr-2 cursor-pointer p-2 rounded-full gradient transition-all ease-in-out">
+          <Link
+            to={`/app/inbox/${contactEntry._id}`}
+            className="relative group mr-2 cursor-pointer p-2 rounded-full gradient transition-all ease-in-out"
+          >
             <CommonIcon
               label="paper_plane"
               className="size-6 transition-all ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1"
@@ -86,7 +89,7 @@ export const ContactCard = ({ contactEntry }: { contactEntry: User }) => {
               soild={true}
             />
             <Label text="Chat" />
-          </button>
+          </Link>
           <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
             <CommonIcon label="phone" className="size-6" weight="thin" />
             <Label text="Call" />
