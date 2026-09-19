@@ -6,6 +6,8 @@ import { ToggleButton } from "../../pages/AppearanceSettings";
 import { calculateAge, capitalize } from "../../utils/helpers";
 import { formatDate, getDateSixteenYearsAgo } from "../../utils/format";
 import type { Gender } from "../../types";
+import SocialIcon from "../icons/SocialIcon";
+import { SIGNUP_ONBOARDING_STEPS } from "../../config/navigation";
 
 const EmailPhoneInputFiled = ({
   emailPhone,
@@ -85,7 +87,7 @@ const RememberMeInputField = () => {
   const toggleRememberMe = () => setIsActive((prev) => !prev);
 
   return (
-    <div className="space-x-4 relative flex font-semibold items-center justify-between text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
+    <div className="space-x-4 relative flex font-semibold items-center text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
       <ToggleButton isActive={isActive} action={toggleRememberMe} />
       <input
         type="checkbox"
@@ -97,6 +99,31 @@ const RememberMeInputField = () => {
       />
       <label htmlFor="remember-me" className="cursor-pointer">
         Remember me
+      </label>
+    </div>
+  );
+};
+const TermsAndPrivacyAccept = () => {
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const toggleAcceptTerms = () => setIsActive((prev) => !prev);
+
+  return (
+    <div className="space-x-4 relative flex font-semibold items-center text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
+      <ToggleButton isActive={isActive} action={toggleAcceptTerms} />
+      <input
+        type="checkbox"
+        name="accept-terms-privacy"
+        id="accept-terms-privacy"
+        className="absolute opacity-0 cursor-pointer"
+        onChange={toggleAcceptTerms}
+        checked={isActive}
+        required
+      />
+      <label htmlFor="accept-terms-privacy" className="cursor-pointer">
+        Agree to{" "}
+        <Link to={"/"} className="underline hover:text-foreground-dark-primary">
+          Terms & Privacy
+        </Link>
       </label>
     </div>
   );
@@ -123,6 +150,7 @@ const NameInputField = ({
           type="text"
           value={firstName}
           placeholder="First Name"
+          required
           onChange={(e) => {
             setFirstName(e.target.value);
           }}
@@ -132,6 +160,7 @@ const NameInputField = ({
           type="text"
           value={lastName}
           placeholder="Last Name"
+          required
           onChange={(e) => {
             setLastName(e.target.value);
           }}
@@ -231,6 +260,37 @@ const GenderInputField = ({
   );
 };
 
+const AddressField = ({
+  address,
+  setAddress,
+}: {
+  address: string;
+  setAddress: React.Dispatch<React.SetStateAction<string>>;
+}) => {
+  return (
+    <div className="w-full flex flex-col gap-1.5">
+      <div className="flex items-center gap-2 font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
+        <p>Address</p>
+      </div>
+
+      <div className="relative">
+        <CommonIcon
+          label="location_alt"
+          weight="thin"
+          className="size-6 absolute top-1/2 left-3 -translate-y-1/2"
+        />
+        <input
+          type="text"
+          value={address}
+          placeholder="Address"
+          className="flex items-center gap-2 w-full rounded-full pl-11 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+          onChange={(e) => setAddress(e.target.value)}
+        />
+      </div>
+    </div>
+  );
+};
+
 const TitleInputField = ({
   title,
   setTitle,
@@ -282,135 +342,252 @@ const BioInputField = ({
   );
 };
 
+const SignupCredentials = () => {
+  const [emailPhone, setEmailPhone] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  return (
+    <>
+      <div className="flex flex-col gap-7">
+        <div className="flex flex-col gap-6">
+          <EmailPhoneInputFiled
+            emailPhone={emailPhone}
+            setEmailPhone={setEmailPhone}
+          />
+          <PasswordInputField password={password} setPassword={setPassword} />
+          <div className="flex justify-between text-sm items-center">
+            <RememberMeInputField />
+            <Link
+              to={"/"}
+              className="text-foreground-light-primary transition-all hover:underline font-semibold"
+            >
+              Forgot password?
+            </Link>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="gradient p-2.5 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 font-semibold"
+        >
+          Start Onboarding
+        </button>
+
+        <TermsAndPrivacyAccept />
+      </div>
+
+      <div className="flex flex-col items-center justify-center w-full gap-6">
+        <div className="flex text-xs font-semibold items-center gap-2 w-full opacity-80">
+          <span className="flex-1 h-px bg-foreground-light-third dark:bg-foreground-dark-secondary"></span>
+          OR
+          <span className="flex-1 h-px bg-foreground-light-third dark:bg-foreground-dark-secondary"></span>
+        </div>
+        <div className="flex items-center justify-center gap-6 w-full">
+          <button className="cursor-pointer rounded-3xl flex-1 flex items-center gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary">
+            <SocialIcon platform="google" className="w-6" />
+            <p className="text-start">
+              Sign Up with <span className="font-semibold">Google</span>
+            </p>
+          </button>
+          <button className="cursor-pointer rounded-3xl flex-1 flex items-center justify-start gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary">
+            <SocialIcon platform="microsoft" className="w-6" />
+            <p className="text-start">
+              Sign Up with <span className="font-semibold">Microsoft</span>
+            </p>
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const SignupPersonalDetails = ({
+  setSignupStep,
+}: {
+  setSignupStep: React.Dispatch<React.SetStateAction<number>>;
+}) => {
+  const [firstName, setFirstName] = useState<string>(""),
+    [lastName, setLastName] = useState<string>("");
+  const [birthdate, setBirthdate] = useState<string>(getDateSixteenYearsAgo());
+  const [gender, setGender] = useState<Gender>("male");
+  const [address, setAddress] = useState<string>("");
+  const [title, setTitle] = useState<string>("New Voice");
+  const [bio, setBio] = useState<string>(
+    "Just joined Netalk! Excited to connect and join the conversation.",
+  );
+  return (
+    <>
+      <h2 className="flex items-center text-2xl font-semibold">
+        Personal Details
+      </h2>
+      <div className="flex flex-col gap-7">
+        <div className="flex flex-col gap-6">
+          <NameInputField
+            firstName={firstName}
+            setFirstName={setFirstName}
+            lastName={lastName}
+            setLastName={setLastName}
+          />
+          <div className="flex items-center gap-2">
+            <BirthdateInputField
+              birthdate={birthdate}
+              setBirthdate={setBirthdate}
+            />
+            <GenderInputField gender={gender} setGender={setGender} />
+          </div>
+          <AddressField address={address} setAddress={setAddress} />
+          <TitleInputField title={title} setTitle={setTitle} />
+          <BioInputField bio={bio} setBio={setBio} />
+        </div>
+        <div className="flex gap-6 items-center">
+          <button
+            type="button"
+            className="p-2.5 group flex items-center justify-center rounded-3xl cursor-pointer transition-all ease-in-out flex-1 gap-2 bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
+            onClick={() => setSignupStep(1)}
+          >
+            <CommonIcon
+              label="chevron_right"
+              weight="thin"
+              className="rotate-180 size-7 group-hover:-translate-x-2 transition-all ease-in-out"
+            />
+            Previous
+          </button>
+          <button
+            type="submit"
+            className="p-2.5 flex group items-center justify-center rounded-3xl cursor-pointer transition-all ease-in-out flex-1 gap-2 bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
+          >
+            Next
+            <CommonIcon
+              label="chevron_right"
+              weight="thin"
+              className="size-7 group-hover:translate-x-2 transition-all ease-in-out"
+            />
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const SignupMediaAssets = ({
+  setSignupStep,
+}: {
+  setSignupStep: React.Dispatch<React.SetStateAction<number>>;
+}) => {
+  return (
+    <>
+      <h2 className="flex items-center text-2xl font-semibold">Media Assets</h2>
+      <div className="flex flex-col gap-7">
+        {/* Body */}
+        <div className="flex gap-6 items-center">
+          <button
+            type="button"
+            className="p-2.5 group flex items-center justify-center rounded-3xl cursor-pointer transition-all ease-in-out flex-1 gap-2 bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
+            onClick={() => setSignupStep(2)}
+          >
+            <CommonIcon
+              label="chevron_right"
+              weight="thin"
+              className="rotate-180 size-7 group-hover:-translate-x-2 transition-all ease-in-out"
+            />
+            Previous
+          </button>
+          <button
+            type="submit"
+            className="p-2.5 flex group items-center justify-center rounded-3xl cursor-pointer transition-all ease-in-out flex-1 gap-2 bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
+          >
+            Next
+            <CommonIcon
+              label="chevron_right"
+              weight="thin"
+              className="size-7 group-hover:translate-x-2 transition-all ease-in-out"
+            />
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export const LoginForm = () => {
   const [emailPhone, setEmailPhone] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   return (
     <form className="flex flex-col gap-8">
-      <div className="flex flex-col gap-6">
-        <EmailPhoneInputFiled
-          emailPhone={emailPhone}
-          setEmailPhone={setEmailPhone}
-        />
-        <PasswordInputField password={password} setPassword={setPassword} />
-        <div className="flex justify-between text-sm items-center">
-          <RememberMeInputField />
-          <Link
-            to={"/"}
-            className="hover:text-foreground-light-primary transition-all hover:underline"
-          >
-            Forgot password?
-          </Link>
+      <div className="flex flex-col gap-7">
+        <div className="flex flex-col gap-6">
+          <EmailPhoneInputFiled
+            emailPhone={emailPhone}
+            setEmailPhone={setEmailPhone}
+          />
+          <PasswordInputField password={password} setPassword={setPassword} />
+          <div className="flex justify-between text-sm items-center">
+            <RememberMeInputField />
+            <Link
+              to={"/"}
+              className="text-foreground-light-primary transition-all hover:underline font-semibold"
+            >
+              Forgot password?
+            </Link>
+          </div>
         </div>
+
+        <button
+          type="submit"
+          className="gradient p-2.5 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 font-semibold"
+        >
+          Log in
+        </button>
+
+        <TermsAndPrivacyAccept />
       </div>
 
-      <button
-        type="submit"
-        className="gradient p-2.5 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105"
-      >
-        Log in
-      </button>
+      <div className="flex flex-col items-center justify-center w-full gap-6">
+        <div className="flex text-xs font-semibold items-center gap-2 w-full opacity-80">
+          <span className="flex-1 h-px bg-foreground-light-third dark:bg-foreground-dark-secondary"></span>
+          OR
+          <span className="flex-1 h-px bg-foreground-light-third dark:bg-foreground-dark-secondary"></span>
+        </div>
+        <div className="flex items-center justify-center gap-6 w-full">
+          <button className="cursor-pointer rounded-3xl flex-1 flex items-center gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary">
+            <SocialIcon platform="google" className="w-6" />
+            <p>
+              Login with <span className="font-semibold">Google</span>
+            </p>
+          </button>
+          <button className="cursor-pointer rounded-3xl flex-1 flex items-center gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary">
+            <SocialIcon platform="microsoft" className="w-6" />
+            <p>
+              Login with <span className="font-semibold">Microsoft</span>
+            </p>
+          </button>
+        </div>
+      </div>
     </form>
   );
 };
 
-export const SignupForm = () => {
-  const [part, setPart] = useState<number>(1);
-  const partsMaxCount = 2;
-  const [firstName, setFirstName] = useState<string>(""),
-    [lastName, setLastName] = useState<string>("");
-  const [birthdate, setBirthdate] = useState<string>(getDateSixteenYearsAgo());
-  const [gender, setGender] = useState<Gender>("male");
-  const [emailPhone, setEmailPhone] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [title, setTitle] = useState<string>("New Voice");
-  const [bio, setBio] = useState<string>(
-    "Just joined Netalk! Excited to connect and join the conversation.",
-  );
-
+export const SignupForm = ({
+  signupStep,
+  setSignupStep,
+}: {
+  signupStep: number;
+  setSignupStep: React.Dispatch<React.SetStateAction<number>>;
+}) => {
+  const submitForm = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSignupStep((prev) =>
+      prev == SIGNUP_ONBOARDING_STEPS.length ? 1 : prev + 1,
+    );
+  };
   return (
-    <form
-      className="flex flex-col gap-8"
-      onSubmit={(e) => {
-        e.preventDefault();
-
-        setPart((prev) => (prev == 1 ? 2 : 1));
-      }}
-    >
-      <div className="flex flex-col gap-6">
-        {part == 1 && (
-          <>
-            <NameInputField
-              firstName={firstName}
-              setFirstName={setFirstName}
-              lastName={lastName}
-              setLastName={setLastName}
-            />
-            <div className="flex items-center gap-2">
-              <BirthdateInputField
-                birthdate={birthdate}
-                setBirthdate={setBirthdate}
-              />
-              <GenderInputField gender={gender} setGender={setGender} />
-            </div>
-            <EmailPhoneInputFiled
-              emailPhone={emailPhone}
-              setEmailPhone={setEmailPhone}
-            />
-            <PasswordInputField password={password} setPassword={setPassword} />
-          </>
+    <>
+      <form className="flex flex-col gap-8 pb-13" onSubmit={submitForm}>
+        {signupStep == 1 && <SignupCredentials />}
+        {signupStep == 2 && (
+          <SignupPersonalDetails setSignupStep={setSignupStep} />
         )}
-        {part == 2 && (
-          <>
-            <TitleInputField title={title} setTitle={setTitle} />
-            <BioInputField bio={bio} setBio={setBio} />
-          </>
-        )}
-      </div>
-
-      <div className="flex items-center w-full gap-2">
-        {part <= partsMaxCount && (
-          <>
-            {part != 1 && (
-              <button
-                type="button"
-                className="p-2.5 flex items-center justify-center rounded-3xl cursor-pointer transition-all ease-in-out hover:scale-105 flex-1 gap-2 bg-background-light-secondary dark:bg-background-dark-secondary"
-                onClick={() => setPart((prev) => prev - 1)}
-              >
-                <CommonIcon
-                  label="chevron_right"
-                  weight="thin"
-                  className="rotate-180 size-6.5"
-                />
-                Previous
-              </button>
-            )}
-            {part != partsMaxCount && (
-              <button
-                type="submit"
-                className="p-2.5 flex items-center justify-center rounded-3xl cursor-pointer transition-all ease-in-out hover:scale-105 flex-1 gap-2 bg-background-light-secondary dark:bg-background-dark-secondary"
-                onClick={() => setPart((prev) => prev + 1)}
-              >
-                Next
-                <CommonIcon
-                  label="chevron_right"
-                  weight="thin"
-                  className="size-6.5"
-                />
-              </button>
-            )}
-          </>
-        )}
-
-        {part == partsMaxCount && (
-          <button
-            type="submit"
-            className="gradient p-2.5 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 flex-1 gap-2"
-          >
-            Submit
-          </button>
-        )}
-      </div>
-    </form>
+        {signupStep == 3 && <SignupMediaAssets setSignupStep={setSignupStep} />}
+      </form>
+    </>
   );
 };

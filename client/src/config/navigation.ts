@@ -154,4 +154,5 @@ export const SIDEBAR_ITEMS: { label: string; path: string }[] = [
       label: "Show Translate Button",
       path: `${BASE_ROUTE}/settings/language`,
     },
-  ];
+  ],
+  SIGNUP_ONBOARDING_STEPS = ["credentials", "personal_details", "media_assets"];

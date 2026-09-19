@@ -6,7 +6,7 @@ import default_cover from "../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../assets/images/default_profile_cover_dark.jpg";
 import { useTheme } from "../hooks";
 import { BrandIcon, BrandWordmark } from "../components/icons/BrandIcon";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Loader from "../components/common/Loader";
 import CommonIcon from "../components/icons/CommonIcon";
 import Label from "../components/common/Label";
@@ -27,6 +27,15 @@ export default function Auth(): ReactNode {
   const [searchParams] = useSearchParams();
   const authMode: AuthMode = (searchParams.get("mode") ?? "login") as AuthMode;
   const { theme } = useTheme();
+  const [signupStep, setSignupStep] = useState<number>(1);
+
+  useEffect(() => {
+    const resetSignup = async () => {
+      if (authMode == "login") setSignupStep(1);
+    };
+
+    resetSignup();
+  }, [authMode]);
 
   return (
     <div
@@ -59,12 +68,14 @@ export default function Auth(): ReactNode {
             </p>
           </div>
         </div>
-        {/* Signup and login arrows  */}
+        {/* Signup and login arrows */}
         <Link
-          className={`z-20 absolute aspect-square rounded-full bg-background-light-base dark:bg-background-dark-base top-1/2 -translate-y-1/2 p-1.5 ${authMode == "login" ? "-left-8" : "-right-8"} flex items-center justify-center`}
+          className={`z-20 absolute aspect-square rounded-full bg-background-light-base dark:bg-background-dark-base top-1/2 -translate-y-1/2 p-2 ${authMode == "login" ? "-left-8" : "-right-8"} flex items-center justify-center`}
           to={authMode == "login" ? "/auth?mode=signup" : "/auth?mode=login"}
         >
-          <button className="relative group cursor-pointer p-1 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+          <button
+            className={`relative group cursor-pointer p-1 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out signup-login-middle-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115] ${authMode}`}
+          >
             <CommonIcon
               label="chevron_right"
               weight="thin"
@@ -74,41 +85,50 @@ export default function Auth(): ReactNode {
           </button>
         </Link>
       </div>
-      <div className="flex-1 h-full text-foreground-light-secondary dark:text-foreground-dark-secondary ">
+
+      {/* Form */}
+      <div className="flex-1 h-full text-foreground-light-secondary dark:text-foreground-dark-secondary overflow-auto">
         <div
-          className={`flex flex-col p-12 ${authMode == "signup" ? "gap-4" : "gap-16"} z-10 max-h-full overflow-auto`}
+          className={`flex flex-col px-30 py-13 ${authMode == "signup" ? "gap-4" : "gap-8"} z-10 max-h-full`}
         >
-          <div className="">
-            <h2 className="flex items-center text-2xl font-semibold">
-              {authMode == "signup" ? "Get started on" : "Log in into"}{" "}
-              <BrandWordmark className="h-11 mx-1" />
-            </h2>
-            {authMode == "login" && (
-              <p className="text-sm">
-                Don't have an account?{" "}
-                <Link
-                  className="hover:text-foreground-light-primary transition-all hover:underline"
-                  to={"/auth?mode=signup"}
-                >
-                  Sign up
-                </Link>
-              </p>
-            )}
-            {authMode == "signup" && (
-              <p className="text-sm">
-                Already have an account?{" "}
-                <Link
-                  className="hover:text-foreground-light-primary transition-all hover:underline"
-                  to={"/auth?mode=login"}
-                >
-                  Log in
-                </Link>
-              </p>
-            )}
-          </div>
+          {signupStep == 1 && (
+            <div className="">
+              <h2 className="flex items-center text-2xl font-semibold">
+                {authMode == "signup" ? "Get started on" : "Log in into"}{" "}
+                <BrandWordmark className="h-11 mx-1" />
+              </h2>
+              {authMode == "login" && (
+                <p className="text-sm">
+                  Don't have an account?{" "}
+                  <Link
+                    className="text-foreground-light-primary transition-all hover:underline font-semibold"
+                    to={"/auth?mode=signup"}
+                  >
+                    Sign up
+                  </Link>
+                </p>
+              )}
+              {authMode == "signup" && (
+                <p className="text-sm">
+                  Already have an account?{" "}
+                  <Link
+                    className="text-foreground-light-primary transition-all hover:underline font-semibold"
+                    to={"/auth?mode=login"}
+                  >
+                    Log in
+                  </Link>
+                </p>
+              )}
+            </div>
+          )}
           <Suspense fallback={<Loader />}>
             {authMode == "login" && <LoginForm />}
-            {authMode == "signup" && <SignupForm />}
+            {authMode == "signup" && (
+              <SignupForm
+                signupStep={signupStep}
+                setSignupStep={setSignupStep}
+              />
+            )}
           </Suspense>
         </div>
       </div>

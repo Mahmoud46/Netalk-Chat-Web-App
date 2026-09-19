@@ -1,5 +1,7 @@
 import type { IconWeight, SocialPlatform } from "../../types";
 
+import google_icon from "../../assets/icons/social/google.png";
+import microsoft_icon from "../../assets/icons/social/microsoft.png";
 import facebook_icon from "../../assets/icons/social/facebook.png";
 import instagram_icon from "../../assets/icons/social/instagram.png";
 import medium_icon from "../../assets/icons/social/medium.png";
@@ -93,6 +95,22 @@ export default function SocialIcon({
           src={twitter_x_icon}
           loading="lazy"
           className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "google":
+      return (
+        <img
+          src={google_icon}
+          loading="lazy"
+          className={`${className ?? ""}`}
+        />
+      );
+    case "microsoft":
+      return (
+        <img
+          src={microsoft_icon}
+          loading="lazy"
+          className={`${className ?? ""}`}
         />
       );
 
