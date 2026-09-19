@@ -70,10 +70,12 @@ export const ContactsInfo = ({
                 weight="thin"
                 className="size-6 flex-none opacity-60"
               />
-
-              <p className="line-clamp-1 flex-1">{email}</p>
+              <div className="flex-1">
+                <p className="text-xs opacity-80">Email</p>
+                <p className="line-clamp-1">{email}</p>
+              </div>
             </div>
-            <div className="flex absolute right-0 items-center scale-0 group-hover/card:scale-100 transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl p-0.5">
+            <div className="flex absolute right-1.5 items-center scale-0 group-hover/card:scale-100 transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl p-0.5">
               <CopyContactButton text={email} />
               <a
                 href={`mailto:${email}`}

@@ -5,8 +5,26 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Netalk</title>
+    <style>
+      #initial-splash {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
+    <div id="initial-splash">
+      <img
+        src="/animated_logo.gif"
+        alt="Loading"
+        loading="lazy"
+        style="height: 180px"
+      />
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
