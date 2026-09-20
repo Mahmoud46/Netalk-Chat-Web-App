@@ -27,7 +27,7 @@ export default function Auth(): ReactNode {
   const [searchParams] = useSearchParams();
   const authMode: AuthMode = (searchParams.get("mode") ?? "login") as AuthMode;
   const { theme } = useTheme();
-  const [signupStep, setSignupStep] = useState<number>(1);
+  const [signupStep, setSignupStep] = useState<number>(3);
 
   useEffect(() => {
     const resetSignup = async () => {
@@ -89,7 +89,7 @@ export default function Auth(): ReactNode {
       {/* Form */}
       <div className="flex-1 h-full text-foreground-light-secondary dark:text-foreground-dark-secondary overflow-auto">
         <div
-          className={`flex flex-col px-30 py-13 ${authMode == "signup" ? "gap-4" : "gap-8"} z-10 max-h-full`}
+          className={`flex flex-col px-27 py-13 ${authMode == "signup" ? "gap-4" : "gap-8"} z-10 max-h-full`}
         >
           {signupStep == 1 && (
             <div className="">

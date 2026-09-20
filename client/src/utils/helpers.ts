@@ -1,4 +1,4 @@
-import type { ContactEntry, Message, User } from "../types";
+import type { ContactEntry, Message, PasswordStrength, User } from "../types";
 
 export const isRouteActive = (pathname: string, path: string): boolean =>
   pathname === path || location.pathname.startsWith(path + "/");
@@ -107,3 +107,19 @@ export async function copyToClipboard(text: string): Promise<boolean> {
     return false;
   }
 }
+
+export const checkPasswordStrength = (password: string): PasswordStrength => {
+  let score = 0;
+
+  if (password.length >= 8) score++;
+  if (password.length >= 12) score++;
+  if (/[a-z]/.test(password)) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+
+  if (score <= 2) return "weak";
+  if (score <= 3) return "fair";
+  if (score <= 4) return "good";
+  return "strong";
+};
