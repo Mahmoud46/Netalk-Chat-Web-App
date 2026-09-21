@@ -19,6 +19,7 @@ export interface AuthContextValue {
   signup: () => Promise<boolean>;
   CompleteOnboarding: () => Promise<void>;
   reset: () => Promise<void>;
+  login: () => Promise<void>;
   logout: () => Promise<void>;
 }
 

@@ -3,6 +3,7 @@ import type {
   AuthContextValue,
   AuthNUser,
   Gender,
+  LoginCredentials,
   SignupCredentials,
 } from "../types";
 import { AuthContext } from "./AuthContext";
@@ -79,6 +80,19 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     return true;
   };
 
+  const login = async () => {
+    const authNCredentials: LoginCredentials = { password: password };
+    if (verifyWithPhoneNumber) authNCredentials.phoneNumber = phoneNumber;
+    else authNCredentials.email = emailAddress;
+
+    console.log(authNCredentials);
+
+    // Check for backend {...}
+    setAuthNUser(auth_user as AuthNUser);
+    // setIsAuthenticated(true);
+    // navigate("/");
+  };
+
   const CompleteOnboarding = async () => {
     setIsAuthenticated(true);
     reset();
@@ -99,11 +113,11 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     setAcceptTerms(true);
     setFirstName("");
     setLastName("");
-    setBirthdate("");
+    setBirthdate(getDateSixteenYearsAgo());
     setGender("male");
     setAddress("");
-    setTitle("");
-    setBio("");
+    setTitle("New Voice");
+    setBio("Just joined Netalk! Excited to connect and join the conversation.");
     setCoverImage("");
     setProfileImage("");
     setPreviewCoverImage(null);
@@ -156,6 +170,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     signup,
     CompleteOnboarding,
     reset,
+    login,
     logout,
   };
 

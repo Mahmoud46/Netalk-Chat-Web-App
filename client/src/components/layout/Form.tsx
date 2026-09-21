@@ -17,6 +17,7 @@ import default_cover from "../../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../../assets/images/default_profile_cover_dark.jpg";
 import { useAuth, useTheme } from "../../hooks";
 import { Avatar } from "../icons/Avatar";
+import { BrandWordmark } from "../icons/BrandIcon";
 
 const passwordStrengthBgColorMap: Record<PasswordStrength, string> = {
   very_weak: "bg-red-600 w-1/6",
@@ -741,10 +742,40 @@ const SignupMediaAssetsForm = ({
 };
 
 const SignupCompletedForm = () => {
+  const { mediaAssets, personalDetails } = useAuth();
   return (
     <>
-      <div className="flex flex-col gap-7">
-        <div className="flex gap-2 items-center">
+      <div className="flex flex-col gap-7 items-center">
+        <h2 className="text-2xl font-semibold flex items-center gap-2">
+          Welcome to <BrandWordmark className="h-12" />,
+        </h2>
+        <div className="p-2 w-fit rounded-full gradient shadow-glow [--shadow-color:#fd5b5d] relative flex items-center justify-center">
+          <div className="size-35 rounded-full overflow-hidden">
+            {mediaAssets.previewProfileImage ? (
+              <img
+                src={URL.createObjectURL(mediaAssets.previewProfileImage)}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <Avatar
+                age={calculateAge(personalDetails.birthdate)}
+                gender={personalDetails.gender}
+                className="w-full h-full object-cover"
+              />
+            )}
+          </div>
+          <div className="absolute bg-background-light-base dark:bg-background-dark-base p-1 rounded-full flex items-center justify-center top-2 right-2">
+            <CommonIcon label="sparkles" weight="thin" className="size-7.5" />
+          </div>
+        </div>
+        <div className="flex flex-col items-center gap-4">
+          <h1 className="text-3xl w-fit font-semibold gradient bg-clip-text text-transparent">
+            {personalDetails.firstName}!
+          </h1>
+          <p>Your account is all set. Let’s start connecting!</p>
+        </div>
+        <div className="flex gap-2 items-center w-full">
           <button
             type="submit"
             className="w-full gradient p-2.5 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 font-semibold"
@@ -758,9 +789,9 @@ const SignupCompletedForm = () => {
 };
 
 export const LoginForm = () => {
-  const { credentials } = useAuth();
+  const { credentials, login } = useAuth();
   return (
-    <form className="flex flex-col gap-8">
+    <form className="flex flex-col gap-8" onSubmit={login}>
       <div className="flex flex-col gap-7">
         <div className="flex flex-col gap-6">
           <EmailPhoneInputFiled

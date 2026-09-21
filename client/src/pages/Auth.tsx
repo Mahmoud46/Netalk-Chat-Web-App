@@ -6,7 +6,7 @@ import default_cover from "../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../assets/images/default_profile_cover_dark.jpg";
 import { useTheme } from "../hooks";
 import { BrandIcon, BrandWordmark } from "../components/icons/BrandIcon";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useState } from "react";
 import Loader from "../components/common/Loader";
 import CommonIcon from "../components/icons/CommonIcon";
 import Label from "../components/common/Label";
@@ -27,15 +27,7 @@ export default function Auth(): ReactNode {
   const [searchParams] = useSearchParams();
   const authMode: AuthMode = (searchParams.get("mode") ?? "login") as AuthMode;
   const { theme } = useTheme();
-  const [signupStep, setSignupStep] = useState<number>(3);
-
-  useEffect(() => {
-    const resetSignup = async () => {
-      if (authMode == "login") setSignupStep(1);
-    };
-
-    resetSignup();
-  }, [authMode]);
+  const [signupStep, setSignupStep] = useState<number>(1);
 
   return (
     <div
