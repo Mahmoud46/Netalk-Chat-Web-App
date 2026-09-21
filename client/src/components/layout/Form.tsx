@@ -19,43 +19,75 @@ import { useAuth, useTheme } from "../../hooks";
 import { Avatar } from "../icons/Avatar";
 
 const passwordStrengthBgColorMap: Record<PasswordStrength, string> = {
-  weak: "bg-red-500 w-1/4",
-  fair: "bg-orange-500 w-1/2",
-  good: "bg-yellow-500 w-3/4",
-  strong: "bg-green-500 w-full",
-};
-const passwordStrengthTextColorMap: Record<PasswordStrength, string> = {
-  weak: "text-red-500",
-  fair: "text-orange-500",
-  good: "text-yellow-500",
-  strong: "text-green-500",
+  very_weak: "bg-red-600 w-1/6",
+  weak: "bg-orange-500 w-1/3",
+  fair: "bg-yellow-500 w-1/2",
+  moderate: "bg-lime-500 w-2/3",
+  good: "bg-green-500 w-5/6",
+  strong: "bg-emerald-500 w-full",
 };
 
 const EmailPhoneInputFiled = ({
-  emailPhone,
-  setEmailPhone,
+  emailAddress,
+  phoneNumber,
+  setEmailAddress,
+  setPhoneNumber,
+  verifyWithPhoneNumber,
+  setVerifyWithPhoneNumber,
 }: {
-  emailPhone: string;
-  setEmailPhone: (emailPhone: string) => void;
+  emailAddress: string;
+  phoneNumber: string;
+  setEmailAddress: (emailAddress: string) => void;
+  setPhoneNumber: (phoneNumber: string) => void;
+  verifyWithPhoneNumber: boolean;
+  setVerifyWithPhoneNumber: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const toggleUseEmailPhone = () => setVerifyWithPhoneNumber((prev) => !prev);
   return (
     <div className="w-full flex flex-col gap-2">
       <label
         htmlFor="email-phone"
         className="font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary"
       >
-        Email address or phone number
+        {verifyWithPhoneNumber ? "Phone number" : "Email address"}
       </label>
-      <input
-        type="text"
-        name="email-phone"
-        id="email-phone"
-        value={emailPhone}
-        onChange={(e) => setEmailPhone(e.target.value.trim())}
-        className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
-        placeholder="Email address or phone number"
-        required
-      />
+      {verifyWithPhoneNumber && (
+        <input
+          type="tel"
+          name="email-phone"
+          id="email-phone"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value.trim())}
+          className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+          placeholder="Enter your phone number (Ex: +20 10 1234 5678)"
+          pattern="^\+?[1-9]\d{7,14}$"
+          title="Invalid phone number"
+          required
+        />
+      )}
+      {!verifyWithPhoneNumber && (
+        <input
+          type="email"
+          name="email-phone"
+          id="email-phone"
+          value={emailAddress}
+          onChange={(e) => setEmailAddress(e.target.value.trim())}
+          className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+          placeholder="Enter email address (Ex: you@example.com)"
+          required
+        />
+      )}
+      <p className="text-xs">
+        Prefer your {verifyWithPhoneNumber ? "email address" : "phone number"}?{" "}
+        <button
+          type="button"
+          className="cursor-pointer text-foreground-dark-primary hover:underline"
+          onClick={toggleUseEmailPhone}
+        >
+          Switch here
+        </button>
+        .
+      </p>
     </div>
   );
 };
@@ -72,6 +104,25 @@ const PasswordInputField = ({
   const [isHidden, setIsHidden] = useState<boolean>(true);
   const [passwordStrengthLevel, setPasswordStrengthLevel] =
     useState<PasswordStrength>(checkPasswordStrength(password));
+
+  const passwordChecks = [
+    {
+      label: "8+ characters",
+      valid: password.length >= 8,
+    },
+    {
+      label: "Uppercase letter",
+      valid: /[A-Z]/.test(password),
+    },
+    {
+      label: "Numbers",
+      valid: /\d/.test(password),
+    },
+    {
+      label: "Symbols",
+      valid: /[^A-Za-z0-9]/.test(password),
+    },
+  ];
   return (
     <div className="w-full flex flex-col gap-2">
       <label
@@ -81,19 +132,39 @@ const PasswordInputField = ({
         Password
       </label>
       <div className="flex items-center relative">
-        <input
-          type={isHidden ? "password" : "text"}
-          name="password"
-          id="password"
-          className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
-          placeholder="Password"
-          required
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setPasswordStrengthLevel(checkPasswordStrength(e.target.value));
-          }}
-        />
+        {isSignup && (
+          <input
+            type={isHidden ? "password" : "text"}
+            name="password"
+            id="password"
+            className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+            placeholder="Enter your password"
+            required
+            minLength={8}
+            pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"
+            title="Password must be at least 8 characters and contain an uppercase letter, a number, and a symbol."
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setPasswordStrengthLevel(checkPasswordStrength(e.target.value));
+            }}
+          />
+        )}
+        {!isSignup && (
+          <input
+            type={isHidden ? "password" : "text"}
+            name="password"
+            id="password"
+            className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+            placeholder="Enter your password"
+            required
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setPasswordStrengthLevel(checkPasswordStrength(e.target.value));
+            }}
+          />
+        )}
         <button
           type="button"
           className="absolute right-1 top-1 group self-end cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
@@ -114,11 +185,17 @@ const PasswordInputField = ({
               className={`${passwordStrengthBgColorMap[passwordStrengthLevel]} h-full transition-all ease-in-out rounded-3xl`}
             ></span>
           </p>
-          <p
-            className={`text-xs ${passwordStrengthTextColorMap[passwordStrengthLevel]} transition-all ease-in-out`}
-          >
-            Use 8+ characters with uppercase, number, and symbol.
-          </p>
+
+          <ul className="flex gap-4 flex-wrap">
+            {passwordChecks.map((passCheck) => (
+              <li
+                key={passCheck.label}
+                className={`text-xs ${passCheck.valid ? "text-foreground-light-success" : "text-foreground-light-third dark:text-foreground-dark-secondary"}`}
+              >
+                {passCheck.label}
+              </li>
+            ))}
+          </ul>
         </>
       )}
     </div>
@@ -142,37 +219,6 @@ const RememberMeInputField = () => {
       />
       <label htmlFor="remember-me" className="cursor-pointer">
         Remember me
-      </label>
-    </div>
-  );
-};
-
-const TermsAndPrivacyAccept = ({
-  acceptTerms,
-  setAcceptTerms,
-}: {
-  acceptTerms: boolean;
-  setAcceptTerms: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
-  const toggleAcceptTerms = () => setAcceptTerms((prev) => !prev);
-
-  return (
-    <div className="space-x-4 relative flex font-semibold items-center text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <ToggleButton isActive={acceptTerms} action={toggleAcceptTerms} />
-      <input
-        type="checkbox"
-        name="accept-terms-privacy"
-        id="accept-terms-privacy"
-        className="absolute opacity-0 cursor-pointer"
-        onChange={toggleAcceptTerms}
-        checked={acceptTerms}
-        required
-      />
-      <label htmlFor="accept-terms-privacy" className="cursor-pointer">
-        Agree to{" "}
-        <Link to={"/"} className="underline hover:text-foreground-dark-primary">
-          Terms & Privacy
-        </Link>
       </label>
     </div>
   );
@@ -319,7 +365,7 @@ const AddressField = ({
   return (
     <div className="w-full flex flex-col gap-1.5">
       <div className="flex items-center gap-2 font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
-        <p>Address</p>
+        <label htmlFor="address">Address</label>
       </div>
 
       <div className="relative">
@@ -330,6 +376,7 @@ const AddressField = ({
         />
         <input
           type="text"
+          id="address"
           value={address}
           placeholder="Address"
           className="flex items-center gap-2 w-full rounded-full pl-11 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
@@ -377,10 +424,14 @@ const BioInputField = ({
 }) => {
   return (
     <div className="w-full flex flex-col gap-1.5">
-      <p className="font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
+      <label
+        htmlFor="bio"
+        className="font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary"
+      >
         Bio
-      </p>
+      </label>
       <textarea
+        id="bio"
         placeholder="Tell the Netalk community a bit about yourself..."
         value={bio}
         onChange={(e) => setBio(e.target.value)}
@@ -398,8 +449,12 @@ const SignupCredentialsForm = () => {
       <div className="flex flex-col gap-7">
         <div className="flex flex-col gap-6">
           <EmailPhoneInputFiled
-            emailPhone={credentials.emailPhone}
-            setEmailPhone={credentials.setEmailPhone}
+            emailAddress={credentials.emailAddress}
+            phoneNumber={credentials.phoneNumber}
+            setEmailAddress={credentials.setEmailAddress}
+            setPhoneNumber={credentials.setPhoneNumber}
+            verifyWithPhoneNumber={credentials.verifyWithPhoneNumber}
+            setVerifyWithPhoneNumber={credentials.setVerifyWithPhoneNumber}
           />
           <PasswordInputField
             password={credentials.password}
@@ -407,12 +462,6 @@ const SignupCredentialsForm = () => {
           />
           <div className="flex justify-between text-sm items-center">
             <RememberMeInputField />
-            <Link
-              to={"/"}
-              className="text-foreground-light-primary transition-all hover:underline font-semibold"
-            >
-              Forgot password?
-            </Link>
           </div>
         </div>
 
@@ -422,11 +471,6 @@ const SignupCredentialsForm = () => {
         >
           Start Onboarding
         </button>
-
-        <TermsAndPrivacyAccept
-          acceptTerms={credentials.acceptTerms}
-          setAcceptTerms={credentials.setAcceptTerms}
-        />
       </div>
 
       <div className="flex flex-col items-center justify-center w-full gap-6">
@@ -456,6 +500,13 @@ const SignupCredentialsForm = () => {
           </button>
         </div>
       </div>
+
+      <p className="text-sm text-center">
+        By signing up to create an account I accept Netalk's{" "}
+        <Link to={"/"} className="text-foreground-dark-primary hover:underline">
+          Terms & Conditions and Privacy Policy
+        </Link>
+      </p>
     </>
   );
 };
@@ -689,6 +740,23 @@ const SignupMediaAssetsForm = ({
   );
 };
 
+const SignupCompletedForm = () => {
+  return (
+    <>
+      <div className="flex flex-col gap-7">
+        <div className="flex gap-2 items-center">
+          <button
+            type="submit"
+            className="w-full gradient p-2.5 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 font-semibold"
+          >
+            Get Started
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export const LoginForm = () => {
   const { credentials } = useAuth();
   return (
@@ -696,8 +764,12 @@ export const LoginForm = () => {
       <div className="flex flex-col gap-7">
         <div className="flex flex-col gap-6">
           <EmailPhoneInputFiled
-            emailPhone={credentials.emailPhone}
-            setEmailPhone={credentials.setEmailPhone}
+            emailAddress={credentials.emailAddress}
+            phoneNumber={credentials.phoneNumber}
+            setEmailAddress={credentials.setEmailAddress}
+            setPhoneNumber={credentials.setPhoneNumber}
+            verifyWithPhoneNumber={credentials.verifyWithPhoneNumber}
+            setVerifyWithPhoneNumber={credentials.setVerifyWithPhoneNumber}
           />
           <PasswordInputField
             password={credentials.password}
@@ -721,11 +793,6 @@ export const LoginForm = () => {
         >
           Log in
         </button>
-
-        <TermsAndPrivacyAccept
-          acceptTerms={credentials.acceptTerms}
-          setAcceptTerms={credentials.setAcceptTerms}
-        />
       </div>
 
       <div className="flex flex-col items-center justify-center w-full gap-6">
@@ -766,11 +833,22 @@ export const SignupForm = ({
   signupStep: number;
   setSignupStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
+  const { startOnboarding, signup, CompleteOnboarding } = useAuth();
+
   const submitForm = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSignupStep((prev) =>
-      prev == SIGNUP_ONBOARDING_STEPS.length ? 1 : prev + 1,
-    );
+    let verified: boolean = false;
+    console.log(signupStep);
+    if (signupStep == 1) verified = await startOnboarding();
+    else if (signupStep == 2) verified = true;
+    else if (signupStep == 3) verified = await signup();
+    else if (signupStep == 4) CompleteOnboarding();
+
+    if (verified) {
+      setSignupStep((prev) =>
+        prev == SIGNUP_ONBOARDING_STEPS.length + 1 ? 1 : prev + 1,
+      );
+    }
   };
   return (
     <>
@@ -782,6 +860,7 @@ export const SignupForm = ({
         {signupStep == 3 && (
           <SignupMediaAssetsForm setSignupStep={setSignupStep} />
         )}
+        {signupStep == 4 && <SignupCompletedForm />}
       </form>
     </>
   );

@@ -118,8 +118,10 @@ export const checkPasswordStrength = (password: string): PasswordStrength => {
   if (/[0-9]/.test(password)) score++;
   if (/[^A-Za-z0-9]/.test(password)) score++;
 
-  if (score <= 2) return "weak";
-  if (score <= 3) return "fair";
-  if (score <= 4) return "good";
+  if (score <= 1) return "very_weak";
+  if (score === 2) return "weak";
+  if (score === 3) return "fair";
+  if (score === 4) return "moderate";
+  if (score === 5) return "good";
   return "strong";
 };
