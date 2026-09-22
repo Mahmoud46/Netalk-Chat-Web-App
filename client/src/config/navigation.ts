@@ -3,7 +3,6 @@ export const BASE_ROUTE: string = "/app";
 export const SIDEBAR_ITEMS: { label: string; path: string }[] = [
     { label: "inbox", path: `${BASE_ROUTE}/inbox` },
     { label: "contacts", path: `${BASE_ROUTE}/contacts` },
-    { label: "archive", path: `${BASE_ROUTE}/archive` },
     { label: "settings", path: `${BASE_ROUTE}/settings` },
     { label: "profile", path: `${BASE_ROUTE}/profile` },
   ],

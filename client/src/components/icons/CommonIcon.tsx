@@ -82,6 +82,7 @@ import male_bold_icon from "../../assets/icons/common/male_bold.png";
 import female_bold_icon from "../../assets/icons/common/female_bold.png";
 import share_bold_icon from "../../assets/icons/common/share_bold.png";
 import cog_bold_icon from "../../assets/icons/common/cog_bold.png";
+import plus_bold_icon from "../../assets/icons/common/plus_bold.png";
 
 // Soild base icons
 import dots_vertical_rounded_solid_icon from "../../assets/icons/common/dots_vertical_rounded_solid.png";
@@ -355,7 +356,13 @@ export default function CommonIcon({
     case "plus":
       return (
         <img
-          src={weight == "thin" ? plus_thin_icon : plus_icon}
+          src={
+            weight == "thin"
+              ? plus_thin_icon
+              : weight == "bold"
+                ? plus_bold_icon
+                : plus_icon
+          }
           loading="lazy"
           className={`${soild ? "invert-100" : "main-icon"} ${className ?? ""}`}
         />

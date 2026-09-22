@@ -45,10 +45,10 @@ const ChatCard = ({
     <li
       className={`relative flex group cursor-pointer transition-all ease-in-out rounded-full p-2 ${
         isSidebarOpen
-          ? `gap-2 max-w-67 items-start hover:bg-background-light-base hover:dark:bg-background-dark-base pr-3 ${
+          ? `gap-2 max-w-67 items-start pr-3 ${
               isActive
                 ? "bg-background-light-base dark:bg-background-dark-base"
-                : "bg-transparent"
+                : "bg-transparent hover:bg-background-light-base/50 hover:dark:bg-background-dark-base/50"
             }`
           : `gap-0 ${
               isActive
@@ -59,10 +59,10 @@ const ChatCard = ({
       onClick={() => selectChat(participant?._id ?? "")}
     >
       <div
-        className={`relative flex-none transition-all ease-in-out rounded-full p-1 flex items-center justify-center aspect-square ${chat.unreadMessages > 0 && !isActive && !isSidebarOpen ? "bg-background-light-primary" : "bg-background-light-base dark:bg-background-dark-base"} ${isActive && "bg-background-light-surface-2 dark:bg-background-dark-surface-2"} ${isSidebarOpen ? "" : "group-hover:scale-110"}`}
+        className={`relative flex-none transition-all ease-in-out rounded-full p-1 flex items-center justify-center aspect-square ${chat.unreadMessages > 0 && !isActive && !isSidebarOpen ? "bg-background-light-primary" : !isActive ? "bg-background-light-surface-2 dark:bg-background-dark-surface-2" : "bg-background-light-base dark:bg-background-dark-base"} ${isActive && !isSidebarOpen && "bg-background-light-surface-2 dark:bg-background-dark-surface-2"} ${isSidebarOpen ? "" : "group-hover:scale-110"}`}
       >
         {chat.unreadMessages > 0 && !isActive && !isSidebarOpen && (
-          <span className="text-white absolute text-[11px] bg-background-light-primary w-4 h-4 aspect-square flex items-center justify-center rounded-full -top-0.5 -right-0.5">
+          <span className="text-white absolute text-xs bg-background-light-primary shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-2">
             {chat.unreadMessages > 9 ? `+${9}` : chat.unreadMessages}
           </span>
         )}
@@ -70,25 +70,26 @@ const ChatCard = ({
         {chat.unreadMessages === 0 &&
           chat.lastMessage.sender == authNUser?._id &&
           !isSidebarOpen && (
-            <span className="absolute bg-background-light-base dark:bg-background-dark-base w-4 h-4 aspect-square flex items-center justify-center rounded-full -top-0.5 -right-0.5">
+            <span className="absolute bg-background-light-base dark:bg-background-dark-base flex items-center justify-center rounded-full top-0 -right-2 w-6 h-5 shadow-xl/30 overflow-hidden">
               <MessageStatusIcon
                 weight={chat.lastMessage.status == "sent" ? "base" : "thin"}
                 status={chat.lastMessage.status}
-                className={`${chat.lastMessage.status === "sent" && "size-2.5"}`}
+                className={`${chat.lastMessage.status === "sent" ? "size-3" : "size-6"}`}
               />
             </span>
           )}
 
         {participant?.isActive && (
-          <span className="absolute flex items-center w-3.5 h-3.5 bg-background-light-base dark:bg-background-dark-base justify-center rounded-full bottom-0 right-0">
-            <span className="bg-foreground-dark-success w-2 h-2 aspect-square rounded-full"></span>
+          <span
+            className={`absolute flex items-center w-4 h-4  justify-center rounded-full bottom-0 right-0 ${isActive ? "bg-background-light-base dark:bg-background-dark-base" : "bg-background-light-surface-2 dark:bg-background-dark-surface-2"}`}
+          >
+            <span className="bg-foreground-dark-success w-2.5 h-2.5 aspect-square rounded-full"></span>
           </span>
         )}
-
         <img
           src={participant?.profileImage}
           alt={participant?.firstName}
-          className="size-9 rounded-full object-cover"
+          className="size-10 rounded-full object-cover"
           loading="lazy"
         />
       </div>
@@ -115,7 +116,7 @@ const ChatCard = ({
               </p>
             }
             {chat.unreadMessages > 0 && !isActive && isSidebarOpen && (
-              <span className="text-white text-xs flex-none p-0.5 w-5 bg-background-light-primary aspect-square flex items-center justify-center rounded-full">
+              <span className="text-white text-xs bg-background-light-primary w-7 py-0.5 flex items-center justify-center rounded-full">
                 {chat.unreadMessages > 9 ? `+${9}` : chat.unreadMessages}
               </span>
             )}

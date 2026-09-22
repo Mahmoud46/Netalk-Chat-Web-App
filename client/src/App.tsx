@@ -8,7 +8,6 @@ const User = React.lazy(() => import("./pages/User"));
 const Auth = React.lazy(() => import("./pages/Auth"));
 const Inbox = React.lazy(() => import("./pages/Inbox"));
 const Contacts = React.lazy(() => import("./pages/Contacts"));
-const Archive = React.lazy(() => import("./pages/Archive"));
 const Settings = React.lazy(() => import("./pages/Settings"));
 const Profile = React.lazy(() => import("./pages/Profile"));
 const AccountSettings = React.lazy(() => import("./pages/AccountSettings"));
@@ -59,22 +58,6 @@ export default function App(): ReactNode {
             element={
               <Suspense fallback={<Loader />}>
                 <Contacts />
-              </Suspense>
-            }
-          />
-          <Route
-            path="archive"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Archive />
-              </Suspense>
-            }
-          />
-          <Route
-            path="archive/:id"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Archive />
               </Suspense>
             }
           />

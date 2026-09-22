@@ -37,12 +37,15 @@ export default function Inbox(): ReactNode {
 
   const [activeSideProfilePanel, setActiveSideProfilePanel] =
     useState<boolean>(false);
+  const [activeArchiveTab, setActiveArchiveTab] = useState<boolean>(false);
 
   const filteredChats = useMemo(() => {
     if (!chats) return [];
     const archived = authNUser?.archivedChats || [];
-    return chats.filter((chat) => !archived.includes(chat._id));
-  }, [chats, authNUser?.archivedChats]);
+    return activeArchiveTab
+      ? chats.filter((chat) => archived.includes(chat._id))
+      : chats.filter((chat) => !archived.includes(chat._id));
+  }, [chats, authNUser?.archivedChats, activeArchiveTab]);
 
   useEffect(() => {
     const init = async () => {
@@ -51,9 +54,13 @@ export default function Inbox(): ReactNode {
         const chat = await getChatByParticipantId(id);
         setCurrentParticipant(user ?? null);
         setCurrentChat(chat ?? null);
+
+        if (authNUser?.archivedChats.includes(chat?._id ?? ""))
+          setActiveArchiveTab(true);
       } else {
         setCurrentParticipant(null);
         setCurrentChat(null);
+        setActiveArchiveTab(false);
       }
     };
     init();
@@ -62,12 +69,16 @@ export default function Inbox(): ReactNode {
   return (
     <div className="h-full w-full flex">
       <Suspense fallback={<Loader />}>
-        <ChatsSidebar chats={filteredChats} />
+        <ChatsSidebar
+          chats={filteredChats}
+          activeArchiveTab={activeArchiveTab}
+          setActiveArchiveTab={setActiveArchiveTab}
+        />
       </Suspense>
 
       {currentParticipant && (
         <>
-          <div className="flex-1 min-w-215 h-full flex items-center flex-col px-10 py-4 overflow-auto stable-gutter-container dark:text-foreground-dark-secondary gap-4 scrollbar-thin mr-2">
+          <div className="flex-1 min-w-120 h-full flex items-center flex-col px-10 py-4 overflow-auto stable-gutter-container dark:text-foreground-dark-secondary gap-4 scrollbar-thin mr-2">
             <Suspense fallback={<Loader />}>
               <ChatHeader
                 toggleButtonClickAction={() => setActiveSideProfilePanel(true)}

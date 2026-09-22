@@ -83,7 +83,7 @@ export default function Auth(): ReactNode {
         <div
           className={`flex flex-col px-27 py-13 ${authMode == "signup" ? "gap-4" : "gap-8"} z-10 max-h-full`}
         >
-          {signupStep == 1 && (
+          {(signupStep == 1 || authMode == "login") && (
             <div className="">
               <h2 className="flex items-center text-2xl font-semibold">
                 {authMode == "signup" ? "Get started on" : "Log in into"}{" "}

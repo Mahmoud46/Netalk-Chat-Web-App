@@ -17,7 +17,7 @@ export default function Sidebar(): ReactNode {
       location.pathname.split("/").includes(authNUser?.username ?? "");
 
   const isAnyItemActive =
-    SIDEBAR_ITEMS.slice(0, 4).some((item) =>
+    SIDEBAR_ITEMS.slice(0, 3).some((item) =>
       isRouteActive(pathname, item.path),
     ) || isLastItemActive;
   return (
@@ -29,12 +29,11 @@ export default function Sidebar(): ReactNode {
       </Link>
       <div className="flex flex-col justify-between flex-1">
         <div className="flex flex-col items-center">
-          {SIDEBAR_ITEMS.slice(0, 4).map((item) => {
+          {SIDEBAR_ITEMS.slice(0, 3).map((item) => {
             const isActive = isRouteActive(pathname, item.path),
               isInboxOrArchive =
                 isRouteActive(pathname, SIDEBAR_ITEMS[0].path) ||
-                isRouteActive(pathname, SIDEBAR_ITEMS[2].path) ||
-                isRouteActive(pathname, SIDEBAR_ITEMS[3].path);
+                isRouteActive(pathname, SIDEBAR_ITEMS[2].path);
             return (
               <Link
                 key={item.path}

@@ -189,7 +189,7 @@ a:focus {
   width: 15px;
   height: 15px;
   bottom: -13.5px;
-  left: 17px;
+  left: 22px;
   border-top-right-radius: 24px;
   box-shadow: 5px -5px 0px 1px var(--shadow-color);
   -webkit-box-shadow: 5px -5px 0px 1px var(--shadow-color);
@@ -203,7 +203,7 @@ a:focus {
   width: 15px;
   height: 15px;
   top: -13px;
-  left: 18px;
+  left: 22px;
   border-bottom-right-radius: 24px;
   box-shadow: 5px 5px 0px 1px var(--shadow-color);
   -webkit-box-shadow: 5px 5px 0px 1px var(--shadow-color);
@@ -321,7 +321,7 @@ a:focus {
   width: 30px;
   height: 30px;
   bottom: -30px;
-  left: 23px;
+  right: 0;
   border-top-right-radius: 24px;
   box-shadow: 8px -8px 0px 1px var(--shadow-color);
   -webkit-box-shadow: 8px -8px 0px 1px var(--shadow-color);
@@ -413,4 +413,33 @@ a:focus {
   box-shadow: 8px 8px 0px 1px var(--shadow-color);
   -webkit-box-shadow: 8px 8px 0px 1px var(--shadow-color);
   -moz-box-shadow: 8px 8px 0px 1px var(--shadow-color);
+}
+
+.profile-image-set-input-viewer-form::after {
+  position: absolute;
+  content: "";
+  background: transparent;
+  width: 30px;
+  height: 30px;
+  top: calc(50% - 24px);
+  left: -28px;
+  z-index: -1;
+  border-bottom-right-radius: 1.5rem;
+  box-shadow: 8px 8px 0px 1px var(--shadow-color);
+  -webkit-box-shadow: 8px 8px 0px 1px var(--shadow-color);
+  -moz-box-shadow: 8px 8px 0px 1px var(--shadow-color);
+}
+.profile-image-set-input-viewer-form::before {
+  position: absolute;
+  content: "";
+  background: transparent;
+  width: 30px;
+  height: 30px;
+  top: calc(50% - 24px);
+  right: -28px;
+  z-index: -1;
+  border-bottom-left-radius: 1.5rem;
+  box-shadow: -8px 8px 0px 1px var(--shadow-color);
+  -webkit-box-shadow: -8px 8px 0px 1px var(--shadow-color);
+  -moz-box-shadow: -8px 8px 0px 1px var(--shadow-color);
 }

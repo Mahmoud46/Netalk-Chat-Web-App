@@ -66,6 +66,11 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
       address: address,
       title: title,
       bio: bio,
+
+      contacts: [],
+      mutedUsers: [],
+      archivedChats: [],
+      blockedUsers: [],
     };
 
     if (verifyWithPhoneNumber) authNCredentials.phoneNumber = phoneNumber;

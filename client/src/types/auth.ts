@@ -116,4 +116,10 @@ export interface SignupCredentials {
   // More
   profileImage?: string;
   profileCover?: string;
+
+  contacts: ContactEntry[];
+
+  mutedUsers: string[];
+  archivedChats: string[];
+  blockedUsers: string[];
 }

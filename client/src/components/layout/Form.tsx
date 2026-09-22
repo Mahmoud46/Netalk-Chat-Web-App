@@ -682,9 +682,9 @@ const SignupMediaAssetsForm = ({
 
           {/* Avatar image */}
           <div
-            className={`absolute -bottom-16.5 left-1/2 -translate-x-1/2 p-3 rounded-full transition-all ease-in-out bg-background-light-base dark:bg-background-dark-base`}
+            className={`absolute -bottom-16.5 left-1/2 -translate-x-1/2 p-3 rounded-full transition-all ease-in-out bg-background-light-base dark:bg-background-dark-base profile-image-set-input-viewer-form [--shadow-color:#fff] dark:[--shadow-color:#0f1115]`}
           >
-            <div className="size-30 rounded-full overflow-hidden">
+            <div className="size-30 rounded-full overflow-hidden relative">
               {mediaAssets.previewProfileImage ? (
                 <img
                   src={URL.createObjectURL(mediaAssets.previewProfileImage)}
