@@ -51,7 +51,7 @@ export default function Sidebar(): ReactNode {
                 >
                   <MainSidebarIcon
                     label={item.label}
-                    className="w-7"
+                    className="size-7"
                     isActive={isActive}
                     weight="thin"
                   />

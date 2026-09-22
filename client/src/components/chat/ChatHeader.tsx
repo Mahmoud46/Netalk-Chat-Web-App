@@ -40,7 +40,7 @@ const ChatHeader = ({
                   `${currentParticipant?.firstName} ${currentParticipant?.lastName}`}
               </p>
 
-              <p className="text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
+              <p className="text-xs text-foreground-light-secondary dark:text-foreground-dark-secondary">
                 {currentParticipant?.isActive
                   ? "Active Now"
                   : `Active ${moment(

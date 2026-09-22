@@ -36,8 +36,8 @@ export default function Inbox(): ReactNode {
   const { id } = useParams();
 
   const [activeSideProfilePanel, setActiveSideProfilePanel] =
-    useState<boolean>(false);
-  const [activeArchiveTab, setActiveArchiveTab] = useState<boolean>(false);
+      useState<boolean>(false),
+    [activeArchiveTab, setActiveArchiveTab] = useState<boolean>(false);
 
   const filteredChats = useMemo(() => {
     if (!chats) return [];
@@ -73,6 +73,7 @@ export default function Inbox(): ReactNode {
           chats={filteredChats}
           activeArchiveTab={activeArchiveTab}
           setActiveArchiveTab={setActiveArchiveTab}
+          includesArchivedChats={(authNUser?.archivedChats ?? []).length > 0}
         />
       </Suspense>
 

@@ -5,19 +5,25 @@ import type { Chat } from "../../types";
 import Label from "../common/Label";
 import CommonIcon from "../icons/CommonIcon";
 
-const ChatCard = React.lazy(() => import("./ChatCard"));
+const ChatCard = React.lazy(() => import("./ChatCard")),
+  ArchiveChatsCard = React.lazy(() =>
+    import("./ChatCard").then((module) => ({
+      default: module.ArchiveChatsCard,
+    })),
+  );
 
 const ChatsSidebar = ({
   chats,
   activeArchiveTab,
   setActiveArchiveTab,
+  includesArchivedChats,
 }: {
   chats: Chat[];
   activeArchiveTab: boolean;
   setActiveArchiveTab: React.Dispatch<React.SetStateAction<boolean>>;
+  includesArchivedChats: boolean;
 }): ReactNode => {
   const [open, setOpen] = useState<boolean>(false);
-
   const toggleActive = () => setOpen((prev) => !prev);
   const toggleActiveArchiveTab = () => setActiveArchiveTab((prev) => !prev);
   return (
@@ -27,7 +33,7 @@ const ChatsSidebar = ({
       <div className="size-15 w-full relative -translate-y-2 translate-x-2">
         <div className="absolute flex top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 pt-3 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
           <div
-            className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center" : "flex-none"}`}
+            className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center mr-1.5" : "flex-none"}`}
           >
             <button
               className={`${open ? "absolute" : "relative"} flex-none group p-1.5 cursor-pointer rounded-full hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary transition-all ease-in-out ${open ? "pointer-events-none" : ""}`}
@@ -62,13 +68,16 @@ const ChatsSidebar = ({
         </div>
       </div>
       <ul className="flex flex-col">
-        <button
-          type="button"
-          className="cursor-pointer"
-          onClick={toggleActiveArchiveTab}
-        >
-          {activeArchiveTab ? "B" : "A"}
-        </button>
+        {includesArchivedChats && (
+          <Suspense fallback={<Loader />}>
+            <ArchiveChatsCard
+              isSidebarOpen={open}
+              toggleArchiveTab={toggleActiveArchiveTab}
+              activeArchiveTab={activeArchiveTab}
+            />
+          </Suspense>
+        )}
+
         {chats.map((chat) => (
           <Suspense fallback={<Loader />} key={chat._id}>
             <ChatCard chat={chat} isSidebarOpen={open} />

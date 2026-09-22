@@ -21,6 +21,11 @@ import reply_thin_icon from "../../assets/icons/chat/reply_thin.png";
 import check_bold_icon from "../../assets/icons/chat/check_bold.png";
 import reply_bold_icon from "../../assets/icons/chat/reply_bold.png";
 
+import archive_arrow_down_solid_thin_icon from "../../assets/icons/chat/archive_arrow_down_solid_thin.png";
+import archive_arrow_down_solid_icon from "../../assets/icons/chat/archive_arrow_down_solid.png";
+import archive_arrow_up_solid_thin_icon from "../../assets/icons/chat/archive_arrow_up_solid_thin.png";
+import archive_arrow_up_solid_icon from "../../assets/icons/chat/archive_arrow_up_solid.png";
+
 import type { IconWeight, MessageStatus } from "../../types";
 
 export const MessageStatusIcon = ({
@@ -73,34 +78,44 @@ export default function ChatIcon({
   label,
   className = "",
   weight = "base",
+  solid = false,
 }: {
   label?: string;
   className?: string;
   weight?: IconWeight;
+  solid?: boolean;
 }) {
   switch (label) {
     case "archive_arrow_down":
       return (
         <img
           src={
-            weight == "thin"
-              ? archive_arrow_down_thin_icon
-              : archive_arrow_down_icon
+            solid
+              ? weight == "thin"
+                ? archive_arrow_down_solid_thin_icon
+                : archive_arrow_down_solid_icon
+              : weight == "thin"
+                ? archive_arrow_down_thin_icon
+                : archive_arrow_down_icon
           }
           loading="lazy"
-          className={`main-icon ${className ?? ""}`}
+          className={`${solid ? "invert-100" : "main-icon"} ${className ?? ""}`}
         />
       );
     case "archive_arrow_up":
       return (
         <img
           src={
-            weight == "thin"
-              ? archive_arrow_up_thin_icon
-              : archive_arrow_up_icon
+            solid
+              ? weight == "thin"
+                ? archive_arrow_up_solid_thin_icon
+                : archive_arrow_up_solid_icon
+              : weight == "thin"
+                ? archive_arrow_up_thin_icon
+                : archive_arrow_up_icon
           }
           loading="lazy"
-          className={`main-icon ${className ?? ""}`}
+          className={`${solid ? "invert-100" : "main-icon"} ${className ?? ""}`}
         />
       );
     case "paperclip":

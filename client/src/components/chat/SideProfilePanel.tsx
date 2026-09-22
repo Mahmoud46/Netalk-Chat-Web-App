@@ -44,7 +44,7 @@ const ProfilePanelHeader = ({
   return (
     <div className="relative flex flex-col">
       {/* Close buttoon */}
-      <div className="absolute top-0 left-0 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-br-3xl top-left-cornered-btn  [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+      <div className="absolute top-0 left-0 bg-background-light-base dark:bg-background-dark-base p-1.5 pt-3 rounded-br-3xl top-left-cornered-btn  [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
         <button
           className="relative group cursor-pointer z-30 p-1.5 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
           onClick={toggleButtonClickAction}
