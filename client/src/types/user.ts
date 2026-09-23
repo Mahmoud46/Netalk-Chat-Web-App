@@ -28,12 +28,16 @@ export interface Contact {
 
 export interface ContactEntry {
   userId: string;
-  customName: string;
+  customName: CustomName;
 }
 
 export interface SocialLink {
   type: SocialPlatform | "website" | string;
   url: string;
+}
+export interface CustomName {
+  firstName: string;
+  lastName: string;
 }
 
 export type Gender = "male" | "female" | "others";

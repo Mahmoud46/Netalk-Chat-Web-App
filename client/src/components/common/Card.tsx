@@ -38,8 +38,9 @@ export const BlockedUserCard = ({ user }: { user: User }) => {
         </div>
         <div className="">
           <p className="font-semibold text-base text-foreground-light-secondary dark:text-white leading-5 line-clamp-1">
-            {contacts[user?._id ?? ""] ??
-              `${user?.firstName} ${user?.lastName}`}
+            {contacts[user?._id ?? ""]
+              ? `${contacts[user?._id ?? ""].firstName} ${contacts[user?._id ?? ""].lastName}`
+              : `${user?.firstName} ${user?.lastName}`}
           </p>
 
           <p className="text-xs text-foreground-light-secondary dark:text-foreground-dark-secondary">

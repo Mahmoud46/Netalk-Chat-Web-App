@@ -53,9 +53,9 @@ export const ContactCard = ({ contactEntry }: { contactEntry: User }) => {
             />
             {contactEntry.isActive && (
               <span
-                className={`absolute flex items-center p-1 aspect-square bg-background-light-surface-2 dark:bg-background-dark-surface-2 justify-center rounded-full bottom-1.5 right-1.5`}
+                className={`absolute flex items-center p-1 aspect-square bg-background-light-surface-2 dark:bg-background-dark-surface-2 justify-center rounded-full bottom-1 right-1`}
               >
-                <span className="bg-foreground-dark-success size-3 aspect-square rounded-full"></span>
+                <span className="bg-foreground-dark-success size-[0.99rem] aspect-square rounded-full"></span>
               </span>
             )}
           </div>
@@ -67,7 +67,8 @@ export const ContactCard = ({ contactEntry }: { contactEntry: User }) => {
           <p
             className={`line-clamp-1 font-semibold text-base text-black dark:text-background-light-surface-3`}
           >
-            {contacts[contactEntry._id]}
+            {contacts[contactEntry._id].firstName}{" "}
+            {contacts[contactEntry._id].lastName}
           </p>
           <p
             className={`text-xs text-foreground-light-third dark:text-foreground-dark-secondary`}
@@ -122,8 +123,8 @@ export const ContactsOnlineCard = ({
       to={`/app/profile/${contactEntry.username}`}
     >
       {contactEntry?.isActive && (
-        <span className="absolute flex items-center w-3.5 h-3.5 bg-background-light-surface-3 dark:bg-background-dark-surface-3 justify-center rounded-full bottom-0 right-0">
-          <span className="bg-foreground-dark-success w-2 h-2 aspect-square rounded-full"></span>
+        <span className="absolute flex items-center size-4 bg-background-light-surface-3 dark:bg-background-dark-surface-3 justify-center rounded-full -bottom-0.5 -right-0.5">
+          <span className="bg-foreground-dark-success size-[0.5775rem] aspect-square rounded-full"></span>
         </span>
       )}
       <img

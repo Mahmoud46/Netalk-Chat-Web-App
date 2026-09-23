@@ -138,7 +138,7 @@ const ChatCard = ({
   isSidebarOpen: boolean;
 }): ReactNode => {
   const [participant, setParticipant] = useState<User | null>(null),
-    { getUser, currentChat } = useChat(),
+    { getUser, currentChat, contacts } = useChat(),
     { authNUser } = useAuth();
   const navigate = useNavigate();
 
@@ -198,9 +198,9 @@ const ChatCard = ({
 
         {participant?.isActive && (
           <span
-            className={`absolute flex items-center w-4 h-4  justify-center rounded-full bottom-0 right-0 ${isActive ? "bg-background-light-base dark:bg-background-dark-base" : "bg-background-light-surface-2 dark:bg-background-dark-surface-2"}`}
+            className={`absolute flex items-center w-3 h-3 justify-center rounded-full bottom-1 right-1 ${isActive ? "bg-background-light-base dark:bg-background-dark-base" : "bg-background-light-surface-2 dark:bg-background-dark-surface-2"}`}
           >
-            <span className="bg-foreground-dark-success w-2.5 h-2.5 aspect-square rounded-full"></span>
+            <span className="bg-foreground-dark-success size-[0.55rem] aspect-square rounded-full"></span>
           </span>
         )}
         <img
@@ -214,7 +214,9 @@ const ChatCard = ({
         <div className="flex flex-1 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
           <div className="flex gap-1 justify-between items-center">
             <p className="line-clamp-1 text-sm font-semibold flex-1">
-              {participant?.firstName} {participant?.lastName}
+              {contacts[participant?._id ?? ""]
+                ? `${contacts[participant?._id ?? ""]?.firstName} ${contacts[participant?._id ?? ""]?.lastName}`
+                : `${participant?.firstName} ${participant?.lastName}`}
             </p>
             <time
               dateTime={chat.lastMessage?.createdAt}
@@ -252,7 +254,14 @@ const ChatCard = ({
         </div>
       )}
       {!isSidebarOpen && (
-        <Label text={participant?.firstName ?? ""} isSide={true} />
+        <Label
+          text={
+            contacts[participant?._id ?? ""]?.firstName ??
+            participant?.firstName ??
+            ""
+          }
+          isSide={true}
+        />
       )}
     </li>
   );

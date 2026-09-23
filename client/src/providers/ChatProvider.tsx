@@ -1,5 +1,11 @@
 import { useEffect, useState, type ReactNode } from "react";
-import type { Chat, ChatContextValue, Message, User } from "../types";
+import type {
+  Chat,
+  ChatContextValue,
+  CustomName,
+  Message,
+  User,
+} from "../types";
 import { ChatContext } from "./ChatContext";
 import chats_data from "../assets/data/chats.json";
 import users from "../assets/data/users.json";
@@ -12,7 +18,7 @@ export function ChatProvider({ children }: { children: ReactNode }): ReactNode {
   const [chats, setChats] = useState<Chat[]>(chats_data as Chat[]),
     [currentChat, setCurrentChat] = useState<Chat | null>(null),
     [currentParticipant, setCurrentParticipant] = useState<User | null>(null),
-    [contacts, setContacts] = useState<Record<string, string>>(
+    [contacts, setContacts] = useState<Record<string, CustomName>>(
       mapContactsToUserIds(authNUser?.contacts ?? []),
     ),
     [currentContactEntry, setCurrentContactEntry] = useState<User | null>(null);

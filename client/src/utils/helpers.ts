@@ -1,11 +1,17 @@
-import type { ContactEntry, Message, PasswordStrength, User } from "../types";
+import type {
+  ContactEntry,
+  CustomName,
+  Message,
+  PasswordStrength,
+  User,
+} from "../types";
 
 export const isRouteActive = (pathname: string, path: string): boolean =>
   pathname === path || location.pathname.startsWith(path + "/");
 
 export const mapContactsToUserIds = (
   contacts: ContactEntry[],
-): Record<string, string> => {
+): Record<string, CustomName> => {
   return Object.fromEntries(contacts.map((c) => [c.userId, c.customName]));
 };
 
@@ -49,11 +55,14 @@ export const uppercaseAlphabets = (): string[] => {
 
 export const groupContactEntriesByFirstLetter = (
   contactEntries: User[],
-  contacts: Record<string, string>,
+  contacts: Record<string, CustomName>,
 ): Record<string, User[]> => {
   const contactEntriesByFirstLetter: Record<string, User[]> = {};
   for (const contactEntry of contactEntries) {
-    const firstLetter = contacts[contactEntry._id]
+    const firstLetter = (
+      contacts[contactEntry._id].firstName ??
+      contacts[contactEntry._id].lastName
+    )
       .trim()
       .charAt(0)
       .toUpperCase();

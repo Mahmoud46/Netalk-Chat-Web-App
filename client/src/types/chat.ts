@@ -1,4 +1,4 @@
-import type { User } from ".";
+import type { CustomName, User } from ".";
 
 export interface ChatContextValue {
   chats: Chat[];
@@ -9,8 +9,8 @@ export interface ChatContextValue {
   currentParticipant: User | null;
   setCurrentParticipant: (currentParticipant: User | null) => void;
   getMessages: (chatId: string) => Promise<Message[]>;
-  contacts: Record<string, string>;
-  setContacts: (contacts: Record<string, string>) => void;
+  contacts: Record<string, CustomName>;
+  setContacts: (contacts: Record<string, CustomName>) => void;
   currentContactEntry: User | null;
   setCurrentContactEntry: (currentContactEntry: User | null) => void;
   getChatByParticipantId: (participantId: string) => Promise<Chat | undefined>;

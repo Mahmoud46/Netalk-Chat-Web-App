@@ -23,8 +23,8 @@ const ChatHeader = ({
           >
             <div className="relative flex-none">
               {currentParticipant?.isActive && (
-                <span className="absolute flex items-center w-4 h-4 bg-background-light-surface-3 dark:bg-background-dark-surface-3 justify-center rounded-full bottom-0 right-0">
-                  <span className="bg-foreground-dark-success w-2.5 h-2.5 aspect-square rounded-full"></span>
+                <span className="absolute flex items-center w-4 h-4 bg-background-light-surface-3 dark:bg-background-dark-surface-3 justify-center rounded-full -bottom-0.5 -right-0.5">
+                  <span className="bg-foreground-dark-success size-[0.605rem] aspect-square rounded-full"></span>
                 </span>
               )}
               <img
@@ -36,8 +36,9 @@ const ChatHeader = ({
             </div>
             <div className="flex flex-col">
               <p className="font-semibold text-base text-foreground-light-secondary dark:text-foreground-dark-secondary leading-5 line-clamp-1">
-                {contacts[currentParticipant?._id ?? ""] ??
-                  `${currentParticipant?.firstName} ${currentParticipant?.lastName}`}
+                {contacts[currentParticipant?._id ?? ""]
+                  ? `${contacts[currentParticipant?._id ?? ""].firstName} ${contacts[currentParticipant?._id ?? ""].lastName}`
+                  : `${currentParticipant?.firstName} ${currentParticipant?.lastName}`}
               </p>
 
               <p className="text-xs text-foreground-light-secondary dark:text-foreground-dark-secondary">

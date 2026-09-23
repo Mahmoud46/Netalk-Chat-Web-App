@@ -443,3 +443,33 @@ a:focus {
   -webkit-box-shadow: -8px 8px 0px 1px var(--shadow-color);
   -moz-box-shadow: -8px 8px 0px 1px var(--shadow-color);
 }
+
+.side-porfile-panel-image::after {
+  position: absolute;
+  content: "";
+  background: transparent;
+  width: 27px;
+  height: 27px;
+  top: calc(50% - 22px);
+  left: -24px;
+  z-index: -1;
+  border-bottom-right-radius: 1.5rem;
+  box-shadow: 8px 8px 0px 1px var(--shadow-color);
+  -webkit-box-shadow: 8px 8px 0px 1px var(--shadow-color);
+  -moz-box-shadow: 8px 8px 0px 1px var(--shadow-color);
+}
+
+.side-porfile-panel-image::before {
+  position: absolute;
+  content: "";
+  background: transparent;
+  width: 27px;
+  height: 27px;
+  top: calc(50% - 22px);
+  right: -24px;
+  z-index: -1;
+  border-bottom-left-radius: 1.5rem;
+  box-shadow: -8px 8px 0px 1px var(--shadow-color);
+  -webkit-box-shadow: -8px 8px 0px 1px var(--shadow-color);
+  -moz-box-shadow: -8px 8px 0px 1px var(--shadow-color);
+}

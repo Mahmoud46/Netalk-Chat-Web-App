@@ -34,19 +34,28 @@
   "contacts": [
     {
       "userId": "U5k1b9f49R0MXXj3bUDEVqPkhKTP1r",
-      "customName": "Mohamed Adel (Backend Engineer)"
+      "customName": {
+        "firstName": "Mohamed",
+        "lastName": "Adel (Backend Engineer)"
+      }
     },
     {
       "userId": "j28m8o6naMLU4863413jyRNbD_FHvH",
-      "customName": "Nour Khaled (UI/UX Designer)"
+      "customName": {
+        "firstName": "Nour",
+        "lastName": "Khaled (UI/UX Designer)"
+      }
     },
     {
       "userId": "3zlNOoXpBd4obI0PGNs49na1IPQILY",
-      "customName": "Laila Mostafa (Medical Student)"
+      "customName": {
+        "firstName": "Laila",
+        "lastName": "Mostafa (Medical Student)"
+      }
     },
     {
       "userId": "cKDItq1szgkgXwHJ3m7hZgoYFoqJY9",
-      "customName": "Mariam Tarek (Designer)"
+      "customName": { "firstName": "Mariam", "lastName": "Tarek (Designer)" }
     }
   ],
   "mutedUsers": ["z1l30QH8Tzmb7c_cgs8n81nYNsbLlP"],
