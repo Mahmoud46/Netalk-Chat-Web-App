@@ -1,14 +1,20 @@
 import type { ReactNode } from "react";
 import { useAuth, useTheme } from "../../hooks";
 import Label from "../common/Label";
-
+import files from "../../assets/data/files.json";
 import { lazy, useState } from "react";
 
 import default_cover from "../../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../../assets/images/default_profile_cover_dark.jpg";
 import CommonIcon from "../icons/CommonIcon";
 
-import type { Chat, CustomName, ThemeMode, User } from "../../types";
+import type {
+  Attachment,
+  Chat,
+  CustomName,
+  ThemeMode,
+  User,
+} from "../../types";
 import { Link } from "react-router-dom";
 import { SideProfilePanelDropList } from "../common/DropList";
 
@@ -171,10 +177,10 @@ const ProfilePanelMinorInfo = ({
   isContactPanel?: boolean;
 }) => {
   return (
-    <div className="flex-1 overflow-auto stable-gutter-container bg-background-light-surface-3 dark:bg-background-dark-surface-3 flex flex-col transition-all ease-in-out">
-      <div className="h-full stable-gutter-container overflow-y-auto px-3 py-3 pt-0 flex flex-col gap-6">
-        {currentChat && currentChat?.sharedMedia && (
-          <SharedMedia sharedMedia={currentChat?.sharedMedia} />
+    <div className="flex-1 overflow-auto bg-background-light-surface-3 dark:bg-background-dark-surface-3 flex flex-col transition-all ease-in-out">
+      <div className="h-full overflow-y-auto px-3 py-3 pt-0 flex flex-col gap-6">
+        {files && files?.sharedMedia && (
+          <SharedMedia sharedMedia={files?.sharedMedia as Attachment[]} />
         )}
 
         {currentChat && currentChat?.sharedFiles && (

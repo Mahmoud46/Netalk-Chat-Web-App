@@ -1,0 +1,41 @@
+{
+  "sharedMedia": [
+    {
+      "fileId": "img_001",
+      "url": "/mock_shared_media/image.png",
+      "type": "image",
+      "name": "image.png",
+      "size": "896KB"
+    },
+    {
+      "fileId": "img_002",
+      "url": "/mock_shared_media/image-2.png",
+      "type": "image",
+      "name": "image-2.png",
+      "size": "896KB"
+    },
+    {
+      "fileId": "img_003",
+      "url": "/mock_shared_media/image-3.png",
+      "type": "image",
+      "name": "image-3.png",
+      "size": "896KB"
+    },
+    {
+      "fileId": "img_004",
+      "url": "/mock_shared_media/image-4.png",
+      "type": "image",
+      "name": "image-4.png",
+      "size": "896KB"
+    }
+  ],
+  "sharedFiles": [
+    {
+      "fileId": "file_ui_002",
+      "url": "https://cdn.example.com/files/ui-kit-v2.fig",
+      "type": "file",
+      "name": "ui-kit-v2.fig",
+      "size": "5.8MB"
+    }
+  ]
+}

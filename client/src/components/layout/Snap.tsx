@@ -54,7 +54,7 @@ export const SharedMedia = ({
   return (
     <div className="flex gap-2 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
       <h2 className="font-semibold text-sm">Shared Media</h2>
-      <div className="flex gap-1.5 overflow-x-auto">
+      <div className="flex overflow-hidden h-fit flex-wrap rounded-3xl gap-2">
         {sharedMedia.map((media) => (
           <MediaFile mediaFile={media} key={media.fileId} />
         ))}

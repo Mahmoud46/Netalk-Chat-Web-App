@@ -43,7 +43,7 @@ export const MediaFile = ({
   const openFile = () => window.open(mediaFile.url, "_blank");
   return (
     <div
-      className="group relative rounded-xl aspect-square size-30 cursor-pointer group overflow-hidden"
+      className="group relative flex-none aspect-square size-29 rounded-3xl overflow-hidden cursor-pointer group"
       onClick={openFile}
     >
       {mediaFile.type == "image" && (
@@ -52,9 +52,9 @@ export const MediaFile = ({
             src={mediaFile.url}
             alt={mediaFile.name}
             loading="lazy"
-            className="size-full object-cover rounded-xl group-hover:scale-125 transition-all ease-in-out"
+            className="size-full object-cover group-hover:scale-125 transition-all ease-in-out"
           />
-          <div className="absolute right-0 scale-0 transition-all ease-in-out group-hover:scale-100 w-full h-full flex items-center justify-center bg-background-light-surface-3/80 dark:bg-background-dark-surface-3/80 top-0">
+          <div className="absolute opacity-0 hover:opacity-100 transition-all ease-in-out w-full h-full flex items-center justify-center bg-background-light-surface-3/20 dark:bg-background-dark-surface-3/20 top-0 backdrop-blur-lg rounded-3xl">
             <CommonIcon
               label="arrow_out_up_right_circle"
               className="size-6"
