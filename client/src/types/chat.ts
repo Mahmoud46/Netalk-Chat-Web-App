@@ -48,6 +48,7 @@ export interface Attachment {
   type: FileType;
   name: string;
   size: string;
+  duration?: string;
 }
 
 export type MessageStatus =

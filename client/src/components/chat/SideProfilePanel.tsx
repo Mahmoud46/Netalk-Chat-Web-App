@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useAuth, useTheme } from "../../hooks";
 import Label from "../common/Label";
-import { lazy, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 
 import default_cover from "../../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../../assets/images/default_profile_cover_dark.jpg";
@@ -16,6 +16,8 @@ import type {
 } from "../../types";
 import { Link } from "react-router-dom";
 import { SideProfilePanelDropList } from "../common/DropList";
+import ChatIcon from "../icons/ChatIcon";
+import Loader from "../common/Loader";
 
 const SharedMedia = lazy(() =>
     import("../layout/Snap").then((module) => ({
@@ -169,42 +171,79 @@ const ProfilePanelControlButtons = ({
 
 const ProfilePanelMinorInfo = ({
   currentChat,
-  isContactPanel = false,
 }: {
   user: User | null;
   currentChat: Chat | null;
-  isContactPanel?: boolean;
 }) => {
+  const [sharedItemsActiveTab, setSharedItemsActiveTab] = useState<number>(-1);
+
+  useEffect(() => {
+    const activateTab = async () => {
+      if (currentChat)
+        setSharedItemsActiveTab(
+          currentChat && currentChat?.sharedMedia
+            ? 0
+            : currentChat && currentChat?.sharedFiles
+              ? 1
+              : -1,
+        );
+    };
+
+    activateTab();
+  }, [currentChat, currentChat?._id]);
+
   return (
-    <div className="flex-1 overflow-auto bg-background-light-surface-3 dark:bg-background-dark-surface-3 flex flex-col transition-all ease-in-out">
-      <div className="h-full overflow-y-auto px-3 py-3 pt-0 flex flex-col gap-6">
-        {currentChat && currentChat?.sharedMedia && (
-          <SharedMedia sharedMedia={currentChat?.sharedMedia as Attachment[]} />
+    <div className="flex-1 overflow-auto gap-4 bg-background-light-surface-3 dark:bg-background-dark-surface-3 flex flex-col transition-all ease-in-out">
+      <div className="h-full overflow-y-auto px-3 py-5 pt-0 flex flex-col gap-6">
+        {currentChat?.sharedMedia && sharedItemsActiveTab == 0 && (
+          <Suspense fallback={<Loader />}>
+            <SharedMedia
+              sharedMedia={currentChat?.sharedMedia as Attachment[]}
+            />
+          </Suspense>
         )}
 
-        {currentChat && currentChat?.sharedFiles && (
-          <SharedFiles sharedFiles={currentChat?.sharedFiles} />
+        {currentChat?.sharedFiles && sharedItemsActiveTab == 1 && (
+          <Suspense fallback={<Loader />}>
+            <SharedFiles
+              sharedFiles={currentChat?.sharedFiles as Attachment[]}
+            />
+          </Suspense>
         )}
-
-        {isContactPanel && <ContactButtons />}
-      </div>
-    </div>
-  );
-};
-
-const ContactButtons = () => {
-  return (
-    <div className="sticky bottom-0 w-full flex justify-center items-center h-40">
-      <div className="flex items-center bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 rounded-full shadow-lg dark:shadow-neutral-900/50">
-        <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-          <CommonIcon label="paper_plane" weight="thin" className="size-6.5" />
-          <Label text="Chat" />
-        </button>
-
-        <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-          <CommonIcon label="phone" weight="thin" className="size-6.5" />
-          <Label text="Call" />
-        </button>
+        {sharedItemsActiveTab != -1 && (
+          <div className="flex w-fit self-center sticky bottom-0 items-center p-1.5 z-50 bg-background-light-base dark:bg-background-dark-base shadow-xl/30 rounded-full">
+            {currentChat && currentChat?.sharedMedia && (
+              <button
+                type="button"
+                className={`relative group cursor-pointer p-2 rounded-full ${sharedItemsActiveTab == 0 ? "bg-background-dark-primary" : "bg-transparent hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary"} transition-all ease-in-out`}
+                onClick={() => setSharedItemsActiveTab(0)}
+              >
+                <ChatIcon
+                  label="image"
+                  className="size-6.5"
+                  weight="thin"
+                  solid={sharedItemsActiveTab == 0}
+                />
+                <Label text="Media" />
+              </button>
+            )}
+            {currentChat && currentChat?.sharedFiles && (
+              <button
+                type="button"
+                className={`relative group cursor-pointer p-2 rounded-full ${sharedItemsActiveTab == 1 ? "bg-background-dark-primary" : "bg-transparent hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary"} transition-all ease-in-out`}
+                onClick={() => setSharedItemsActiveTab(1)}
+              >
+                <ChatIcon
+                  label="file"
+                  className="size-6.5"
+                  weight="thin"
+                  solid={sharedItemsActiveTab == 1}
+                />
+                <Label text="Files" />
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -214,7 +253,6 @@ const SideProfilePanel = ({
   user,
   contacts,
   currentChat = null,
-  isContactPanel = false,
   isActive,
   toggleButtonClickAction = () => {},
 }: {
@@ -247,11 +285,7 @@ const SideProfilePanel = ({
         isBlocked={isBlocked}
         isMuted={isMuted}
       />
-      <ProfilePanelMinorInfo
-        user={user}
-        currentChat={currentChat}
-        isContactPanel={isContactPanel}
-      />
+      <ProfilePanelMinorInfo user={user} currentChat={currentChat} />
     </aside>
   );
 };

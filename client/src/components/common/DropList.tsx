@@ -57,12 +57,12 @@ export const AttachmentDropList = ({
       className={`absolute bottom-7/6 left-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
-        <ChatIcon label="image" weight="thin" className="size-6.5" />
-        Image or Video
+        <ChatIcon label="image_plus" weight="thin" className="size-6.5" />
+        Share Media
       </button>
       <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
-        <ChatIcon label="file" weight="thin" className="size-6.5" />
-        File or Document
+        <ChatIcon label="file_plus" weight="thin" className="size-6.5" />
+        Share File
       </button>
     </div>
   );

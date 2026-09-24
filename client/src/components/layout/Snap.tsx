@@ -52,12 +52,22 @@ export const SharedMedia = ({
   sharedMedia: Attachment[];
 }): ReactNode => {
   return (
-    <div className="flex gap-2 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <h2 className="font-semibold text-sm">Shared Media</h2>
-      <div className="flex overflow-hidden h-fit flex-wrap rounded-3xl gap-2">
-        {sharedMedia.map((media) => (
-          <MediaFile mediaFile={media} key={media.fileId} />
-        ))}
+    <div className="flex gap-4 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
+      <p className="text-sm font-semibold">Shared Media</p>
+      <div className="grid grid-cols-2 auto-rows-[100px] gap-1.5">
+        {sharedMedia.map((media, i) => {
+          return (
+            <MediaFile
+              mediaFile={media}
+              key={media.fileId}
+              className={
+                (i % 6 === 0 || i % 6 === 5) && i + 2 < sharedMedia.length
+                  ? "row-span-2"
+                  : ""
+              }
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -69,7 +79,7 @@ export const SharedFiles = ({
   sharedFiles: Attachment[];
 }): ReactNode => {
   return (
-    <div className="flex gap-2 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
+    <div className="flex gap-4 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
       <h2 className="font-semibold text-sm">Shared Files</h2>
       <div className="flex gap-1.5 overflow-x-auto flex-col">
         {sharedFiles.map((file) => (
