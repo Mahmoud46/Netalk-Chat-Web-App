@@ -36,7 +36,8 @@
         "url": "/mocks/ui-kit-v2.jpg",
         "type": "image",
         "name": "ui-kit-v2.jpg",
-        "size": "896KB"
+        "size": "896KB",
+        "createdAt": "2026-05-08T10:04:20.000Z"
       }
     ],
     "sharedFiles": [
@@ -45,7 +46,72 @@
         "url": "https://cdn.example.com/files/ui-kit-v2.fig",
         "type": "file",
         "name": "ui-kit-v2.fig",
-        "size": "5.8MB"
+        "size": "5.8MB",
+        "createdAt": "2026-05-08T10:04:20.000Z"
+      },
+      {
+        "fileId": "file_ui_003",
+        "url": "https://cdn.example.com/files/ui-kit-v2.txt",
+        "type": "file",
+        "name": "ui-kit-v2.txt",
+        "size": "5.8MB",
+        "createdAt": "2026-05-08T10:04:20.000Z"
+      },
+      {
+        "fileId": "file_ui_004",
+        "url": "https://cdn.example.com/files/ui-kit-v2.psd",
+        "type": "file",
+        "name": "ui-kit-v2.psd",
+        "size": "5.8MB",
+        "createdAt": "2026-05-08T10:04:20.000Z"
+      },
+      {
+        "fileId": "file_ui_005",
+        "url": "https://cdn.example.com/files/ui-kit-v2.ai",
+        "type": "file",
+        "name": "ui-kit-v2.ai",
+        "size": "5.8MB",
+        "createdAt": "2026-05-08T10:04:20.000Z"
+      },
+      {
+        "fileId": "file_ui_006",
+        "url": "https://cdn.example.com/files/ui-kit-v2.aep",
+        "type": "file",
+        "name": "ui-kit-v2.aep",
+        "size": "5.8MB",
+        "createdAt": "2026-05-08T10:04:20.000Z"
+      },
+      {
+        "fileId": "file_ui_007",
+        "url": "https://cdn.example.com/files/ui-kit-v2.sketch",
+        "type": "file",
+        "name": "ui-kit-v2.sketch",
+        "size": "5.8MB",
+        "createdAt": "2026-05-08T10:04:20.000Z"
+      },
+      {
+        "fileId": "file_ui_008",
+        "url": "https://cdn.example.com/files/ui-kit-v2.cdr",
+        "type": "file",
+        "name": "ui-kit-v2.cdr",
+        "size": "5.8MB",
+        "createdAt": "2026-05-08T10:04:20.000Z"
+      },
+      {
+        "fileId": "file_ui_009",
+        "url": "https://cdn.example.com/files/ui-kit-v2.c4d",
+        "type": "file",
+        "name": "ui-kit-v2.c4d",
+        "size": "5.8MB",
+        "createdAt": "2026-05-08T10:04:20.000Z"
+      },
+      {
+        "fileId": "file_ui_010",
+        "url": "https://cdn.example.com/files/ui-kit-v2.blend",
+        "type": "file",
+        "name": "ui-kit-v2.blend",
+        "size": "5.8MB",
+        "createdAt": "2026-05-08T10:04:20.000Z"
       }
     ]
   },

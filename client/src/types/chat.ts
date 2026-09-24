@@ -49,6 +49,7 @@ export interface Attachment {
   name: string;
   size: string;
   duration?: string;
+  createdAt: string;
 }
 
 export type MessageStatus =
@@ -58,7 +59,16 @@ export type MessageStatus =
   | "read"
   | "failed";
 export type FileType = "image" | "audio" | "file" | "video";
-
+export type FileFormat =
+  | "fig"
+  | "psd"
+  | "txt"
+  | "ai"
+  | "aep"
+  | "sketch"
+  | "cdr"
+  | "c4d"
+  | "blend";
 export type MessagesTimeline = Record<string, Message[]>;
 export type EmojiType =
   | "angry"

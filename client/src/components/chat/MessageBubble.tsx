@@ -4,6 +4,7 @@ import type { Message } from "../../types";
 import { formatTime12Hours } from "../../utils/format";
 import { MessageStatusIcon } from "../icons/ChatIcon";
 import CommonIcon from "../icons/CommonIcon";
+import { MediaFile } from "../common/Attachment";
 
 const AttachmentCard = lazy(() =>
     import("../common/Attachment").then((module) => ({
@@ -60,11 +61,15 @@ const MessageBubble = ({
 
       <div className={`flex flex-col max-w-100`}>
         <div
-          className={`flex flex-col relative w-fit max-w-100 min-w-40 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl gap-1.5`}
+          className={`flex flex-col relative w-fit max-w-100 min-w-40 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl gap-2`}
         >
-          {message.attachment && (
-            <AttachmentCard attachment={message.attachment} />
-          )}
+          {message.attachment &&
+            (message.attachment.type == "image" ||
+            message.attachment.type == "video" ? (
+              <MediaFile mediaFile={message.attachment} />
+            ) : (
+              <AttachmentCard attachment={message.attachment} />
+            ))}
           <div className="flex flex-col">
             {message.text && (
               <p

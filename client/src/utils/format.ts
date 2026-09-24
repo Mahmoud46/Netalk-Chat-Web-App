@@ -6,6 +6,16 @@ export const formatDate = (date: Date): string => {
   });
 };
 
+export const formatDotDate = (date: Date): string =>
+  // 18.09.26
+  date
+    .toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "2-digit",
+    })
+    .replace(/\//g, ".");
+
 export const formatTime12Hours = (timestamp: string | Date): string => {
   const date = new Date(timestamp);
 

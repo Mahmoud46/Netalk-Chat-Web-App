@@ -1,31 +1,45 @@
 import type { ReactNode } from "react";
-import type { Attachment } from "../../types";
+import type { Attachment, FileFormat } from "../../types";
 import CommonIcon from "../icons/CommonIcon";
 import FileIcon from "../icons/FileIcon";
 import ChatIcon from "../icons/ChatIcon";
+import { formatDotDate, formatTime12Hours } from "../../utils/format";
 
 export const AttachmentCard = ({
   attachment,
+  withMessage = true,
 }: {
   attachment: Attachment;
+  withMessage?: boolean;
 }): ReactNode => {
-  const fileExtension = attachment.name.split(".").at(-1),
+  const fileFormat = attachment.name.split(".").at(-1),
     isFile = attachment.type == "file" || attachment.type == "audio";
-  const openFile = () => window.open(attachment.url, "_blank");
+  // const openFile = () => window.open(attachment.url, "_blank");
 
   return (
     <div
-      className={`flex items-center gap-2 cursor-pointer transition-all ease-in-out ${isFile && "p-2 bg-background-light-secondary/50 dark:bg-background-dark-secondary/50 hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary"} rounded-xl`}
-      onClick={openFile}
+      className={`flex items-center gap-4 cursor-pointer transition-all ease-in-out hover:bg-background-light-secondary/50 dark:hover:bg-background-dark-secondary/50 p-1.5 pl-3 rounded-3xl`}
     >
       {isFile && (
         <>
-          <FileIcon type={fileExtension ?? ""} />
+          <FileIcon fileFormat={fileFormat as FileFormat} className="h-8" />
 
-          <div className="text-foreground-light-secondary dark:text-foreground-dark-secondary text-sm">
-            <p>{attachment.name}</p>
-            <p className="text-xs">{attachment.size}</p>
+          <div className="flex-1 text-foreground-light-secondary dark:text-foreground-dark-secondary text-sm">
+            <p className="font-semibold line-clamp-1">{attachment.name}</p>
+            <p className="text-xs">
+              {attachment.size}
+              {!withMessage && (
+                <>
+                  , {formatDotDate(new Date(attachment.createdAt))} at{" "}
+                  {formatTime12Hours(new Date(attachment.createdAt))}
+                </>
+              )}
+            </p>
           </div>
+
+          <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+            <CommonIcon label="dots_vertical_rounded" className="size-6" />
+          </button>
         </>
       )}
 

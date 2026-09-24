@@ -86,7 +86,8 @@
       "url": "https://cdn.example.com/files/ui-kit-v2.fig",
       "type": "file",
       "name": "ui-kit-v2.fig",
-      "size": "5.8MB"
+      "size": "5.8MB",
+      "createdAt": "2026-05-08T10:04:20.000Z"
     },
     "status": "read",
     "createdAt": "2026-05-08T10:04:20.000Z"
@@ -101,7 +102,8 @@
       "url": "/mocks/ui-kit-v2.jpg",
       "type": "image",
       "name": "ui-kit-v2.jpg",
-      "size": "896KB"
+      "size": "896KB",
+      "createdAt": "2026-05-08T10:04:20.000Z"
     },
     "status": "read",
     "createdAt": "2026-05-08T10:04:20.000Z"
