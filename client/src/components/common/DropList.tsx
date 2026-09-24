@@ -522,7 +522,7 @@ export const SideProfilePanelDropList = ({
       </button>
 
       <button
-        className={`cursor-pointer p-2 text-sm ${isBlocked ? "text-foreground-dark-success hover:bg-background-dark-success" : "text-foreground-dark-danger hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl`}
+        className={`cursor-pointer p-2 text-sm ${isBlocked ? "text-foreground-dark-success hover:bg-background-dark-success" : "text-foreground-dark-danger hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl transition-all ease-in-out`}
       >
         <CommonIcon
           label={isBlocked ? "" : "user_x"}

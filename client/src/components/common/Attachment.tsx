@@ -54,11 +54,10 @@ export const MediaFile = ({
             loading="lazy"
             className="size-full object-cover group-hover:scale-125 transition-all ease-in-out"
           />
-          <div className="absolute opacity-0 hover:opacity-100 transition-all ease-in-out w-full h-full flex items-center justify-center bg-background-light-surface-3/20 dark:bg-background-dark-surface-3/20 top-0 backdrop-blur-lg rounded-3xl">
+          <div className="absolute opacity-0 hover:opacity-100 transition-all ease-in-out w-full h-full flex items-center justify-center bg-background-light-surface-3/50 dark:bg-background-dark-surface-3/50 top-0 backdrop-blur-lg rounded-3xl">
             <CommonIcon
-              label="arrow_out_up_right_circle"
-              className="size-6"
-              weight="thin"
+              label="maximize"
+              className="size-6 scale-0 group-hover:scale-100 transition-all ease-in-out duration-300"
             />
           </div>
         </>

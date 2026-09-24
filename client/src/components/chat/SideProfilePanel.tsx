@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { useAuth, useTheme } from "../../hooks";
 import Label from "../common/Label";
-import files from "../../assets/data/files.json";
 import { lazy, useState } from "react";
 
 import default_cover from "../../assets/images/default_profile_cover.jpg";
@@ -179,8 +178,8 @@ const ProfilePanelMinorInfo = ({
   return (
     <div className="flex-1 overflow-auto bg-background-light-surface-3 dark:bg-background-dark-surface-3 flex flex-col transition-all ease-in-out">
       <div className="h-full overflow-y-auto px-3 py-3 pt-0 flex flex-col gap-6">
-        {files && files?.sharedMedia && (
-          <SharedMedia sharedMedia={files?.sharedMedia as Attachment[]} />
+        {currentChat && currentChat?.sharedMedia && (
+          <SharedMedia sharedMedia={currentChat?.sharedMedia as Attachment[]} />
         )}
 
         {currentChat && currentChat?.sharedFiles && (

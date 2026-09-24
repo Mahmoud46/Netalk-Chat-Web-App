@@ -36,6 +36,7 @@ import female_icon from "../../assets/icons/common/female.png";
 import share_icon from "../../assets/icons/common/share.png";
 import cog_icon from "../../assets/icons/common/cog.png";
 import user_icon from "../../assets/icons/common/user.png";
+import maximize_icon from "../../assets/icons/common/maximize.png";
 
 // Thin icons
 import search_big_thin_icon from "../../assets/icons/common/search_big_thin.png";
@@ -74,6 +75,7 @@ import female_thin_icon from "../../assets/icons/common/female_thin.png";
 import share_thin_icon from "../../assets/icons/common/share_thin.png";
 import cog_thin_icon from "../../assets/icons/common/cog_thin.png";
 import user_thin_icon from "../../assets/icons/common/user_thin.png";
+import maximize_thin_icon from "../../assets/icons/common/maximize_thin.png";
 
 // Bold
 import eye_bold_icon from "../../assets/icons/common/eye_bold.png";
@@ -83,6 +85,7 @@ import female_bold_icon from "../../assets/icons/common/female_bold.png";
 import share_bold_icon from "../../assets/icons/common/share_bold.png";
 import cog_bold_icon from "../../assets/icons/common/cog_bold.png";
 import plus_bold_icon from "../../assets/icons/common/plus_bold.png";
+import maximize_bold_icon from "../../assets/icons/common/maximize_bold.png";
 
 // Soild base icons
 import dots_vertical_rounded_solid_icon from "../../assets/icons/common/dots_vertical_rounded_solid.png";
@@ -145,6 +148,20 @@ export default function CommonIcon({
           src={weight == "thin" ? trash_thin_icon : trash_icon}
           loading="lazy"
           className={`danger-icon ${className ?? ""}`}
+        />
+      );
+    case "maximize":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? maximize_thin_icon
+              : weight == "bold"
+                ? maximize_bold_icon
+                : maximize_icon
+          }
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
         />
       );
 
