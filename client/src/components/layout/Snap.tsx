@@ -53,7 +53,9 @@ export const SharedMedia = ({
 }): ReactNode => {
   return (
     <div className="flex gap-3 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <p className="text-sm font-semibold">Shared Media</p>
+      <h2 className="font-semibold text-sm sticky top-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 pt-3 w-full z-20">
+        Shared Media
+      </h2>
       <div className="grid grid-cols-2 auto-rows-[100px] gap-1.5">
         {sharedMedia.map((media, i) => {
           return (
@@ -79,8 +81,10 @@ export const SharedFiles = ({
   sharedFiles: Attachment[];
 }): ReactNode => {
   return (
-    <div className="flex gap-3 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <h2 className="font-semibold text-sm">Shared Files</h2>
+    <div className="flex relative gap-3 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
+      <h2 className="font-semibold text-sm sticky top-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 pt-3 w-full z-20">
+        Shared Files
+      </h2>
       <div className="flex overflow-x-auto flex-col">
         {sharedFiles.map((file) => (
           <AttachmentCard

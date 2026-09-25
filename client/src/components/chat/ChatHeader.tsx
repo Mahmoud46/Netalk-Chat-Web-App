@@ -55,7 +55,7 @@ const ChatHeader = ({
               <CommonIcon label="phone" weight="thin" className="size-6.5" />
             </button>
             <button
-              className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isChatDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary hover:scale-110"}`}
+              className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isChatDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
               onClick={toggleChatDropList}
             >
               <CommonIcon
@@ -66,7 +66,10 @@ const ChatHeader = ({
             </button>
           </div>
         </div>
-        <ChatDropList isActive={isChatDropListActive} />
+        <ChatDropList
+          isActive={isChatDropListActive}
+          setIsActive={setIsChatDropListActive}
+        />
       </div>
     </header>
   );

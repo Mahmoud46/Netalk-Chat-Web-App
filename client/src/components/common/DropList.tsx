@@ -21,14 +21,35 @@ const BlockedUserCard = lazy(() =>
 
 export const ChatDropList = ({
   isActive = false,
+  setIsActive,
 }: {
   isActive?: boolean;
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
 }): ReactNode => {
   const { authNUser } = useAuth(),
     { currentChat } = useChat(),
     isArchived = authNUser?.archivedChats.includes(currentChat?._id as string);
+
+  const dropListRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropListRef.current &&
+        !dropListRef.current.contains(event.target as Node)
+      ) {
+        setIsActive(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropListRef, setIsActive]);
   return (
     <div
+      ref={dropListRef}
       className={`absolute top-7/6 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit self-end rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
@@ -520,7 +541,6 @@ export const SideProfilePanelDropList = ({
         />
         {isContact ? "Delete" : "Add"}
       </button>
-
       <button
         className={`cursor-pointer p-2 text-sm ${isBlocked ? "text-foreground-dark-success hover:bg-background-dark-success" : "text-foreground-dark-danger hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl transition-all ease-in-out`}
       >

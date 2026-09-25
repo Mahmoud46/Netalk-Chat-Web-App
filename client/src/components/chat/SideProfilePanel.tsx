@@ -194,7 +194,7 @@ const ProfilePanelMinorInfo = ({
 
   return (
     <div className="flex-1 overflow-auto gap-4 bg-background-light-surface-3 dark:bg-background-dark-surface-3 flex flex-col transition-all ease-in-out">
-      <div className="h-full overflow-y-auto px-3 py-5 pt-3 flex flex-col gap-6">
+      <div className="h-full overflow-y-auto px-3 py-5 pt-0 flex flex-col gap-6">
         {currentChat?.sharedMedia && sharedItemsActiveTab == 0 && (
           <Suspense fallback={<Loader />}>
             <SharedMedia
