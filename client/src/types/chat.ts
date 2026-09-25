@@ -58,17 +58,70 @@ export type MessageStatus =
   | "delivered"
   | "read"
   | "failed";
+
 export type FileType = "image" | "audio" | "file" | "video";
 export type FileFormat =
   | "fig"
   | "psd"
-  | "txt"
   | "ai"
   | "aep"
   | "sketch"
   | "cdr"
   | "c4d"
-  | "blend";
+  | "blend"
+  | ImageFileFormat
+  | AudioFileFormat
+  | DocumentFileFormat
+  | PresentationFileFormat
+  | SpreadsheetFileFormat
+  | "zip"
+  | "rar"
+  | "exe"
+  | "dmg"
+  | "apk"
+  | "html"
+  | "css"
+  | "js"
+  | "ts"
+  | "java"
+  | "json";
+
+type ImageFileFormat =
+  | "jpg"
+  | "jpeg"
+  | "png"
+  | "gif"
+  | "webp"
+  | "tiff"
+  | "svg"
+  | "ico";
+
+type AudioFileFormat = "mp3" | "mp4" | "wav" | "avi" | "mov" | "mpg";
+type DocumentFileFormat =
+  | "pdf"
+  | "docx"
+  | "doc"
+  | "txt"
+  | "rtf"
+  | "odt"
+  | "pages";
+type PresentationFileFormat =
+  | "pptx"
+  | "ppt"
+  | "ppsx"
+  | "pps"
+  | "potx"
+  | "pot"
+  | "odp"
+  | "key";
+type SpreadsheetFileFormat =
+  | "xlsx"
+  | "xls"
+  | "xlsm"
+  | "xltx"
+  | "xlt"
+  | "ods"
+  | "csv";
 export type MessagesTimeline = Record<string, Message[]>;
 export type EmojiType =
   | "angry"

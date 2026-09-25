@@ -26,7 +26,7 @@ export const AttachmentCard = ({
 
           <div className="flex-1 text-foreground-light-secondary dark:text-foreground-dark-secondary text-sm">
             <p className="font-semibold line-clamp-1">{attachment.name}</p>
-            <p className="text-xs">
+            <p className="text-xs line-clamp-1">
               {attachment.size}
               {!withMessage && (
                 <>

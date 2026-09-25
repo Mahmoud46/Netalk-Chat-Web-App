@@ -81,7 +81,7 @@ export const SharedFiles = ({
   return (
     <div className="flex gap-3 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
       <h2 className="font-semibold text-sm">Shared Files</h2>
-      <div className="flex gap-1.5 overflow-x-auto flex-col">
+      <div className="flex overflow-x-auto flex-col">
         {sharedFiles.map((file) => (
           <AttachmentCard
             attachment={file}
