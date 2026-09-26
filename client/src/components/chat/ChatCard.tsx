@@ -1,10 +1,12 @@
 import { useEffect, useState, type ReactNode } from "react";
-import type { Chat, User } from "../../types";
+import type { Chat, Gender, User } from "../../types";
 import { useAuth, useChat } from "../../hooks";
 import Label from "../common/Label";
 import ChatIcon, { MessageStatusIcon } from "../icons/ChatIcon";
 import { formatDate, formatTime12Hours } from "../../utils/format";
 import { useNavigate } from "react-router-dom";
+import { Avatar } from "../icons/Avatar";
+import { calculateAge } from "../../utils/helpers";
 
 export const ArchiveChatsCard = ({
   isSidebarOpen,
@@ -203,12 +205,22 @@ const ChatCard = ({
             <span className="bg-foreground-dark-success size-[0.55rem] aspect-square rounded-full"></span>
           </span>
         )}
-        <img
-          src={participant?.profileImage}
-          alt={participant?.firstName}
-          className="size-10 rounded-full object-cover"
-          loading="lazy"
-        />
+        {participant?.profileImage ? (
+          <img
+            src={participant?.profileImage}
+            alt={participant?.firstName}
+            className="size-10 rounded-full object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div className="size-10 rounded-full flex-none overflow-hidden">
+            <Avatar
+              gender={participant?.gender as Gender}
+              age={calculateAge(participant?.birthdate as string)}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
       </div>
       {isSidebarOpen && (
         <div className="flex flex-1 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">

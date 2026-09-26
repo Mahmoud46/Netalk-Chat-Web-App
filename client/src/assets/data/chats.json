@@ -32,10 +32,28 @@
     "unreadMessages": 10,
     "sharedMedia": [
       {
-        "fileId": "file_ui_003",
+        "fileId": "img_002",
+        "url": "/mocks/img_01.png",
+        "type": "video",
+        "name": "img_01.png",
+        "size": "896KB",
+        "duration": "2:30",
+        "createdAt": "2026-05-08T10:04:20.000Z"
+      },
+      {
+        "fileId": "img_001",
         "url": "/mocks/ui-kit-v2.jpg",
         "type": "image",
         "name": "ui-kit-v2.jpg",
+        "size": "896KB",
+
+        "createdAt": "2026-05-08T10:04:20.000Z"
+      },
+      {
+        "fileId": "img_003",
+        "url": "/mocks/img_02.png",
+        "type": "image",
+        "name": "img_02.png",
         "size": "896KB",
         "createdAt": "2026-05-08T10:04:20.000Z"
       }

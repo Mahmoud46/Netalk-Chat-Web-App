@@ -60,5 +60,8 @@
   ],
   "mutedUsers": ["z1l30QH8Tzmb7c_cgs8n81nYNsbLlP"],
   "archivedChats": ["chat_001", "chat_004"],
-  "blockedUsers": ["uovrvlZTOKBPEKHyJkkjnJsbGE0dmL"]
+  "blockedUsers": [
+    "uovrvlZTOKBPEKHyJkkjnJsbGE0dmL",
+    "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo"
+  ]
 }

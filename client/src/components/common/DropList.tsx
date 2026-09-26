@@ -50,7 +50,7 @@ export const ChatDropList = ({
   return (
     <div
       ref={dropListRef}
-      className={`absolute top-7/6 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit self-end rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute top-7/6 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit self-end rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
         <ChatIcon
@@ -70,12 +70,33 @@ export const ChatDropList = ({
 
 export const AttachmentDropList = ({
   isActive = false,
+  setIsActive,
 }: {
   isActive?: boolean;
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
 }): ReactNode => {
+  const dropListRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropListRef.current &&
+        !dropListRef.current.contains(event.target as Node)
+      ) {
+        setIsActive(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropListRef, setIsActive]);
+
   return (
     <div
-      className={`absolute bottom-7/6 left-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      ref={dropListRef}
+      className={`absolute bottom-7/6 left-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
         <ChatIcon label="image_plus" weight="thin" className="size-6.5" />
@@ -169,35 +190,33 @@ export const BlockedCardDropList = ({
 
 export const EmojiDropList = ({
   isActive = false,
+  setIsActive,
 }: {
   isActive?: boolean;
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
 }): ReactNode => {
+  const dropListRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropListRef.current &&
+        !dropListRef.current.contains(event.target as Node)
+      ) {
+        setIsActive(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropListRef, setIsActive]);
+
   return (
     <div
-      className={`absolute bottom-7/6 left-15 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-2xl p-2 grid grid-cols-4 scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
-    >
-      {EMOJIS_LIST.map((emoji) => (
-        <button
-          key={emoji}
-          className="group cursor-pointer p-2 flex-none text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary flex justify-start items-center rounded-xl"
-        >
-          <EmojiIcon
-            label={emoji}
-            className="size-6 group-hover:scale-150 ease-in-out transition-all"
-          />
-        </button>
-      ))}
-    </div>
-  );
-};
-export const EmojiDropListHorizontal = ({
-  isActive = false,
-}: {
-  isActive?: boolean;
-}): ReactNode => {
-  return (
-    <div
-      className={`absolute flex max-w-full bottom-5 left-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-2xl p-2 overflow-auto scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
+      className={`absolute bottom-7/6 left-15 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-2xl p-1.5 grid grid-cols-4 scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
+      ref={dropListRef}
     >
       {EMOJIS_LIST.map((emoji) => (
         <button
@@ -218,52 +237,113 @@ export const MessageDropList = ({
   isActive = false,
   isLeft = false,
   showTranslateButton = false,
+  setIsActive,
 }: {
   isActive?: boolean;
   isLeft?: boolean;
   showTranslateButton?: boolean;
-}): ReactNode => {
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const [activeEmojiDropList, setActiveEmojiDropList] =
+    useState<boolean>(false);
+  const dropListRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropListRef.current &&
+        !dropListRef.current.contains(event.target as Node)
+      ) {
+        setIsActive(false);
+        setActiveEmojiDropList(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropListRef, setIsActive]);
   return (
     <div
-      className={`absolute top-0 z-10 ${isLeft ? "left-12" : "right-12"} bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute z-20 top-full ${isLeft ? "left-0" : "right-0"} flex flex-col gap-2 items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
+      ref={dropListRef}
     >
-      <button
-        type="button"
-        className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+      {/* Emojis */}
+      <div className="flex flex-col">
+        {
+          <div
+            className={`${activeEmojiDropList ? "grid grid-cols-4" : "flex"} p-1.5 rounded-3xl bg-background-light-surface-3 dark:bg-background-dark-surface-3 shadow-lg dark:shadow-neutral-900/50`}
+          >
+            {(activeEmojiDropList ? EMOJIS_LIST : EMOJIS_LIST.slice(0, 4)).map(
+              (emoji) => (
+                <button
+                  key={emoji}
+                  className="group cursor-pointer p-2 flex-none text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary flex justify-start items-center rounded-xl"
+                >
+                  <EmojiIcon
+                    label={emoji}
+                    className="size-6 group-hover:scale-150 ease-in-out transition-all"
+                  />
+                </button>
+              ),
+            )}
+            <button
+              onClick={() => setActiveEmojiDropList((prev) => !prev)}
+              className="relative group cursor-pointer p-1.5 flex-none aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+            >
+              <CommonIcon
+                label="chevron_right"
+                weight="thin"
+                className={`size-7 flex-none ${activeEmojiDropList ? "rotate-270 hover:-translate-y-1" : "rotate-90 hover:translate-y-1"} ease-in-out transition-all`}
+              />
+              <Label text={activeEmojiDropList ? "Less" : "More"} />
+            </button>
+          </div>
+        }
+      </div>
+      {/* Options */}
+      <div
+        className={`relative bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${!activeEmojiDropList && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
       >
-        <ChatIcon label="reply" weight="thin" className="size-6.5" />
-        Reply
-      </button>
-      <button
-        type="button"
-        className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
-      >
-        <CommonIcon label="edit" weight="thin" className="size-6.5" />
-        Edit
-      </button>
-      <button
-        type="button"
-        className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
-      >
-        <CommonIcon label="copy" weight="thin" className="size-6.5" />
-        Copy
-      </button>
-      {showTranslateButton && (
         <button
           type="button"
           className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
         >
-          <CommonIcon label="translate" weight="thin" className="size-6.5" />
-          Translate
+          <ChatIcon label="reply" weight="thin" className="size-6.5" />
+          Reply
         </button>
-      )}
-      <button
-        type="button"
-        className="cursor-pointer p-2 text-sm text-foreground-light-danger dark:text-foreground-dark-danger hover:bg-background-light-danger dark:hover:bg-background-dark-danger w-full flex justify-start gap-3 items-center rounded-2xl"
-      >
-        <CommonIcon label="trash" weight="thin" className="size-6.5" />
-        Delete
-      </button>
+        <button
+          type="button"
+          className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+        >
+          <CommonIcon label="edit" weight="thin" className="size-6.5" />
+          Edit
+        </button>
+        <button
+          type="button"
+          className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+        >
+          <CommonIcon label="copy" weight="thin" className="size-6.5" />
+          Copy
+        </button>
+        {showTranslateButton && (
+          <button
+            type="button"
+            className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+          >
+            <CommonIcon label="translate" weight="thin" className="size-6.5" />
+            Translate
+          </button>
+        )}
+        <button
+          type="button"
+          className="cursor-pointer p-2 text-sm text-foreground-light-danger dark:text-foreground-dark-danger hover:bg-background-light-danger dark:hover:bg-background-dark-danger w-full flex justify-start gap-3 items-center rounded-2xl"
+        >
+          <CommonIcon label="trash" weight="thin" className="size-6.5" />
+          Delete
+        </button>
+      </div>
     </div>
   );
 };
@@ -493,6 +573,7 @@ export const SettingsSearchDropList = ({
   );
 };
 
+//
 export const SideProfilePanelDropList = ({
   isActive,
   isContact,
@@ -525,7 +606,7 @@ export const SideProfilePanelDropList = ({
   return (
     <div
       ref={dropListRef}
-      className={`absolute bottom-full z-10 right-1/3 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute bottom-full z-10 right-1/3 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       {isContact && (
         <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
@@ -545,7 +626,7 @@ export const SideProfilePanelDropList = ({
         className={`cursor-pointer p-2 text-sm ${isBlocked ? "text-foreground-dark-success hover:bg-background-dark-success" : "text-foreground-dark-danger hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl transition-all ease-in-out`}
       >
         <CommonIcon
-          label={isBlocked ? "" : "user_x"}
+          label={isBlocked ? "user_check" : "user_x"}
           weight="thin"
           className="size-6.5"
         />

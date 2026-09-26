@@ -11,6 +11,7 @@ import type {
   Attachment,
   Chat,
   CustomName,
+  Gender,
   ThemeMode,
   User,
 } from "../../types";
@@ -18,6 +19,8 @@ import { Link } from "react-router-dom";
 import { SideProfilePanelDropList } from "../common/DropList";
 import ChatIcon from "../icons/ChatIcon";
 import Loader from "../common/Loader";
+import { Avatar } from "../icons/Avatar";
+import { calculateAge } from "../../utils/helpers";
 
 const SharedMedia = lazy(() =>
     import("../layout/Snap").then((module) => ({
@@ -68,13 +71,21 @@ const ProfilePanelHeader = ({
       />
 
       <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 rounded-full side-porfile-panel-image [--shadow-color:#f9f1ff] dark:[--shadow-color:#16181d]">
-        {user?.profileImage && (
+        {user?.profileImage ? (
           <img
             src={user?.profileImage}
             alt="profile-image"
             loading="lazy"
             className="size-22 rounded-full"
           />
+        ) : (
+          <div className="size-22 rounded-full flex-none overflow-hidden">
+            <Avatar
+              gender={user?.gender as Gender}
+              age={calculateAge(user?.birthdate as string)}
+              className="w-full h-full object-cover"
+            />
+          </div>
         )}
         {user?.isActive && (
           <span className="absolute flex items-center p-1 aspect-square bg-background-light-surface-2 dark:bg-background-dark-surface-2 justify-center rounded-full right-1 bottom-1">

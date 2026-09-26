@@ -88,7 +88,10 @@ export default function Inbox(): ReactNode {
 
             <Suspense fallback={<Loader />}>
               {currentChat ? (
-                <ChatFeed currentChatId={currentChat._id} />
+                <ChatFeed
+                  currentChatId={currentChat._id}
+                  currentParticipant={currentParticipant}
+                />
               ) : (
                 <ChatFreshThreadWindow
                   currentParticipant={currentParticipant}
@@ -97,7 +100,7 @@ export default function Inbox(): ReactNode {
             </Suspense>
 
             <Suspense fallback={<Loader />}>
-              <MessageComposer />
+              <MessageComposer currentParticipant={currentParticipant} />
             </Suspense>
           </div>
 

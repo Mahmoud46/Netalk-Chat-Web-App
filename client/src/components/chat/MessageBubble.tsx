@@ -1,10 +1,13 @@
 import { useState, lazy } from "react";
 import { useAuth, useChat, useTheme } from "../../hooks";
-import type { Message } from "../../types";
+import type { Gender, Message } from "../../types";
 import { formatTime12Hours } from "../../utils/format";
 import { MessageStatusIcon } from "../icons/ChatIcon";
 import CommonIcon from "../icons/CommonIcon";
 import { MediaFile } from "../common/Attachment";
+import { Link } from "react-router-dom";
+import { Avatar } from "../icons/Avatar";
+import { calculateAge } from "../../utils/helpers";
 
 const AttachmentCard = lazy(() =>
     import("../common/Attachment").then((module) => ({
@@ -14,11 +17,6 @@ const AttachmentCard = lazy(() =>
   MessageDropList = lazy(() =>
     import("../common/DropList").then((module) => ({
       default: module.MessageDropList,
-    })),
-  ),
-  EmojiDropListHorizontal = lazy(() =>
-    import("../common/DropList").then((module) => ({
-      default: module.EmojiDropListHorizontal,
     })),
   );
 
@@ -36,19 +34,16 @@ const MessageBubble = ({
 
   const [isMessageDropListActive, setIsMessageDropListActive] =
     useState<boolean>(false);
-  const [isEmojieDropListActive, setIsEmojiDropListActive] =
-    useState<boolean>(false);
 
   const toggleMessageDropList = () =>
     setIsMessageDropListActive((prev) => !prev);
-  const toggleEmojiDropList = () => setIsEmojiDropListActive((prev) => !prev);
 
   return (
     <div
       className={`flex relative items-start gap-4 ${flowRight && "self-end"} ${!flowRight && "flex-row-reverse self-start"}`}
     >
       <button
-        className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isMessageDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary hover:scale-110"}`}
+        className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isMessageDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
         type="button"
         onClick={toggleMessageDropList}
       >
@@ -97,37 +92,49 @@ const MessageBubble = ({
               )}
             </div>
           </div>
-
-          <button
-            type="button"
-            className={`absolute -bottom-4 ${flowRight ? "left-0" : "right-0"} group cursor-pointer p-2 rounded-full bg-background-light-surface-3 dark:bg-background-dark-surface-3 hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
-            onClick={toggleEmojiDropList}
-          >
-            <CommonIcon
-              label="plus"
-              className={`size-4.5 ${isEmojieDropListActive && "rotate-45"} ease-in-out transition-all`}
-              soild={false}
-            />
-          </button>
-
-          <EmojiDropListHorizontal isActive={isEmojieDropListActive} />
         </div>
 
         {showProfileImage && (
-          <div
+          <Link
+            to={`/app/profile/${
+              flowRight ? authNUser.username : currentParticipant?.username
+            }`}
             className={`${flowRight ? "self-end translate-x-5 -translate-y-5" : "-translate-x-5 -translate-y-5"} p-2 bg-background-light-base dark:bg-background-dark-base rounded-full w-fit cursor-pointer`}
           >
-            <img
-              src={
-                flowRight
-                  ? authNUser.profileImage
-                  : currentParticipant?.profileImage
-              }
-              alt=""
-              loading="lazy"
-              className="size-7 rounded-full"
-            />
-          </div>
+            {flowRight ? (
+              authNUser.profileImage ? (
+                <img
+                  src={authNUser.profileImage}
+                  alt=""
+                  loading="lazy"
+                  className="size-7 rounded-full"
+                />
+              ) : (
+                <div className="size-7 rounded-full flex-none overflow-hidden">
+                  <Avatar
+                    gender={authNUser?.gender as Gender}
+                    age={calculateAge(authNUser?.birthdate as string)}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )
+            ) : currentParticipant?.profileImage ? (
+              <img
+                src={currentParticipant.profileImage}
+                alt=""
+                loading="lazy"
+                className="size-7 rounded-full"
+              />
+            ) : (
+              <div className="size-7 rounded-full flex-none overflow-hidden">
+                <Avatar
+                  gender={currentParticipant?.gender as Gender}
+                  age={calculateAge(currentParticipant?.birthdate as string)}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+          </Link>
         )}
       </div>
 
@@ -135,6 +142,7 @@ const MessageBubble = ({
         isActive={isMessageDropListActive}
         isLeft={flowRight}
         showTranslateButton={isMessageTranslateButtonShown}
+        setIsActive={setIsMessageDropListActive}
       />
     </div>
   );

@@ -10,6 +10,7 @@ import reply_icon from "../../assets/icons/chat/reply.png";
 import image_plus_icon from "../../assets/icons/chat/image_plus.png";
 import file_plus_icon from "../../assets/icons/chat/file_plus.png";
 import play_circle_alt_icon from "../../assets/icons/chat/play_circle_alt.png";
+import microphone_big_icon from "../../assets/icons/chat/microphone_big.png";
 
 import check_thin_icon from "../../assets/icons/chat/check_thin.png";
 import checks_thin_icon from "../../assets/icons/chat/checks_thin.png";
@@ -23,12 +24,14 @@ import reply_thin_icon from "../../assets/icons/chat/reply_thin.png";
 import image_plus_thin_icon from "../../assets/icons/chat/image_plus_thin.png";
 import file_plus_thin_icon from "../../assets/icons/chat/file_plus_thin.png";
 import play_circle_alt_thin_icon from "../../assets/icons/chat/play_circle_alt_thin.png";
+import microphone_big_thin_icon from "../../assets/icons/chat/microphone_big_thin.png";
 
 import check_bold_icon from "../../assets/icons/chat/check_bold.png";
 import reply_bold_icon from "../../assets/icons/chat/reply_bold.png";
 import image_plus_bold_icon from "../../assets/icons/chat/image_plus_bold.png";
 import file_plus_bold_icon from "../../assets/icons/chat/file_plus_bold.png";
 import play_circle_alt_bold_icon from "../../assets/icons/chat/play_circle_alt_bold.png";
+import microphone_big_bold_icon from "../../assets/icons/chat/microphone_big_bold.png";
 
 import archive_arrow_down_solid_thin_icon from "../../assets/icons/chat/archive_arrow_down_solid_thin.png";
 import archive_arrow_down_solid_icon from "../../assets/icons/chat/archive_arrow_down_solid.png";
@@ -38,6 +41,9 @@ import image_solid_icon from "../../assets/icons/chat/image_solid.png";
 import image_solid_thin_icon from "../../assets/icons/chat/image_solid_thin.png";
 import file_solid_icon from "../../assets/icons/chat/file_solid.png";
 import file_solid_thin_icon from "../../assets/icons/chat/file_solid_thin.png";
+import microphone_big_solid_icon from "../../assets/icons/chat/microphone_big_solid.png";
+import microphone_big_solid_thin_icon from "../../assets/icons/chat/microphone_big_solid_thin.png";
+import microphone_big_solid_bold_icon from "../../assets/icons/chat/microphone_big_solid_bold.png";
 
 import type { IconWeight, MessageStatus } from "../../types";
 
@@ -110,6 +116,26 @@ export default function ChatIcon({
               : weight == "thin"
                 ? archive_arrow_down_thin_icon
                 : archive_arrow_down_icon
+          }
+          loading="lazy"
+          className={`${solid ? "invert-100" : "main-icon"} ${className ?? ""}`}
+        />
+      );
+    case "microphone_big":
+      return (
+        <img
+          src={
+            solid
+              ? weight == "thin"
+                ? microphone_big_solid_thin_icon
+                : weight == "bold"
+                  ? microphone_big_solid_bold_icon
+                  : microphone_big_solid_icon
+              : weight == "thin"
+                ? microphone_big_thin_icon
+                : weight == "bold"
+                  ? microphone_big_bold_icon
+                  : microphone_big_icon
           }
           loading="lazy"
           className={`${solid ? "invert-100" : "main-icon"} ${className ?? ""}`}
