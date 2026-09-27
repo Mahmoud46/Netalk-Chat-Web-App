@@ -6,9 +6,10 @@ import CommonIcon from "../components/icons/CommonIcon";
 import Label from "../components/common/Label";
 import SocialIcon from "../components/icons/SocialIcon";
 import { formatPhoneNumber } from "../utils/format";
-import { copyToClipboard } from "../utils/helpers";
-import type { AuthNUser, ThemeMode, User } from "../types";
+import { calculateAge, copyToClipboard } from "../utils/helpers";
+import type { AuthNUser, Gender, ThemeMode, User } from "../types";
 import { useParams } from "react-router-dom";
+import { Avatar } from "../components/icons/Avatar";
 
 const CopyContactButton = lazy(() =>
   import("../components/common/DropList").then((module) => ({
@@ -189,12 +190,22 @@ export const ProfileHeader = ({
       />
       {/* Profile pic */}
       <div className="absolute group/avatar -bottom-19 rounded-full left-30 bg-background-light-base dark:bg-background-dark-base p-3 flex">
-        <img
-          src={authNUser?.profileImage}
-          alt="profile-image"
-          loading="lazy"
-          className="size-35 rounded-full"
-        />
+        {authNUser?.profileImage ? (
+          <img
+            src={authNUser?.profileImage}
+            alt="profile-image"
+            loading="lazy"
+            className="size-35 rounded-full"
+          />
+        ) : (
+          <div className="size-35 rounded-full flex-none overflow-hidden">
+            <Avatar
+              gender={authNUser?.gender as Gender}
+              age={calculateAge(authNUser?.birthdate as string)}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
 
         {isAuthNUser && (
           <div className="bg-background-light-base dark:bg-background-dark-base scale-0 group-hover/avatar:scale-100 p-2 absolute rounded-full bottom-0 right-0 transition-all ease-in-out">
@@ -248,7 +259,7 @@ export default function Profile(): ReactNode {
         isAuthNUser={isAuthNUser}
       />
       <div className="relative pl-30 pr-8 flex items-start gap-6">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 flex-1">
           <div className="flex flex-col gap-1">
             <h2 className="text-5xl">
               {isAuthNUser ? authNUser?.firstName : currentUser?.firstName}{" "}

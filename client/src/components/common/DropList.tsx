@@ -266,17 +266,22 @@ export const MessageDropList = ({
   }, [dropListRef, setIsActive]);
   return (
     <div
-      className={`absolute z-20 top-full ${isLeft ? "left-0" : "right-0"} flex flex-col gap-2 items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
+      className={`absolute z-20 -top-30 ${isLeft ? "left-0" : "right-0"} flex flex-col gap-2 items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
       ref={dropListRef}
     >
       {/* Emojis */}
       <div className="flex flex-col">
         {
           <div
-            className={`${activeEmojiDropList ? "grid grid-cols-4" : "flex"} p-1.5 rounded-3xl bg-background-light-surface-3 dark:bg-background-dark-surface-3 shadow-lg dark:shadow-neutral-900/50`}
+            className={`flex ${activeEmojiDropList ? "flex-col items-start" : "flex-row"} p-1.5 rounded-3xl bg-background-light-surface-3 dark:bg-background-dark-surface-3 shadow-lg dark:shadow-neutral-900/50`}
           >
-            {(activeEmojiDropList ? EMOJIS_LIST : EMOJIS_LIST.slice(0, 4)).map(
-              (emoji) => (
+            <div
+              className={`${activeEmojiDropList ? "grid grid-cols-4" : "flex"} max-h-20 overflow-auto`}
+            >
+              {(activeEmojiDropList
+                ? EMOJIS_LIST
+                : EMOJIS_LIST.slice(0, 4)
+              ).map((emoji) => (
                 <button
                   key={emoji}
                   className="group cursor-pointer p-2 flex-none text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary flex justify-start items-center rounded-xl"
@@ -286,8 +291,8 @@ export const MessageDropList = ({
                     className="size-6 group-hover:scale-150 ease-in-out transition-all"
                   />
                 </button>
-              ),
-            )}
+              ))}
+            </div>
             <button
               onClick={() => setActiveEmojiDropList((prev) => !prev)}
               className="relative group cursor-pointer p-1.5 flex-none aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"

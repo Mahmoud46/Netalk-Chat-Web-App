@@ -40,7 +40,7 @@ const MessageBubble = ({
 
   return (
     <div
-      className={`flex relative items-start gap-4 ${flowRight && "self-end"} ${!flowRight && "flex-row-reverse self-start"}`}
+      className={`flex relative items-start gap-2 ${flowRight && "self-end"} ${!flowRight && "flex-row-reverse self-start"}`}
     >
       <button
         className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isMessageDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
@@ -99,7 +99,7 @@ const MessageBubble = ({
             to={`/app/profile/${
               flowRight ? authNUser.username : currentParticipant?.username
             }`}
-            className={`${flowRight ? "self-end translate-x-5 -translate-y-5" : "-translate-x-5 -translate-y-5"} p-2 bg-background-light-base dark:bg-background-dark-base rounded-full w-fit cursor-pointer`}
+            className={`${flowRight ? "self-end translate-x-6 -translate-y-6" : "-translate-x-6 -translate-y-6"} p-2 bg-background-light-base dark:bg-background-dark-base rounded-full w-fit cursor-pointer`}
           >
             {flowRight ? (
               authNUser.profileImage ? (
@@ -107,10 +107,10 @@ const MessageBubble = ({
                   src={authNUser.profileImage}
                   alt=""
                   loading="lazy"
-                  className="size-7 rounded-full"
+                  className="size-8 rounded-full"
                 />
               ) : (
-                <div className="size-7 rounded-full flex-none overflow-hidden">
+                <div className="size-8 rounded-full flex-none overflow-hidden">
                   <Avatar
                     gender={authNUser?.gender as Gender}
                     age={calculateAge(authNUser?.birthdate as string)}
@@ -123,10 +123,10 @@ const MessageBubble = ({
                 src={currentParticipant.profileImage}
                 alt=""
                 loading="lazy"
-                className="size-7 rounded-full"
+                className="size-8 rounded-full"
               />
             ) : (
-              <div className="size-7 rounded-full flex-none overflow-hidden">
+              <div className="size-8 rounded-full flex-none overflow-hidden">
                 <Avatar
                   gender={currentParticipant?.gender as Gender}
                   age={calculateAge(currentParticipant?.birthdate as string)}

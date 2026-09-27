@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SIDEBAR_ITEMS } from "../../config/navigation";
 import { capitalize, isRouteActive } from "../../utils/helpers";
-import { useAuth, useTheme } from "../../hooks";
+import { useAuth, useChat, useTheme } from "../../hooks";
 import Label from "../common/Label";
 import { MainSidebarIcon } from "../icons/SidebarIcon";
 import { BrandIcon } from "../icons/BrandIcon";
@@ -12,6 +12,7 @@ export default function Sidebar(): ReactNode {
     lastItem = SIDEBAR_ITEMS.at(-1),
     { theme } = useTheme(),
     { authNUser, logout } = useAuth(),
+    { chats } = useChat(),
     isLastItemActive =
       isRouteActive(location.pathname, lastItem?.path ?? "/") &&
       location.pathname.split("/").includes(authNUser?.username ?? "");
@@ -31,9 +32,13 @@ export default function Sidebar(): ReactNode {
         <div className="flex flex-col items-center">
           {SIDEBAR_ITEMS.slice(0, 3).map((item) => {
             const isActive = isRouteActive(pathname, item.path),
-              isInboxOrArchive =
+              isInboxOrSettings =
                 isRouteActive(pathname, SIDEBAR_ITEMS[0].path) ||
-                isRouteActive(pathname, SIDEBAR_ITEMS[2].path);
+                isRouteActive(pathname, SIDEBAR_ITEMS[2].path),
+              isEmptyInbox =
+                isRouteActive(pathname, SIDEBAR_ITEMS[0].path) &&
+                chats.length == 0;
+
             return (
               <Link
                 key={item.path}
@@ -42,7 +47,7 @@ export default function Sidebar(): ReactNode {
                   ${
                     isActive
                       ? `sidebar-element-active translate-x-7 
-                    ${isInboxOrArchive ? "bg-background-light-surface-2 [--shadow-color:#f9f1ff] dark:bg-background-dark-surface-2 dark:[--shadow-color:#16181d]" : "bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115]"}`
+                    ${isInboxOrSettings ? (isEmptyInbox ? "bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115]" : "bg-background-light-surface-2 [--shadow-color:#f9f1ff] dark:bg-background-dark-surface-2 dark:[--shadow-color:#16181d]") : "bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115]"}`
                       : "hover:bg-background-light-secondary/50 dark:hover:bg-background-light-secondary/10"
                   } transition-all ease-in-out`}
               >

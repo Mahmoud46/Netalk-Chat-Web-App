@@ -262,5 +262,262 @@
     "text": "Share the link when you go live.",
     "status": "read",
     "createdAt": "2026-05-08T10:18:00.000Z"
+  },
+
+  {
+    "_id": "msg_07_01",
+    "chatId": "chat_07",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "Hey Karim! How's everything going?",
+    "status": "read",
+    "createdAt": "2026-09-27T09:12:00Z"
+  },
+  {
+    "_id": "msg_07_02",
+    "chatId": "chat_07",
+    "sender": "user_09",
+    "text": "Hey! Everything is going well. Just working on a new mobile project.",
+    "status": "read",
+    "createdAt": "2026-09-27T09:14:00Z"
+  },
+  {
+    "_id": "msg_07_03",
+    "chatId": "chat_07",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "Nice! What are you building?",
+    "status": "read",
+    "createdAt": "2026-09-27T09:16:00Z"
+  },
+  {
+    "_id": "msg_07_04",
+    "chatId": "chat_07",
+    "sender": "user_09",
+    "text": "A fitness app. I'm currently working on the navigation.",
+    "status": "read",
+    "createdAt": "2026-09-27T09:18:00Z"
+  },
+  {
+    "_id": "msg_08_01",
+    "chatId": "chat_08",
+    "sender": "user_10",
+    "text": "I just finished the new illustrations!",
+    "status": "read",
+    "createdAt": "2026-09-27T10:05:00Z"
+  },
+  {
+    "_id": "msg_08_02",
+    "chatId": "chat_08",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "That's awesome! Can I see them?",
+    "status": "read",
+    "createdAt": "2026-09-27T10:07:00Z"
+  },
+  {
+    "_id": "msg_08_03",
+    "chatId": "chat_08",
+    "sender": "user_10",
+    "text": "Sure, I'll send them over later today.",
+    "status": "delivered",
+    "createdAt": "2026-09-27T10:09:00Z"
+  },
+  {
+    "_id": "msg_09_01",
+    "chatId": "chat_09",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "Hey Ahmed, did you check the deployment?",
+    "status": "read",
+    "createdAt": "2026-09-27T10:42:00Z"
+  },
+  {
+    "_id": "msg_09_02",
+    "chatId": "chat_09",
+    "sender": "user_11",
+    "text": "Yes, everything looks good now.",
+    "status": "read",
+    "createdAt": "2026-09-27T10:44:00Z"
+  },
+  {
+    "_id": "msg_09_03",
+    "chatId": "chat_09",
+    "sender": "user_11",
+    "text": "I also fixed the environment variables.",
+    "status": "read",
+    "createdAt": "2026-09-27T10:45:00Z"
+  },
+  {
+    "_id": "msg_09_04",
+    "chatId": "chat_09",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "Perfect, thanks!",
+    "status": "read",
+    "createdAt": "2026-09-27T10:47:00Z"
+  },
+  {
+    "_id": "msg_10_01",
+    "chatId": "chat_10",
+    "sender": "user_12",
+    "text": "Are we still meeting at 6?",
+    "status": "read",
+    "createdAt": "2026-09-27T11:10:00Z"
+  },
+  {
+    "_id": "msg_10_02",
+    "chatId": "chat_10",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "Yes, 6 PM works perfectly.",
+    "status": "read",
+    "createdAt": "2026-09-27T11:12:00Z"
+  },
+  {
+    "_id": "msg_10_03",
+    "chatId": "chat_10",
+    "sender": "user_12",
+    "text": "Great! See you then 😊",
+    "status": "delivered",
+    "createdAt": "2026-09-27T11:13:00Z"
+  },
+  {
+    "_id": "msg_11_01",
+    "chatId": "chat_11",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "Have you started the new feature?",
+    "status": "read",
+    "createdAt": "2026-09-27T11:30:00Z"
+  },
+  {
+    "_id": "msg_11_02",
+    "chatId": "chat_11",
+    "sender": "user_13",
+    "text": "Not yet. I'm still going through the requirements.",
+    "status": "read",
+    "createdAt": "2026-09-27T11:33:00Z"
+  },
+  {
+    "_id": "msg_11_03",
+    "chatId": "chat_11",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "Makes sense. Let me know if anything is unclear.",
+    "status": "sent",
+    "createdAt": "2026-09-27T11:35:00Z"
+  },
+  {
+    "_id": "msg_12_01",
+    "chatId": "chat_12",
+    "sender": "user_14",
+    "text": "I found some interesting feedback from the users.",
+    "status": "read",
+    "createdAt": "2026-09-27T12:02:00Z"
+  },
+  {
+    "_id": "msg_12_02",
+    "chatId": "chat_12",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "Oh nice! What did they say?",
+    "status": "read",
+    "createdAt": "2026-09-27T12:04:00Z"
+  },
+  {
+    "_id": "msg_12_03",
+    "chatId": "chat_12",
+    "sender": "user_14",
+    "text": "Most of them liked the new navigation, but wanted a simpler settings page.",
+    "status": "delivered",
+    "createdAt": "2026-09-27T12:07:00Z"
+  },
+  {
+    "_id": "msg_13_01",
+    "chatId": "chat_13",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "How's the data pipeline going?",
+    "status": "read",
+    "createdAt": "2026-09-27T12:20:00Z"
+  },
+  {
+    "_id": "msg_13_02",
+    "chatId": "chat_13",
+    "sender": "user_15",
+    "text": "Pretty good. The processing time is much better now.",
+    "status": "read",
+    "createdAt": "2026-09-27T12:22:00Z"
+  },
+  {
+    "_id": "msg_13_03",
+    "chatId": "chat_13",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "That's great to hear!",
+    "status": "read",
+    "createdAt": "2026-09-27T12:23:00Z"
+  },
+  {
+    "_id": "msg_14_01",
+    "chatId": "chat_14",
+    "sender": "user_16",
+    "text": "Did you see the new frontend update?",
+    "status": "read",
+    "createdAt": "2026-09-27T12:40:00Z"
+  },
+  {
+    "_id": "msg_14_02",
+    "chatId": "chat_14",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "Not yet. Is it live already?",
+    "status": "read",
+    "createdAt": "2026-09-27T12:42:00Z"
+  },
+  {
+    "_id": "msg_14_03",
+    "chatId": "chat_14",
+    "sender": "user_16",
+    "text": "Yeah, take a look when you get a chance.",
+    "status": "read",
+    "createdAt": "2026-09-27T12:43:00Z"
+  },
+  {
+    "_id": "msg_15_01",
+    "chatId": "chat_15",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "Thanks for checking the security issue.",
+    "status": "read",
+    "createdAt": "2026-09-27T13:00:00Z"
+  },
+  {
+    "_id": "msg_15_02",
+    "chatId": "chat_15",
+    "sender": "user_17",
+    "text": "No problem! I found the source of it.",
+    "status": "read",
+    "createdAt": "2026-09-27T13:02:00Z"
+  },
+  {
+    "_id": "msg_15_03",
+    "chatId": "chat_15",
+    "sender": "user_17",
+    "text": "I'll send you the details once I write them up.",
+    "status": "delivered",
+    "createdAt": "2026-09-27T13:04:00Z"
+  },
+  {
+    "_id": "msg_16_01",
+    "chatId": "chat_16",
+    "sender": "user_18",
+    "text": "I have an idea for the content we discussed.",
+    "status": "read",
+    "createdAt": "2026-09-27T13:20:00Z"
+  },
+  {
+    "_id": "msg_16_02",
+    "chatId": "chat_16",
+    "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+    "text": "I'd love to hear it!",
+    "status": "read",
+    "createdAt": "2026-09-27T13:22:00Z"
+  },
+  {
+    "_id": "msg_16_03",
+    "chatId": "chat_16",
+    "sender": "user_18",
+    "text": "I'll send you a draft later today.",
+    "status": "delivered",
+    "createdAt": "2026-09-27T13:24:00Z"
   }
 ]

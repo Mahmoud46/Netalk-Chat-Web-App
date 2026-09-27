@@ -68,14 +68,16 @@ export default function Inbox(): ReactNode {
 
   return (
     <div className="h-full w-full flex">
-      <Suspense fallback={<Loader />}>
-        <ChatsSidebar
-          chats={filteredChats}
-          activeArchiveTab={activeArchiveTab}
-          setActiveArchiveTab={setActiveArchiveTab}
-          includesArchivedChats={(authNUser?.archivedChats ?? []).length > 0}
-        />
-      </Suspense>
+      {chats.length > 0 && (
+        <Suspense fallback={<Loader />}>
+          <ChatsSidebar
+            chats={filteredChats}
+            activeArchiveTab={activeArchiveTab}
+            setActiveArchiveTab={setActiveArchiveTab}
+            includesArchivedChats={(authNUser?.archivedChats ?? []).length > 0}
+          />
+        </Suspense>
+      )}
 
       {currentParticipant && (
         <>

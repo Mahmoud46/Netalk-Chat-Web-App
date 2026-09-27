@@ -1,5 +1,221 @@
 [
   {
+    "_id": "user_09",
+    "username": "KarimFathy48291",
+    "firstName": "Karim",
+    "lastName": "Fathy",
+    "birthdate": "1998-04-11",
+    "gender": "male",
+    "address": "Cairo, Egypt",
+    "title": "Mobile Developer",
+    "bio": "Building smooth experiences for mobile users.",
+    "contactInfo": {
+      "emails": ["karim.fathy48291@gmail.com"],
+      "phoneNumbers": ["+201700123456"],
+      "socialLinks": [
+        { "type": "github", "url": "https://github.com/karim" },
+        { "type": "linkedin", "url": "https://linkedin.com/in/karim" }
+      ]
+    },
+    "isActive": true,
+    "lastSeen": "2026-09-27T13:15:00Z"
+  },
+
+  {
+    "_id": "user_10",
+    "username": "JanaHany73164",
+    "firstName": "Jana",
+    "lastName": "Hany",
+    "birthdate": "2002-01-30",
+    "gender": "female",
+    "address": "Giza, Egypt",
+    "title": "Graphic Designer",
+    "bio": "Colors, shapes, and ideas turned into visuals.",
+    "contactInfo": {
+      "emails": ["janahany73164@outlook.com"],
+      "phoneNumbers": ["+201711234567"],
+      "socialLinks": [
+        { "type": "instagram", "url": "https://instagram.com/jana" },
+        { "type": "behance", "url": "https://behance.net/jana" }
+      ]
+    },
+    "isActive": true,
+    "lastSeen": "2026-09-27T13:05:00Z"
+  },
+
+  {
+    "_id": "user_11",
+    "username": "AhmedTarek59327",
+    "firstName": "Ahmed",
+    "lastName": "Tarek",
+    "birthdate": "1996-09-07",
+    "gender": "male",
+    "address": "Alexandria, Egypt",
+    "title": "DevOps Engineer",
+    "bio": "Automating workflows and keeping systems running.",
+    "contactInfo": {
+      "emails": ["ahmed.tarek59327@gmail.com"],
+      "phoneNumbers": ["+201722345678"],
+      "socialLinks": [{ "type": "github", "url": "https://github.com/ahmed" }]
+    },
+    "isActive": false,
+    "lastSeen": "2026-09-26T21:40:00Z"
+  },
+
+  {
+    "_id": "user_12",
+    "username": "SalmaOmar81405",
+    "firstName": "Salma",
+    "lastName": "Omar",
+    "birthdate": "2000-05-21",
+    "gender": "female",
+    "address": "Cairo, Egypt",
+    "title": "Product Manager",
+    "bio": "Connecting people, ideas, and products.",
+    "contactInfo": {
+      "emails": ["salma.omar81405@outlook.com"],
+      "phoneNumbers": ["+201733456789"],
+      "socialLinks": [
+        { "type": "linkedin", "url": "https://linkedin.com/in/salma" },
+        { "type": "website", "url": "https://salma.example.com" }
+      ]
+    },
+    "isActive": true,
+    "lastSeen": "2026-09-27T12:45:00Z"
+  },
+
+  {
+    "_id": "user_13",
+    "username": "MostafaAdel26738",
+    "firstName": "Mostafa",
+    "lastName": "Adel",
+    "birthdate": "1997-10-16",
+    "gender": "male",
+    "address": "Giza, Egypt",
+    "title": "Software Engineer",
+    "bio": "Always curious about how things work.",
+    "contactInfo": {
+      "emails": ["mostafa.adel26738@gmail.com"],
+      "phoneNumbers": ["+201744567890"],
+      "socialLinks": [
+        { "type": "github", "url": "https://github.com/mostafa" },
+        { "type": "linkedin", "url": "https://linkedin.com/in/mostafa" }
+      ]
+    },
+    "isActive": false,
+    "lastSeen": "2026-09-27T10:15:00Z"
+  },
+
+  {
+    "_id": "user_14",
+    "username": "FarahYassin90614",
+    "firstName": "Farah",
+    "lastName": "Yassin",
+    "birthdate": "2001-08-05",
+    "gender": "female",
+    "address": "Cairo, Egypt",
+    "title": "UX Researcher",
+    "bio": "Understanding people to create better experiences.",
+    "contactInfo": {
+      "emails": ["farah.yassin90614@outlook.com"],
+      "phoneNumbers": ["+201755678901"],
+      "socialLinks": [
+        { "type": "linkedin", "url": "https://linkedin.com/in/farah" }
+      ]
+    },
+    "isActive": true,
+    "lastSeen": "2026-09-27T13:10:00Z"
+  },
+
+  {
+    "_id": "user_15",
+    "username": "KhaledNabil35182",
+    "firstName": "Khaled",
+    "lastName": "Nabil",
+    "birthdate": "1995-12-28",
+    "gender": "male",
+    "address": "Alexandria, Egypt",
+    "title": "Data Engineer",
+    "bio": "Working with data from source to insight.",
+    "contactInfo": {
+      "emails": ["khaled.nabil35182@gmail.com"],
+      "phoneNumbers": ["+201766789012"],
+      "socialLinks": [
+        { "type": "github", "url": "https://github.com/khaled" },
+        { "type": "website", "url": "https://khaled.dev" }
+      ]
+    },
+    "isActive": true,
+    "lastSeen": "2026-09-27T11:55:00Z"
+  },
+
+  {
+    "_id": "user_16",
+    "username": "ReemAyman62493",
+    "firstName": "Reem",
+    "lastName": "Ayman",
+    "birthdate": "2002-03-12",
+    "gender": "female",
+    "address": "Giza, Egypt",
+    "title": "Frontend Developer",
+    "bio": "Making the web feel a little more delightful.",
+    "contactInfo": {
+      "emails": ["reem.ayman62493@outlook.com"],
+      "phoneNumbers": ["+201777890123"],
+      "socialLinks": [
+        { "type": "github", "url": "https://github.com/reem" },
+        { "type": "instagram", "url": "https://instagram.com/reem" }
+      ]
+    },
+    "isActive": true,
+    "lastSeen": "2026-09-27T13:25:00Z"
+  },
+
+  {
+    "_id": "user_17",
+    "username": "HassanMagdy41857",
+    "firstName": "Hassan",
+    "lastName": "Magdy",
+    "birthdate": "1998-06-09",
+    "gender": "male",
+    "address": "Cairo, Egypt",
+    "title": "Cybersecurity Analyst",
+    "bio": "Keeping applications and systems safer.",
+    "contactInfo": {
+      "emails": ["hassan.magdy41857@gmail.com"],
+      "phoneNumbers": ["+201788901234"],
+      "socialLinks": [
+        { "type": "linkedin", "url": "https://linkedin.com/in/hassan" },
+        { "type": "github", "url": "https://github.com/hassan" }
+      ]
+    },
+    "isActive": false,
+    "lastSeen": "2026-09-26T18:30:00Z"
+  },
+
+  {
+    "_id": "user_18",
+    "username": "DinaSherif73520",
+    "firstName": "Dina",
+    "lastName": "Sherif",
+    "birthdate": "2000-10-24",
+    "gender": "female",
+    "address": "Cairo, Egypt",
+    "title": "Content Strategist",
+    "bio": "Turning ideas into stories people remember.",
+    "contactInfo": {
+      "emails": ["dina.sherif73520@outlook.com"],
+      "phoneNumbers": ["+201799012345"],
+      "socialLinks": [
+        { "type": "instagram", "url": "https://instagram.com/dina" },
+        { "type": "website", "url": "https://dina.example.com" }
+      ]
+    },
+    "isActive": true,
+    "lastSeen": "2026-09-27T12:20:00Z"
+  },
+
+  {
     "_id": "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo",
     "username": "ahmedhassan458",
     "firstName": "Ahmed",
@@ -62,6 +278,7 @@
     "lastName": "Adel",
     "birthdate": "1995-01-18T00:00:00.000Z",
     "gender": "male",
+    "address": "Riyadh, KSA",
     "title": "Senior Backend Engineer",
     "bio": "Backend Engineer specializing in building scalable Node.js microservices, robust RESTful APIs, and cloud-native architecture.",
     "profileImage": "/profile_pics/mohamed_adel.png",

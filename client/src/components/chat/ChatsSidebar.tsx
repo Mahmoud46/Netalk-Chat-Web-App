@@ -1,4 +1,4 @@
-import React, { Suspense, useState, type ReactNode } from "react";
+import React, { Suspense, useEffect, useState, type ReactNode } from "react";
 
 import Loader from "../common/Loader";
 import type { Chat } from "../../types";
@@ -26,6 +26,24 @@ const ChatsSidebar = ({
   const [open, setOpen] = useState<boolean>(false);
   const toggleActive = () => setOpen((prev) => !prev);
   const toggleActiveArchiveTab = () => setActiveArchiveTab((prev) => !prev);
+
+  const [chatsQueueStart, setChatsQueueStart] = useState<number>(0),
+    [chatsQueueEnd, setChatsQueueEnd] = useState<number>(5);
+  useEffect(() => {
+    const resetQueuePointers = async () => {
+      setChatsQueueStart(0);
+      setChatsQueueEnd(5);
+    };
+    resetQueuePointers();
+  }, [activeArchiveTab]);
+  const queueDown = () => {
+      setChatsQueueStart((prev) => prev + 1);
+      setChatsQueueEnd((prev) => prev + 1);
+    },
+    queueUp = () => {
+      setChatsQueueStart((prev) => prev - 1);
+      setChatsQueueEnd((prev) => prev - 1);
+    };
   return (
     <aside
       className={`flex-none ${open ? "min-w-70 items-start pl-12" : "min-w-20 items-center"} transition-all ease-in-out duration-300 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 pl-10 flex flex-col gap-4`}
@@ -49,7 +67,7 @@ const ChatsSidebar = ({
             {open && (
               <input
                 type="text"
-                className="w-full text-sm h-full outline-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-1.5 pl-12 text-foreground-light-secondary dark:text-foreground-dark-secondary rounded-3xl focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+                className="w-full text-sm h-full outline-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-1.5 pl-11 text-foreground-light-secondary dark:text-foreground-dark-secondary rounded-3xl focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
                 placeholder="Search chat"
               />
             )}
@@ -77,12 +95,38 @@ const ChatsSidebar = ({
             />
           </Suspense>
         )}
-
-        {chats.map((chat) => (
+        {chatsQueueStart > 0 && (
+          <button
+            onClick={queueUp}
+            className="relative self-center group cursor-pointer p-1.5 flex-none aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          >
+            <CommonIcon
+              label="chevron_right"
+              weight="thin"
+              className={`size-7 flex-none rotate-270 hover:-translate-y-1 ease-in-out transition-all`}
+            />
+            <Label text="Up" isSide={true} />
+          </button>
+        )}
+        {chats.slice(chatsQueueStart, chatsQueueEnd).map((chat) => (
           <Suspense fallback={<Loader />} key={chat._id}>
             <ChatCard chat={chat} isSidebarOpen={open} />
           </Suspense>
         ))}
+
+        {chatsQueueEnd <= chats.length - 1 && (
+          <button
+            onClick={queueDown}
+            className="relative self-center group cursor-pointer p-1.5 flex-none aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          >
+            <CommonIcon
+              label="chevron_right"
+              weight="thin"
+              className={`size-7 flex-none rotate-90 hover:translate-y-1 ease-in-out transition-all`}
+            />
+            <Label text="Down" isSide={true} />
+          </button>
+        )}
       </ul>
     </aside>
   );
