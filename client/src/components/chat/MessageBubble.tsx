@@ -79,7 +79,7 @@ const MessageBubble = ({
             >
               <time
                 dateTime={message.createdAt}
-                className={`text-xs ${message.status == "read" && flowRight ? "text-foreground-light-primary" : "text-foreground-light-secondary dark:text-foreground-dark-secondary"}`}
+                className={`text-xs leading-6 ${message.status == "read" && flowRight ? "text-foreground-light-primary" : "text-foreground-light-secondary dark:text-foreground-dark-secondary"}`}
               >
                 {formatTime12Hours(message.createdAt)}
               </time>
@@ -99,7 +99,7 @@ const MessageBubble = ({
             to={`/app/profile/${
               flowRight ? authNUser.username : currentParticipant?.username
             }`}
-            className={`${flowRight ? "self-end translate-x-6 -translate-y-6" : "-translate-x-6 -translate-y-6"} p-2 bg-background-light-base dark:bg-background-dark-base rounded-full w-fit cursor-pointer`}
+            className={`${flowRight ? "self-end translate-x-6 -translate-y-6 message-image-right" : "message-image-left -translate-x-6 -translate-y-6"} p-1.5 bg-background-light-base dark:bg-background-dark-base rounded-full w-fit cursor-pointer [--shadow-color:#fff] dark:[--shadow-color:#0f1115]`}
           >
             {flowRight ? (
               authNUser.profileImage ? (

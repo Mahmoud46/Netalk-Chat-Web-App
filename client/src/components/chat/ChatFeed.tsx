@@ -47,7 +47,7 @@ const ChatFeed = ({
           Object.entries(messagesTimeline).map(([date, messages]) => (
             <div
               key={date}
-              className="flex flex-col gap-3 px-4 max-w-200 w-full"
+              className="flex flex-col gap-1.5 px-4 max-w-200 w-full"
             >
               <time
                 dateTime={date}
