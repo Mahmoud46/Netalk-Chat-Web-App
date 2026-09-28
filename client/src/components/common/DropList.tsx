@@ -111,18 +111,40 @@ export const AttachmentDropList = ({
 };
 
 export const ContactEntryDropList = ({
+  contactEntry,
   isActive = false,
+  setIsActive,
 }: {
+  contactEntry: User | null;
   isActive?: boolean;
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
 }): ReactNode => {
-  const { currentContactEntry } = useChat(),
-    { authNUser } = useAuth(),
+  const { authNUser } = useAuth(),
     isBlocked: boolean =
-      authNUser?.blockedUsers.includes(currentContactEntry?._id ?? "") ?? false,
+      authNUser?.blockedUsers.includes(contactEntry?._id ?? "") ?? false,
     isMuted: boolean =
-      authNUser?.mutedUsers.includes(currentContactEntry?._id ?? "") ?? false;
+      authNUser?.mutedUsers.includes(contactEntry?._id ?? "") ?? false;
+
+  const dropListRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropListRef.current &&
+        !dropListRef.current.contains(event.target as Node)
+      ) {
+        setIsActive(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropListRef, setIsActive]);
   return (
     <div
+      ref={dropListRef}
       className={`absolute top-0 z-10 -right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
@@ -142,10 +164,10 @@ export const ContactEntryDropList = ({
         {isMuted ? "Unmute" : "Mute"}
       </button>
       <button
-        className={`cursor-pointer p-2 text-sm text-foreground-light-danger dark:text-foreground-dark-danger ${isBlocked ? "hover:bg-green-400/10 dark:hover:bg-green-700/20" : "hover:bg-background-light-danger dark:hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl`}
+        className={`cursor-pointer p-2 text-sm text-foreground-light-danger dark:text-foreground-dark-danger ${isBlocked ? "hover:bg-green-400/10 dark:hover:bg-green-700/20 text-foreground-light-success dark:text-foreground-dark-success" : "hover:bg-background-light-danger dark:hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl`}
       >
         <CommonIcon
-          label={isBlocked ? "" : "user_x"}
+          label={isBlocked ? "user_check" : "user_x"}
           weight="thin"
           className="size-6.5"
         />

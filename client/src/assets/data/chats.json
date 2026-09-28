@@ -11,7 +11,7 @@
       "sender": "U5k1b9f49R0MXXj3bUDEVqPkhKTP1r",
       "text": "Perfect, that will scale better.",
       "status": "delivered",
-      "createdAt": "2026-05-08T09:49:00.000Z"
+      "createdAt": "2026-09-27T09:49:00.000Z"
     },
     "unreadMessages": 1
   },
@@ -27,7 +27,7 @@
       "sender": "j28m8o6naMLU4863413jyRNbD_FHvH",
       "text": "Perfect, this version is exactly what we needed.",
       "status": "read",
-      "createdAt": "2026-05-08T10:15:00.000Z"
+      "createdAt": "2026-09-27T10:15:00.000Z"
     },
     "unreadMessages": 10,
     "sharedMedia": [
@@ -38,7 +38,7 @@
         "name": "img_01.png",
         "size": "896KB",
         "duration": "2:30",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "img_001",
@@ -47,7 +47,7 @@
         "name": "ui-kit-v2.jpg",
         "size": "896KB",
 
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "img_003",
@@ -55,7 +55,7 @@
         "type": "image",
         "name": "img_02.png",
         "size": "896KB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       }
     ],
     "sharedFiles": [
@@ -65,7 +65,7 @@
         "type": "file",
         "name": "ui-kit-v2.fig",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_003",
@@ -73,7 +73,7 @@
         "type": "file",
         "name": "ui-kit-v2.txt",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_004",
@@ -81,7 +81,7 @@
         "type": "file",
         "name": "ui-kit-v2.psd",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_005",
@@ -89,7 +89,7 @@
         "type": "file",
         "name": "ui-kit-v2.ai",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_006",
@@ -97,7 +97,7 @@
         "type": "file",
         "name": "ui-kit-v2.aep",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_007",
@@ -105,7 +105,7 @@
         "type": "file",
         "name": "ui-kit-v2.sketch",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_008",
@@ -113,7 +113,7 @@
         "type": "file",
         "name": "ui-kit-v2.cdr",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_009",
@@ -121,7 +121,7 @@
         "type": "file",
         "name": "ui-kit-v2.c4d",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_010",
@@ -129,7 +129,7 @@
         "type": "file",
         "name": "ui-kit-v2.blend",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_011",
@@ -137,7 +137,7 @@
         "type": "file",
         "name": "ui-kit-v2.jpg",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_012",
@@ -145,7 +145,7 @@
         "type": "file",
         "name": "ui-kit-v2.jpeg",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_013",
@@ -153,7 +153,7 @@
         "type": "file",
         "name": "ui-kit-v2.png",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_014",
@@ -161,7 +161,7 @@
         "type": "file",
         "name": "ui-kit-v2.gif",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_015",
@@ -169,7 +169,7 @@
         "type": "file",
         "name": "ui-kit-v2.webp",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_016",
@@ -177,7 +177,7 @@
         "type": "file",
         "name": "ui-kit-v2.tiff",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_017",
@@ -185,7 +185,7 @@
         "type": "file",
         "name": "ui-kit-v2.svg",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_018",
@@ -193,7 +193,7 @@
         "type": "file",
         "name": "ui-kit-v2.ico",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_019",
@@ -201,7 +201,7 @@
         "type": "file",
         "name": "ui-kit-v2.mp3",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_020",
@@ -209,7 +209,7 @@
         "type": "file",
         "name": "ui-kit-v2.wav",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_021",
@@ -217,7 +217,7 @@
         "type": "file",
         "name": "ui-kit-v2.avi",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_022",
@@ -225,7 +225,7 @@
         "type": "file",
         "name": "ui-kit-v2.mov",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_023",
@@ -233,7 +233,7 @@
         "type": "file",
         "name": "ui-kit-v2.mp4",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_024",
@@ -241,7 +241,7 @@
         "type": "file",
         "name": "ui-kit-v2.mpg",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_025",
@@ -249,7 +249,7 @@
         "type": "file",
         "name": "ui-kit-v2.pdf",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_026",
@@ -257,7 +257,7 @@
         "type": "file",
         "name": "ui-kit-v2.docx",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_027",
@@ -265,7 +265,7 @@
         "type": "file",
         "name": "ui-kit-v2.pptx",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_028",
@@ -273,7 +273,7 @@
         "type": "file",
         "name": "ui-kit-v2.xlsx",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_029",
@@ -281,7 +281,7 @@
         "type": "file",
         "name": "ui-kit-v2.csv",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_030",
@@ -289,7 +289,7 @@
         "type": "file",
         "name": "ui-kit-v2.zip",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_031",
@@ -297,7 +297,7 @@
         "type": "file",
         "name": "ui-kit-v2.exe",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_032",
@@ -305,7 +305,7 @@
         "type": "file",
         "name": "ui-kit-v2.dmg",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_033",
@@ -313,7 +313,7 @@
         "type": "file",
         "name": "ui-kit-v2.apk",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_034",
@@ -321,7 +321,7 @@
         "type": "file",
         "name": "ui-kit-v2.html",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_035",
@@ -329,7 +329,7 @@
         "type": "file",
         "name": "ui-kit-v2.css",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_036",
@@ -337,7 +337,7 @@
         "type": "file",
         "name": "ui-kit-v2.js",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_037",
@@ -345,7 +345,7 @@
         "type": "file",
         "name": "ui-kit-v2.ts",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_038",
@@ -353,7 +353,7 @@
         "type": "file",
         "name": "ui-kit-v2.java",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       },
       {
         "fileId": "file_ui_039",
@@ -361,7 +361,7 @@
         "type": "file",
         "name": "ui-kit-v2.json",
         "size": "5.8MB",
-        "createdAt": "2026-05-08T10:04:20.000Z"
+        "createdAt": "2026-09-27T10:04:20.000Z"
       }
     ]
   },
@@ -377,7 +377,7 @@
       "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
       "text": "Then you should store refresh tokens in httpOnly cookies.",
       "status": "delivered",
-      "createdAt": "2026-05-08T08:28:00.000Z"
+      "createdAt": "2026-09-27T08:28:00.000Z"
     },
     "unreadMessages": 0
   },
@@ -393,7 +393,7 @@
       "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
       "text": "Yes, I’ll adjust contrast if needed.",
       "status": "sent",
-      "createdAt": "2026-05-08T07:53:00.000Z"
+      "createdAt": "2026-09-27T07:53:00.000Z"
     },
     "unreadMessages": 0
   },
@@ -409,7 +409,7 @@
       "sender": "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo",
       "text": "Perfect, let’s deploy soon.",
       "status": "read",
-      "createdAt": "2026-05-08T06:19:00.000Z"
+      "createdAt": "2026-09-27T06:19:00.000Z"
     },
     "unreadMessages": 0
   },
@@ -425,18 +425,21 @@
       "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
       "text": "Share the link when you go live.",
       "status": "read",
-      "createdAt": "2026-05-08T10:18:00.000Z"
+      "createdAt": "2026-09-27T10:18:00.000Z"
     },
     "unreadMessages": 0
   },
 
   {
     "_id": "chat_07",
-    "participants": ["kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf", "user_09"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "YzWOFOI7JokpD9K7E-EcJD0IYOXheW"
+    ],
     "lastMessage": {
       "_id": "msg_07_04",
       "chatId": "chat_07",
-      "sender": "user_09",
+      "sender": "YzWOFOI7JokpD9K7E-EcJD0IYOXheW",
       "text": "A fitness app. I'm currently working on the navigation.",
       "status": "read",
       "createdAt": "2026-09-27T09:18:00Z"
@@ -446,11 +449,14 @@
 
   {
     "_id": "chat_08",
-    "participants": ["kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf", "user_10"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "ToHF5pPsSXN8R2cFDZVcEuRNcAQwcq"
+    ],
     "lastMessage": {
       "_id": "msg_08_03",
       "chatId": "chat_08",
-      "sender": "user_10",
+      "sender": "ToHF5pPsSXN8R2cFDZVcEuRNcAQwcq",
       "text": "Sure, I'll send them over later today.",
       "status": "delivered",
       "createdAt": "2026-09-27T10:09:00Z"
@@ -460,7 +466,10 @@
 
   {
     "_id": "chat_09",
-    "participants": ["kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf", "user_11"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "l-lvHOALvsF4eP0kubX-fE6gVIFmWA"
+    ],
     "lastMessage": {
       "_id": "msg_09_04",
       "chatId": "chat_09",
@@ -474,11 +483,14 @@
 
   {
     "_id": "chat_10",
-    "participants": ["kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf", "user_12"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "uuDKB6BXxd5xWLjd6-FG962g3b9NFy"
+    ],
     "lastMessage": {
       "_id": "msg_10_03",
       "chatId": "chat_10",
-      "sender": "user_12",
+      "sender": "uuDKB6BXxd5xWLjd6-FG962g3b9NFy",
       "text": "Great! See you then 😊",
       "status": "delivered",
       "createdAt": "2026-09-27T11:13:00Z"
@@ -488,7 +500,10 @@
 
   {
     "_id": "chat_11",
-    "participants": ["kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf", "user_13"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "oO-mqzHA0-_qGDv5iXa96_if9el-4_"
+    ],
     "lastMessage": {
       "_id": "msg_11_03",
       "chatId": "chat_11",
@@ -502,11 +517,14 @@
 
   {
     "_id": "chat_12",
-    "participants": ["kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf", "user_14"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "KyfrPwYjohjdwYVBk43K6oSGws9HgP"
+    ],
     "lastMessage": {
       "_id": "msg_12_03",
       "chatId": "chat_12",
-      "sender": "user_14",
+      "sender": "KyfrPwYjohjdwYVBk43K6oSGws9HgP",
       "text": "Most of them liked the new navigation, but wanted a simpler settings page.",
       "status": "delivered",
       "createdAt": "2026-09-27T12:07:00Z"
@@ -516,7 +534,10 @@
 
   {
     "_id": "chat_13",
-    "participants": ["kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf", "user_15"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "G7wXgXYt-UHIVGSLDpkMNnv22S1xY2"
+    ],
     "lastMessage": {
       "_id": "msg_13_03",
       "chatId": "chat_13",
@@ -530,11 +551,14 @@
 
   {
     "_id": "chat_14",
-    "participants": ["kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf", "user_16"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "HHydZKtMMyRGJFEVveF5DgtEAK6y37"
+    ],
     "lastMessage": {
       "_id": "msg_14_03",
       "chatId": "chat_14",
-      "sender": "user_16",
+      "sender": "HHydZKtMMyRGJFEVveF5DgtEAK6y37",
       "text": "Yeah, take a look when you get a chance.",
       "status": "read",
       "createdAt": "2026-09-27T12:43:00Z"
@@ -544,11 +568,14 @@
 
   {
     "_id": "chat_15",
-    "participants": ["kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf", "user_17"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "lLpOM7DrMC0QsSc9galQL4Mi0FF_7y"
+    ],
     "lastMessage": {
       "_id": "msg_15_03",
       "chatId": "chat_15",
-      "sender": "user_17",
+      "sender": "lLpOM7DrMC0QsSc9galQL4Mi0FF_7y",
       "text": "I'll send you the details once I write them up.",
       "status": "delivered",
       "createdAt": "2026-09-27T13:04:00Z"
@@ -558,11 +585,14 @@
 
   {
     "_id": "chat_16",
-    "participants": ["kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf", "user_18"],
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "8fLC4iC-1ndmZ1lfdkv5c-0F25kzvi"
+    ],
     "lastMessage": {
       "_id": "msg_16_03",
       "chatId": "chat_16",
-      "sender": "user_18",
+      "sender": "8fLC4iC-1ndmZ1lfdkv5c-0F25kzvi",
       "text": "I'll send you a draft later today.",
       "status": "delivered",
       "createdAt": "2026-09-27T13:24:00Z"

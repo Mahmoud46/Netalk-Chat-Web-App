@@ -16,8 +16,8 @@ const OnlineContactEntries = ({
 }: {
   onlineContactEntries: User[];
 }): ReactNode => {
-  const [searchOpen, setSearchOpen] = useState<boolean>(false);
-  const toggleSearchOpen = () => setSearchOpen((prev) => !prev);
+  const [open, setOpen] = useState<boolean>(false);
+  const toggleActive = () => setOpen((prev) => !prev);
   return (
     <div className="sticky top-0 w-full flex flex-col gap-3 z-1 max-w-200">
       <div className="gap-8 bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-1.5 rounded-full w-full flex items-center justify-between">
@@ -28,25 +28,36 @@ const OnlineContactEntries = ({
             </Suspense>
           ))}
         </div>
-        <div
-          className={`z-10 rounded-full transition-all ease-in-out duration-300 ${searchOpen ? "flex items-center pr-2 gap-2 bg-background-light-surface-2 dark:bg-background-dark-surface-2" : "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
-        >
-          <button
-            className={`relative group p-1.5 cursor-pointer rounded-full transition-all ease-in-out hover:scale-110`}
-            onClick={toggleSearchOpen}
+        <div className="flex">
+          <div
+            className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center mr-1.5" : "flex-none"}`}
           >
-            <CommonIcon
-              label={searchOpen ? "search_x" : "search"}
-              className="size-7"
-              weight="thin"
-            />
-            <Label text={searchOpen ? "Close" : "Search"} />
+            <button
+              className={`${open ? "absolute opacity-50 hover:opacity-100" : "relative"} hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary group flex-none p-1.5 cursor-pointer rounded-full transition-all ease-in-out`}
+              onClick={toggleActive}
+            >
+              <CommonIcon
+                label={open ? "chevron_right" : "search"}
+                className={`size-7 ${open && "group-hover:translate-x-1 transition-all ease-in-out"}`}
+                weight="thin"
+              />
+              <Label text={open ? "Close" : "Search"} />
+            </button>
+            {open && (
+              <input
+                type="text"
+                className="w-full text-sm h-full outline-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-1.5 pl-11 text-foreground-light-secondary dark:text-foreground-dark-secondary rounded-3xl focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+                placeholder="Search contacts..."
+              />
+            )}
+          </div>
+          <button
+            type="button"
+            className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          >
+            <CommonIcon label="plus" weight="thin" className="size-6" />
+            <Label text="Add" />
           </button>
-          <input
-            type="text"
-            className={`flex-1 text-sm outline-none text-foreground-light-secondary dark:text-foreground-dark-secondary transition-all ease-in-out ${searchOpen ? "max-w-80 min-w-60 leading-8" : "max-w-0 min-w-0"}`}
-            placeholder={searchOpen ? "Search contact" : ""}
-          />
         </div>
       </div>
     </div>

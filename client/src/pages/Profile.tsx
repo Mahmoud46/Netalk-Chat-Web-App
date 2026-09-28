@@ -21,30 +21,40 @@ export const UsernameHolder = ({
   username = "",
   isXs = false,
   className = "",
+  isTopProfile = true,
 }: {
   username?: string;
   isXs?: boolean;
   className?: string;
+  isTopProfile?: boolean;
 }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
   return (
     <div
-      className={`group flex relative w-fit items-center opacity-80 hover:opacity-100 cursor-pointer transition-all ease-in-out pt-2 pl-0 ${isXs ? "text-xs" : "text-sm"} text-foreground-light-secondary dark:text-foreground-dark-secondary ${className}`}
-      onClick={async () => {
-        const copied = await copyToClipboard(username);
-        setIsCopied(copied);
-
-        setTimeout(() => {
-          setIsCopied(false);
-        }, 1000);
-      }}
+      className={
+        isTopProfile
+          ? "absolute group top-0 left-1/2 bg-background-light-base dark:bg-background-dark-base -translate-x-1/2 p-4 pt-2 rounded-b-3xl username-profile-corners [--shadow-color:#ffffff] dark:[--shadow-color:#0f1115]"
+          : ""
+      }
     >
-      <span className="font-semibold">@{username}</span>
+      <div
+        className={`flex relative w-fit items-center opacity-80 hover:opacity-100 cursor-pointer transition-all ease-in-out pt-2 pl-0 ${isXs ? "text-xs" : "text-sm"} text-foreground-light-secondary dark:text-foreground-dark-secondary ${className}`}
+        onClick={async () => {
+          const copied = await copyToClipboard(username);
+          setIsCopied(copied);
+
+          setTimeout(() => {
+            setIsCopied(false);
+          }, 1000);
+        }}
+      >
+        <span className="font-semibold">@{username}</span>
+        <CommonIcon
+          label={isCopied ? "copy_check" : "copy"}
+          className={`${isXs ? "size-4 ml-1" : "size-4.5 ml-2"}`}
+        />
+      </div>
       <Label text={isCopied ? "Copied" : "Copy"} />
-      <CommonIcon
-        label={isCopied ? "copy_check" : "copy"}
-        className={`${isXs ? "size-4 ml-1" : "size-4.5 ml-2"}`}
-      />
     </div>
   );
 };
@@ -167,18 +177,17 @@ export const ProfileHeader = ({
   isAuthNUser: boolean;
 }) => {
   return (
-    <div className="h-60 w-full relative cursor-pointer group/cover">
+    <div className="h-60 w-full relative cursor-pointer">
       {isAuthNUser && (
-        <div className="absolute top-0 right-0 opacity-0 group-hover/cover:opacity-100 bg-background-light-base dark:bg-background-dark-base p-2 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
-          <button className="relative group cursor-pointer scale-0 group-hover/cover:scale-100 z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+        <div className="absolute top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+          <button className="relative group cursor-pointer z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
             <CommonIcon label="edit" weight="thin" className="size-6" />
             <Label text="Edit" />
           </button>
         </div>
       )}
-      <div className="absolute top-0 left-1/2 bg-background-light-base dark:bg-background-dark-base -translate-x-1/2 p-4 pt-2 rounded-b-3xl">
-        <UsernameHolder username={authNUser?.username} />
-      </div>
+      <UsernameHolder username={authNUser?.username} />
+
       <img
         src={
           authNUser?.profileCover ??
@@ -189,7 +198,7 @@ export const ProfileHeader = ({
         className="h-full w-full rounded-b-3xl object-cover"
       />
       {/* Profile pic */}
-      <div className="absolute group/avatar -bottom-19 rounded-full left-30 bg-background-light-base dark:bg-background-dark-base p-3 flex">
+      <div className="absolute -bottom-19 rounded-full left-30 bg-background-light-base dark:bg-background-dark-base p-3 flex profile-image-corners [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
         {authNUser?.profileImage ? (
           <img
             src={authNUser?.profileImage}
@@ -208,7 +217,7 @@ export const ProfileHeader = ({
         )}
 
         {isAuthNUser && (
-          <div className="bg-background-light-base dark:bg-background-dark-base scale-0 group-hover/avatar:scale-100 p-2 absolute rounded-full bottom-0 right-0 transition-all ease-in-out">
+          <div className="bg-background-light-base dark:bg-background-dark-base p-1.5 absolute rounded-full bottom-1 right-1 transition-all ease-in-out">
             <button className="relative group cursor-pointer z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
               <CommonIcon label="edit" weight="thin" className="size-6" />
               <Label text="Edit" />
@@ -217,7 +226,7 @@ export const ProfileHeader = ({
         )}
       </div>
       {/* Header buttons */}
-      <div className="absolute bg-background-light-base dark:bg-background-dark-base bottom-0 right-0 p-2 rounded-tl-3xl">
+      <div className="absolute bottom-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-tl-3xl bottom-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
         {isAuthNUser && (
           <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
             <CommonIcon label="cog" weight="thin" className="size-6.5" />
@@ -227,6 +236,15 @@ export const ProfileHeader = ({
         <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
           <CommonIcon label="share" weight="thin" className="size-6.5" />
           <Label text="Share" />
+        </button>
+        <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+          <CommonIcon
+            label="dots_vertical_rounded"
+            weight="thin"
+            soild={true}
+            className="size-6.5"
+          />
+          <Label text="More" />
         </button>
       </div>
     </div>

@@ -4,24 +4,21 @@ import type { User } from "../types";
 
 import React from "react";
 import Loader from "../components/common/Loader";
+import ContactsEmptyStateScreen from "../components/contacts/ContactsEmptyStateScreen";
 
 const OnlineContactEntries = React.lazy(
     () => import("../components/contacts/OnlineContactEntries"),
   ),
   ContactsFeed = React.lazy(
     () => import("../components/contacts/ContactsFeed"),
-  ),
-  SideProfilePanel = React.lazy(
-    () => import("../components/chat/SideProfilePanel"),
   );
 
 export default function Contacts(): ReactNode {
-  const { currentContactEntry, contacts, setCurrentContactEntry } = useChat(),
+  const { contacts } = useChat(),
     { authNUser } = useAuth(),
     { getUser } = useChat();
 
   const [contactEntries, setContactEntries] = useState<User[]>([]);
-  const toggleButtonClickAction = () => setCurrentContactEntry(null);
   useEffect(() => {
     const getContactEntries = async () => {
       const contactEntries: User[] = [];
@@ -40,30 +37,22 @@ export default function Contacts(): ReactNode {
 
   return (
     <div className="h-full w-full flex">
-      <div className="flex-1 h-full flex items-center flex-col px-10 py-4 overflow-auto dark:text-foreground-dark-secondary gap-4 scrollbar-thin mr-2">
-        <Suspense fallback={<Loader />}>
-          <OnlineContactEntries
-            onlineContactEntries={contactEntries.filter(
-              (entry) => entry.isActive,
-            )}
-          />
-        </Suspense>
-        <Suspense fallback={<Loader />}>
-          <ContactsFeed contactEntries={contactEntries} />
-        </Suspense>
-      </div>
-
-      {
-        <Suspense fallback={<Loader />}>
-          <SideProfilePanel
-            user={currentContactEntry}
-            contacts={contacts}
-            isContactPanel={true}
-            toggleButtonClickAction={toggleButtonClickAction}
-            isActive={currentContactEntry ? true : false}
-          />
-        </Suspense>
-      }
+      {Object.keys(contacts).length > 0 ? (
+        <div className="flex-1 h-full flex items-center flex-col px-10 py-4 overflow-auto dark:text-foreground-dark-secondary gap-4 scrollbar-thin mr-2">
+          <Suspense fallback={<Loader />}>
+            <OnlineContactEntries
+              onlineContactEntries={contactEntries.filter(
+                (entry) => entry.isActive,
+              )}
+            />
+          </Suspense>
+          <Suspense fallback={<Loader />}>
+            <ContactsFeed contactEntries={contactEntries} />
+          </Suspense>
+        </div>
+      ) : (
+        <ContactsEmptyStateScreen />
+      )}
     </div>
   );
 }

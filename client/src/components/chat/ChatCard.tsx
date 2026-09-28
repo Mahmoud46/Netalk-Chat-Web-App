@@ -3,7 +3,11 @@ import type { Chat, Gender, User } from "../../types";
 import { useAuth, useChat } from "../../hooks";
 import Label from "../common/Label";
 import ChatIcon, { MessageStatusIcon } from "../icons/ChatIcon";
-import { formatDate, formatTime12Hours } from "../../utils/format";
+import {
+  formatDate,
+  formatDateShort,
+  formatTime12Hours,
+} from "../../utils/format";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "../icons/Avatar";
 import { calculateAge } from "../../utils/helpers";
@@ -237,7 +241,7 @@ const ChatCard = ({
               {formatDate(new Date(chat.lastMessage?.createdAt)) ==
               formatDate(new Date())
                 ? formatTime12Hours(new Date(chat.lastMessage?.createdAt))
-                : formatDate(new Date(chat.lastMessage?.createdAt))}
+                : formatDateShort(new Date(chat.lastMessage?.createdAt))}
             </time>
           </div>
           <div className="flex items-center">

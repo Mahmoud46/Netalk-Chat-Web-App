@@ -68,7 +68,7 @@ const ChatsSidebar = ({
               <input
                 type="text"
                 className="w-full text-sm h-full outline-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-1.5 pl-11 text-foreground-light-secondary dark:text-foreground-dark-secondary rounded-3xl focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
-                placeholder="Search chat"
+                placeholder="Search chats..."
               />
             )}
           </div>

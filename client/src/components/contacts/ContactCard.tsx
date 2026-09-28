@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { User } from "../../types";
+import type { Gender, User } from "../../types";
 import { useChat, useTheme } from "../../hooks";
 import moment from "moment";
 import Label from "../common/Label";
@@ -8,6 +8,8 @@ import CommonIcon from "../icons/CommonIcon";
 import { Link } from "react-router-dom";
 import default_cover from "../../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../../assets/images/default_profile_cover_dark.jpg";
+import { Avatar } from "../icons/Avatar";
+import { calculateAge } from "../../utils/helpers";
 
 const ContactEntryDropList = React.lazy(() =>
   import("../common/DropList").then((module) => ({
@@ -27,7 +29,11 @@ export const ContactCard = ({ contactEntry }: { contactEntry: User }) => {
   return (
     <div className="w-50 aspect-4/5 relative">
       <div className="w-full flex flex-col items-center bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl">
-        <ContactEntryDropList isActive={isActiveContactEntryDropList} />
+        <ContactEntryDropList
+          contactEntry={contactEntry}
+          isActive={isActiveContactEntryDropList}
+          setIsActive={setIsActiveContactEntryDropList}
+        />
         <Link
           to={`/app/profile/${contactEntry.username}`}
           className="relative h-20 w-full cursor-pointer"
@@ -43,14 +49,24 @@ export const ContactCard = ({ contactEntry }: { contactEntry: User }) => {
           />
 
           <div
-            className={`absolute -bottom-11 left-1/2 -translate-x-1/2 p-1.5 rounded-full transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2`}
+            className={`absolute -bottom-10 left-1/2 -translate-x-1/2 p-1.5 rounded-full transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 contact-image-corners [--shadow-color:#f9f1ff] dark:[--shadow-color:#16181d]`}
           >
-            <img
-              src={contactEntry.profileImage}
-              alt={contactEntry.firstName}
-              loading="lazy"
-              className="rounded-full size-18"
-            />
+            {contactEntry.profileImage ? (
+              <img
+                src={contactEntry.profileImage}
+                alt={contactEntry.firstName}
+                loading="lazy"
+                className="rounded-full size-18"
+              />
+            ) : (
+              <div className="size-18 rounded-full flex-none overflow-hidden">
+                <Avatar
+                  gender={contactEntry?.gender as Gender}
+                  age={calculateAge(contactEntry?.birthdate as string)}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
             {contactEntry.isActive && (
               <span
                 className={`absolute flex items-center p-1 aspect-square bg-background-light-surface-2 dark:bg-background-dark-surface-2 justify-center rounded-full bottom-1 right-1`}
@@ -127,12 +143,22 @@ export const ContactsOnlineCard = ({
           <span className="bg-foreground-dark-success size-[0.5775rem] aspect-square rounded-full"></span>
         </span>
       )}
-      <img
-        src={contactEntry?.profileImage}
-        alt={contactEntry?.firstName}
-        loading="lazy"
-        className="size-10.5 rounded-full flex-none"
-      />
+      {contactEntry.profileImage ? (
+        <img
+          src={contactEntry?.profileImage}
+          alt={contactEntry?.firstName}
+          loading="lazy"
+          className="size-10.5 rounded-full flex-none"
+        />
+      ) : (
+        <div className="size-10.5 rounded-full flex-none overflow-hidden">
+          <Avatar
+            gender={contactEntry?.gender as Gender}
+            age={calculateAge(contactEntry?.birthdate as string)}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
       <Label text={contactEntry.firstName} />
     </Link>
   );

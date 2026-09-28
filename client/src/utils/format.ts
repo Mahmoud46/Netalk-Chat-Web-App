@@ -5,6 +5,13 @@ export const formatDate = (date: Date): string => {
     day: "numeric",
   });
 };
+export const formatDateShort = (date: Date): string => {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+};
 
 export const formatDotDate = (date: Date): string =>
   // 18.09.26

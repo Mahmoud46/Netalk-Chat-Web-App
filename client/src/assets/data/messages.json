@@ -5,7 +5,7 @@
     "sender": "U5k1b9f49R0MXXj3bUDEVqPkhKTP1r",
     "text": "Hey, did you finish the backend API?",
     "status": "read",
-    "createdAt": "2026-05-08T09:45:00.000Z"
+    "createdAt": "2026-09-27T09:45:00.000Z"
   },
   {
     "_id": "msg_1002",
@@ -13,7 +13,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Not yet, I’m optimizing the database queries.",
     "status": "read",
-    "createdAt": "2026-05-08T09:46:00.000Z"
+    "createdAt": "2026-09-27T09:46:00.000Z"
   },
   {
     "_id": "msg_1003",
@@ -21,7 +21,7 @@
     "sender": "U5k1b9f49R0MXXj3bUDEVqPkhKTP1r",
     "text": "Make sure to handle pagination properly.",
     "status": "read",
-    "createdAt": "2026-05-08T09:47:00.000Z"
+    "createdAt": "2026-09-27T09:47:00.000Z"
   },
   {
     "_id": "msg_1004",
@@ -29,7 +29,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Yes, I’m using cursor-based pagination.",
     "status": "read",
-    "createdAt": "2026-05-08T09:48:00.000Z"
+    "createdAt": "2026-09-27T09:48:00.000Z"
   },
   {
     "_id": "msg_1005",
@@ -37,7 +37,7 @@
     "sender": "U5k1b9f49R0MXXj3bUDEVqPkhKTP1r",
     "text": "Perfect, that will scale better.",
     "status": "delivered",
-    "createdAt": "2026-05-08T09:49:00.000Z"
+    "createdAt": "2026-09-27T09:49:00.000Z"
   },
 
   {
@@ -46,7 +46,7 @@
     "sender": "j28m8o6naMLU4863413jyRNbD_FHvH",
     "text": "Did you check the latest UI mockups?",
     "status": "read",
-    "createdAt": "2026-05-08T10:00:00.000Z"
+    "createdAt": "2026-09-27T10:00:00.000Z"
   },
 
   {
@@ -55,7 +55,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Yes, I reviewed them. Looks much cleaner now.",
     "status": "read",
-    "createdAt": "2026-05-08T10:01:10.000Z"
+    "createdAt": "2026-09-27T10:01:10.000Z"
   },
 
   {
@@ -64,7 +64,7 @@
     "sender": "j28m8o6naMLU4863413jyRNbD_FHvH",
     "text": "Great, I’ll finalize the design tokens.",
     "status": "read",
-    "createdAt": "2026-05-08T10:02:30.000Z"
+    "createdAt": "2026-09-27T10:02:30.000Z"
   },
 
   {
@@ -73,7 +73,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Perfect, I’ll start integration after that.",
     "status": "read",
-    "createdAt": "2026-05-08T10:03:40.000Z"
+    "createdAt": "2026-09-27T10:03:40.000Z"
   },
 
   {
@@ -87,10 +87,10 @@
       "type": "file",
       "name": "ui-kit-v2.fig",
       "size": "5.8MB",
-      "createdAt": "2026-05-08T10:04:20.000Z"
+      "createdAt": "2026-09-27T10:04:20.000Z"
     },
     "status": "read",
-    "createdAt": "2026-05-08T10:04:20.000Z"
+    "createdAt": "2026-09-27T10:04:20.000Z"
   },
   {
     "_id": "msg_20067",
@@ -103,10 +103,10 @@
       "type": "image",
       "name": "ui-kit-v2.jpg",
       "size": "896KB",
-      "createdAt": "2026-05-08T10:04:20.000Z"
+      "createdAt": "2026-09-27T10:04:20.000Z"
     },
     "status": "read",
-    "createdAt": "2026-05-08T10:04:20.000Z"
+    "createdAt": "2026-09-27T10:04:20.000Z"
   },
 
   {
@@ -115,7 +115,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Uploading the file now...",
     "status": "read",
-    "createdAt": "2026-05-08T10:04:10.000Z"
+    "createdAt": "2026-09-27T10:04:10.000Z"
   },
   {
     "_id": "msg_2006",
@@ -123,7 +123,7 @@
     "sender": "j28m8o6naMLU4863413jyRNbD_FHvH",
     "text": "Perfect, this version is exactly what we needed.",
     "status": "read",
-    "createdAt": "2026-05-08T10:15:00.000Z"
+    "createdAt": "2026-09-27T10:15:00.000Z"
   },
 
   {
@@ -132,7 +132,7 @@
     "sender": "3zlNOoXpBd4obI0PGNs49na1IPQILY",
     "text": "I’m struggling with authentication flow.",
     "status": "read",
-    "createdAt": "2026-05-08T08:25:00.000Z"
+    "createdAt": "2026-09-27T08:25:00.000Z"
   },
   {
     "_id": "msg_3002",
@@ -140,7 +140,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Are you using JWT or sessions?",
     "status": "read",
-    "createdAt": "2026-05-08T08:26:00.000Z"
+    "createdAt": "2026-09-27T08:26:00.000Z"
   },
   {
     "_id": "msg_3003",
@@ -148,7 +148,7 @@
     "sender": "3zlNOoXpBd4obI0PGNs49na1IPQILY",
     "text": "JWT with refresh tokens.",
     "status": "read",
-    "createdAt": "2026-05-08T08:27:00.000Z"
+    "createdAt": "2026-09-27T08:27:00.000Z"
   },
   {
     "_id": "msg_3004",
@@ -156,7 +156,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Then you should store refresh tokens in httpOnly cookies.",
     "status": "delivered",
-    "createdAt": "2026-05-08T08:28:00.000Z"
+    "createdAt": "2026-09-27T08:28:00.000Z"
   },
   {
     "_id": "msg_4001",
@@ -164,7 +164,7 @@
     "sender": "cKDItq1szgkgXwHJ3m7hZgoYFoqJY9",
     "text": "I updated the color system.",
     "status": "read",
-    "createdAt": "2026-05-08T07:50:00.000Z"
+    "createdAt": "2026-09-27T07:50:00.000Z"
   },
   {
     "_id": "msg_4002",
@@ -172,7 +172,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Nice, I’ll test it in the app.",
     "status": "read",
-    "createdAt": "2026-05-08T07:51:00.000Z"
+    "createdAt": "2026-09-27T07:51:00.000Z"
   },
   {
     "_id": "msg_4003",
@@ -180,7 +180,7 @@
     "sender": "cKDItq1szgkgXwHJ3m7hZgoYFoqJY9",
     "text": "Make sure dark mode still works.",
     "status": "read",
-    "createdAt": "2026-05-08T07:52:00.000Z"
+    "createdAt": "2026-09-27T07:52:00.000Z"
   },
   {
     "_id": "msg_4004",
@@ -188,7 +188,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Yes, I’ll adjust contrast if needed.",
     "status": "sent",
-    "createdAt": "2026-05-08T07:53:00.000Z"
+    "createdAt": "2026-09-27T07:53:00.000Z"
   },
 
   {
@@ -197,7 +197,7 @@
     "sender": "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo",
     "text": "Frontend is almost done.",
     "status": "read",
-    "createdAt": "2026-05-08T06:15:00.000Z"
+    "createdAt": "2026-09-27T06:15:00.000Z"
   },
   {
     "_id": "msg_5002",
@@ -205,7 +205,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Great, I’ll prepare the APIs.",
     "status": "read",
-    "createdAt": "2026-05-08T06:16:00.000Z"
+    "createdAt": "2026-09-27T06:16:00.000Z"
   },
   {
     "_id": "msg_5003",
@@ -213,7 +213,7 @@
     "sender": "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo",
     "text": "Make sure endpoints are consistent.",
     "status": "read",
-    "createdAt": "2026-05-08T06:17:00.000Z"
+    "createdAt": "2026-09-27T06:17:00.000Z"
   },
   {
     "_id": "msg_5004",
@@ -221,7 +221,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Yes, I’m standardizing REST responses.",
     "status": "read",
-    "createdAt": "2026-05-08T06:18:00.000Z"
+    "createdAt": "2026-09-27T06:18:00.000Z"
   },
   {
     "_id": "msg_5005",
@@ -229,7 +229,7 @@
     "sender": "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo",
     "text": "Perfect, let’s deploy soon.",
     "status": "read",
-    "createdAt": "2026-05-08T06:19:00.000Z"
+    "createdAt": "2026-09-27T06:19:00.000Z"
   },
   {
     "_id": "msg_6001",
@@ -237,7 +237,7 @@
     "sender": "voQRVDoL4HIsqIOACNDxSQJ-3982vM",
     "text": "Going live in 10 minutes 🔥",
     "status": "read",
-    "createdAt": "2026-05-08T10:15:00.000Z"
+    "createdAt": "2026-09-27T10:15:00.000Z"
   },
   {
     "_id": "msg_6002",
@@ -245,7 +245,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Good luck! I’m watching.",
     "status": "read",
-    "createdAt": "2026-05-08T10:16:00.000Z"
+    "createdAt": "2026-09-27T10:16:00.000Z"
   },
   {
     "_id": "msg_6003",
@@ -253,7 +253,7 @@
     "sender": "voQRVDoL4HIsqIOACNDxSQJ-3982vM",
     "text": "Thanks bro 🙌",
     "status": "read",
-    "createdAt": "2026-05-08T10:17:00.000Z"
+    "createdAt": "2026-09-27T10:17:00.000Z"
   },
   {
     "_id": "msg_6004",
@@ -261,7 +261,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Share the link when you go live.",
     "status": "read",
-    "createdAt": "2026-05-08T10:18:00.000Z"
+    "createdAt": "2026-09-27T10:18:00.000Z"
   },
 
   {
@@ -275,7 +275,7 @@
   {
     "_id": "msg_07_02",
     "chatId": "chat_07",
-    "sender": "user_09",
+    "sender": "YzWOFOI7JokpD9K7E-EcJD0IYOXheW",
     "text": "Hey! Everything is going well. Just working on a new mobile project.",
     "status": "read",
     "createdAt": "2026-09-27T09:14:00Z"
@@ -291,7 +291,7 @@
   {
     "_id": "msg_07_04",
     "chatId": "chat_07",
-    "sender": "user_09",
+    "sender": "YzWOFOI7JokpD9K7E-EcJD0IYOXheW",
     "text": "A fitness app. I'm currently working on the navigation.",
     "status": "read",
     "createdAt": "2026-09-27T09:18:00Z"
@@ -299,7 +299,7 @@
   {
     "_id": "msg_08_01",
     "chatId": "chat_08",
-    "sender": "user_10",
+    "sender": "ToHF5pPsSXN8R2cFDZVcEuRNcAQwcq",
     "text": "I just finished the new illustrations!",
     "status": "read",
     "createdAt": "2026-09-27T10:05:00Z"
@@ -315,7 +315,7 @@
   {
     "_id": "msg_08_03",
     "chatId": "chat_08",
-    "sender": "user_10",
+    "sender": "ToHF5pPsSXN8R2cFDZVcEuRNcAQwcq",
     "text": "Sure, I'll send them over later today.",
     "status": "delivered",
     "createdAt": "2026-09-27T10:09:00Z"
@@ -331,7 +331,7 @@
   {
     "_id": "msg_09_02",
     "chatId": "chat_09",
-    "sender": "user_11",
+    "sender": "l-lvHOALvsF4eP0kubX-fE6gVIFmWA",
     "text": "Yes, everything looks good now.",
     "status": "read",
     "createdAt": "2026-09-27T10:44:00Z"
@@ -339,7 +339,7 @@
   {
     "_id": "msg_09_03",
     "chatId": "chat_09",
-    "sender": "user_11",
+    "sender": "l-lvHOALvsF4eP0kubX-fE6gVIFmWA",
     "text": "I also fixed the environment variables.",
     "status": "read",
     "createdAt": "2026-09-27T10:45:00Z"
@@ -355,7 +355,7 @@
   {
     "_id": "msg_10_01",
     "chatId": "chat_10",
-    "sender": "user_12",
+    "sender": "uuDKB6BXxd5xWLjd6-FG962g3b9NFy",
     "text": "Are we still meeting at 6?",
     "status": "read",
     "createdAt": "2026-09-27T11:10:00Z"
@@ -371,7 +371,7 @@
   {
     "_id": "msg_10_03",
     "chatId": "chat_10",
-    "sender": "user_12",
+    "sender": "uuDKB6BXxd5xWLjd6-FG962g3b9NFy",
     "text": "Great! See you then 😊",
     "status": "delivered",
     "createdAt": "2026-09-27T11:13:00Z"
@@ -387,7 +387,7 @@
   {
     "_id": "msg_11_02",
     "chatId": "chat_11",
-    "sender": "user_13",
+    "sender": "oO-mqzHA0-_qGDv5iXa96_if9el-4_",
     "text": "Not yet. I'm still going through the requirements.",
     "status": "read",
     "createdAt": "2026-09-27T11:33:00Z"
@@ -403,7 +403,7 @@
   {
     "_id": "msg_12_01",
     "chatId": "chat_12",
-    "sender": "user_14",
+    "sender": "KyfrPwYjohjdwYVBk43K6oSGws9HgP",
     "text": "I found some interesting feedback from the users.",
     "status": "read",
     "createdAt": "2026-09-27T12:02:00Z"
@@ -419,7 +419,7 @@
   {
     "_id": "msg_12_03",
     "chatId": "chat_12",
-    "sender": "user_14",
+    "sender": "KyfrPwYjohjdwYVBk43K6oSGws9HgP",
     "text": "Most of them liked the new navigation, but wanted a simpler settings page.",
     "status": "delivered",
     "createdAt": "2026-09-27T12:07:00Z"
@@ -435,7 +435,7 @@
   {
     "_id": "msg_13_02",
     "chatId": "chat_13",
-    "sender": "user_15",
+    "sender": "G7wXgXYt-UHIVGSLDpkMNnv22S1xY2",
     "text": "Pretty good. The processing time is much better now.",
     "status": "read",
     "createdAt": "2026-09-27T12:22:00Z"
@@ -451,7 +451,7 @@
   {
     "_id": "msg_14_01",
     "chatId": "chat_14",
-    "sender": "user_16",
+    "sender": "HHydZKtMMyRGJFEVveF5DgtEAK6y37",
     "text": "Did you see the new frontend update?",
     "status": "read",
     "createdAt": "2026-09-27T12:40:00Z"
@@ -467,7 +467,7 @@
   {
     "_id": "msg_14_03",
     "chatId": "chat_14",
-    "sender": "user_16",
+    "sender": "HHydZKtMMyRGJFEVveF5DgtEAK6y37",
     "text": "Yeah, take a look when you get a chance.",
     "status": "read",
     "createdAt": "2026-09-27T12:43:00Z"
@@ -483,7 +483,7 @@
   {
     "_id": "msg_15_02",
     "chatId": "chat_15",
-    "sender": "user_17",
+    "sender": "lLpOM7DrMC0QsSc9galQL4Mi0FF_7y",
     "text": "No problem! I found the source of it.",
     "status": "read",
     "createdAt": "2026-09-27T13:02:00Z"
@@ -491,7 +491,7 @@
   {
     "_id": "msg_15_03",
     "chatId": "chat_15",
-    "sender": "user_17",
+    "sender": "lLpOM7DrMC0QsSc9galQL4Mi0FF_7y",
     "text": "I'll send you the details once I write them up.",
     "status": "delivered",
     "createdAt": "2026-09-27T13:04:00Z"
@@ -499,7 +499,7 @@
   {
     "_id": "msg_16_01",
     "chatId": "chat_16",
-    "sender": "user_18",
+    "sender": "8fLC4iC-1ndmZ1lfdkv5c-0F25kzvi",
     "text": "I have an idea for the content we discussed.",
     "status": "read",
     "createdAt": "2026-09-27T13:20:00Z"
@@ -515,7 +515,7 @@
   {
     "_id": "msg_16_03",
     "chatId": "chat_16",
-    "sender": "user_18",
+    "sender": "8fLC4iC-1ndmZ1lfdkv5c-0F25kzvi",
     "text": "I'll send you a draft later today.",
     "status": "delivered",
     "createdAt": "2026-09-27T13:24:00Z"

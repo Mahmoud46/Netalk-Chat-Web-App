@@ -56,12 +56,31 @@
     {
       "userId": "cKDItq1szgkgXwHJ3m7hZgoYFoqJY9",
       "customName": { "firstName": "Mariam", "lastName": "Tarek (Designer)" }
+    },
+    {
+      "userId": "YzWOFOI7JokpD9K7E-EcJD0IYOXheW",
+      "customName": { "firstName": "Kemooo", "lastName": "Fathy" }
+    },
+    {
+      "userId": "oO-mqzHA0-_qGDv5iXa96_if9el-4_",
+      "customName": { "firstName": "Mostafa", "lastName": "Adel (SWE)" }
+    },
+    {
+      "userId": "8fLC4iC-1ndmZ1lfdkv5c-0F25kzvi",
+      "customName": {
+        "firstName": "Dina",
+        "lastName": "Sherif (PD Manager)"
+      }
     }
   ],
-  "mutedUsers": ["z1l30QH8Tzmb7c_cgs8n81nYNsbLlP"],
-  "archivedChats": ["chat_001", "chat_004"],
+  "mutedUsers": [
+    "z1l30QH8Tzmb7c_cgs8n81nYNsbLlP",
+    "oO-mqzHA0-_qGDv5iXa96_if9el-4_"
+  ],
+  "archivedChats": ["chat_001", "chat_004", "chat_16", "chat_15"],
   "blockedUsers": [
     "uovrvlZTOKBPEKHyJkkjnJsbGE0dmL",
-    "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo"
+    "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo",
+    "oO-mqzHA0-_qGDv5iXa96_if9el-4_"
   ]
 }
