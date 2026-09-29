@@ -1,21 +1,15 @@
-import { lazy, useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useAuth, useChat, useTheme } from "../hooks";
 import default_cover from "../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../assets/images/default_profile_cover_dark.jpg";
 import CommonIcon from "../components/icons/CommonIcon";
 import Label from "../components/common/Label";
-import SocialIcon from "../components/icons/SocialIcon";
+import SocialIcon, { EmailIcon } from "../components/icons/SocialIcon";
 import { formatPhoneNumber } from "../utils/format";
 import { calculateAge, copyToClipboard } from "../utils/helpers";
 import type { AuthNUser, Gender, ThemeMode, User } from "../types";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Avatar } from "../components/icons/Avatar";
-
-const CopyContactButton = lazy(() =>
-  import("../components/common/DropList").then((module) => ({
-    default: module.CopyContactButton,
-  })),
-);
 
 export const UsernameHolder = ({
   username = "",
@@ -66,59 +60,51 @@ export const ContactsInfo = ({
 }) => {
   return (
     <div
-      className={`w-130 z-10 gap-2 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-3 flex flex-col items-start transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`w-100 max-h-100 z-10 gap-2 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-3 flex flex-col items-start transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <h2 className="font-semibold pt-2">Contact Info</h2>
       <div className="flex flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary w-full">
         {authNUser?.contactInfo.emails.map((email) => (
           <div
             key={email}
-            className="text-sm relative py-2.5 pl-0 hover:pl-2 flex justify-between items-center gap-2 transition-all ease-in-out w-full p-0 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
+            className="text-sm relative p-2 flex justify-between items-center gap-2 transition-all ease-in-out w-full p-0 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
           >
-            <div className="flex gap-3 items-center">
-              <CommonIcon
-                label="envelope_alt"
-                weight="thin"
-                className="size-6 flex-none opacity-60"
-              />
+            <div className="flex gap-3 items-center flex-1">
+              <EmailIcon email={email} className="size-6" />
               <div className="flex-1">
                 <p className="text-xs opacity-80">Email</p>
                 <p className="line-clamp-1">{email}</p>
               </div>
             </div>
-            <div className="flex absolute right-1.5 items-center scale-0 group-hover/card:scale-100 transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl p-0.5">
-              <CopyContactButton text={email} />
-              <a
-                href={`mailto:${email}`}
-                target="_blank"
-                className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-              >
-                <CommonIcon
-                  label="paper_plane"
-                  weight="thin"
-                  className="size-6"
-                />
-                <Label text="Mail" />
-              </a>
-            </div>
+
+            <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+              <CommonIcon
+                label="dots_vertical_rounded"
+                weight="thin"
+                soild={true}
+                className="size-6"
+              />
+              <Label text="More" />
+            </button>
           </div>
         ))}
         {authNUser?.contactInfo.phoneNumbers.map((phoneNumber) => (
           <div
             key={phoneNumber}
-            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative py-2.5 pl-0 hover:pl-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
+            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative p-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
           >
-            <div className="flex gap-3 items-center">
+            <div className="flex flex-1 gap-3 items-center">
               <CommonIcon
                 label="phone"
                 weight="thin"
-                className="size-6 flex-none opacity-60"
+                className="size-6 flex-none"
               />
-              <p className="line-clamp-1 flex-1">
-                {formatPhoneNumber(phoneNumber)}
-              </p>
+              <div className="flex-1">
+                <p className="text-xs opacity-80">Phone Number</p>
+                <p className="line-clamp-1">{formatPhoneNumber(phoneNumber)}</p>
+              </div>
             </div>
-            <div className="flex absolute right-0 items-center scale-0 group-hover/card:scale-100 transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl p-0.5">
+            {/* <div className="flex absolute right-0 items-center scale-0 group-hover/card:scale-100 transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl p-0.5">
               <CopyContactButton text={phoneNumber} />
               <a
                 href={`tel:${phoneNumber}`}
@@ -128,38 +114,43 @@ export const ContactsInfo = ({
                 <CommonIcon label="phone" weight="thin" className="size-6" />
                 <Label text="Call" />
               </a>
-            </div>
+            </div> */}
+            <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+              <CommonIcon
+                label="dots_vertical_rounded"
+                weight="thin"
+                soild={true}
+                className="size-6"
+              />
+              <Label text="More" />
+            </button>
           </div>
         ))}
         {authNUser?.contactInfo.socialLinks.map((socialLink) => (
           <div
             key={socialLink.url}
-            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative py-2.5 pl-0 hover:pl-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
+            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative p-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
           >
             <div className="flex gap-3 items-center">
               <SocialIcon
                 platform={socialLink.type}
-                className="size-6 flex-none opacity-60"
+                className="size-6 flex-none"
                 weight="thin"
               />
-              <p className="line-clamp-1 flex-1">{socialLink.url}</p>
+              <div className="flex-1">
+                <p className="text-xs opacity-80">{socialLink.type}</p>
+                <p className="line-clamp-1">{socialLink.url}</p>
+              </div>
             </div>
-            <div className="flex absolute right-0 items-center scale-0 group-hover/card:scale-100 transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl p-0.5">
-              <CopyContactButton text={socialLink.url} />
-              <a
-                href={socialLink.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-              >
-                <CommonIcon
-                  label="arrow_out_up_right_circle"
-                  weight="thin"
-                  className="size-6"
-                />
-                <Label text="View" />
-              </a>
-            </div>
+            <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+              <CommonIcon
+                label="dots_vertical_rounded"
+                weight="thin"
+                soild={true}
+                className="size-6"
+              />
+              <Label text="More" />
+            </button>
           </div>
         ))}
       </div>
@@ -226,7 +217,21 @@ export const ProfileHeader = ({
         )}
       </div>
       {/* Header buttons */}
-      <div className="absolute bottom-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-tl-3xl bottom-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+      <div className="absolute flex bottom-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-tl-3xl bottom-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+        {!isAuthNUser && authNUser && (
+          <Link
+            to={`/app/inbox/${authNUser._id}`}
+            className="relative group mr-2 cursor-pointer p-2 rounded-full gradient transition-all ease-in-out"
+          >
+            <CommonIcon
+              label="paper_plane"
+              className="size-6.5 transition-all ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1"
+              weight="thin"
+              soild={true}
+            />
+            <Label text="Chat" />
+          </Link>
+        )}
         {isAuthNUser && (
           <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
             <CommonIcon label="cog" weight="thin" className="size-6.5" />
@@ -270,13 +275,13 @@ export default function Profile(): ReactNode {
   }, [username]);
 
   return (
-    <div className="w-full min-h-dvh overflow-x-hidden text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20">
+    <div className="w-full min-h-dvh overflow-x-hidden text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20 pb-4 relative">
       <ProfileHeader
         authNUser={isAuthNUser ? authNUser : currentUser}
         theme={theme}
         isAuthNUser={isAuthNUser}
       />
-      <div className="relative pl-30 pr-8 flex items-start gap-6">
+      <div className="pl-30 pr-8 flex items-start gap-6">
         <div className="flex flex-col gap-4 flex-1">
           <div className="flex flex-col gap-1">
             <h2 className="text-5xl">
