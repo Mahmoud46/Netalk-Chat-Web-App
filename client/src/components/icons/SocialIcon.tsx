@@ -1,4 +1,4 @@
-import type { IconWeight, SocialPlatform } from "../../types";
+import type { IconWeight, SocialPlatform, ThemeMode } from "../../types";
 
 import google_icon from "../../assets/icons/social/google.png";
 import microsoft_icon from "../../assets/icons/social/microsoft.png";
@@ -12,13 +12,16 @@ import github_icon from "../../assets/icons/social/github.png";
 import twitch_icon from "../../assets/icons/social/twitch.png";
 import twitter_x_icon from "../../assets/icons/social/twitter_x.png";
 import dribbble_icon from "../../assets/icons/social/dribbble.png";
+import discord_icon from "../../assets/icons/social/discord.png";
 import globe_icon from "../../assets/icons/social/globe.png";
+import reddit_icon from "../../assets/icons/social/reddit.png";
 
 import globe_thin_icon from "../../assets/icons/social/globe_thin.png";
 
 import gmail_icon from "../../assets/icons/social/gmail.png";
 import outlook_icon from "../../assets/icons/social/outlook.png";
 import yahoo_mail_icon from "../../assets/icons/social/yahoo_mail.png";
+import CommonIcon from "./CommonIcon";
 
 export const EmailIcon = ({
   email,
@@ -58,7 +61,7 @@ export const EmailIcon = ({
       );
 
     default:
-      return <>{emailType}</>;
+      return <CommonIcon label="envelope_alt" className={className} />;
   }
 };
 
@@ -66,10 +69,12 @@ export default function SocialIcon({
   platform = "website",
   className = "",
   weight = "base",
+  theme = "light",
 }: {
   platform?: SocialPlatform | "website" | string;
   className?: string;
   weight?: IconWeight;
+  theme?: ThemeMode;
 }) {
   switch (platform) {
     case "facebook":
@@ -84,8 +89,16 @@ export default function SocialIcon({
       return <img src={linkedin_icon} loading="lazy" className={className} />;
     case "behance":
       return <img src={behance_icon} loading="lazy" className={className} />;
+    case "reddit":
+      return <img src={reddit_icon} loading="lazy" className={className} />;
     case "github":
-      return <img src={github_icon} loading="lazy" className={className} />;
+      return (
+        <img
+          src={github_icon}
+          loading="lazy"
+          className={`${theme == "light" && "invert-100"} ${className}`}
+        />
+      );
     case "twitch":
       return <img src={twitch_icon} loading="lazy" className={className} />;
     case "x":
@@ -96,6 +109,8 @@ export default function SocialIcon({
       return <img src={microsoft_icon} loading="lazy" className={className} />;
     case "dribbble":
       return <img src={dribbble_icon} loading="lazy" className={className} />;
+    case "discord":
+      return <img src={discord_icon} loading="lazy" className={className} />;
 
     default:
       return (

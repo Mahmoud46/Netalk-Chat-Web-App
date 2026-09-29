@@ -58,6 +58,7 @@ export const ContactsInfo = ({
 }: {
   authNUser?: AuthNUser | User | null;
 }) => {
+  const { theme } = useTheme();
   return (
     <div
       className={`w-100 max-h-100 z-10 gap-2 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-3 flex flex-col items-start transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
@@ -136,6 +137,7 @@ export const ContactsInfo = ({
                 platform={socialLink.type}
                 className="size-6 flex-none"
                 weight="thin"
+                theme={theme}
               />
               <div className="flex-1">
                 <p className="text-xs opacity-80">{socialLink.type}</p>
@@ -208,11 +210,16 @@ export const ProfileHeader = ({
         )}
 
         {isAuthNUser && (
-          <div className="bg-background-light-base dark:bg-background-dark-base p-1.5 absolute rounded-full bottom-1 right-1 transition-all ease-in-out">
+          <div className="bg-background-light-base dark:bg-background-dark-base p-1.5 absolute rounded-full bottom-1.5 right-1.5 transition-all ease-in-out">
             <button className="relative group cursor-pointer z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
               <CommonIcon label="edit" weight="thin" className="size-6" />
               <Label text="Edit" />
             </button>
+          </div>
+        )}
+        {!isAuthNUser && authNUser?.isActive && (
+          <div className="bg-background-light-base dark:bg-background-dark-base p-1.5 absolute rounded-full bottom-1.5 right-1.5 transition-all ease-in-out flex items-center">
+            <span className="bg-foreground-dark-success size-[1.925rem] aspect-square rounded-full"></span>
           </div>
         )}
       </div>
