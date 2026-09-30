@@ -78,7 +78,12 @@
       "phoneNumbers": ["+201733456789"],
       "socialLinks": [
         { "type": "linkedin", "url": "https://linkedin.com/in/salma" },
-        { "type": "website", "url": "https://salma.example.com" }
+        {
+          "type": "website",
+          "url": "https://salma.blog.com",
+          "custom_name": "Personal blog",
+          "favicon": "/personal_websites_favicons/salma_omar_personal_blog.png"
+        }
       ]
     },
     "isActive": true,
@@ -143,7 +148,12 @@
       "phoneNumbers": ["+201766789012"],
       "socialLinks": [
         { "type": "github", "url": "https://github.com/khaled" },
-        { "type": "website", "url": "https://khaled.dev" }
+        {
+          "type": "website",
+          "url": "https://khaled.dev",
+          "custom_name": "Personal portfolio",
+          "favicon": "/personal_websites_favicons/khaled_nabil_personal_portfolio.png"
+        }
       ]
     },
     "isActive": true,
@@ -209,7 +219,12 @@
       "phoneNumbers": ["+201799012345"],
       "socialLinks": [
         { "type": "instagram", "url": "https://instagram.com/dina" },
-        { "type": "website", "url": "https://dina.example.com" }
+        {
+          "type": "website",
+          "url": "https://dina.blog.com",
+          "custom_name": "Personal blog",
+          "favicon": "/personal_websites_favicons/dina_sherif_personal_blog.png"
+        }
       ]
     },
     "isActive": true,
@@ -476,7 +491,9 @@
       "socialLinks": [
         {
           "type": "website",
-          "url": "https://hanamagdy.com"
+          "url": "https://hanamagdy.com",
+          "custom_name": "Personal portfolio",
+          "favicon": "/personal_websites_favicons/hana_magdy_personal_portfolio.png"
         },
         {
           "type": "youtube",

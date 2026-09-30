@@ -22,7 +22,9 @@
       },
       {
         "type": "website",
-        "url": "https://omarhassan.dev"
+        "url": "https://omarhassan.dev",
+        "custom_name": "Personal portfolio",
+        "favicon": "/personal_websites_favicons/omar_hassan_personal_portfolio.png"
       }
     ],
     "phoneNumbers": ["+201023456789"]

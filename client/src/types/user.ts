@@ -34,6 +34,8 @@ export interface ContactEntry {
 export interface SocialLink {
   type: SocialPlatform | "website" | string;
   url: string;
+  custom_name?: string;
+  favicon?: string;
 }
 export interface CustomName {
   firstName: string;

@@ -16,7 +16,10 @@ const NameField = () => {
   const { authNUser } = useAuth();
   const [firstName, setFirstName] = useState<string>(""),
     [lastName, setLastName] = useState<string>(""),
-    [showSaveButton, setShowSaveButton] = useState<boolean>(false);
+    [showSaveFirstNameButton, setShowSaveFirstNameButton] =
+      useState<boolean>(false),
+    [showSaveLastNameButton, setShowSaveLastNameButton] =
+      useState<boolean>(false);
 
   useEffect(() => {
     const spreadData = async () => {
@@ -31,36 +34,46 @@ const NameField = () => {
       <p className="font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
         Full Name
       </p>
-      <div className="flex gap-2 w-full relative">
-        <input
-          type="text"
-          value={firstName}
-          placeholder="First Name"
-          onChange={(e) => {
-            setFirstName(e.target.value);
-            setShowSaveButton(e.target.value.trim() != authNUser?.firstName);
-          }}
-          className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
-        />
-        <input
-          type="text"
-          value={lastName}
-          placeholder="Last Name"
-          onChange={(e) => {
-            setLastName(e.target.value);
-            setShowSaveButton(e.target.value.trim() != authNUser?.lastName);
-          }}
-          className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
-        />
 
-        {showSaveButton && (
-          <button className="absolute -top-1/4 -translate-y-1/2 -right-6 group self-end cursor-pointer  transition-all ease-in-out p-2 bg-background-light-base dark:bg-background-dark-base rounded-full">
-            <div className="bg-background-light-surface-2 dark:bg-background-dark-surface-2 cursor-pointers p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary">
+      <div className="flex gap-2 w-full relative">
+        <div className="relative">
+          <input
+            placeholder="First name"
+            value={firstName}
+            onChange={(e) => {
+              setFirstName(e.target.value);
+              setShowSaveFirstNameButton(
+                e.target.value.trim() != authNUser?.title,
+              );
+            }}
+            className="w-full resize-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+          />
+          {showSaveFirstNameButton && (
+            <button className="absolute bg-background-light-surface-2 dark:bg-background-dark-surface-2 top-1/2 -translate-y-1/2 right-0.5 group self-end cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
               <CommonIcon label="save" weight="thin" className="size-6" />
               <Label text="Save" />
-            </div>
-          </button>
-        )}
+            </button>
+          )}
+        </div>
+        <div className="relative">
+          <input
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => {
+              setLastName(e.target.value);
+              setShowSaveLastNameButton(
+                e.target.value.trim() != authNUser?.title,
+              );
+            }}
+            className="w-full resize-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+          />
+          {showSaveLastNameButton && (
+            <button className="absolute bg-background-light-surface-2 dark:bg-background-dark-surface-2 top-1/2 -translate-y-1/2 right-0.5 group self-end cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+              <CommonIcon label="save" weight="thin" className="size-6" />
+              <Label text="Save" />
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -313,15 +326,15 @@ export default function AccountSettings() {
   return (
     <>
       <SettingsHeader title="Account Settings" />
-      <div className="flex flex-wrap w-full px-3 gap-6">
-        <div className="flex flex-col flex-1 gap-4">
+      <div className="flex flex-wrap w-full px-3 gap-6 max-w-200">
+        <div className="flex flex-col flex-1 gap-4 pt-2">
           <NameField />
           <TitleField />
           <BioField />
           <BirthdateField />
           <AddressField />
         </div>
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 min-w-80">
           <ContactsInfo />
         </div>
       </div>

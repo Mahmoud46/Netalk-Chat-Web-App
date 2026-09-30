@@ -1,10 +1,12 @@
 import { lazy, useState } from "react";
 import { useChat } from "../../hooks";
-import type { User } from "../../types";
+import type { SocialLink, ThemeMode, User } from "../../types";
 import moment from "moment";
 import CommonIcon from "../icons/CommonIcon";
 import Label from "./Label";
 import { Link } from "react-router-dom";
+import SocialIcon, { EmailIcon } from "../icons/SocialIcon";
+import { formatPhoneNumber } from "../../utils/format";
 
 const BlockedCardDropList = lazy(() =>
   import("./DropList").then((module) => ({
@@ -67,3 +69,100 @@ export const BlockedUserCard = ({ user }: { user: User }) => {
     </div>
   );
 };
+
+export const ContactSocialCard = ({
+  socialLink,
+  theme = "light",
+}: {
+  socialLink: SocialLink;
+  theme?: ThemeMode;
+}) => {
+  return (
+    <div className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative p-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2">
+      <div className="flex gap-3 items-center">
+        {socialLink.favicon ? (
+          <img src={socialLink.favicon} className="w-6 flex-none" />
+        ) : (
+          <SocialIcon
+            platform={socialLink.type}
+            className="size-6 flex-none"
+            weight="thin"
+            theme={theme}
+          />
+        )}
+        <div className="flex-1">
+          <p className="text-xs opacity-80">
+            {socialLink.type == "website"
+              ? socialLink.custom_name
+              : socialLink.type}
+          </p>
+          <p className="line-clamp-1">{socialLink.url}</p>
+        </div>
+      </div>
+      <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+        <CommonIcon
+          label="dots_vertical_rounded"
+          weight="thin"
+          soild={true}
+          className="size-6"
+        />
+        <Label text="More" />
+      </button>
+    </div>
+  );
+};
+
+export const ContactPhoneNumberCard = ({
+  phoneNumber,
+}: {
+  phoneNumber: string;
+}) => {
+  return (
+    <div className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative p-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2">
+      <div className="flex flex-1 gap-3 items-center">
+        <CommonIcon label="phone" weight="thin" className="size-6 flex-none" />
+        <div className="flex-1">
+          <p className="text-xs opacity-80">Phone Number</p>
+          <p className="line-clamp-1">{formatPhoneNumber(phoneNumber)}</p>
+        </div>
+      </div>
+      <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+        <CommonIcon
+          label="dots_vertical_rounded"
+          weight="thin"
+          soild={true}
+          className="size-6"
+        />
+        <Label text="More" />
+      </button>
+    </div>
+  );
+};
+
+export const ContactEmailCard = ({ email }: { email: string }) => {
+  return (
+    <div className="text-sm relative p-2 flex justify-between items-center gap-2 transition-all ease-in-out w-full rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2">
+      <div className="flex gap-3 items-center flex-1">
+        <EmailIcon email={email} className="size-6" />
+        <div className="flex-1">
+          <p className="text-xs opacity-80">Email</p>
+          <p className="line-clamp-1">{email}</p>
+        </div>
+      </div>
+
+      <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+        <CommonIcon
+          label="dots_vertical_rounded"
+          weight="thin"
+          soild={true}
+          className="size-6"
+        />
+        <Label text="More" />
+      </button>
+    </div>
+  );
+};
+
+// Contact cards droplist
+// |---> profile (copy and [send email|call|view link])
+// |---> settings (edit, copy and delete)

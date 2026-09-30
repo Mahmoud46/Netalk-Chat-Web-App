@@ -1,15 +1,30 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import { useAuth, useChat, useTheme } from "../hooks";
 import default_cover from "../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../assets/images/default_profile_cover_dark.jpg";
 import CommonIcon from "../components/icons/CommonIcon";
 import Label from "../components/common/Label";
-import SocialIcon, { EmailIcon } from "../components/icons/SocialIcon";
-import { formatPhoneNumber } from "../utils/format";
 import { calculateAge, copyToClipboard } from "../utils/helpers";
 import type { AuthNUser, Gender, ThemeMode, User } from "../types";
 import { Link, useParams } from "react-router-dom";
 import { Avatar } from "../components/icons/Avatar";
+import Loader from "../components/common/Loader";
+
+const ContactSocialCard = lazy(() =>
+    import("../components/common/Card").then((module) => ({
+      default: module.ContactSocialCard,
+    })),
+  ),
+  ContactPhoneNumberCard = lazy(() =>
+    import("../components/common/Card").then((module) => ({
+      default: module.ContactPhoneNumberCard,
+    })),
+  ),
+  ContactEmailCard = lazy(() =>
+    import("../components/common/Card").then((module) => ({
+      default: module.ContactEmailCard,
+    })),
+  );
 
 export const UsernameHolder = ({
   username = "",
@@ -66,94 +81,19 @@ export const ContactsInfo = ({
       <h2 className="font-semibold pt-2">Contact Info</h2>
       <div className="flex flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary w-full">
         {authNUser?.contactInfo.emails.map((email) => (
-          <div
-            key={email}
-            className="text-sm relative p-2 flex justify-between items-center gap-2 transition-all ease-in-out w-full p-0 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
-          >
-            <div className="flex gap-3 items-center flex-1">
-              <EmailIcon email={email} className="size-6" />
-              <div className="flex-1">
-                <p className="text-xs opacity-80">Email</p>
-                <p className="line-clamp-1">{email}</p>
-              </div>
-            </div>
-
-            <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-              <CommonIcon
-                label="dots_vertical_rounded"
-                weight="thin"
-                soild={true}
-                className="size-6"
-              />
-              <Label text="More" />
-            </button>
-          </div>
+          <Suspense fallback={<Loader />} key={email}>
+            <ContactEmailCard email={email} />
+          </Suspense>
         ))}
         {authNUser?.contactInfo.phoneNumbers.map((phoneNumber) => (
-          <div
-            key={phoneNumber}
-            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative p-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
-          >
-            <div className="flex flex-1 gap-3 items-center">
-              <CommonIcon
-                label="phone"
-                weight="thin"
-                className="size-6 flex-none"
-              />
-              <div className="flex-1">
-                <p className="text-xs opacity-80">Phone Number</p>
-                <p className="line-clamp-1">{formatPhoneNumber(phoneNumber)}</p>
-              </div>
-            </div>
-            {/* <div className="flex absolute right-0 items-center scale-0 group-hover/card:scale-100 transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl p-0.5">
-              <CopyContactButton text={phoneNumber} />
-              <a
-                href={`tel:${phoneNumber}`}
-                target="_blank"
-                className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-              >
-                <CommonIcon label="phone" weight="thin" className="size-6" />
-                <Label text="Call" />
-              </a>
-            </div> */}
-            <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-              <CommonIcon
-                label="dots_vertical_rounded"
-                weight="thin"
-                soild={true}
-                className="size-6"
-              />
-              <Label text="More" />
-            </button>
-          </div>
+          <Suspense fallback={<Loader />} key={phoneNumber}>
+            <ContactPhoneNumberCard phoneNumber={phoneNumber} />
+          </Suspense>
         ))}
         {authNUser?.contactInfo.socialLinks.map((socialLink) => (
-          <div
-            key={socialLink.url}
-            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative p-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
-          >
-            <div className="flex gap-3 items-center">
-              <SocialIcon
-                platform={socialLink.type}
-                className="size-6 flex-none"
-                weight="thin"
-                theme={theme}
-              />
-              <div className="flex-1">
-                <p className="text-xs opacity-80">{socialLink.type}</p>
-                <p className="line-clamp-1">{socialLink.url}</p>
-              </div>
-            </div>
-            <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-              <CommonIcon
-                label="dots_vertical_rounded"
-                weight="thin"
-                soild={true}
-                className="size-6"
-              />
-              <Label text="More" />
-            </button>
-          </div>
+          <Suspense fallback={<Loader />} key={socialLink.url}>
+            <ContactSocialCard socialLink={socialLink} theme={theme} />
+          </Suspense>
         ))}
       </div>
     </div>
