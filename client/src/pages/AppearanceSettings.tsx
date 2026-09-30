@@ -55,16 +55,16 @@ const MessageFontSize = () => {
   const fontSizes = Array.from({ length: 10 }, (_, i) => 12 + i * 2);
   return (
     <div className="mt-4 flex flex-col text-sm gap-8 text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <div className="flex font-semibold items-center justify-between text-sm flex-wrap">
+      <div className="flex font-semibold justify-center text-sm flex-col gap-2">
         <p>
           Font size{" "}
           <span className="opacity-50 text-xs text">
             ({messageFontSize} px)
           </span>
         </p>
-        <div className="flex flex-col gap-8 flex-1 relative max-w-80">
+        <div className="flex flex-col gap-8 relative w-[20rem] self-end">
           {/* Progress bar */}
-          <div className="relative w-full h-6 rounded-3xl bg-background-light-surface-2 dark:bg-background-dark-surface-2">
+          <div className="relative h-6 rounded-3xl bg-background-light-surface-2 dark:bg-background-dark-surface-2">
             <div className="flex absolute font-light w-full z-20 opacity-70 pointer-events-none">
               {fontSizes.map((size) => (
                 <span
@@ -114,12 +114,13 @@ export default function AppearanceSettings() {
     <>
       <SettingsHeader title="Appearance Settings" />
 
-      <div className="flex items-start justify-start flex-wrap w-full px-3 gap-6">
-        <div className="flex-1 flex flex-col gap-4">
+      <div className="flex items-start justify-start flex-wrap w-full px-3 gap-6 max-w-200">
+        <div className="flex-1 flex flex-col gap-4 pt-4">
           <DarkModeToggle />
+        </div>
+        <div className="flex-1 flex flex-col gap-4 min-w-80">
           <MessageFontSize />
         </div>
-        <div className="flex-1"></div>
       </div>
     </>
   );

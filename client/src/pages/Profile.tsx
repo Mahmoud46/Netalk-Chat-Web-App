@@ -219,7 +219,7 @@ export default function Profile(): ReactNode {
       }
     };
     init();
-  }, [username]);
+  }, [getUserByUsername, isAuthNUser, username]);
 
   return (
     <div className="w-full min-h-dvh overflow-x-hidden text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20 pb-4 relative">

@@ -63,7 +63,11 @@ const LanguageOptions = () => {
     <div className="flex flex-col gap-3 w-full text-foreground-light-secondary dark:text-foreground-dark-secondary">
       <div className="flex justify-between items-center relative">
         <div className="flex items-center gap-2 font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
-          <SettingsSidebarIcon label="language" className="size-6.5" />
+          <SettingsSidebarIcon
+            label="language"
+            className="size-6.5"
+            weight="thin"
+          />
           <p>Language</p>
         </div>
 
@@ -107,12 +111,13 @@ export default function LanguageSettings() {
   return (
     <>
       <SettingsHeader title="Language Settings" />
-      <div className="flex flex-wrap w-full px-3 gap-6">
-        <div className="flex flex-col flex-1 gap-6">
+      <div className="flex flex-wrap w-full px-3 gap-6 max-w-200">
+        <div className="flex flex-col flex-1 gap-6 pt-3">
           <TranslateMessageOptions />
+        </div>
+        <div className="flex flex-col flex-1 gap-6 min-w-80">
           <LanguageOptions />
         </div>
-        <div className="flex flex-col flex-1"></div>
       </div>
     </>
   );

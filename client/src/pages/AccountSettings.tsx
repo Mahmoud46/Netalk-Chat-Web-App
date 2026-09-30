@@ -1,16 +1,27 @@
-import { lazy, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { SettingsHeader } from "../components/common/Header";
-import { useAuth } from "../hooks";
+import { useAuth, useTheme } from "../hooks";
 import { formatDate } from "../utils/format";
 import { calculateAge } from "../utils/helpers";
 import Label from "../components/common/Label";
 import CommonIcon from "../components/icons/CommonIcon";
+import Loader from "../components/common/Loader";
 
-const ContactInfoDropList = lazy(() =>
-  import("../components/common/DropList").then((module) => ({
-    default: module.ContactInfoDropList,
-  })),
-);
+const ContactSocialCard = lazy(() =>
+    import("../components/common/Card").then((module) => ({
+      default: module.ContactSocialCard,
+    })),
+  ),
+  ContactPhoneNumberCard = lazy(() =>
+    import("../components/common/Card").then((module) => ({
+      default: module.ContactPhoneNumberCard,
+    })),
+  ),
+  ContactEmailCard = lazy(() =>
+    import("../components/common/Card").then((module) => ({
+      default: module.ContactEmailCard,
+    })),
+  );
 
 const NameField = () => {
   const { authNUser } = useAuth();
@@ -258,6 +269,7 @@ const AddressField = () => {
 
 const ContactsInfo = () => {
   const { authNUser } = useAuth();
+  const { theme } = useTheme();
   const [isActive, setIsActive] = useState<boolean>(false);
   const toggleContactInfoList = () => setIsActive((prev) => !prev);
   const isListNotEmpty: boolean = !!(
@@ -315,9 +327,25 @@ const ContactsInfo = () => {
         used according to your privacy settings, and you can update or remove
         them at any time.
       </p>
-      <div className="relative">
-        <ContactInfoDropList isActive={isActive} authNUser={authNUser} />
-      </div>
+      {isActive && (
+        <div className="flex mt-2 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary w-full">
+          {authNUser?.contactInfo.emails.map((email) => (
+            <Suspense fallback={<Loader />} key={email}>
+              <ContactEmailCard email={email} />
+            </Suspense>
+          ))}
+          {authNUser?.contactInfo.phoneNumbers.map((phoneNumber) => (
+            <Suspense fallback={<Loader />} key={phoneNumber}>
+              <ContactPhoneNumberCard phoneNumber={phoneNumber} />
+            </Suspense>
+          ))}
+          {authNUser?.contactInfo.socialLinks.map((socialLink) => (
+            <Suspense fallback={<Loader />} key={socialLink.url}>
+              <ContactSocialCard socialLink={socialLink} theme={theme} />
+            </Suspense>
+          ))}
+        </div>
+      )}
     </>
   );
 };

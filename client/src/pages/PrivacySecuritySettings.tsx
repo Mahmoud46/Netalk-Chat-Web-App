@@ -148,7 +148,7 @@ const BlockedUsers = () => {
     };
 
     getBlockedUsers();
-  }, []);
+  }, [authNUser?.blockedUsers, getUser]);
   return (
     <>
       <div className="flex gap-2 items-center text-sm justify-between text-foreground-light-secondary dark:text-foreground-dark-secondary">
@@ -204,12 +204,12 @@ export default function PrivacySecuritySettings() {
     <>
       <SettingsHeader title="Privacy & Security Settings" />
 
-      <div className="flex flex-wrap w-full px-3 gap-6">
-        <div className="flex flex-col flex-1 gap-6">
+      <div className="flex flex-wrap w-full px-3 gap-6 max-w-200">
+        <div className="flex flex-col flex-1 gap-6 pt-2">
           <VerificationCredentials />
           <TwoFactorAuthentication />
         </div>
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col min-w-80">
           <BlockedUsers />
         </div>
       </div>
