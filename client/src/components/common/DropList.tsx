@@ -1,23 +1,15 @@
-import { lazy, useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useAuth, useChat } from "../../hooks";
 import ChatIcon from "../icons/ChatIcon";
 import CommonIcon from "../icons/CommonIcon";
 import { EMOJIS_LIST } from "../../config/emojis";
 import EmojiIcon from "../icons/EmojiIcon";
 import { LANGUAGES } from "../../config/languages";
-import type { AuthNUser, LanguageCode, User } from "../../types";
+import type { LanguageCode, User } from "../../types";
 import Label from "./Label";
 import { copyToClipboard } from "../../utils/helpers";
-import { formatPhoneNumber } from "../../utils/format";
-import SocialIcon from "../icons/SocialIcon";
 import { Link } from "react-router-dom";
 import React from "react";
-
-const BlockedUserCard = lazy(() =>
-  import("../common/Card").then((module) => ({
-    default: module.BlockedUserCard,
-  })),
-);
 
 export const ChatDropList = ({
   isActive = false,
@@ -145,7 +137,7 @@ export const ContactEntryDropList = ({
   return (
     <div
       ref={dropListRef}
-      className={`absolute top-0 z-10 -right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute top-0 z-10 -right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
         <CommonIcon label="edit" weight="thin" className="size-6.5" />
@@ -180,17 +172,38 @@ export const ContactEntryDropList = ({
 export const BlockedCardDropList = ({
   userId,
   isActive = false,
+  setIsActive,
 }: {
   isActive?: boolean;
   userId: string;
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
 }): ReactNode => {
   const { authNUser } = useAuth(),
     isBlocked: boolean =
       authNUser?.blockedUsers.includes(userId ?? "") ?? false,
     isMuted: boolean = authNUser?.mutedUsers.includes(userId ?? "") ?? false;
+
+  const dropListRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropListRef.current &&
+        !dropListRef.current.contains(event.target as Node)
+      ) {
+        setIsActive(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropListRef, setIsActive]);
   return (
     <div
-      className={`absolute bottom-5/6 z-10 -right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute bottom-5/6 z-10 right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      ref={dropListRef}
     >
       <button
         className={`cursor-pointer p-2 text-sm ${isBlocked ? "text-foreground-dark-success hover:bg-background-dark-success" : "text-foreground-dark-danger hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl`}
@@ -385,12 +398,12 @@ export const LanguageDropList = ({
 }): ReactNode => {
   return (
     <ul
-      className={`absolute max-h-80 overflow-auto -top-3 min-w-80 w-full z-10 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-3 flex flex-col items-start stable-gutter-container scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute max-h-80 overflow-auto -top-3 min-w-80 w-full z-10 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-1.5 flex flex-col items-start stable-gutter-container scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       {LANGUAGES.map((language) => (
         <li
           key={language.code}
-          className="cursor-pointer w-full flex justify-between items-center px-3 py-1 transition-all ease-in-out hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary rounded-3xl hover:pl-4"
+          className="cursor-pointer w-full flex justify-between items-center px-2 transition-all ease-in-out hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary rounded-3xl"
           onClick={() => changeLangCode(language.code as LanguageCode)}
         >
           <div className="flex flex-col">
@@ -407,26 +420,6 @@ export const LanguageDropList = ({
     </ul>
   );
 };
-export const BlockedUsersDropList = ({
-  isActive = false,
-  blockedUsersList,
-}: {
-  isActive?: boolean;
-  blockedUsersList: User[];
-}): ReactNode => {
-  return (
-    <div
-      className={`absolute max-h-80 -top-4 w-full min-w-80 z-10  bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
-    >
-      <div className="flex flex-col w-full">
-        {blockedUsersList.map((user) => (
-          <BlockedUserCard user={user} key={user._id} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
 //
 export const CopyContactButton = ({ text }: { text: string }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
@@ -456,122 +449,6 @@ export const CopyContactButton = ({ text }: { text: string }) => {
   );
 };
 
-export const ContactInfoDropList = ({
-  isActive = false,
-  authNUser,
-}: {
-  isActive?: boolean;
-  authNUser: AuthNUser | null;
-}): ReactNode => {
-  return (
-    <div
-      className={`absolute max-h-80 -top-10 -auto w-full min-w-80 z-10  bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-3 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
-    >
-      <div className="flex flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary w-full">
-        {authNUser?.contactInfo.emails.map((email) => (
-          <div
-            key={email}
-            className="text-sm relative py-2.5 pl-0 hover:pl-2 flex justify-between items-center gap-2 transition-all ease-in-out w-full p-0 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
-          >
-            <div className="flex gap-3 items-center">
-              <CommonIcon
-                label="envelope_alt"
-                weight="thin"
-                className="size-6 flex-none opacity-60"
-              />
-
-              <p className="line-clamp-1 flex-1">{email}</p>
-            </div>
-            <div className="flex absolute right-0 items-center scale-0 group-hover/card:scale-100 transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl p-0.5">
-              <button
-                type="button"
-                className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-              >
-                <CommonIcon label="edit" weight="thin" className="size-6" />
-                <Label text="Edit" />
-              </button>
-              <CopyContactButton text={email} />
-              <button
-                type="button"
-                className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-danger dark:hover:bg-background-dark-danger transition-all ease-in-out"
-              >
-                <CommonIcon label="trash" weight="thin" className="size-6" />
-                <Label text="Delete" />
-              </button>
-            </div>
-          </div>
-        ))}
-        {authNUser?.contactInfo.phoneNumbers.map((phoneNumber) => (
-          <div
-            key={phoneNumber}
-            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative py-2.5 pl-0 hover:pl-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
-          >
-            <div className="flex gap-3 items-center">
-              <CommonIcon
-                label="phone"
-                weight="thin"
-                className="size-6 flex-none opacity-60"
-              />
-              <p className="line-clamp-1 flex-1">
-                {formatPhoneNumber(phoneNumber)}
-              </p>
-            </div>
-            <div className="flex absolute right-0 items-center scale-0 group-hover/card:scale-100 transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl p-0.5">
-              <button
-                type="button"
-                className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-              >
-                <CommonIcon label="edit" weight="thin" className="size-6" />
-                <Label text="Edit" />
-              </button>
-              <CopyContactButton text={phoneNumber} />
-              <button
-                type="button"
-                className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-danger dark:hover:bg-background-dark-danger transition-all ease-in-out"
-              >
-                <CommonIcon label="trash" weight="thin" className="size-6" />
-                <Label text="Delete" />
-              </button>
-            </div>
-          </div>
-        ))}
-        {authNUser?.contactInfo.socialLinks.map((socialLink) => (
-          <div
-            key={socialLink.url}
-            className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative py-2.5 pl-0 hover:pl-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2"
-          >
-            <div className="flex gap-3 items-center">
-              <SocialIcon
-                platform={socialLink.type}
-                className="size-6 flex-none opacity-60"
-                weight="thin"
-              />
-              <p className="line-clamp-1 flex-1">{socialLink.url}</p>
-            </div>
-            <div className="flex absolute right-0 items-center scale-0 group-hover/card:scale-100 transition-all ease-in-out bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl p-0.5">
-              <button
-                type="button"
-                className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-              >
-                <CommonIcon label="edit" weight="thin" className="size-6" />
-                <Label text="Edit" />
-              </button>
-              <CopyContactButton text={socialLink.url} />
-              <button
-                type="button"
-                className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-danger dark:hover:bg-background-dark-danger transition-all ease-in-out"
-              >
-                <CommonIcon label="trash" weight="thin" className="size-6" />
-                <Label text="Delete" />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
 export const SettingsSearchDropList = ({
   suggList,
   isActive = false,
@@ -585,7 +462,7 @@ export const SettingsSearchDropList = ({
 }) => {
   return (
     <div
-      className={`absolute max-h-[85dvh] overflow-auto top-7/6 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3  self-end rounded-3xl p-2 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50 w-full`}
+      className={`absolute max-h-[85dvh] overflow-auto top-7/6 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3  self-end rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50 w-full`}
     >
       {suggList.map((sug) => (
         <Link

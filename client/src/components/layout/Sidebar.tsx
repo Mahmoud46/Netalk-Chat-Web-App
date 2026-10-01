@@ -23,7 +23,7 @@ export default function Sidebar(): ReactNode {
     ) || isLastItemActive;
   return (
     <aside
-      className={`flex flex-col items-center h-ful py-4 bg-background-light-surface-1 dark:bg-background-dark-surface-1 gap-8 ${isAnyItemActive ? "" : "px-1.5"}`}
+      className={`flex flex-col items-center z-50 h-ful py-4 bg-background-light-surface-1 dark:bg-background-dark-surface-1 gap-8 ${isAnyItemActive ? "" : "px-1.5"}`}
     >
       <Link to="/">
         <BrandIcon className="size-8" theme={theme} />

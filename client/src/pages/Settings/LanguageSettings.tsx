@@ -18,7 +18,7 @@ const ShowTranslateButton = () => {
     useTheme();
 
   return (
-    <div className="flex relative font-semibold items-center justify-between pl-3 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
+    <div className="flex relative font-semibold items-center justify-between pl-4 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
       <label htmlFor="show-translate-button" className="cursor-pointer flex-1">
         Show Translate Button{" "}
         <span className="opacity-50 text-xs">
@@ -60,7 +60,7 @@ const LanguageOptions = () => {
   const toggleLanguageList = () => setIsActive((prev) => !prev);
 
   return (
-    <div className="flex flex-col gap-3 w-full text-foreground-light-secondary dark:text-foreground-dark-secondary">
+    <div className="flex flex-col gap-1 w-full text-foreground-light-secondary dark:text-foreground-dark-secondary">
       <div className="flex justify-between items-center relative">
         <div className="flex items-center gap-2 font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
           <SettingsSidebarIcon
@@ -76,9 +76,7 @@ const LanguageOptions = () => {
           onClick={toggleLanguageList}
         >
           <div className="flex flex-col justify-start">
-            <p className="text-base">
-              {LANGUAGES_CODE_MAP[langCode].nativeName}
-            </p>
+            <p className="text-sm">{LANGUAGES_CODE_MAP[langCode].nativeName}</p>
             {langCode != "en" && (
               <p className="text-xs">
                 {LANGUAGES_CODE_MAP[langCode].englishName}
@@ -96,6 +94,11 @@ const LanguageOptions = () => {
           </button>
         </div>
       </div>
+      <p className="text-xs">
+        Choose the language that feels most comfortable for you. Changing this
+        setting will update menus, buttons, settings, and notifications, while
+        your messages and conversations will stay in their original languages.
+      </p>
       <div className="relative w-full max-h-80">
         <LanguageDropList
           isActive={isActive}

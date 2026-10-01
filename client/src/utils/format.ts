@@ -80,3 +80,28 @@ export const getDateSixteenYearsAgo = (): string => {
 
   return `${year}-${month}-${day}`;
 };
+
+const capitalizeList = (words: string[]): string[] => {
+  const wordsList = [];
+  for (const word of words) {
+    wordsList.push(word[0].toUpperCase().concat(word.slice(1, word.length)));
+    console.log(word);
+  }
+
+  return wordsList;
+};
+
+export const formatText = (text: string) => {
+  switch (text) {
+    case "github":
+      return "GitHub";
+    case "linkedin":
+      return "LinkedIn";
+    case "gitlab":
+      return "GitLab";
+    case "youtube":
+      return "YouTube";
+    default:
+      return capitalizeList(text.split(" ")).join(" ");
+  }
+};

@@ -81,7 +81,7 @@
         {
           "type": "website",
           "url": "https://salma.blog.com",
-          "custom_name": "Personal blog",
+          "custom_name": "Personal Blog",
           "favicon": "/personal_websites_favicons/salma_omar_personal_blog.png"
         }
       ]
@@ -151,7 +151,7 @@
         {
           "type": "website",
           "url": "https://khaled.dev",
-          "custom_name": "Personal portfolio",
+          "custom_name": "Personal Portfolio",
           "favicon": "/personal_websites_favicons/khaled_nabil_personal_portfolio.png"
         }
       ]
@@ -222,7 +222,7 @@
         {
           "type": "website",
           "url": "https://dina.blog.com",
-          "custom_name": "Personal blog",
+          "custom_name": "Personal Blog",
           "favicon": "/personal_websites_favicons/dina_sherif_personal_blog.png"
         }
       ]
@@ -492,7 +492,7 @@
         {
           "type": "website",
           "url": "https://hanamagdy.com",
-          "custom_name": "Personal portfolio",
+          "custom_name": "Personal Portfolio",
           "favicon": "/personal_websites_favicons/hana_magdy_personal_portfolio.png"
         },
         {

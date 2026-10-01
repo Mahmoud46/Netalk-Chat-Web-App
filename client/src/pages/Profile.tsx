@@ -1,4 +1,11 @@
-import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import { useAuth, useChat, useTheme } from "../hooks";
 import default_cover from "../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../assets/images/default_profile_cover_dark.jpg";
@@ -6,7 +13,7 @@ import CommonIcon from "../components/icons/CommonIcon";
 import Label from "../components/common/Label";
 import { calculateAge, copyToClipboard } from "../utils/helpers";
 import type { AuthNUser, Gender, ThemeMode, User } from "../types";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Avatar } from "../components/icons/Avatar";
 import Loader from "../components/common/Loader";
 
@@ -104,10 +111,12 @@ export const ProfileHeader = ({
   authNUser,
   theme,
   isAuthNUser,
+  setIsShareProfileActive,
 }: {
   authNUser: AuthNUser | User | null;
   theme: ThemeMode;
   isAuthNUser: boolean;
+  setIsShareProfileActive: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <div className="h-60 w-full relative cursor-pointer">
@@ -180,26 +189,144 @@ export const ProfileHeader = ({
           </Link>
         )}
         {isAuthNUser && (
-          <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+          <Link
+            to={"/app/settings/account"}
+            className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          >
             <CommonIcon label="cog" weight="thin" className="size-6.5" />
             <Label text="Settings" />
-          </button>
+          </Link>
         )}
-        <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+        <button
+          onClick={() => setIsShareProfileActive(true)}
+          className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+        >
           <CommonIcon label="share" weight="thin" className="size-6.5" />
           <Label text="Share" />
         </button>
-        <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
-          <CommonIcon
-            label="dots_vertical_rounded"
-            weight="thin"
-            soild={true}
-            className="size-6.5"
-          />
-          <Label text="More" />
-        </button>
+        {!isAuthNUser && (
+          <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+            <CommonIcon
+              label="dots_vertical_rounded"
+              weight="thin"
+              soild={true}
+              className="size-6.5"
+            />
+            <Label text="More" />
+          </button>
+        )}
       </div>
     </div>
+  );
+};
+
+const ShareProfileInfoScreen = ({
+  user,
+  isActive,
+  setIsActive,
+}: {
+  user: AuthNUser | User | null;
+  isActive: boolean;
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const fullProfileLink = window.origin + useLocation().pathname;
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+  const shareWindow = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        shareWindow.current &&
+        !shareWindow.current.contains(event.target as Node)
+      ) {
+        setIsActive(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [shareWindow, setIsActive]);
+
+  return (
+    <>
+      {user && isActive && (
+        <div className="fixed bg-transparent backdrop-blur-lg w-full h-full z-40 flex items-center justify-center">
+          <div
+            ref={shareWindow}
+            className="flex flex-col p-1.5 bg-background-light-base dark:bg-background-dark-base rounded-3xl w-80 gap-8 items-center shadow-lg dark:shadow-neutral-900/50"
+          >
+            <div className="flex gap-2 w-full items-center justify-between text-foreground-light-secondary dark:text-foreground-dark-secondary">
+              <div className="flex gap-2 items-center font-semibold p-1.5">
+                <CommonIcon label="share" weight="thin" className="size-6.5" />
+                <p>Share Profile</p>
+              </div>
+
+              <div className="flex items-center z-30">
+                <button
+                  type="button"
+                  className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+                  onClick={() => setIsActive(false)}
+                >
+                  <CommonIcon label="x" weight="thin" className="size-6" />
+                  <Label text="Close" />
+                </button>
+              </div>
+            </div>
+            {user?.profileImage ? (
+              <img
+                src={user?.profileImage}
+                alt="profile-image"
+                loading="lazy"
+                className="size-35 rounded-full"
+              />
+            ) : (
+              <div className="size-35 rounded-full flex-none overflow-hidden">
+                <Avatar
+                  gender={user?.gender as Gender}
+                  age={calculateAge(user?.birthdate as string)}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div className="relative w-full">
+              <CommonIcon
+                label="link"
+                weight="thin"
+                className="size-6 absolute top-1/2 left-3 -translate-y-1/2"
+              />
+              <input
+                type="text"
+                readOnly
+                value={fullProfileLink}
+                className="flex items-center gap-2 w-full rounded-full pl-11 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+              />
+
+              <button
+                type="button"
+                onClick={async () => {
+                  const copied = await copyToClipboard(fullProfileLink);
+                  setIsCopied(copied);
+
+                  setTimeout(() => {
+                    setIsCopied(false);
+                  }, 1000);
+                }}
+                className="absolute bg-background-light-surface-2 dark:bg-background-dark-surface-2 top-1/2 -translate-y-1/2 right-0.5 group self-end cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+              >
+                <CommonIcon
+                  label={isCopied ? "copy_check" : "copy"}
+                  weight="thin"
+                  className="size-6"
+                />
+                <Label text={isCopied ? "Copied" : "Copy"} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -210,7 +337,8 @@ export default function Profile(): ReactNode {
     { getUserByUsername } = useChat();
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const isAuthNUser: boolean = username?.trim() == authNUser?.username;
-
+  const [isShareProfileActive, setIsShareProfileActive] =
+    useState<boolean>(false);
   useEffect(() => {
     const init = async () => {
       if (username && !isAuthNUser) {
@@ -220,13 +348,13 @@ export default function Profile(): ReactNode {
     };
     init();
   }, [getUserByUsername, isAuthNUser, username]);
-
   return (
     <div className="w-full min-h-dvh overflow-x-hidden text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20 pb-4 relative">
       <ProfileHeader
         authNUser={isAuthNUser ? authNUser : currentUser}
         theme={theme}
         isAuthNUser={isAuthNUser}
+        setIsShareProfileActive={setIsShareProfileActive}
       />
       <div className="pl-30 pr-8 flex items-start gap-6">
         <div className="flex flex-col gap-4 flex-1">
@@ -262,6 +390,12 @@ export default function Profile(): ReactNode {
         </div>
         <ContactsInfo authNUser={isAuthNUser ? authNUser : currentUser} />
       </div>
+
+      <ShareProfileInfoScreen
+        user={isAuthNUser ? authNUser : currentUser}
+        isActive={isShareProfileActive}
+        setIsActive={setIsShareProfileActive}
+      />
     </div>
   );
 }

@@ -54,7 +54,7 @@ const NameField = () => {
             onChange={(e) => {
               setFirstName(e.target.value);
               setShowSaveFirstNameButton(
-                e.target.value.trim() != authNUser?.title,
+                e.target.value.trim() != authNUser?.firstName,
               );
             }}
             className="w-full resize-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
@@ -73,7 +73,7 @@ const NameField = () => {
             onChange={(e) => {
               setLastName(e.target.value);
               setShowSaveLastNameButton(
-                e.target.value.trim() != authNUser?.title,
+                e.target.value.trim() != authNUser?.lastName,
               );
             }}
             className="w-full resize-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
@@ -354,7 +354,7 @@ export default function AccountSettings() {
   return (
     <>
       <SettingsHeader title="Account Settings" />
-      <div className="flex flex-wrap w-full px-3 gap-6 max-w-200">
+      <div className="flex flex-wrap w-full gap-6 max-w-200">
         <div className="flex flex-col flex-1 gap-4 pt-2">
           <NameField />
           <TitleField />

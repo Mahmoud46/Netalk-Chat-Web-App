@@ -37,6 +37,10 @@ import share_icon from "../../assets/icons/common/share.png";
 import cog_icon from "../../assets/icons/common/cog.png";
 import user_icon from "../../assets/icons/common/user.png";
 import maximize_icon from "../../assets/icons/common/maximize.png";
+import text_width_icon from "../../assets/icons/common/text_width.png";
+import arrow_out_up_right_stroke_square_icon from "../../assets/icons/common/arrow_out_up_right_stroke_square.png";
+import x_icon from "../../assets/icons/common/x.png";
+import link_icon from "../../assets/icons/common/link.png";
 
 // Thin icons
 import search_big_thin_icon from "../../assets/icons/common/search_big_thin.png";
@@ -76,6 +80,10 @@ import share_thin_icon from "../../assets/icons/common/share_thin.png";
 import cog_thin_icon from "../../assets/icons/common/cog_thin.png";
 import user_thin_icon from "../../assets/icons/common/user_thin.png";
 import maximize_thin_icon from "../../assets/icons/common/maximize_thin.png";
+import text_width_thin_icon from "../../assets/icons/common/text_width_thin.png";
+import arrow_out_up_right_stroke_square_thin_icon from "../../assets/icons/common/arrow_out_up_right_stroke_square_thin.png";
+import x_thin_icon from "../../assets/icons/common/x_thin.png";
+import link_thin_icon from "../../assets/icons/common/link_thin.png";
 
 // Bold
 import eye_bold_icon from "../../assets/icons/common/eye_bold.png";
@@ -86,6 +94,7 @@ import share_bold_icon from "../../assets/icons/common/share_bold.png";
 import cog_bold_icon from "../../assets/icons/common/cog_bold.png";
 import plus_bold_icon from "../../assets/icons/common/plus_bold.png";
 import maximize_bold_icon from "../../assets/icons/common/maximize_bold.png";
+import text_width_bold_icon from "../../assets/icons/common/text_width_bold.png";
 
 // Soild base icons
 import dots_vertical_rounded_solid_icon from "../../assets/icons/common/dots_vertical_rounded_solid.png";
@@ -118,10 +127,52 @@ export default function CommonIcon({
           className={`main-icon ${className ?? ""}`}
         />
       );
+    case "text_width":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? text_width_thin_icon
+              : weight == "bold"
+                ? text_width_bold_icon
+                : text_width_icon
+          }
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
     case "user":
       return (
         <img
           src={weight == "thin" ? user_thin_icon : user_icon}
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "link":
+      return (
+        <img
+          src={weight == "thin" ? link_thin_icon : link_icon}
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "x":
+      return (
+        <img
+          src={weight == "thin" ? x_thin_icon : x_icon}
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "arrow_out_up_right_stroke_square":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? arrow_out_up_right_stroke_square_thin_icon
+              : arrow_out_up_right_stroke_square_icon
+          }
           loading="lazy"
           className={`main-icon ${className ?? ""}`}
         />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { SettingsHeader } from "../components/common/Header";
 import { useTheme } from "../hooks";
+import CommonIcon from "../components/icons/CommonIcon";
 
 export const ToggleButton = ({
   isActive = false,
@@ -54,15 +55,24 @@ const MessageFontSize = () => {
   const { messageFontSize, changeMessageFontSize } = useTheme();
   const fontSizes = Array.from({ length: 10 }, (_, i) => 12 + i * 2);
   return (
-    <div className="mt-4 flex flex-col text-sm gap-8 text-foreground-light-secondary dark:text-foreground-dark-secondary">
+    <div className="mt-4 flex flex-col text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
       <div className="flex font-semibold justify-center text-sm flex-col gap-2">
-        <p>
-          Font size{" "}
-          <span className="opacity-50 text-xs text">
-            ({messageFontSize} px)
-          </span>
+        <div className="flex font-semibold gap-2 items-center text-sm justify-start text-foreground-light-secondary dark:text-foreground-dark-secondary">
+          <CommonIcon label="text_width" weight="thin" className="size-6.5" />
+          <p>
+            Font size{" "}
+            <span className="opacity-50 text-xs text">
+              ({messageFontSize} px)
+            </span>
+          </p>
+        </div>
+        <p className="text-foreground-light-secondary dark:text-foreground-dark-secondary text-xs font-normal">
+          Adjust the font size of messages in your conversations. Larger text
+          makes messages easier to read, while smaller text lets you see more
+          messages on the screen at once. This setting affects message text
+          across all your chats.
         </p>
-        <div className="flex flex-col gap-8 relative w-[20rem] self-end">
+        <div className="flex flex-col gap-8 relative w-full self-end pl-1.5 pr-3.5 mt-3">
           {/* Progress bar */}
           <div className="relative h-6 rounded-3xl bg-background-light-surface-2 dark:bg-background-dark-surface-2">
             <div className="flex absolute font-light w-full z-20 opacity-70 pointer-events-none">
@@ -99,7 +109,10 @@ const MessageFontSize = () => {
           />
         </div>
       </div>
-      <p className="line-clamp-1" style={{ fontSize: `${messageFontSize}px` }}>
+      <p
+        className="line-clamp-1 mt-8"
+        style={{ fontSize: `${messageFontSize}px` }}
+      >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
         doloremque! Ipsam, doloribus nobis quia facere enim corporis eligendi ex
         eaque esse deserunt aliquid molestias harum ratione autem commodi error
@@ -114,7 +127,7 @@ export default function AppearanceSettings() {
     <>
       <SettingsHeader title="Appearance Settings" />
 
-      <div className="flex items-start justify-start flex-wrap w-full px-3 gap-6 max-w-200">
+      <div className="flex items-start justify-start flex-wrap w-full gap-6 max-w-200">
         <div className="flex-1 flex flex-col gap-4 pt-4">
           <DarkModeToggle />
         </div>

@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { SettingsHeader } from "../components/common/Header";
 import Label from "../components/common/Label";
 
@@ -8,10 +8,11 @@ import { ToggleButton } from "./AppearanceSettings";
 import type { User } from "../types";
 
 import CommonIcon from "../components/icons/CommonIcon";
+import Loader from "../components/common/Loader";
 
-const BlockedUsersDropList = lazy(() =>
-  import("../components/common/DropList").then((module) => ({
-    default: module.BlockedUsersDropList,
+const BlockedUserCard = lazy(() =>
+  import("../components/common/Card").then((module) => ({
+    default: module.BlockedUserCard,
   })),
 );
 
@@ -189,12 +190,16 @@ const BlockedUsers = () => {
         Blocked users can't send you messages or add you to groups. They will
         not see your profile photos, stories, online and last seen status.
       </p>
-      <div className="relative w-full h-80">
-        <BlockedUsersDropList
-          isActive={isActive}
-          blockedUsersList={blockedUsersList}
-        />
-      </div>
+
+      {isActive && (
+        <div className="flex mt-2 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary w-full">
+          {blockedUsersList.map((user) => (
+            <Suspense fallback={<Loader />} key={user._id}>
+              <BlockedUserCard user={user} />
+            </Suspense>
+          ))}
+        </div>
+      )}
     </>
   );
 };
