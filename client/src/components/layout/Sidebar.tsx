@@ -6,6 +6,7 @@ import { useAuth, useChat, useTheme } from "../../hooks";
 import Label from "../common/Label";
 import { MainSidebarIcon } from "../icons/SidebarIcon";
 import { BrandIcon } from "../icons/BrandIcon";
+import CommonIcon from "../icons/CommonIcon";
 
 export default function Sidebar(): ReactNode {
   const pathname = useLocation().pathname,
@@ -96,7 +97,11 @@ export default function Sidebar(): ReactNode {
             className="aspect-square relative group transition-all ease-in-out hover:bg-background-light-secondary/50 dark:hover:bg-background-light-secondary/10 flex justify-center items-center p-2.5 rounded-full cursor-pointer"
             onClick={logout}
           >
-            <MainSidebarIcon className="size-7" weight="thin" />
+            <CommonIcon
+              label="arrow_out_right_stroke_circle_half"
+              className="size-7"
+              weight="thin"
+            />
             <Label text="Logout" isSide={true} />
           </button>
         </div>

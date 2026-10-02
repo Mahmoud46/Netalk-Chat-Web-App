@@ -16,6 +16,8 @@ import type { AuthNUser, Gender, ThemeMode, User } from "../types";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Avatar } from "../components/icons/Avatar";
 import Loader from "../components/common/Loader";
+import { QRCodeCanvas } from "qrcode.react";
+import { ProfileDropList } from "../components/common/DropList";
 
 const ContactSocialCard = lazy(() =>
     import("../components/common/Card").then((module) => ({
@@ -118,8 +120,9 @@ export const ProfileHeader = ({
   isAuthNUser: boolean;
   setIsShareProfileActive: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const [isMoreActive, setIsMoreActive] = useState<boolean>(false);
   return (
-    <div className="h-60 w-full relative cursor-pointer">
+    <div className="h-60 w-full relative">
       {isAuthNUser && (
         <div className="absolute top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
           <button className="relative group cursor-pointer z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
@@ -137,7 +140,7 @@ export const ProfileHeader = ({
         }
         alt="participant-profile-cover"
         loading="lazy"
-        className="h-full w-full rounded-b-3xl object-cover"
+        className="h-full w-full rounded-b-3xl object-cover cursor-pointer"
       />
       {/* Profile pic */}
       <div className="absolute -bottom-19 rounded-full left-30 bg-background-light-base dark:bg-background-dark-base p-3 flex profile-image-corners [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
@@ -146,10 +149,10 @@ export const ProfileHeader = ({
             src={authNUser?.profileImage}
             alt="profile-image"
             loading="lazy"
-            className="size-35 rounded-full"
+            className="size-35 rounded-full cursor-pointer"
           />
         ) : (
-          <div className="size-35 rounded-full flex-none overflow-hidden">
+          <div className="size-35 rounded-full flex-none overflow-hidden cursor-pointer">
             <Avatar
               gender={authNUser?.gender as Gender}
               age={calculateAge(authNUser?.birthdate as string)}
@@ -175,6 +178,13 @@ export const ProfileHeader = ({
       {/* Header buttons */}
       <div className="absolute flex bottom-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-tl-3xl bottom-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
         {!isAuthNUser && authNUser && (
+          <ProfileDropList
+            user={authNUser}
+            isActive={isMoreActive}
+            setIsActive={setIsMoreActive}
+          />
+        )}
+        {!isAuthNUser && authNUser && (
           <Link
             to={`/app/inbox/${authNUser._id}`}
             className="relative group mr-2 cursor-pointer p-2 rounded-full gradient transition-all ease-in-out"
@@ -198,14 +208,19 @@ export const ProfileHeader = ({
           </Link>
         )}
         <button
+          type="button"
           onClick={() => setIsShareProfileActive(true)}
-          className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          className="relative group z-10 cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
         >
           <CommonIcon label="share" weight="thin" className="size-6.5" />
           <Label text="Share" />
         </button>
         {!isAuthNUser && (
-          <button className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+          <button
+            onClick={() => setIsMoreActive((prev) => !prev)}
+            type="button"
+            className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          >
             <CommonIcon
               label="dots_vertical_rounded"
               weight="thin"
@@ -232,6 +247,7 @@ const ShareProfileInfoScreen = ({
   const fullProfileLink = window.origin + useLocation().pathname;
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const shareWindow = useRef<HTMLDivElement | null>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -257,39 +273,45 @@ const ShareProfileInfoScreen = ({
             ref={shareWindow}
             className="flex flex-col p-1.5 bg-background-light-base dark:bg-background-dark-base rounded-3xl w-80 gap-8 items-center shadow-lg dark:shadow-neutral-900/50"
           >
-            <div className="flex gap-2 w-full items-center justify-between text-foreground-light-secondary dark:text-foreground-dark-secondary">
-              <div className="flex gap-2 items-center font-semibold p-1.5">
-                <CommonIcon label="share" weight="thin" className="size-6.5" />
-                <p>Share Profile</p>
-              </div>
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-2 w-full items-center justify-between text-foreground-light-secondary dark:text-foreground-dark-secondary">
+                <div className="flex gap-2 items-center font-semibold p-1.5">
+                  <CommonIcon
+                    label="share"
+                    weight="thin"
+                    className="size-6.5"
+                  />
+                  <p>Share Profile</p>
+                </div>
 
-              <div className="flex items-center z-30">
-                <button
-                  type="button"
-                  className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-                  onClick={() => setIsActive(false)}
-                >
-                  <CommonIcon label="x" weight="thin" className="size-6" />
-                  <Label text="Close" />
-                </button>
+                <div className="flex items-center z-30">
+                  <button
+                    type="button"
+                    className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+                    onClick={() => setIsActive(false)}
+                  >
+                    <CommonIcon label="x" weight="thin" className="size-6" />
+                    <Label text="Close" />
+                  </button>
+                </div>
               </div>
+              <p className="px-2 text-xs">
+                Sharing a profile is easy. Use the QR code or copy the profile
+                link to let others quickly find and connect with{" "}
+                {user.firstName}.
+              </p>
             </div>
-            {user?.profileImage ? (
-              <img
-                src={user?.profileImage}
-                alt="profile-image"
-                loading="lazy"
-                className="size-35 rounded-full"
+            <div>
+              <QRCodeCanvas
+                value={fullProfileLink || "https://example.com"}
+                size={200}
+                bgColor={theme == "dark" ? "#16181d" : "#f9f1ff"}
+                fgColor={theme == "dark" ? "#a6a6a6" : "#635d6c"}
+                level="H" // High error correction level
+                includeMargin={true}
+                className="rounded-3xl"
               />
-            ) : (
-              <div className="size-35 rounded-full flex-none overflow-hidden">
-                <Avatar
-                  gender={user?.gender as Gender}
-                  age={calculateAge(user?.birthdate as string)}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )}
+            </div>
             <div className="relative w-full">
               <CommonIcon
                 label="link"

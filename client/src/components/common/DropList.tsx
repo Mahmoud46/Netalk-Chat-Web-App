@@ -7,7 +7,6 @@ import EmojiIcon from "../icons/EmojiIcon";
 import { LANGUAGES } from "../../config/languages";
 import type { LanguageCode, User } from "../../types";
 import Label from "./Label";
-import { copyToClipboard } from "../../utils/helpers";
 import { Link } from "react-router-dom";
 import React from "react";
 
@@ -387,6 +386,7 @@ export const MessageDropList = ({
     </div>
   );
 };
+
 export const LanguageDropList = ({
   isActive = false,
   langCode,
@@ -418,34 +418,6 @@ export const LanguageDropList = ({
         </li>
       ))}
     </ul>
-  );
-};
-//
-export const CopyContactButton = ({ text }: { text: string }) => {
-  const [isCopied, setIsCopied] = useState<boolean>(false);
-
-  const copyText = async () => {
-    const copied = await copyToClipboard(text);
-    setIsCopied(copied);
-
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 1000);
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={copyText}
-      className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-    >
-      <CommonIcon
-        label={isCopied ? "copy_check" : "copy"}
-        weight="thin"
-        className="size-6"
-      />
-      <Label text={isCopied ? "Copied" : "Copy"} />
-    </button>
   );
 };
 
@@ -525,6 +497,86 @@ export const SideProfilePanelDropList = ({
           className="size-6.5"
         />
         {isContact ? "Delete" : "Add"}
+      </button>
+      <button
+        className={`cursor-pointer p-2 text-sm ${isBlocked ? "text-foreground-dark-success hover:bg-background-dark-success" : "text-foreground-dark-danger hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl transition-all ease-in-out`}
+      >
+        <CommonIcon
+          label={isBlocked ? "user_check" : "user_x"}
+          weight="thin"
+          className="size-6.5"
+        />
+        {isBlocked ? "Unblock" : "Block"}
+      </button>
+    </div>
+  );
+};
+
+export const ProfileDropList = ({
+  isActive,
+  user,
+  setIsActive,
+}: {
+  isActive: boolean;
+  user: User | null;
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const dropListRef = useRef<HTMLDivElement | null>(null);
+  const { authNUser } = useAuth(),
+    { contacts } = useChat();
+  const isBlocked: boolean =
+      authNUser?.blockedUsers.includes(user?._id ?? "") ?? false,
+    isContact: boolean = (user?._id ?? "") in contacts,
+    isMuted: boolean = authNUser?.mutedUsers.includes(user?._id ?? "") ?? false;
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropListRef.current &&
+        !dropListRef.current.contains(event.target as Node)
+      ) {
+        setIsActive(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropListRef, setIsActive]);
+
+  return (
+    <div
+      ref={dropListRef}
+      className={`absolute w-full top-full z-20 right-1/3 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+    >
+      {!isBlocked && (
+        <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
+          <CommonIcon label="phone" weight="thin" className="size-6.5" />
+          Call
+        </button>
+      )}
+      {isContact && (
+        <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
+          <CommonIcon label="edit" weight="thin" className="size-6.5" />
+          Edit
+        </button>
+      )}
+      <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
+        <CommonIcon
+          label={isContact ? "user_minus" : "user_plus"}
+          weight="thin"
+          className="size-6.5"
+        />
+        {isContact ? "Delete" : "Add"}
+      </button>
+      <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
+        <CommonIcon
+          label={isMuted ? "bell" : "bell_slash"}
+          weight="thin"
+          className="size-6.5"
+        />
+        {isMuted ? "Unmute" : "Mute"}
       </button>
       <button
         className={`cursor-pointer p-2 text-sm ${isBlocked ? "text-foreground-dark-success hover:bg-background-dark-success" : "text-foreground-dark-danger hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl transition-all ease-in-out`}

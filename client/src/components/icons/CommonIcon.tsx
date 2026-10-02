@@ -41,6 +41,7 @@ import text_width_icon from "../../assets/icons/common/text_width.png";
 import arrow_out_up_right_stroke_square_icon from "../../assets/icons/common/arrow_out_up_right_stroke_square.png";
 import x_icon from "../../assets/icons/common/x.png";
 import link_icon from "../../assets/icons/common/link.png";
+import arrow_out_right_stroke_circle_half_icon from "../../assets/icons/common/arrow_out_right_stroke_circle_half.png";
 
 // Thin icons
 import search_big_thin_icon from "../../assets/icons/common/search_big_thin.png";
@@ -84,6 +85,7 @@ import text_width_thin_icon from "../../assets/icons/common/text_width_thin.png"
 import arrow_out_up_right_stroke_square_thin_icon from "../../assets/icons/common/arrow_out_up_right_stroke_square_thin.png";
 import x_thin_icon from "../../assets/icons/common/x_thin.png";
 import link_thin_icon from "../../assets/icons/common/link_thin.png";
+import arrow_out_right_stroke_circle_half_thin_icon from "../../assets/icons/common/arrow_out_right_stroke_circle_half_thin.png";
 
 // Bold
 import eye_bold_icon from "../../assets/icons/common/eye_bold.png";
@@ -145,6 +147,18 @@ export default function CommonIcon({
       return (
         <img
           src={weight == "thin" ? user_thin_icon : user_icon}
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "arrow_out_right_stroke_circle_half":
+      return (
+        <img
+          src={
+            weight == "thin"
+              ? arrow_out_right_stroke_circle_half_thin_icon
+              : arrow_out_right_stroke_circle_half_icon
+          }
           loading="lazy"
           className={`main-icon ${className ?? ""}`}
         />
