@@ -4,11 +4,12 @@ import ChatIcon from "../icons/ChatIcon";
 import CommonIcon from "../icons/CommonIcon";
 import { EMOJIS_LIST } from "../../config/emojis";
 import EmojiIcon from "../icons/EmojiIcon";
-import { LANGUAGES } from "../../config/languages";
+import { PROVIDED_LANGUAGES } from "../../config/languages";
 import type { LanguageCode, User } from "../../types";
 import Label from "./Label";
 import { Link } from "react-router-dom";
 import React from "react";
+import { FlagIcon } from "../icons/FlagIcon";
 
 export const ChatDropList = ({
   isActive = false,
@@ -391,23 +392,50 @@ export const LanguageDropList = ({
   isActive = false,
   langCode,
   changeLangCode,
+  setIsActive,
 }: {
   isActive?: boolean;
   langCode: LanguageCode;
   changeLangCode: (langCode: LanguageCode) => void;
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
 }): ReactNode => {
+  const dropListRef = useRef<HTMLUListElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropListRef.current &&
+        !dropListRef.current.contains(event.target as Node)
+      ) {
+        setIsActive(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropListRef, setIsActive]);
   return (
     <ul
-      className={`absolute max-h-80 overflow-auto -top-3 min-w-80 w-full z-10 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-1.5 flex flex-col items-start stable-gutter-container scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      ref={dropListRef}
+      className={`absolute max-h-80 overflow-auto top-full w-full z-10 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
-      {LANGUAGES.map((language) => (
+      {PROVIDED_LANGUAGES.map((language) => (
         <li
           key={language.code}
-          className="cursor-pointer w-full flex justify-between items-center px-2 transition-all ease-in-out hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary rounded-3xl"
-          onClick={() => changeLangCode(language.code as LanguageCode)}
+          className="cursor-pointer gap-3 w-full flex justify-start items-center p-2 transition-all ease-in-out hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary rounded-3xl"
+          onClick={() => {
+            changeLangCode(language.code as LanguageCode);
+            setIsActive(false);
+          }}
         >
-          <div className="flex flex-col">
-            <p className="text-base">{language.nativeName}</p>
+          <FlagIcon
+            langaugeCode={language.code as LanguageCode}
+            className="h-6.5 rounded-3xl"
+          />
+          <div className="flex flex-col flex-1">
+            <p className="text-sm">{language.nativeName}</p>
             <p className="text-xs">{language.englishName}</p>
           </div>
           <div className="aspect-square h-6 rounded-full bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex items-center justify-center">

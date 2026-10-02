@@ -63,3 +63,8 @@ export const LANGUAGES_CODE_MAP = {
   ur: { code: "ur", englishName: "Urdu", nativeName: "اردو" },
   vi: { code: "vi", englishName: "Vietnamese", nativeName: "Tiếng Việt" },
 };
+
+export const PROVIDED_LANGUAGES = [
+  { code: "en", englishName: "English", nativeName: "English" },
+  { code: "ar", englishName: "Arabic", nativeName: "العربية" },
+];

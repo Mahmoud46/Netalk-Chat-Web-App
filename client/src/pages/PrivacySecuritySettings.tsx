@@ -209,7 +209,7 @@ export default function PrivacySecuritySettings() {
     <>
       <SettingsHeader title="Privacy & Security Settings" />
 
-      <div className="flex flex-wrap w-full px-3 gap-6 max-w-200">
+      <div className="flex flex-wrap w-full gap-6 max-w-200">
         <div className="flex flex-col flex-1 gap-6 pt-2">
           <VerificationCredentials />
           <TwoFactorAuthentication />

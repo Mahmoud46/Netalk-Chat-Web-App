@@ -57,7 +57,7 @@ const LanguageOptions = () => {
   const { langCode, changeLangCode } = useTheme(),
     [isActive, setIsActive] = useState<boolean>(false);
 
-  const toggleLanguageList = () => setIsActive((prev) => !prev);
+  const toggleLanguageList = () => setIsActive(true);
 
   return (
     <div className="flex flex-col gap-1 w-full text-foreground-light-secondary dark:text-foreground-dark-secondary">
@@ -71,10 +71,7 @@ const LanguageOptions = () => {
           <p>Language</p>
         </div>
 
-        <div
-          className="flex items-center gap-3 cursor-pointer"
-          onClick={toggleLanguageList}
-        >
+        <div className="flex items-center gap-3">
           <div className="flex flex-col justify-start">
             <p className="text-sm">{LANGUAGES_CODE_MAP[langCode].nativeName}</p>
             {langCode != "en" && (
@@ -84,28 +81,42 @@ const LanguageOptions = () => {
             )}
           </div>
 
-          <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out z-30">
-            <CommonIcon
-              label="chevron_right"
-              weight="thin"
-              className={`size-7 transition-all ease-in-out ${isActive ? "-rotate-90" : "rotate-90"}`}
-            />
-            <Label text={isActive ? "Close" : "Open"} />
-          </button>
+          {isActive && (
+            <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out z-30">
+              <CommonIcon
+                label="chevron_right"
+                weight="thin"
+                className={`size-7 transition-all ease-in-out ${isActive ? "-rotate-90" : "rotate-90"}`}
+              />
+              <Label text="Close" />
+            </button>
+          )}
+          {!isActive && (
+            <button
+              onClick={toggleLanguageList}
+              className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out z-30"
+            >
+              <CommonIcon
+                label="chevron_right"
+                weight="thin"
+                className={`size-7 transition-all ease-in-out ${isActive ? "-rotate-90" : "rotate-90"}`}
+              />
+              <Label text={isActive ? "Close" : "Open"} />
+            </button>
+          )}
         </div>
+        <LanguageDropList
+          isActive={isActive}
+          langCode={langCode}
+          changeLangCode={changeLangCode}
+          setIsActive={setIsActive}
+        />
       </div>
       <p className="text-xs">
         Choose the language that feels most comfortable for you. Changing this
         setting will update menus, buttons, settings, and notifications, while
         your messages and conversations will stay in their original languages.
       </p>
-      <div className="relative w-full max-h-80">
-        <LanguageDropList
-          isActive={isActive}
-          langCode={langCode}
-          changeLangCode={changeLangCode}
-        />
-      </div>
     </div>
   );
 };
@@ -114,7 +125,7 @@ export default function LanguageSettings() {
   return (
     <>
       <SettingsHeader title="Language Settings" />
-      <div className="flex flex-wrap w-full px-3 gap-6 max-w-200">
+      <div className="flex flex-wrap w-full gap-6 max-w-200">
         <div className="flex flex-col flex-1 gap-6 pt-3">
           <TranslateMessageOptions />
         </div>
