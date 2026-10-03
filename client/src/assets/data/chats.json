@@ -16,6 +16,22 @@
     "unreadMessages": 1
   },
   {
+    "_id": "chat_08",
+    "participants": [
+      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
+      "ToHF5pPsSXN8R2cFDZVcEuRNcAQwcq"
+    ],
+    "lastMessage": {
+      "_id": "msg_08_03",
+      "chatId": "chat_08",
+      "sender": "ToHF5pPsSXN8R2cFDZVcEuRNcAQwcq",
+      "text": "Sure, I'll send them over later today.",
+      "status": "delivered",
+      "createdAt": "2026-09-27T10:09:00Z"
+    },
+    "unreadMessages": 1
+  },
+  {
     "_id": "chat_002",
     "participants": [
       "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
@@ -377,7 +393,7 @@
       "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
       "text": "Then you should store refresh tokens in httpOnly cookies.",
       "status": "delivered",
-      "createdAt": "2026-09-27T08:28:00.000Z"
+      "createdAt": "2025-09-27T08:28:00.000Z"
     },
     "unreadMessages": 0
   },
@@ -448,23 +464,6 @@
   },
 
   {
-    "_id": "chat_08",
-    "participants": [
-      "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
-      "ToHF5pPsSXN8R2cFDZVcEuRNcAQwcq"
-    ],
-    "lastMessage": {
-      "_id": "msg_08_03",
-      "chatId": "chat_08",
-      "sender": "ToHF5pPsSXN8R2cFDZVcEuRNcAQwcq",
-      "text": "Sure, I'll send them over later today.",
-      "status": "delivered",
-      "createdAt": "2026-09-27T10:09:00Z"
-    },
-    "unreadMessages": 1
-  },
-
-  {
     "_id": "chat_09",
     "participants": [
       "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
@@ -510,7 +509,7 @@
       "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
       "text": "Makes sense. Let me know if anything is unclear.",
       "status": "sent",
-      "createdAt": "2026-09-27T11:35:00Z"
+      "createdAt": "2025-09-27T11:35:00Z"
     },
     "unreadMessages": 0
   },

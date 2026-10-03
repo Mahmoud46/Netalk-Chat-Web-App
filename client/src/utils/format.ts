@@ -5,12 +5,43 @@ export const formatDate = (date: Date): string => {
     day: "numeric",
   });
 };
+
 export const formatDateShort = (date: Date): string => {
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  const now = new Date();
+  // Reset times to midnight to compare exact calendar days accurately
+  const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  // Difference in calendar days
+  const diffTime = today.getTime() - d.getTime();
+  const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+  // Check Today & Yesterday
+  if (diffDays === 0) return "Today";
+  if (diffDays === 1) return "Yesterday";
+
+  // Check if within the current week (Sunday to Saturday boundaries)
+  const currentDayOfWeek = today.getDay(); // 0 (Sun) to 6 (Sat)
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - currentDayOfWeek); // Sunday
+
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6); // Saturday
+
+  if (d >= startOfWeek && d <= endOfWeek) {
+    return date.toLocaleDateString("en-US", { weekday: "short" });
+  }
+
+  const currentYear = now.getFullYear();
+  if (currentYear == date.getFullYear())
+    return date
+      .toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+      .split(",")[0];
+  return formatDotDate(date);
 };
 
 export const formatDotDate = (date: Date): string =>

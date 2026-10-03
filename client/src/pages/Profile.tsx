@@ -216,19 +216,37 @@ export const ProfileHeader = ({
           <Label text="Share" />
         </button>
         {!isAuthNUser && (
-          <button
-            onClick={() => setIsMoreActive((prev) => !prev)}
-            type="button"
-            className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-          >
-            <CommonIcon
-              label="dots_vertical_rounded"
-              weight="thin"
-              soild={true}
-              className="size-6.5"
-            />
-            <Label text="More" />
-          </button>
+          <>
+            {!isMoreActive && (
+              <button
+                onClick={() => setIsMoreActive((prev) => !prev)}
+                type="button"
+                className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+              >
+                <CommonIcon
+                  label="dots_vertical_rounded"
+                  weight="thin"
+                  soild={true}
+                  className="size-6.5"
+                />
+                <Label text="More" />
+              </button>
+            )}
+            {isMoreActive && (
+              <button
+                type="button"
+                className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+              >
+                <CommonIcon
+                  label="dots_vertical_rounded"
+                  weight="thin"
+                  soild={true}
+                  className="size-6.5"
+                />
+                <Label text="Less" />
+              </button>
+            )}
+          </>
         )}
       </div>
     </div>

@@ -3,7 +3,7 @@ import type { Attachment, FileFormat } from "../../types";
 import CommonIcon from "../icons/CommonIcon";
 import FileIcon from "../icons/FileIcon";
 import ChatIcon from "../icons/ChatIcon";
-import { formatDotDate, formatTime12Hours } from "../../utils/format";
+import { formatDateShort, formatTime12Hours } from "../../utils/format";
 
 export const AttachmentCard = ({
   attachment,
@@ -30,7 +30,7 @@ export const AttachmentCard = ({
               {attachment.size}
               {!withMessage && (
                 <>
-                  , {formatDotDate(new Date(attachment.createdAt))} at{" "}
+                  , {formatDateShort(new Date(attachment.createdAt))} at{" "}
                   {formatTime12Hours(new Date(attachment.createdAt))}
                 </>
               )}

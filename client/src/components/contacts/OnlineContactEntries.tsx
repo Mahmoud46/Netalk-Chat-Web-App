@@ -28,12 +28,12 @@ const OnlineContactEntries = ({
             </Suspense>
           ))}
         </div>
-        <div className="flex">
+        <div className="flex items-center">
           <div
-            className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center mr-1.5" : "flex-none"}`}
+            className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center mr-1.5" : "flex-none py-0.5"}`}
           >
             <button
-              className={`${open ? "absolute opacity-50 hover:opacity-100" : "relative"} hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary group flex-none p-1.5 cursor-pointer rounded-full transition-all ease-in-out`}
+              className={`${open ? "absolute opacity-50 hover:opacity-100 left-0.5" : "relative"} hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary group flex-none p-1.5 cursor-pointer rounded-full transition-all ease-in-out`}
               onClick={toggleActive}
             >
               <CommonIcon
@@ -46,7 +46,7 @@ const OnlineContactEntries = ({
             {open && (
               <input
                 type="text"
-                className="w-full text-sm h-full outline-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-1.5 pl-11 text-foreground-light-secondary dark:text-foreground-dark-secondary rounded-3xl focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+                className="pl-11 bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
                 placeholder="Search contacts..."
               />
             )}

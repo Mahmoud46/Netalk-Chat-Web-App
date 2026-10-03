@@ -1,26 +1,12 @@
 import type { Message, MessagesTimeline } from "../types";
-import { formatDate } from "./format";
-
-const isSameDay = (a: Date, b: Date): boolean => {
-  return (
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate()
-  );
-};
+import { formatDateShort } from "./format";
 
 const messagesTimelining = (messages: Message[]): MessagesTimeline => {
-  const messagesTimeline: MessagesTimeline = {},
-    today = new Date(),
-    yesterday = new Date();
-  yesterday.setDate(today.getDate() - 1);
+  const messagesTimeline: MessagesTimeline = {};
 
   for (const message of messages) {
     const date = new Date(message.createdAt);
-    let dateKey = formatDate(date);
-
-    if (isSameDay(date, today)) dateKey = "Today";
-    else if (isSameDay(date, yesterday)) dateKey = "Yesterday";
+    const dateKey = formatDateShort(date);
 
     if (!messagesTimeline[dateKey]) messagesTimeline[dateKey] = [];
 

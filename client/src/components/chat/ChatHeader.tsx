@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Avatar } from "../icons/Avatar";
 import { calculateAge } from "../../utils/helpers";
 import type { Gender } from "../../types";
+import Label from "../common/Label";
 
 const ChatHeader = ({
   toggleButtonClickAction = () => {},
@@ -72,21 +73,44 @@ const ChatHeader = ({
           </div>
           <div className="flex-none">
             {!isBlocked && (
-              <button className="cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+              <button
+                type="button"
+                className="cursor-pointer relative group p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+              >
                 <CommonIcon label="phone" weight="thin" className="size-6.5" />
+                <Label text="Call" />
               </button>
             )}
             {currentChat && (
-              <button
-                className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isChatDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
-                onClick={toggleChatDropList}
-              >
-                <CommonIcon
-                  label="dots_vertical_rounded"
-                  className="size-6.5"
-                  soild={true}
-                />
-              </button>
+              <>
+                {!isChatDropListActive && (
+                  <button
+                    type="button"
+                    className={`group cursor-pointer relative p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isChatDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
+                    onClick={toggleChatDropList}
+                  >
+                    <CommonIcon
+                      label="dots_vertical_rounded"
+                      className="size-6.5"
+                      soild={true}
+                    />
+                    <Label text="More" />
+                  </button>
+                )}
+                {isChatDropListActive && (
+                  <button
+                    type="button"
+                    className={`group cursor-pointer relative p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isChatDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
+                  >
+                    <CommonIcon
+                      label="dots_vertical_rounded"
+                      className="size-6.5"
+                      soild={true}
+                    />
+                    <Label text="Less" />
+                  </button>
+                )}
+              </>
             )}
           </div>
         </div>

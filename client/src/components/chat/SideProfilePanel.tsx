@@ -162,19 +162,35 @@ const ProfilePanelControlButtons = ({
           />
           <Label text={isMuted ? "Unmute" : "Mute"} />
         </button>
-        <button
-          type="button"
-          onClick={() => setIsActive((prev) => !prev)}
-          className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-        >
-          <CommonIcon
-            label="dots_vertical_rounded"
-            weight="thin"
-            className="size-6.5"
-            soild={true}
-          />
-          <Label text="More" />
-        </button>
+        {!isActive && (
+          <button
+            type="button"
+            onClick={() => setIsActive((prev) => !prev)}
+            className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          >
+            <CommonIcon
+              label="dots_vertical_rounded"
+              weight="thin"
+              className="size-6.5"
+              soild={true}
+            />
+            <Label text="More" />
+          </button>
+        )}
+        {isActive && (
+          <button
+            type="button"
+            className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          >
+            <CommonIcon
+              label="dots_vertical_rounded"
+              weight="thin"
+              className="size-6.5"
+              soild={true}
+            />
+            <Label text="Less" />
+          </button>
+        )}
       </div>
     </div>
   );

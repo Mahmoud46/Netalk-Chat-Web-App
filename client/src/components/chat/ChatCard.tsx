@@ -10,7 +10,8 @@ import {
 } from "../../utils/format";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "../icons/Avatar";
-import { calculateAge } from "../../utils/helpers";
+import { calculateAge, hasCommonElement } from "../../utils/helpers";
+import CommonIcon from "../icons/CommonIcon";
 
 export const ArchiveChatsCard = ({
   isSidebarOpen,
@@ -29,8 +30,11 @@ export const ArchiveChatsCard = ({
   useEffect(() => {
     const getLastArchivedChat = async () => {
       if (authNUser?.archivedChats.length && !activeArchiveTab) {
-        const archivedChats = chats.filter((chat) =>
-          authNUser?.archivedChats.includes(chat._id),
+        // Filter chats to get archived and unmuted chats
+        const archivedChats = chats.filter(
+          (chat) =>
+            authNUser?.archivedChats.includes(chat._id) &&
+            !hasCommonElement(authNUser?.mutedUsers ?? [], chat.participants),
         );
         const archivedChat =
           archivedChats.find((chat) => chat.unreadMessages > 0) ??
@@ -45,8 +49,11 @@ export const ArchiveChatsCard = ({
         if (archivedChat) setChat(archivedChat);
         setUnreadMessages(unreadArchivedChatsMessages);
       } else {
+        // Filter chats to get unarchived and unmuted chats
         const unarchivedChats = chats.filter(
-          (chat) => !authNUser?.archivedChats.includes(chat._id),
+          (chat) =>
+            !authNUser?.archivedChats.includes(chat._id) &&
+            !hasCommonElement(authNUser?.mutedUsers ?? [], chat.participants),
         );
 
         if (unarchivedChats.length > 0) {
@@ -64,7 +71,12 @@ export const ArchiveChatsCard = ({
       }
     };
     getLastArchivedChat();
-  }, [authNUser?.archivedChats, chats, activeArchiveTab]);
+  }, [
+    authNUser?.archivedChats,
+    chats,
+    activeArchiveTab,
+    authNUser?.mutedUsers,
+  ]);
 
   return (
     chat && (
@@ -144,6 +156,7 @@ const ChatCard = ({
   isSidebarOpen: boolean;
 }): ReactNode => {
   const [participant, setParticipant] = useState<User | null>(null),
+    [isMuted, setIsMute] = useState<boolean>(false),
     { getUser, currentChat, contacts } = useChat(),
     { authNUser } = useAuth();
   const navigate = useNavigate();
@@ -158,11 +171,12 @@ const ChatCard = ({
 
       if (user) {
         setParticipant(user);
+        setIsMute(authNUser?.mutedUsers.includes(user._id) ?? false);
       }
     };
 
     fetchParticipant();
-  }, [chat._id, chat.participants, getUser]);
+  }, [authNUser?.mutedUsers, chat._id, chat.participants, getUser]);
 
   return (
     <li
@@ -182,10 +196,12 @@ const ChatCard = ({
       onClick={() => selectChat(participant?._id ?? "")}
     >
       <div
-        className={`relative flex-none transition-all ease-in-out rounded-full p-1 flex items-center justify-center aspect-square ${chat.unreadMessages > 0 && !isActive && !isSidebarOpen ? "bg-background-light-primary" : !isActive ? "bg-background-light-surface-2 dark:bg-background-dark-surface-2" : "bg-background-light-base dark:bg-background-dark-base"} ${isActive && !isSidebarOpen && "bg-background-light-surface-2 dark:bg-background-dark-surface-2"} ${isSidebarOpen ? "" : "group-hover:scale-110"}`}
+        className={`relative flex-none transition-all ease-in-out rounded-full p-1 flex items-center justify-center aspect-square ${chat.unreadMessages > 0 && !isActive && !isSidebarOpen ? `${isMuted ? "text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-secondary dark:bg-background-dark-secondary" : "bg-background-light-primary text-white"}` : !isActive ? "bg-background-light-surface-2 dark:bg-background-dark-surface-2" : "bg-background-light-base dark:bg-background-dark-base"} ${isActive && !isSidebarOpen && "bg-background-light-surface-2 dark:bg-background-dark-surface-2"} ${isSidebarOpen ? "" : "group-hover:scale-110"}`}
       >
         {chat.unreadMessages > 0 && !isActive && !isSidebarOpen && (
-          <span className="text-white absolute text-xs bg-background-light-primary shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-2">
+          <span
+            className={`absolute text-xs shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-2 ${isMuted ? "text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-secondary dark:bg-background-dark-secondary" : "bg-background-light-primary text-white"}`}
+          >
             {chat.unreadMessages > 99 ? `+${99}` : chat.unreadMessages}
           </span>
         )}
@@ -234,9 +250,16 @@ const ChatCard = ({
                 ? `${contacts[participant?._id ?? ""]?.firstName} ${contacts[participant?._id ?? ""]?.lastName}`
                 : `${participant?.firstName} ${participant?.lastName}`}
             </p>
+            {isMuted && (
+              <CommonIcon
+                label="bell_slash"
+                weight="thin"
+                className="size-4.5"
+              />
+            )}
             <time
               dateTime={chat.lastMessage?.createdAt}
-              className={`${chat.unreadMessages > 0 && !isActive ? "text-foreground-light-primary" : "text-foreground-light-secondary dark:text-foreground-dark-secondary"} text-xs self-end`}
+              className={`${chat.unreadMessages > 0 && !isActive && !isMuted ? "text-foreground-light-primary" : "text-foreground-light-secondary dark:text-foreground-dark-secondary"} text-xs self-end`}
             >
               {formatDate(new Date(chat.lastMessage?.createdAt)) ==
               formatDate(new Date())
@@ -251,7 +274,9 @@ const ChatCard = ({
               </p>
             }
             {chat.unreadMessages > 0 && !isActive && isSidebarOpen && (
-              <span className="text-white text-xs bg-background-light-primary w-7 py-0.5 flex items-center justify-center rounded-full">
+              <span
+                className={`text-xs  w-7 py-0.5 flex items-center justify-center rounded-full ${isMuted ? "text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-secondary dark:bg-background-dark-secondary" : "bg-background-light-primary text-white"}`}
+              >
                 {chat.unreadMessages > 99 ? `+${99}` : chat.unreadMessages}
               </span>
             )}

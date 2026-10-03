@@ -111,17 +111,29 @@ export const ContactCard = ({ contactEntry }: { contactEntry: User }) => {
             <CommonIcon label="phone" className="size-6" weight="thin" />
             <Label text="Call" />
           </button>
-          <button
-            className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-            onClick={toggleContactEntryDropList}
-          >
-            <CommonIcon
-              label="dots_vertical_rounded"
-              className="size-6"
-              soild={true}
-            />
-            <Label text="More" />
-          </button>
+          {!isActiveContactEntryDropList && (
+            <button
+              className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+              onClick={toggleContactEntryDropList}
+            >
+              <CommonIcon
+                label="dots_vertical_rounded"
+                className="size-6"
+                soild={true}
+              />
+              <Label text="More" />
+            </button>
+          )}
+          {isActiveContactEntryDropList && (
+            <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+              <CommonIcon
+                label="dots_vertical_rounded"
+                className="size-6"
+                soild={true}
+              />
+              <Label text="Less" />
+            </button>
+          )}
         </div>
       </div>
     </div>

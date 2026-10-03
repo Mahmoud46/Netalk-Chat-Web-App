@@ -49,6 +49,14 @@ export const capitalize = (word: string): string => {
   return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 };
 
+export const hasCommonElement = (
+  arr1: (string | number)[],
+  arr2: (string | number)[],
+) => {
+  const set1 = new Set(arr1);
+  return arr2.some((item) => set1.has(item));
+};
+
 export const uppercaseAlphabets = (): string[] => {
   return Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
 };

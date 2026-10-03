@@ -55,28 +55,56 @@ const MessageComposer = ({
           />
           <form className=" bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-1.5 rounded-full w-full flex justify-between items-center">
             <div className="flex-none">
-              <button
-                type="button"
-                className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isAttchmentDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
-                onClick={toggleAttachmentDropList}
-              >
-                <ChatIcon
-                  label="paperclip"
-                  weight="thin"
-                  className="size-6.5 cursor-pointer"
-                />
-              </button>
-              <button
-                type="button"
-                className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isEmojisDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
-                onClick={toggleEmojisDropList}
-              >
-                <ChatIcon
-                  label="sticker"
-                  weight="thin"
-                  className="size-6.5 cursor-pointer"
-                />
-              </button>
+              {!isAttchmentDropListActive && (
+                <button
+                  type="button"
+                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isAttchmentDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
+                  onClick={toggleAttachmentDropList}
+                >
+                  <ChatIcon
+                    label="paperclip"
+                    weight="thin"
+                    className="size-6.5 cursor-pointer"
+                  />
+                </button>
+              )}
+              {isAttchmentDropListActive && (
+                <button
+                  type="button"
+                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isAttchmentDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
+                >
+                  <ChatIcon
+                    label="paperclip"
+                    weight="thin"
+                    className="size-6.5 cursor-pointer"
+                  />
+                </button>
+              )}
+              {!isEmojisDropListActive && (
+                <button
+                  type="button"
+                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isEmojisDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
+                  onClick={toggleEmojisDropList}
+                >
+                  <ChatIcon
+                    label="sticker"
+                    weight="thin"
+                    className="size-6.5 cursor-pointer"
+                  />
+                </button>
+              )}
+              {isEmojisDropListActive && (
+                <button
+                  type="button"
+                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isEmojisDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
+                >
+                  <ChatIcon
+                    label="sticker"
+                    weight="thin"
+                    className="size-6.5 cursor-pointer"
+                  />
+                </button>
+              )}
             </div>
             <input
               type="text"

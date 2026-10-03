@@ -49,7 +49,7 @@ const ChatsSidebar = ({
       className={`flex-none ${open ? "min-w-70 items-start pl-12" : "min-w-20 items-center"} transition-all ease-in-out duration-300 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 pl-10 flex flex-col gap-4`}
     >
       <div className="size-15 w-full relative -translate-y-2 translate-x-2">
-        <div className="absolute flex top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 pt-3 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+        <div className="absolute flex items-center top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 pt-3 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
           <div
             className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center mr-1.5" : "flex-none"}`}
           >
@@ -67,7 +67,7 @@ const ChatsSidebar = ({
             {open && (
               <input
                 type="text"
-                className="w-full text-sm h-full outline-none bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-1.5 pl-11 text-foreground-light-secondary dark:text-foreground-dark-secondary rounded-3xl focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+                className="bg-background-light-surface-2 pl-11 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
                 placeholder="Search chats..."
               />
             )}
