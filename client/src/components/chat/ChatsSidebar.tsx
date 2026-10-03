@@ -4,6 +4,7 @@ import Loader from "../common/Loader";
 import type { Chat } from "../../types";
 import Label from "../common/Label";
 import CommonIcon from "../icons/CommonIcon";
+import { useChat } from "../../hooks";
 
 const ChatCard = React.lazy(() => import("./ChatCard")),
   ArchiveChatsCard = React.lazy(() =>
@@ -24,6 +25,7 @@ const ChatsSidebar = ({
   includesArchivedChats: boolean;
 }): ReactNode => {
   const [open, setOpen] = useState<boolean>(false);
+  const { currentChat } = useChat();
   const toggleActive = () => setOpen((prev) => !prev);
   const toggleActiveArchiveTab = () => setActiveArchiveTab((prev) => !prev);
 
@@ -85,7 +87,7 @@ const ChatsSidebar = ({
           </button>
         </div>
       </div>
-      <ul className="flex flex-col">
+      <ul className="flex flex-col flex-1">
         {includesArchivedChats && (
           <Suspense fallback={<Loader />}>
             <ArchiveChatsCard
@@ -128,6 +130,22 @@ const ChatsSidebar = ({
           </button>
         )}
       </ul>
+
+      {currentChat && (
+        <button
+          className={`rounded-full gradient mb-4 text-white cursor-pointer relative group transition-all ease-in-out hover:scale-105 font-semibold ${open ? "p-2.5 px-4 flex w-fit rounded-3xl gap-4 self-center" : "p-2"}`}
+        >
+          <CommonIcon
+            label="plus"
+            soild={true}
+            weight={open ? "bold" : "base"}
+            className={`${open ? "size-6" : "size-7"} transition-all ease-in-out`}
+          />
+
+          {!open && <Label text="Start Chat" isSide={true} className="w-max" />}
+          {open && <p>Start Chat</p>}
+        </button>
+      )}
     </aside>
   );
 };

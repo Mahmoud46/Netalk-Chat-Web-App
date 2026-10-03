@@ -1,9 +1,12 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import type { Attachment, FileFormat } from "../../types";
 import CommonIcon from "../icons/CommonIcon";
 import FileIcon from "../icons/FileIcon";
 import ChatIcon from "../icons/ChatIcon";
 import { formatDateShort, formatTime12Hours } from "../../utils/format";
+import { AttachmentCardDropList } from "./DropList";
+
+
 
 export const AttachmentCard = ({
   attachment,
@@ -15,11 +18,12 @@ export const AttachmentCard = ({
   const fileFormat = attachment.name.split(".").at(-1),
     isFile = attachment.type == "file" || attachment.type == "audio";
   // const openFile = () => window.open(attachment.url, "_blank");
-
+const [isActive, setIsActive]=useState<boolean>(false)
   return (
     <div
-      className={`flex items-center gap-4 cursor-pointer transition-all ease-in-out hover:bg-background-light-secondary/50 dark:hover:bg-background-dark-secondary/50 p-1.5 pl-3 rounded-3xl`}
+      className={`flex relative items-center gap-4 cursor-pointer transition-all ease-in-out hover:bg-background-light-secondary/50 dark:hover:bg-background-dark-secondary/50 p-1.5 pl-3 rounded-3xl`}
     >
+      <AttachmentCardDropList isActive={isActive} setIsActive={setIsActive}/>
       {isFile && (
         <>
           <FileIcon fileFormat={fileFormat as FileFormat} className="h-8" />
@@ -37,15 +41,16 @@ export const AttachmentCard = ({
             </p>
           </div>
 
-          <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+         {!isActive&& <button type="button" onClick={()=>setIsActive(prev=>!prev)} className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
             <CommonIcon label="dots_vertical_rounded" className="size-6" />
-          </button>
+          </button>}
+         {isActive&& <button type="button"  className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+            <CommonIcon label="dots_vertical_rounded" className="size-6" />
+          </button>}
         </>
       )}
 
-      {attachment.type == "image" && (
-        <img src={attachment.url} loading="lazy" className="rounded-xl" />
-      )}
+      {attachment.type == "image" && <MediaFile mediaFile={attachment} />}
     </div>
   );
 };

@@ -29,6 +29,24 @@
       "status": "delivered",
       "createdAt": "2026-09-27T10:09:00Z"
     },
+    "sharedFiles": [
+      {
+        "fileId": "file_ui_002",
+        "url": "https://cdn.example.com/files/ui-kit-v2.ai",
+        "type": "file",
+        "name": "ui-kit-v2.ai",
+        "size": "5.8MB",
+        "createdAt": "2026-09-27T10:04:20.000Z"
+      },
+      {
+        "fileId": "file_ui_003",
+        "url": "https://cdn.example.com/files/ui-kit-v2.blend",
+        "type": "file",
+        "name": "ui-kit-v2.blend",
+        "size": "5.8MB",
+        "createdAt": "2026-09-27T10:04:20.000Z"
+      }
+    ],
     "unreadMessages": 1
   },
   {

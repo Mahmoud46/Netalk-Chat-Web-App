@@ -1,7 +1,11 @@
 import type { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SIDEBAR_ITEMS } from "../../config/navigation";
-import { capitalize, isRouteActive } from "../../utils/helpers";
+import {
+  capitalize,
+  hasCommonElement,
+  isRouteActive,
+} from "../../utils/helpers";
 import { useAuth, useChat, useTheme } from "../../hooks";
 import Label from "../common/Label";
 import { MainSidebarIcon } from "../icons/SidebarIcon";
@@ -17,6 +21,12 @@ export default function Sidebar(): ReactNode {
     isLastItemActive =
       isRouteActive(location.pathname, lastItem?.path ?? "/") &&
       location.pathname.split("/").includes(authNUser?.username ?? "");
+  const totalUnreadMessages = chats
+    .filter(
+      (chat) =>
+        !hasCommonElement(chat.participants, authNUser?.mutedUsers ?? []),
+    )
+    .reduce((total, current) => total + current.unreadMessages, 0);
 
   const isAnyItemActive =
     SIDEBAR_ITEMS.slice(0, 3).some((item) =>
@@ -52,6 +62,15 @@ export default function Sidebar(): ReactNode {
                       : "hover:bg-background-light-secondary/50 dark:hover:bg-background-light-secondary/10"
                   } transition-all ease-in-out`}
               >
+                {item.label == "inbox" &&
+                  totalUnreadMessages > 0 &&
+                  !isActive && (
+                    <span className="text-white absolute text-xs bg-background-light-primary shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-1 z-10">
+                      {totalUnreadMessages > 99
+                        ? `+${99}`
+                        : totalUnreadMessages}
+                    </span>
+                  )}
                 <div
                   className={`rounded-full ${isActive ? "p-2 bg-background-light-primary" : "p-0"}`}
                 >

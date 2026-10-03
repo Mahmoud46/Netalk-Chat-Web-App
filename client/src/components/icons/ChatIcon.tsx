@@ -11,6 +11,7 @@ import image_plus_icon from "../../assets/icons/chat/image_plus.png";
 import file_plus_icon from "../../assets/icons/chat/file_plus.png";
 import play_circle_alt_icon from "../../assets/icons/chat/play_circle_alt.png";
 import microphone_big_icon from "../../assets/icons/chat/microphone_big.png";
+import reply_stroke_icon from "../../assets/icons/chat/reply_stroke.png";
 
 import check_thin_icon from "../../assets/icons/chat/check_thin.png";
 import checks_thin_icon from "../../assets/icons/chat/checks_thin.png";
@@ -25,6 +26,7 @@ import image_plus_thin_icon from "../../assets/icons/chat/image_plus_thin.png";
 import file_plus_thin_icon from "../../assets/icons/chat/file_plus_thin.png";
 import play_circle_alt_thin_icon from "../../assets/icons/chat/play_circle_alt_thin.png";
 import microphone_big_thin_icon from "../../assets/icons/chat/microphone_big_thin.png";
+import reply_stroke_thin_icon from "../../assets/icons/chat/reply_stroke_thin.png";
 
 import check_bold_icon from "../../assets/icons/chat/check_bold.png";
 import reply_bold_icon from "../../assets/icons/chat/reply_bold.png";
@@ -161,6 +163,14 @@ export default function ChatIcon({
       return (
         <img
           src={weight == "thin" ? paperclip_thin_icon : paperclip_icon}
+          loading="lazy"
+          className={`main-icon ${className ?? ""}`}
+        />
+      );
+    case "reply_stroke":
+      return (
+        <img
+          src={weight == "thin" ? reply_stroke_thin_icon : reply_stroke_icon}
           loading="lazy"
           className={`main-icon ${className ?? ""}`}
         />

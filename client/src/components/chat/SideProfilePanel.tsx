@@ -251,7 +251,15 @@ const ProfilePanelMinorInfo = ({
                   weight="thin"
                   solid={sharedItemsActiveTab == 0}
                 />
-                <Label text="Media" />
+                {sharedItemsActiveTab != 0 && <Label text="Media" />}
+                {sharedItemsActiveTab != 0 &&
+                  currentChat?.sharedMedia.length > 0 && (
+                    <span className="text-white absolute text-xs bg-background-light-primary shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-1 z-10">
+                      {currentChat?.sharedMedia.length > 99
+                        ? `+${99}`
+                        : currentChat?.sharedMedia?.length}
+                    </span>
+                  )}
               </button>
             )}
             {currentChat && currentChat?.sharedFiles && (
@@ -266,7 +274,15 @@ const ProfilePanelMinorInfo = ({
                   weight="thin"
                   solid={sharedItemsActiveTab == 1}
                 />
-                <Label text="Files" />
+                {sharedItemsActiveTab != 1 && <Label text="Files" />}
+                {sharedItemsActiveTab != 1 &&
+                  currentChat?.sharedFiles.length > 0 && (
+                    <span className="text-white absolute text-xs bg-background-light-primary shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-1 z-10">
+                      {currentChat?.sharedFiles.length > 99
+                        ? `+${99}`
+                        : currentChat?.sharedFiles?.length}
+                    </span>
+                  )}
               </button>
             )}
           </div>
