@@ -861,6 +861,9 @@ export const LoginForm = () => {
           </button>
         </div>
       </div>
+      <p className="text-xs text-center">
+        © 2026 Netalk. Made for better conversations.
+      </p>
     </form>
   );
 };
@@ -903,6 +906,9 @@ export const SignupForm = ({
           <SignupMediaAssetsForm setSignupStep={setSignupStep} />
         )}
         {signupStep == 4 && <SignupCompletedForm />}
+        <p className="text-xs text-center">
+          © 2026 Netalk. Made for better conversations.
+        </p>
       </form>
     </>
   );

@@ -6,26 +6,26 @@
       "sections": [
         {
           "id": "acceptance",
-          "title": "1. Acceptance of Terms",
+          "title": "Acceptance of Terms",
           "paragraphs": [
-            "Welcome to Netalk. These Terms & Conditions govern your access to and use of the Netalk web application and its related features.",
-            "By creating an account or using Netalk, you agree to be bound by these Terms. If you do not agree with these Terms, please do not use the service."
+            "Welcome to <span class='font-semibold'>Netalk</span>. These Terms & Conditions govern your access to and use of the <span class='font-semibold'>Netalk</span> web application and its related features.",
+            "By creating an account or using <span class='font-semibold'>Netalk</span>, you agree to be bound by these Terms. If you do not agree with these Terms, please do not use the service."
           ],
-          "notice": "Please read these Terms carefully before creating an account or using Netalk."
+          "notice": "Please read these Terms carefully before creating an account or using <span class='font-semibold'>Netalk</span>."
         },
         {
           "id": "eligibility",
-          "title": "2. Eligibility",
+          "title": "Eligibility",
           "paragraphs": [
             "You must provide accurate information when creating your account and must be legally permitted to use an online communication service in your jurisdiction.",
-            "By using Netalk, you represent that the information you provide is accurate and that you will comply with applicable laws and these Terms."
+            "By using <span class='font-semibold'>Netalk</span>, you represent that the information you provide is accurate and that you will comply with applicable laws and these Terms."
           ]
         },
         {
           "id": "account",
-          "title": "3. Your Account",
+          "title": "Your Account",
           "paragraphs": [
-            "Some Netalk features require an account. You are responsible for maintaining the accuracy of your account information and for keeping your login credentials secure."
+            "Some <span class='font-semibold'>Netalk</span> features require an account. You are responsible for maintaining the accuracy of your account information and for keeping your login credentials secure."
           ],
           "list": [
             "Provide truthful and current information.",
@@ -37,17 +37,17 @@
         },
         {
           "id": "using-netalk",
-          "title": "4. Using Netalk",
+          "title": "Using <span class='font-semibold'>Netalk</span>",
           "paragraphs": [
-            "Netalk provides tools for communication, including conversations, contacts, profiles, and related messaging features.",
-            "You agree to use Netalk responsibly and only for lawful purposes. You must not interfere with the normal operation of the service or attempt to access areas that you are not authorized to access."
+            "<span class='font-semibold'>Netalk</span> provides tools for communication, including conversations, contacts, profiles, and related messaging features.",
+            "You agree to use <span class='font-semibold'>Netalk</span> responsibly and only for lawful purposes. You must not interfere with the normal operation of the service or attempt to access areas that you are not authorized to access."
           ]
         },
         {
           "id": "user-content",
-          "title": "5. User Content",
+          "title": "User Content",
           "paragraphs": [
-            "You may create, upload, send, or share content through Netalk, including text, profile information, images, and other supported content.",
+            "You may create, upload, send, or share content through <span class='font-semibold'>Netalk</span>, including text, profile information, images, and other supported content.",
             "You remain responsible for the content you choose to share. You should only share content that you have the right to use and distribute."
           ],
           "list": [
@@ -59,64 +59,66 @@
         },
         {
           "id": "communication",
-          "title": "6. Communication Features",
+          "title": "Communication Features",
           "paragraphs": [
-            "Netalk allows users to communicate with other users through conversations and other supported communication features.",
+            "<span class='font-semibold'>Netalk</span> allows users to communicate with other users through conversations and other supported communication features.",
             "Remember that information you send to another person may be viewed, copied, saved, or shared by that person. Only send information that you are comfortable communicating to the intended recipient."
           ]
         },
         {
           "id": "prohibited",
-          "title": "7. Prohibited Activities",
-          "paragraphs": ["You may not use Netalk to:"],
+          "title": "Prohibited Activities",
+          "paragraphs": [
+            "You may not use <span class='font-semibold'>Netalk</span> to:"
+          ],
           "list": [
             "Break applicable laws or regulations.",
             "Harass, threaten, abuse, or deliberately harm another person.",
             "Attempt to gain unauthorized access to accounts or systems.",
             "Distribute malware, viruses, or other harmful software.",
-            "Attempt to reverse engineer or disrupt Netalk.",
+            "Attempt to reverse engineer or disrupt <span class='font-semibold'>Netalk</span>.",
             "Use automated systems to abuse or overload the service.",
             "Collect personal information from other users without authorization.",
-            "Impersonate Netalk, its team, or another user."
+            "Impersonate <span class='font-semibold'>Netalk</span>, its team, or another user."
           ]
         },
         {
           "id": "blocking-reporting",
-          "title": "8. Blocking & Reporting",
+          "title": "Blocking & Reporting",
           "paragraphs": [
-            "Netalk may provide tools that allow you to block or report other users. Blocking a user can help prevent unwanted interactions.",
+            "<span class='font-semibold'>Netalk</span> may provide tools that allow you to block or report other users. Blocking a user can help prevent unwanted interactions.",
             "Reports should be submitted honestly and should contain sufficient information for us to understand the issue."
           ]
         },
         {
           "id": "availability",
-          "title": "9. Service Availability",
+          "title": "Service Availability",
           "paragraphs": [
-            "We aim to keep Netalk available and reliable, but we cannot guarantee that the service will always be uninterrupted, secure, or error-free.",
-            "Netalk may occasionally be unavailable because of maintenance, updates, technical problems, or circumstances outside our reasonable control."
+            "We aim to keep <span class='font-semibold'>Netalk</span> available and reliable, but we cannot guarantee that the service will always be uninterrupted, secure, or error-free.",
+            "<span class='font-semibold'>Netalk</span> may occasionally be unavailable because of maintenance, updates, technical problems, or circumstances outside our reasonable control."
           ]
         },
         {
           "id": "termination",
-          "title": "10. Account Termination",
+          "title": "Account Termination",
           "paragraphs": [
-            "You may stop using Netalk at any time. Where supported, you may also request deletion of your account and associated information.",
-            "We may restrict or terminate access when reasonably necessary to protect Netalk, its users, or the security and integrity of the service, including when these Terms are violated."
+            "You may stop using <span class='font-semibold'>Netalk</span> at any time. Where supported, you may also request deletion of your account and associated information.",
+            "We may restrict or terminate access when reasonably necessary to protect <span class='font-semibold'>Netalk</span>, its users, or the security and integrity of the service, including when these Terms are violated."
           ]
         },
         {
           "id": "changes-terms",
-          "title": "11. Changes to These Terms",
+          "title": "Changes to These Terms",
           "paragraphs": [
-            "We may update these Terms from time to time to reflect changes to Netalk, applicable requirements, or our practices.",
+            "We may update these Terms from time to time to reflect changes to <span class='font-semibold'>Netalk</span>, applicable requirements, or our practices.",
             "When material changes are made, we will make reasonable efforts to provide notice through the service or other appropriate channels."
           ]
         },
         {
           "id": "contact-terms",
-          "title": "12. Contact Us",
+          "title": "Contact Us",
           "paragraphs": [
-            "If you have questions about these Terms & Conditions, please contact the Netalk team through the contact method provided within the application."
+            "If you have questions about these Terms & Conditions, please contact the <span class='font-semibold'>Netalk</span> team through the contact method provided within the application."
           ]
         }
       ]
@@ -126,21 +128,21 @@
       "sections": [
         {
           "id": "information-collected",
-          "title": "1. Information We Collect",
+          "title": "Information We Collect",
           "paragraphs": [
-            "Netalk collects information that is necessary to provide, maintain, secure, and improve the service."
+            "<span class='font-semibold'>Netalk</span> collects information that is necessary to provide, maintain, secure, and improve the service."
           ],
           "list": [
             "Information you provide when creating or updating your account.",
             "Profile information you choose to add.",
-            "Messages and content you send through Netalk.",
+            "Messages and content you send through <span class='font-semibold'>Netalk</span>.",
             "Contacts and communication-related information.",
             "Technical and usage information about how the service is used."
           ]
         },
         {
           "id": "account-information",
-          "title": "2. Account Information",
+          "title": "Account Information",
           "paragraphs": [
             "Depending on the features you use, your account may contain information such as your name, email address, phone number, profile details, and authentication information.",
             "You control much of the profile information you choose to provide and should avoid adding sensitive information that you do not want associated with your account."
@@ -148,25 +150,25 @@
         },
         {
           "id": "messages-data",
-          "title": "3. Messages & Communications",
+          "title": "Messages & Communications",
           "paragraphs": [
-            "Messages and other communication content are processed as necessary to provide Netalk's communication features.",
-            "The people you communicate with may also retain or share information that you send them. Netalk cannot control what another user does with information they receive from you."
+            "Messages and other communication content are processed as necessary to provide <span class='font-semibold'>Netalk</span>'s communication features.",
+            "The people you communicate with may also retain or share information that you send them. <span class='font-semibold'>Netalk</span> cannot control what another user does with information they receive from you."
           ],
           "notice": "Avoid sending passwords, financial credentials, or other highly sensitive information through ordinary chat messages."
         },
         {
           "id": "usage-information",
-          "title": "4. Usage Information",
+          "title": "Usage Information",
           "paragraphs": [
-            "We may collect technical information needed to operate and secure the service, such as browser information, device information, network information, error information, and general interaction with Netalk."
+            "We may collect technical information needed to operate and secure the service, such as browser information, device information, network information, error information, and general interaction with <span class='font-semibold'>Netalk</span>."
           ]
         },
         {
           "id": "how-we-use",
-          "title": "5. How We Use Information",
+          "title": "How We Use Information",
           "paragraphs": [
-            "Information collected through Netalk may be used to:"
+            "Information collected through <span class='font-semibold'>Netalk</span> may be used to:"
           ],
           "list": [
             "Create and manage your account.",
@@ -181,31 +183,31 @@
         },
         {
           "id": "data-sharing",
-          "title": "6. Information Sharing",
+          "title": "Information Sharing",
           "paragraphs": [
             "We do not share your information simply because it is available to us. Information may be shared when necessary to provide the service, protect users and the platform, comply with legal obligations, or with your direction.",
-            "Information may also be visible to other Netalk users when you intentionally make it available through your profile, conversations, or other sharing features."
+            "Information may also be visible to other <span class='font-semibold'>Netalk</span> users when you intentionally make it available through your profile, conversations, or other sharing features."
           ]
         },
         {
           "id": "storage-security",
-          "title": "7. Storage & Security",
+          "title": "Storage & Security",
           "paragraphs": [
-            "We take reasonable measures to protect information handled by Netalk against unauthorized access, alteration, disclosure, or destruction.",
+            "We take reasonable measures to protect information handled by <span class='font-semibold'>Netalk</span> against unauthorized access, alteration, disclosure, or destruction.",
             "However, no online service can guarantee absolute security. You should use a strong, unique password and protect your account credentials."
           ]
         },
         {
           "id": "cookies",
-          "title": "8. Cookies & Local Storage",
+          "title": "Cookies & Local Storage",
           "paragraphs": [
-            "Netalk may use browser storage technologies such as cookies, local storage, or similar mechanisms to maintain sessions, remember preferences, support application functionality, and improve the user experience.",
-            "Disabling certain browser storage mechanisms may affect the functionality of parts of Netalk."
+            "<span class='font-semibold'>Netalk</span> may use browser storage technologies such as cookies, local storage, or similar mechanisms to maintain sessions, remember preferences, support application functionality, and improve the user experience.",
+            "Disabling certain browser storage mechanisms may affect the functionality of parts of <span class='font-semibold'>Netalk</span>."
           ]
         },
         {
           "id": "data-retention",
-          "title": "9. Data Retention",
+          "title": "Data Retention",
           "paragraphs": [
             "We retain information for as long as reasonably necessary to provide the service, maintain security, meet operational requirements, resolve disputes, and satisfy applicable legal obligations.",
             "Retention periods may vary depending on the type of information and the purpose for which it is processed."
@@ -213,7 +215,7 @@
         },
         {
           "id": "your-rights",
-          "title": "10. Your Rights",
+          "title": "Your Rights",
           "paragraphs": [
             "Depending on your location and applicable law, you may have rights regarding your personal information, including the ability to:"
           ],
@@ -226,19 +228,19 @@
             "Withdraw consent where processing is based on consent."
           ],
           "closingParagraphs": [
-            "To make a privacy-related request, contact the Netalk team through the available support channel."
+            "To make a privacy-related request, contact the <span class='font-semibold'>Netalk</span> team through the available support channel."
           ]
         },
         {
           "id": "children",
-          "title": "11. Children's Privacy",
+          "title": "Children's Privacy",
           "paragraphs": [
-            "Netalk is not intended for users who are not legally permitted to use the service under applicable law. We do not knowingly collect personal information from children in violation of applicable requirements."
+            "<span class='font-semibold'>Netalk</span> is not intended for users who are not legally permitted to use the service under applicable law. We do not knowingly collect personal information from children in violation of applicable requirements."
           ]
         },
         {
           "id": "privacy-changes",
-          "title": "12. Changes to This Policy",
+          "title": "Changes to This Policy",
           "paragraphs": [
             "We may update this Privacy Policy when our services, practices, or legal obligations change.",
             "The updated policy will include a new effective or updated date. We encourage you to review this page periodically."
@@ -246,9 +248,9 @@
         },
         {
           "id": "contact-privacy",
-          "title": "13. Contact Us",
+          "title": "Contact Us",
           "paragraphs": [
-            "If you have questions about this Privacy Policy or want to make a privacy-related request, please contact the Netalk team through the contact method provided within the application."
+            "If you have questions about this Privacy Policy or want to make a privacy-related request, please contact the <span class='font-semibold'>Netalk</span> team through the contact method provided within the application."
           ]
         }
       ]
