@@ -241,7 +241,7 @@ const NameInputField = ({
       <p className="font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
         Full Name
       </p>
-      <div className="flex gap-2 w-full">
+      <div className="flex gap-2 w-full flex-wrap">
         <input
           type="text"
           value={firstName}
@@ -773,7 +773,9 @@ const SignupCompletedForm = () => {
           <h1 className="text-3xl w-fit font-semibold gradient bg-clip-text text-transparent">
             {personalDetails.firstName}!
           </h1>
-          <p>Your account is all set. Let’s start connecting!</p>
+          <p className="text-center">
+            Your account is all set. Let’s start connecting!
+          </p>
         </div>
         <div className="flex gap-2 items-center w-full">
           <button

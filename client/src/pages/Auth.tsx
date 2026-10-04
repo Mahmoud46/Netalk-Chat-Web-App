@@ -33,7 +33,9 @@ export default function Auth(): ReactNode {
     <div
       className={`flex flex-col md:flex-row ${authMode == "login" ? "md:flex-row-reverse" : "md:flex-row"} items-center h-dvh transition-all ease-in-out bg-background-light-base dark:bg-background-dark-base`}
     >
-      <div className="flex-none md:flex-1 h-fit md:h-full relative">
+      <div
+        className={`flex-none md:flex-1 h-fit md:h-full relative ${signupStep != 1 && "hidden md:flex"}`}
+      >
         <img
           src={theme == "light" ? default_cover : default_cover_dark}
           alt="cover-image"
