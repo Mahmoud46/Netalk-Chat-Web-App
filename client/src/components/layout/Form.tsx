@@ -504,7 +504,10 @@ const SignupCredentialsForm = () => {
 
       <p className="text-sm text-center">
         By signing up to create an account I accept Netalk's{" "}
-        <Link to={"/"} className="text-foreground-dark-primary hover:underline">
+        <Link
+          to={"/terms_conditions_and_privacy_policy"}
+          className="text-foreground-dark-primary hover:underline"
+        >
           Terms & Conditions and Privacy Policy
         </Link>
       </p>

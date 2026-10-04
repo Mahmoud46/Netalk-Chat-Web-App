@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./hooks";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import Loader from "./components/common/Loader";
+import TermsConditonsPrivayPolicy from "./pages/TermsConditonsPrivayPolicy";
 
 const User = React.lazy(() => import("./pages/User"));
 const Auth = React.lazy(() => import("./pages/Auth"));
@@ -127,6 +128,11 @@ export default function App(): ReactNode {
               </Suspense>
             )
           }
+        />
+
+        <Route
+          path="/terms_conditions_and_privacy_policy"
+          element={<TermsConditonsPrivayPolicy />}
         />
 
         <Route
