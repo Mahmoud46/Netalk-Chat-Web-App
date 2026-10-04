@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { useAuth, useTheme } from "../../hooks";
 import Label from "../common/Label";
 import { lazy, Suspense, useEffect, useState } from "react";
-
+import empty_media_image from "../../assets/images/empty_media.png";
 import default_cover from "../../assets/images/default_profile_cover.jpg";
 import default_cover_dark from "../../assets/images/default_profile_cover_dark.jpg";
 import CommonIcon from "../icons/CommonIcon";
@@ -285,6 +285,21 @@ const ProfilePanelMinorInfo = ({
                   )}
               </button>
             )}
+          </div>
+        )}
+
+        {sharedItemsActiveTab == -1 && (
+          <div className="flex flex-col items-center">
+            <img
+              src={empty_media_image}
+              alt="empty-media"
+              loading="lazy"
+              className="size-40"
+            />
+            <p className="text-xs text-foreground-light-secondary dark:text-foreground-dark-secondary text-center">
+              Nothing to see here yet. Photos, videos, and other media shared in
+              this chat will show up here.
+            </p>
           </div>
         )}
       </div>

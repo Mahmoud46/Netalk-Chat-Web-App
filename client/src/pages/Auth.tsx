@@ -31,28 +31,28 @@ export default function Auth(): ReactNode {
 
   return (
     <div
-      className={`flex ${authMode == "login" ? "flex-row-reverse" : "flex-row"} items-center h-dvh transition-all ease-in-out bg-background-light-base dark:bg-background-dark-base`}
+      className={`flex flex-col md:flex-row ${authMode == "login" ? "md:flex-row-reverse" : "md:flex-row"} items-center h-dvh transition-all ease-in-out bg-background-light-base dark:bg-background-dark-base`}
     >
-      <div className="flex-1 h-full relative">
+      <div className="flex-none md:flex-1 h-fit md:h-full relative">
         <img
           src={theme == "light" ? default_cover : default_cover_dark}
           alt="cover-image"
-          className={`size-full object-cover ${authMode == "login" ? "rounded-l-4xl" : "rounded-r-4xl"}`}
+          className={`size-full object-cover ${authMode == "login" ? "md:rounded-l-4xl" : "md:rounded-r-4xl"}`}
           loading="lazy"
         />
-        <div className="absolute top-0 h-full max-h-full overflow-auto p-12 flex flex-col gap-10">
+        <div className="absolute top-0 h-full max-h-full overflow-auto p-4 md:p-8 xl:p-12 flex flex-col gap-4 md:gap-6 xl:gap-10">
           <div className="flex items-center gap-4">
-            <BrandIcon theme={theme} className="size-8" />
-            <BrandWordmark className="h-13" />
+            <BrandIcon theme={theme} className="size-7 md:size-8" />
+            <BrandWordmark className="h-10 md:h-13" />
           </div>
-          <div className="text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-4">
-            <h1 className="text-4xl font-semibold">
+          <div className="text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-2 md:gap-4">
+            <h1 className="text-xl md:text-2xl xl:text-4xl font-semibold">
               {authMode == "login"
                 ? "Missed you around here!"
                 : "Your seat at the table is ready."}
             </h1>
             <p
-              className={`backdrop-blur-2xl ${theme == "dark" ? "bg-black/10" : "bg-white/10"}`}
+              className={`backdrop-blur-2xl text-sm md:text-base ${theme == "dark" ? "bg-black/10" : "bg-white/10"}`}
             >
               {authMode == "login"
                 ? "Your crew is waiting. Log in and jump right back into the chat."
@@ -62,7 +62,7 @@ export default function Auth(): ReactNode {
         </div>
         {/* Signup and login arrows */}
         <Link
-          className={`z-20 absolute aspect-square rounded-full bg-background-light-base dark:bg-background-dark-base top-1/2 -translate-y-1/2 p-2 ${authMode == "login" ? "-left-8" : "-right-8"} flex items-center justify-center`}
+          className={`z-20 hidden md:flex absolute aspect-square rounded-full bg-background-light-base dark:bg-background-dark-base top-1/2 -translate-y-1/2 p-2 ${authMode == "login" ? "-left-8" : "-right-8"} flex items-center justify-center`}
           to={authMode == "login" ? "/auth?mode=signup" : "/auth?mode=login"}
         >
           <button
@@ -79,9 +79,9 @@ export default function Auth(): ReactNode {
       </div>
 
       {/* Form */}
-      <div className="flex-1 h-full text-foreground-light-secondary dark:text-foreground-dark-secondary overflow-auto">
+      <div className="h-fit flex-none md:flex-1/6 xl:flex-1 md:h-full text-foreground-light-secondary dark:text-foreground-dark-secondary overflow-auto">
         <div
-          className={`flex flex-col px-27 py-13 ${authMode == "signup" ? "gap-4" : "gap-8"} z-10 max-h-full`}
+          className={`flex flex-col p-4 md:px-10 md:py-8 xl:px-20 xxl:px-27 xl:py-13 ${authMode == "signup" ? "gap-4" : "gap-8"} z-10 max-h-full`}
         >
           {(signupStep == 1 || authMode == "login") && (
             <div className="">
