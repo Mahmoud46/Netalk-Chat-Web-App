@@ -480,23 +480,23 @@ const SignupCredentialsForm = () => {
           OR
           <span className="flex-1 h-px bg-foreground-light-third dark:bg-foreground-dark-secondary"></span>
         </div>
-        <div className="flex items-center justify-center gap-2 w-full">
+        <div className="flex items-center justify-center gap-2 w-full flex-col md:flex-row">
           <button
             type="button"
-            className="cursor-pointer rounded-3xl flex-1 flex items-center gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
+            className="cursor-pointer text-start rounded-3xl flex-none w-full justify-center md:justify-start md:flex-1 flex items-center gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
           >
             <SocialIcon platform="google" className="w-6" />
-            <p className="text-start">
-              Sign Up with <span className="font-semibold">Google</span>
+            <p>
+              Login with <span className="font-semibold">Google</span>
             </p>
           </button>
           <button
             type="button"
-            className="cursor-pointer rounded-3xl flex-1 flex items-center justify-start gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
+            className="cursor-pointer text-start rounded-3xl flex-none w-full justify-center md:justify-start md:flex-1 flex items-center gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
           >
             <SocialIcon platform="microsoft" className="w-6" />
-            <p className="text-start">
-              Sign Up with <span className="font-semibold">Microsoft</span>
+            <p>
+              Login with <span className="font-semibold">Microsoft</span>
             </p>
           </button>
         </div>
@@ -791,7 +791,10 @@ const SignupCompletedForm = () => {
 export const LoginForm = () => {
   const { credentials, login } = useAuth();
   return (
-    <form className="flex flex-col gap-8" onSubmit={login}>
+    <form
+      className="flex flex-col gap-8 w-full bg-background-light-base dark:bg-background-dark-base"
+      onSubmit={login}
+    >
       <div className="flex flex-col gap-7">
         <div className="flex flex-col gap-6">
           <EmailPhoneInputFiled
@@ -832,10 +835,10 @@ export const LoginForm = () => {
           OR
           <span className="flex-1 h-px bg-foreground-light-third dark:bg-foreground-dark-secondary"></span>
         </div>
-        <div className="flex items-center justify-center gap-2 w-full">
+        <div className="flex items-center justify-center gap-2 w-full flex-col md:flex-row">
           <button
             type="button"
-            className="cursor-pointer rounded-3xl flex-1 flex items-center gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
+            className="cursor-pointer text-start rounded-3xl flex-none w-full justify-center md:justify-start md:flex-1 flex items-center gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
           >
             <SocialIcon platform="google" className="w-6" />
             <p>
@@ -844,7 +847,7 @@ export const LoginForm = () => {
           </button>
           <button
             type="button"
-            className="cursor-pointer rounded-3xl flex-1 flex items-center gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
+            className="cursor-pointer text-start rounded-3xl flex-none w-full justify-center md:justify-start md:flex-1 flex items-center gap-4 p-3 text-sm transition-all ease-in-out bg-background-light-secondary/50 hover:bg-background-light-secondary dark:bg-background-dark-secondary/50 hover:dark:dark:bg-background-dark-secondary"
           >
             <SocialIcon platform="microsoft" className="w-6" />
             <p>
@@ -883,7 +886,10 @@ export const SignupForm = ({
   };
   return (
     <>
-      <form className="flex flex-col gap-8 pb-13" onSubmit={submitForm}>
+      <form
+        className="flex flex-col gap-8 pb-13 bg-background-light-base dark:bg-background-dark-base"
+        onSubmit={submitForm}
+      >
         {signupStep == 1 && <SignupCredentialsForm />}
         {signupStep == 2 && (
           <SignupPersonalDetailsForm setSignupStep={setSignupStep} />

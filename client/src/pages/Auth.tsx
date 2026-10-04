@@ -40,7 +40,7 @@ export default function Auth(): ReactNode {
           className={`size-full object-cover ${authMode == "login" ? "md:rounded-l-4xl" : "md:rounded-r-4xl"}`}
           loading="lazy"
         />
-        <div className="absolute top-0 h-full max-h-full overflow-auto p-4 md:p-8 xl:p-12 flex flex-col gap-4 md:gap-6 xl:gap-10">
+        <div className="backdrop-blur-2xl w-full absolute top-0 h-full max-h-full overflow-auto p-4 md:p-8 xl:p-12 flex flex-col gap-4 md:gap-6 xl:gap-10">
           <div className="flex items-center gap-4">
             <BrandIcon theme={theme} className="size-7 md:size-8" />
             <BrandWordmark className="h-10 md:h-13" />
@@ -51,9 +51,7 @@ export default function Auth(): ReactNode {
                 ? "Missed you around here!"
                 : "Your seat at the table is ready."}
             </h1>
-            <p
-              className={`backdrop-blur-2xl text-sm md:text-base ${theme == "dark" ? "bg-black/10" : "bg-white/10"}`}
-            >
+            <p className={`text-sm md:text-base`}>
               {authMode == "login"
                 ? "Your crew is waiting. Log in and jump right back into the chat."
                 : "Create your Netalk account and join thousands of people sharing ideas, chatting, and connecting every day."}
@@ -79,15 +77,15 @@ export default function Auth(): ReactNode {
       </div>
 
       {/* Form */}
-      <div className="h-fit flex-none md:flex-1/6 xl:flex-1 md:h-full text-foreground-light-secondary dark:text-foreground-dark-secondary overflow-auto">
+      <div className="h-fit flex-none max-md:w-full md:flex-1/6 xl:flex-1 md:h-full text-foreground-light-secondary dark:text-foreground-dark-secondary overflow-auto">
         <div
-          className={`flex flex-col p-4 md:px-10 md:py-8 xl:px-20 xxl:px-27 xl:py-13 ${authMode == "signup" ? "gap-4" : "gap-8"} z-10 max-h-full`}
+          className={`flex flex-col w-full p-4 md:px-10 md:py-8 xl:px-20 xxl:px-27 xl:py-13 ${authMode == "signup" ? "gap-4" : "gap-4 md:gap-8"} z-10 max-h-full`}
         >
           {(signupStep == 1 || authMode == "login") && (
             <div className="">
-              <h2 className="flex items-center text-2xl font-semibold">
+              <h2 className="flex items-center text-lg md:text-2xl font-semibold">
                 {authMode == "signup" ? "Get started on" : "Log in into"}{" "}
-                <BrandWordmark className="h-11 mx-1" />
+                <BrandWordmark className="h-9 md:h-11 mx-1" />
               </h2>
               {authMode == "login" && (
                 <p className="text-sm">
