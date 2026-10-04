@@ -204,7 +204,7 @@ export default function CommonIcon({
         <img
           src={weight == "thin" ? chevron_right_thin_icon : chevron_right_icon}
           loading="lazy"
-          className={`main-icon ${className ?? ""}`}
+          className={`${soild ? "invert-100" : "main-icon"} ${className ?? ""}`}
         />
       );
     case "trash":

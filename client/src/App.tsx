@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./hooks";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import Loader from "./components/common/Loader";
+
 const User = React.lazy(() => import("./pages/User"));
 const Auth = React.lazy(() => import("./pages/Auth"));
 const Inbox = React.lazy(() => import("./pages/Inbox"));
@@ -20,6 +21,7 @@ const PrivacySecuritySettings = React.lazy(
 const LanguageSettings = React.lazy(
   () => import("./pages/Settings/LanguageSettings"),
 );
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 export default function App(): ReactNode {
   const { isAuthenticated } = useAuth();
@@ -124,6 +126,15 @@ export default function App(): ReactNode {
                 <Auth />
               </Suspense>
             )
+          }
+        />
+
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<Loader />}>
+              <NotFound />
+            </Suspense>
           }
         />
       </Routes>
