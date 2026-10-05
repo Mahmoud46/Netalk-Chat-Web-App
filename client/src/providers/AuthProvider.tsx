@@ -18,6 +18,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     [verifyWithPhoneNumber, setVerifyWithPhoneNumber] =
       useState<boolean>(false),
     [acceptTerms, setAcceptTerms] = useState<boolean>(true),
+    [otp, setOtp] = useState<number>(0),
     // Signup Personal Details
     [firstName, setFirstName] = useState<string>(""),
     [lastName, setLastName] = useState<string>(""),
@@ -54,6 +55,12 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     // Check for backend {...}
     console.log(signupCredentials);
     return true;
+  };
+
+  const verifyOTP = async (): Promise<boolean> => {
+    const authOTP = 123456;
+    console.log(otp);
+    return otp == authOTP;
   };
 
   const signup = async (): Promise<boolean> => {
@@ -141,6 +148,8 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
       setAcceptTerms,
       verifyWithPhoneNumber,
       setVerifyWithPhoneNumber,
+      otp,
+      setOtp,
     },
     personalDetails: {
       firstName,
@@ -177,6 +186,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
     reset,
     login,
     logout,
+    verifyOTP,
   };
 
   return (

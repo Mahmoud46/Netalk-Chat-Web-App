@@ -10,6 +10,7 @@ import React, { Suspense, useState } from "react";
 import Loader from "../components/common/Loader";
 import CommonIcon from "../components/icons/CommonIcon";
 import Label from "../components/common/Label";
+import { SIGNUP_ONBOARDING_STEPS } from "../config/navigation";
 
 const LoginForm = React.lazy(() =>
     import("../components/layout/Form").then((module) => ({
@@ -27,14 +28,14 @@ export default function Auth(): ReactNode {
   const [searchParams] = useSearchParams();
   const authMode: AuthMode = (searchParams.get("mode") ?? "login") as AuthMode;
   const { theme } = useTheme();
-  const [signupStep, setSignupStep] = useState<number>(1);
+  const [signupStep, setSignupStep] = useState<number>(0);
 
   return (
     <div
       className={`flex flex-col md:flex-row ${authMode == "login" ? "md:flex-row-reverse" : "md:flex-row"} items-center h-dvh transition-all ease-in-out bg-background-light-base dark:bg-background-dark-base`}
     >
       <div
-        className={`flex-none md:flex-1 h-fit md:h-full relative ${signupStep != 1 && "hidden md:flex"}`}
+        className={`flex-none md:flex-1 h-fit md:h-full relative ${SIGNUP_ONBOARDING_STEPS[signupStep] != "credentials" && "hidden md:flex"}`}
       >
         <img
           src={theme == "light" ? default_cover : default_cover_dark}
@@ -47,7 +48,7 @@ export default function Auth(): ReactNode {
             <BrandIcon theme={theme} className="size-7 md:size-8" />
             <BrandWordmark className="h-10 md:h-13" />
           </div>
-          <div className="text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-2 md:gap-4">
+          <div className="flex-1 text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-2 md:gap-4">
             <h1 className="text-xl md:text-2xl xl:text-4xl font-semibold">
               {authMode == "login"
                 ? "Missed you around here!"
@@ -59,6 +60,9 @@ export default function Auth(): ReactNode {
                 : "Create your Netalk account and join thousands of people sharing ideas, chatting, and connecting every day."}
             </p>
           </div>
+          <p className="text-xs text-center self-end hidden md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary ">
+            © 2026 Netalk. Made for better conversations.
+          </p>
         </div>
         {/* Signup and login arrows */}
         <Link
@@ -83,7 +87,8 @@ export default function Auth(): ReactNode {
         <div
           className={`flex flex-col w-full p-4 md:px-10 md:py-8 xl:px-20 xxl:px-27 xl:py-13 ${authMode == "signup" ? "gap-4" : "gap-4 md:gap-8"} z-10 max-h-full`}
         >
-          {(signupStep == 1 || authMode == "login") && (
+          {(SIGNUP_ONBOARDING_STEPS[signupStep] == "credentials" ||
+            authMode == "login") && (
             <div className="">
               <h2 className="flex items-center text-lg md:text-2xl font-semibold">
                 {authMode == "signup" ? "Get started on" : "Log in into"}{" "}

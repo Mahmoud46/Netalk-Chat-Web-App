@@ -1,3 +1,5 @@
+import type { SignupScreenStep } from "../types";
+
 export const BASE_ROUTE: string = "/app";
 
 export const SIDEBAR_ITEMS: { label: string; path: string }[] = [
@@ -154,4 +156,10 @@ export const SIDEBAR_ITEMS: { label: string; path: string }[] = [
       path: `${BASE_ROUTE}/settings/language`,
     },
   ],
-  SIGNUP_ONBOARDING_STEPS = ["credentials", "personal_details", "media_assets"];
+  SIGNUP_ONBOARDING_STEPS: SignupScreenStep[] = [
+    "credentials",
+    "otp_verification",
+    "personal_details",
+    "media_assets",
+    "account_created",
+  ];

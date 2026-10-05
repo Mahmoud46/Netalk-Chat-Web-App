@@ -1,0 +1,2 @@
+export const OTP_LENGTH = 6,
+  OTP_AVAILABLE_TIME_IN_MIN = 1;

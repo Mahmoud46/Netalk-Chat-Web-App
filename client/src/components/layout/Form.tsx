@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Label from "../common/Label";
 import CommonIcon from "../icons/CommonIcon";
 import { Link } from "react-router-dom";
@@ -8,8 +8,12 @@ import {
   capitalize,
   checkPasswordStrength,
 } from "../../utils/helpers";
-import { formatDate } from "../../utils/format";
-import type { Gender, PasswordStrength } from "../../types";
+import {
+  formatDate,
+  maskEmailAddress,
+  maskPhoneNumber,
+} from "../../utils/format";
+import type { Gender, PasswordStrength, SignupScreenStep } from "../../types";
 import SocialIcon from "../icons/SocialIcon";
 import { SIGNUP_ONBOARDING_STEPS } from "../../config/navigation";
 
@@ -18,6 +22,28 @@ import default_cover_dark from "../../assets/images/default_profile_cover_dark.j
 import { useAuth, useTheme } from "../../hooks";
 import { Avatar } from "../icons/Avatar";
 import { BrandWordmark } from "../icons/BrandIcon";
+import { OTP_AVAILABLE_TIME_IN_MIN, OTP_LENGTH } from "../../config/auth";
+
+const SignupOnboardingScreensMap = ({
+  screen = "credentials",
+  setSignupStep,
+}: {
+  screen?: SignupScreenStep;
+  setSignupStep: React.Dispatch<React.SetStateAction<number>>;
+}): ReactNode => {
+  switch (screen) {
+    case "credentials":
+      return <SignupCredentialsForm />;
+    case "otp_verification":
+      return <SignupOTPVerificationForm setSignupStep={setSignupStep} />;
+    case "personal_details":
+      return <SignupPersonalDetailsForm setSignupStep={setSignupStep} />;
+    case "media_assets":
+      return <SignupMediaAssetsForm setSignupStep={setSignupStep} />;
+    case "account_created":
+      return <SignupCompletedForm />;
+  }
+};
 
 const passwordStrengthBgColorMap: Record<PasswordStrength, string> = {
   very_weak: "bg-red-600 w-1/6",
@@ -443,6 +469,111 @@ const BioInputField = ({
   );
 };
 
+const useCountdown = (minutes: number) => {
+  const [timeLeft, setTimeLeft] = useState<number>(minutes * 60);
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => Math.max(prev - 1, 0));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  const mins = Math.floor(timeLeft / 60);
+  const secs = timeLeft % 60;
+
+  const formattedTime = `${String(mins).padStart(2, "0")}:${String(
+    secs,
+  ).padStart(2, "0")}`;
+
+  return {
+    timeLeft: formattedTime,
+    isActive: timeLeft > 0,
+  };
+};
+
+const OTPInputField = ({
+  otp,
+  setOtp,
+}: {
+  otp: string[];
+  setOtp: React.Dispatch<React.SetStateAction<string[]>>;
+}) => {
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const handleChange = (value: string, index: number) => {
+    // Only allow one digit
+    const digit = value.replace(/\D/g, "").slice(-1);
+
+    const newOtp = [...otp];
+    newOtp[index] = digit;
+    setOtp(newOtp);
+
+    // Move to next input
+    if (digit && index < OTP_LENGTH - 1) {
+      inputRefs.current[index + 1]?.focus();
+    }
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    index: number,
+  ) => {
+    if (e.key === "Backspace" && !otp[index] && index > 0) {
+      inputRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    const pasted = e.clipboardData
+      .getData("text")
+      .replace(/\D/g, "")
+      .slice(0, OTP_LENGTH);
+
+    if (!pasted) return;
+
+    const newOtp = Array(OTP_LENGTH).fill("");
+
+    pasted.split("").forEach((digit, index) => {
+      newOtp[index] = digit;
+    });
+
+    setOtp(newOtp);
+
+    const nextIndex = Math.min(pasted.length, OTP_LENGTH - 1);
+    inputRefs.current[nextIndex]?.focus();
+  };
+
+  return (
+    <div className="flex gap-2 items-center justify-center">
+      {otp.map((digit, index) => (
+        <input
+          key={index}
+          ref={(el) => {
+            inputRefs.current[index] = el;
+          }}
+          required
+          type="text"
+          inputMode="numeric"
+          maxLength={1}
+          value={digit}
+          onChange={(e) => handleChange(e.target.value, index)}
+          onKeyDown={(e) => handleKeyDown(e, index)}
+          className="bg-background-light-surface-2 max-w-15 flex-none text-center dark:bg-background-dark-surface-2 p-3 rounded-full text-base text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+          aria-label={`OTP digit ${index + 1}`}
+          placeholder="0"
+          onPaste={handlePaste}
+        />
+      ))}
+    </div>
+  );
+};
+
 const SignupCredentialsForm = () => {
   const { credentials } = useAuth();
   return (
@@ -589,6 +720,77 @@ const SignupPersonalDetailsForm = ({
             />
           </button>
         </div>
+      </div>
+    </>
+  );
+};
+
+const SignupOTPVerificationForm = ({
+  setSignupStep,
+}: {
+  setSignupStep: React.Dispatch<React.SetStateAction<number>>;
+}) => {
+  const { credentials } = useAuth();
+  const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
+  const { timeLeft, isActive } = useCountdown(OTP_AVAILABLE_TIME_IN_MIN);
+  useEffect(() => {
+    credentials.setOtp(parseInt(otp.join("")));
+  }, [credentials, otp]);
+  return (
+    <>
+      <div className="">
+        <h2 className="flex items-center text-2xl font-semibold">
+          Let's verify your{" "}
+          {credentials.verifyWithPhoneNumber ? "phone number" : "email address"}
+        </h2>
+        <p className="text-sm">
+          We sent a 6-digit verification code to{" "}
+          {credentials.verifyWithPhoneNumber
+            ? maskPhoneNumber(credentials.phoneNumber)
+            : maskEmailAddress(credentials.emailAddress)}
+          .
+        </p>
+      </div>
+      <div className="flex flex-col gap-7">
+        <div className="flex flex-col gap-6 py-20">
+          <OTPInputField otp={otp} setOtp={setOtp} />
+          {isActive && (
+            <p className="text-center text-sm">
+              Code expires in <span className="font-semibold">{timeLeft}</span>
+            </p>
+          )}
+          {!isActive && (
+            <p className="text-center text-sm">
+              Didn't receive the code?{" "}
+              <button
+                type="button"
+                className="font-semibold hover:underline text-foreground-dark-primary cursor-pointer"
+              >
+                Resend code
+              </button>
+            </p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="gradient p-2.5 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 font-semibold"
+        >
+          Verify
+        </button>
+
+        <p className="text-sm">
+          Wrong{" "}
+          {credentials.verifyWithPhoneNumber ? "phone number" : "email address"}
+          ?{" "}
+          <button
+            type="button"
+            className="font-semibold hover:underline text-foreground-dark-primary cursor-pointer"
+            onClick={() => setSignupStep(0)}
+          >
+            Change it
+          </button>
+        </p>
       </div>
     </>
   );
@@ -861,7 +1063,7 @@ export const LoginForm = () => {
           </button>
         </div>
       </div>
-      <p className="text-xs text-center">
+      <p className="text-xs text-center flex md:hidden">
         © 2026 Netalk. Made for better conversations.
       </p>
     </form>
@@ -875,16 +1077,32 @@ export const SignupForm = ({
   signupStep: number;
   setSignupStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
-  const { startOnboarding, signup, CompleteOnboarding } = useAuth();
+  const { startOnboarding, signup, CompleteOnboarding, verifyOTP } = useAuth();
 
   const submitForm = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     let verified: boolean = false;
-    console.log(signupStep);
-    if (signupStep == 1) verified = await startOnboarding();
-    else if (signupStep == 2) verified = true;
-    else if (signupStep == 3) verified = await signup();
-    else if (signupStep == 4) CompleteOnboarding();
+    const stepScreen: SignupScreenStep =
+      SIGNUP_ONBOARDING_STEPS[signupStep] ?? "credentials";
+
+    switch (stepScreen) {
+      case "credentials":
+        verified = await startOnboarding();
+        break;
+      case "otp_verification":
+        verified = await verifyOTP(); // OTP verification function
+        break;
+      case "personal_details":
+        verified = true; // Continuing creating
+        break;
+      case "media_assets":
+        verified = await signup();
+        break;
+
+      case "account_created":
+        CompleteOnboarding();
+        break;
+    }
 
     if (verified) {
       setSignupStep((prev) =>
@@ -898,15 +1116,11 @@ export const SignupForm = ({
         className="flex flex-col gap-8 pb-13 bg-background-light-base dark:bg-background-dark-base"
         onSubmit={submitForm}
       >
-        {signupStep == 1 && <SignupCredentialsForm />}
-        {signupStep == 2 && (
-          <SignupPersonalDetailsForm setSignupStep={setSignupStep} />
-        )}
-        {signupStep == 3 && (
-          <SignupMediaAssetsForm setSignupStep={setSignupStep} />
-        )}
-        {signupStep == 4 && <SignupCompletedForm />}
-        <p className="text-xs text-center">
+        <SignupOnboardingScreensMap
+          screen={SIGNUP_ONBOARDING_STEPS[signupStep]}
+          setSignupStep={setSignupStep}
+        />
+        <p className="text-xs text-center flex md:hidden">
           © 2026 Netalk. Made for better conversations.
         </p>
       </form>

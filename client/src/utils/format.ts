@@ -136,3 +136,62 @@ export const formatText = (text: string) => {
       return capitalizeList(text.split(" ")).join(" ");
   }
 };
+
+export const maskPhoneNumber = (phone: string): string => {
+  // Remove all non-numeric characters
+  const cleaned = phone.replace(/\D/g, "");
+  const len = cleaned.length;
+
+  // Handle edge cases for short numbers
+  if (len < 3) return `+${cleaned}`;
+
+  // Calculate how many characters make up 70% (rounded)
+  const maskLength = Math.round(len * 0.7);
+
+  // Calculate remaining characters to split between start and end
+  const remaining = len - maskLength;
+  const startLength = Math.floor(remaining / 2);
+  const endLength = remaining - startLength;
+
+  // Slice the unmasked parts
+  const startPart = cleaned.slice(0, startLength);
+  const endPart = cleaned.slice(len - endLength);
+
+  // Generate the bullet mask matching the exact length of hidden characters
+  const mask = "•".repeat(maskLength);
+
+  // Return formatted international string
+  return `+${startPart} ${mask} ${endPart}`;
+};
+
+export const maskEmailAddress = (email: string): string => {
+  // Split email into username and domain parts
+  const parts = email.split("@");
+  if (parts.length !== 2) return email; // Return original if not a valid email structure
+
+  const [username, domain] = parts;
+  const len = username.length;
+
+  // Handle short usernames gracefully
+  if (len <= 2) {
+    return `${"•".repeat(len)}@${domain}`;
+  }
+
+  // Calculate how many characters make up 80% of the username (rounded up to mask more)
+  const maskLength = Math.max(1, Math.round(len * 0.7));
+
+  // Calculate remaining characters to split between start and end
+  const remaining = len - maskLength;
+  const startLength = Math.floor(remaining / 2);
+  const endLength = remaining - startLength;
+
+  // Slice the unmasked parts of the username
+  const startPart = username.slice(0, startLength);
+  const endPart = username.slice(len - endLength);
+
+  // Generate the bullet mask
+  const mask = "•".repeat(maskLength);
+
+  // Reconstruct the email
+  return `${startPart}${mask}${endPart}@${domain}`;
+};

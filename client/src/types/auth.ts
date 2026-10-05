@@ -21,6 +21,7 @@ export interface AuthContextValue {
   reset: () => Promise<void>;
   login: () => Promise<void>;
   logout: () => Promise<void>;
+  verifyOTP: () => Promise<boolean>;
 }
 
 interface Credentials {
@@ -35,6 +36,8 @@ interface Credentials {
 
   verifyWithPhoneNumber: boolean;
   setVerifyWithPhoneNumber: React.Dispatch<React.SetStateAction<boolean>>;
+  otp: number;
+  setOtp: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface PersonalDetails {
@@ -123,3 +126,10 @@ export interface SignupCredentials {
   archivedChats: string[];
   blockedUsers: string[];
 }
+
+export type SignupScreenStep =
+  | "credentials"
+  | "otp_verification"
+  | "personal_details"
+  | "media_assets"
+  | "account_created";
