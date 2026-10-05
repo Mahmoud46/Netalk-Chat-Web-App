@@ -1116,6 +1116,16 @@ export const SignupForm = ({
         className="flex flex-col gap-8 pb-13 bg-background-light-base dark:bg-background-dark-base"
         onSubmit={submitForm}
       >
+        {SIGNUP_ONBOARDING_STEPS[signupStep] != "credentials" && (
+          <div className="w-full gap-2 mt-4 flex md:hidden">
+            {SIGNUP_ONBOARDING_STEPS.map((step) => (
+              <span
+                key={step}
+                className={`flex-1 h-2 rounded-3xl transition-all ease-in-out ${step == SIGNUP_ONBOARDING_STEPS[signupStep] ? "bg-background-dark-primary" : "bg-background-dark-surface-2 dark:bg-background-dark-surface-2"}`}
+              ></span>
+            ))}
+          </div>
+        )}
         <SignupOnboardingScreensMap
           screen={SIGNUP_ONBOARDING_STEPS[signupStep]}
           setSignupStep={setSignupStep}

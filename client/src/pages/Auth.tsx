@@ -45,10 +45,10 @@ export default function Auth(): ReactNode {
         />
         <div className="backdrop-blur-2xl w-full absolute top-0 h-full max-h-full overflow-auto p-4 md:p-8 xl:p-12 flex flex-col gap-4 md:gap-6 xl:gap-10">
           <div className="flex items-center gap-4">
-            <BrandIcon theme={theme} className="size-7 md:size-8" />
+            <BrandIcon theme={theme} className="size-6 md:size-8" />
             <BrandWordmark className="h-10 md:h-13" />
           </div>
-          <div className="flex-1 text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-2 md:gap-4">
+          <div className="flex-1 text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-1 md:gap-4">
             <h1 className="text-xl md:text-2xl xl:text-4xl font-semibold">
               {authMode == "login"
                 ? "Missed you around here!"
@@ -59,7 +59,19 @@ export default function Auth(): ReactNode {
                 ? "Your crew is waiting. Log in and jump right back into the chat."
                 : "Create your Netalk account and join thousands of people sharing ideas, chatting, and connecting every day."}
             </p>
+
+            {authMode == "signup" && (
+              <div className="w-full gap-2 mt-4 flex">
+                {SIGNUP_ONBOARDING_STEPS.map((step) => (
+                  <span
+                    key={step}
+                    className={`flex-1 h-2 rounded-3xl transition-all ease-in-out ${step == SIGNUP_ONBOARDING_STEPS[signupStep] ? "bg-background-dark-primary" : "bg-background-dark-surface-2 dark:bg-background-dark-surface-2"}`}
+                  ></span>
+                ))}
+              </div>
+            )}
           </div>
+
           <p className="text-xs text-center self-end hidden md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary ">
             © 2026 Netalk. Made for better conversations.
           </p>
