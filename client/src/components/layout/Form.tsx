@@ -1121,7 +1121,7 @@ export const SignupForm = ({
             {SIGNUP_ONBOARDING_STEPS.map((step) => (
               <span
                 key={step}
-                className={`flex-1 h-2 rounded-3xl transition-all ease-in-out ${step == SIGNUP_ONBOARDING_STEPS[signupStep] ? "bg-background-dark-primary" : "bg-background-dark-surface-2 dark:bg-background-dark-surface-2"}`}
+                className={`flex-1 h-2 rounded-3xl transition-all ease-in-out ${step == SIGNUP_ONBOARDING_STEPS[signupStep] ? "bg-background-dark-primary" : "bg-background-light-surface-2 dark:bg-background-dark-surface-2"}`}
               ></span>
             ))}
           </div>
