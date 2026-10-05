@@ -58,7 +58,7 @@ export function AuthProvider({ children }: { children: ReactNode }): ReactNode {
   };
 
   const verifyOTP = async (): Promise<boolean> => {
-    const authOTP = 123456;
+    const authOTP = 12345;
     console.log(otp);
     return otp == authOTP;
   };

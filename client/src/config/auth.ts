@@ -1,2 +1,2 @@
-export const OTP_LENGTH = 6,
+export const OTP_LENGTH = 5,
   OTP_AVAILABLE_TIME_IN_MIN = 1;

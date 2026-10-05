@@ -550,7 +550,7 @@ const OTPInputField = ({
   };
 
   return (
-    <div className="flex gap-2 items-center justify-center">
+    <div className="flex gap-2 items-center justify-center w-full flex-wrap">
       {otp.map((digit, index) => (
         <input
           key={index}
@@ -564,7 +564,7 @@ const OTPInputField = ({
           value={digit}
           onChange={(e) => handleChange(e.target.value, index)}
           onKeyDown={(e) => handleKeyDown(e, index)}
-          className="bg-background-light-surface-2 max-w-15 flex-none text-center dark:bg-background-dark-surface-2 p-3 rounded-full text-base text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+          className="max-md:flex-1 bg-background-light-surface-2 max-w-15 flex-none text-center dark:bg-background-dark-surface-2 p-3 rounded-full text-base text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
           aria-label={`OTP digit ${index + 1}`}
           placeholder="0"
           onPaste={handlePaste}
@@ -744,7 +744,7 @@ const SignupOTPVerificationForm = ({
           {credentials.verifyWithPhoneNumber ? "phone number" : "email address"}
         </h2>
         <p className="text-sm">
-          We sent a 6-digit verification code to{" "}
+          We sent a {OTP_LENGTH}-digit verification code to{" "}
           {credentials.verifyWithPhoneNumber
             ? maskPhoneNumber(credentials.phoneNumber)
             : maskEmailAddress(credentials.emailAddress)}
@@ -1063,7 +1063,7 @@ export const LoginForm = () => {
           </button>
         </div>
       </div>
-      <p className="text-xs text-center flex md:hidden w-full">
+      <p className="text-xs text-center md:hidden w-full">
         © 2026 Netalk. Made for better conversations.
       </p>
     </form>
@@ -1120,7 +1120,7 @@ export const SignupForm = ({
           screen={SIGNUP_ONBOARDING_STEPS[signupStep]}
           setSignupStep={setSignupStep}
         />
-        <p className="text-xs text-center flex md:hidden w-full">
+        <p className="text-xs text-center md:hidden w-full">
           © 2026 Netalk. Made for better conversations.
         </p>
       </form>
