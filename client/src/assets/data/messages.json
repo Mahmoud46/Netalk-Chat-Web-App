@@ -281,6 +281,14 @@
     "createdAt": "2026-09-27T09:14:00Z"
   },
   {
+    "_id": "msg_07_02",
+    "chatId": "chat_07",
+    "sender": "YzWOFOI7JokpD9K7E-EcJD0IYOXheW",
+    "text": ".",
+    "status": "read",
+    "createdAt": "2026-09-27T09:14:00Z"
+  },
+  {
     "_id": "msg_07_03",
     "chatId": "chat_07",
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",

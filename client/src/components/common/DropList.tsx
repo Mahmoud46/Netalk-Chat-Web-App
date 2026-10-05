@@ -66,8 +66,6 @@ export const AttachmentCardDropList = ({
   isActive?: boolean;
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
 }): ReactNode => {
-
-  
   const dropListRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -91,7 +89,11 @@ export const AttachmentCardDropList = ({
       className={`absolute -bottom-2 z-50 right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit self-end rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
-         <ChatIcon label="reply_stroke" weight="thin" className="size-6.5 -scale-x-100" />
+        <ChatIcon
+          label="reply_stroke"
+          weight="thin"
+          className="size-6.5 -scale-x-100"
+        />
         Forward
       </button>
       <button className="cursor-pointer p-2 text-sm text-foreground-light-danger dark:text-foreground-dark-danger hover:bg-background-light-danger dark:hover:bg-background-dark-danger w-full flex justify-start gap-3 items-center rounded-2xl pr-3">
@@ -350,10 +352,10 @@ export const MessageDropList = ({
       <div className="flex flex-col">
         {
           <div
-            className={`flex ${activeEmojiDropList ? "flex-col items-start" : "flex-row"} p-1.5 rounded-3xl bg-background-light-surface-3 dark:bg-background-dark-surface-3 shadow-lg dark:shadow-neutral-900/50`}
+            className={`flex ${activeEmojiDropList ? "flex-col items-start" : "flex-row flex-none items-center w-full"} p-1.5 rounded-3xl bg-background-light-surface-3 dark:bg-background-dark-surface-3 shadow-lg dark:shadow-neutral-900/50`}
           >
             <div
-              className={`${activeEmojiDropList ? "grid grid-cols-4" : "flex"} max-h-20 overflow-auto`}
+              className={`${activeEmojiDropList ? "grid grid-cols-4" : "flex flex-none"} max-h-20 overflow-auto`}
             >
               {(activeEmojiDropList
                 ? EMOJIS_LIST
