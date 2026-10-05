@@ -1063,7 +1063,7 @@ export const LoginForm = () => {
           </button>
         </div>
       </div>
-      <p className="text-xs text-center flex md:hidden">
+      <p className="text-xs text-center flex md:hidden w-full">
         © 2026 Netalk. Made for better conversations.
       </p>
     </form>
@@ -1120,7 +1120,7 @@ export const SignupForm = ({
           screen={SIGNUP_ONBOARDING_STEPS[signupStep]}
           setSignupStep={setSignupStep}
         />
-        <p className="text-xs text-center flex md:hidden">
+        <p className="text-xs text-center flex md:hidden w-full">
           © 2026 Netalk. Made for better conversations.
         </p>
       </form>
