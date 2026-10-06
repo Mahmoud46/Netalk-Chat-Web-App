@@ -140,7 +140,7 @@ export const Bottombar = (): ReactNode => {
   return (
     <>
       {(!currentParticipant || !pathname.includes("inbox")) && (
-        <div className="sticky bottom-0 w-full justify-center py-2 hidden max-md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-base dark:bg-background-dark-base">
+        <div className="sticky bottom-0 w-full justify-center py-2.5 hidden max-md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-base dark:bg-background-dark-base">
           <div className="flex items-center justify-center rounded-3xl px-10 gap-2 w-fit bg-background-light-surface-1 dark:bg-background-dark-surface-1">
             {SIDEBAR_ITEMS.slice(0, 3).map((item) => {
               const isActive = isRouteActive(pathname, item.path);
