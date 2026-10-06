@@ -124,7 +124,7 @@ export const ContactSocialCard = ({
   const toggleActive = () => setIsActive((prev) => !prev);
   const isSettings = useLocation().pathname.includes("settings");
   return (
-    <div className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative p-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2">
+    <div className="text-sm flex items-center gap-2 transition-all ease-in-out w-full relative p-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2 min-w-0">
       <ContactInfoCardDropList
         isActive={isActive}
         setIsActive={setIsActive}
@@ -133,7 +133,7 @@ export const ContactSocialCard = ({
         textToCopy={socialLink.url}
       />
 
-      <div className="flex gap-3 items-center">
+      <div className="flex gap-3 items-center flex-1 min-w-0">
         {socialLink.favicon ? (
           <img src={socialLink.favicon} className="w-6 flex-none" />
         ) : (
@@ -144,20 +144,21 @@ export const ContactSocialCard = ({
             theme={theme}
           />
         )}
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <p className="text-xs opacity-80">
             {socialLink.type == "website"
               ? socialLink.custom_name
               : formatText(socialLink.type)}
           </p>
-          <p className="line-clamp-1">{socialLink.url}</p>
+          <p className="truncate">{socialLink.url}</p>
         </div>
       </div>
+
       {!isActive && (
         <button
           type="button"
           onClick={toggleActive}
-          className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          className="relative flex-none z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
         >
           <CommonIcon
             label="dots_vertical_rounded"
@@ -171,7 +172,7 @@ export const ContactSocialCard = ({
       {isActive && (
         <button
           type="button"
-          className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          className="relative z-10 flex-none group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
         >
           <CommonIcon
             label="dots_vertical_rounded"
@@ -195,7 +196,7 @@ export const ContactPhoneNumberCard = ({
   const isSettings = useLocation().pathname.includes("settings");
   const toggleActive = () => setIsActive((prev) => !prev);
   return (
-    <div className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative p-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2">
+    <div className="text-sm flex justify-between items-center gap-2 transition-all ease-in-out w-full relative p-2 rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2 min-w-0">
       <ContactInfoCardDropList
         isActive={isActive}
         setIsActive={setIsActive}
@@ -203,18 +204,18 @@ export const ContactPhoneNumberCard = ({
         isPhone={true}
         textToCopy={phoneNumber}
       />
-      <div className="flex flex-1 gap-3 items-center">
+      <div className="flex flex-1 gap-3 items-center min-w-0">
         <CommonIcon label="phone" weight="thin" className="size-6 flex-none" />
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <p className="text-xs opacity-80">Phone Number</p>
-          <p className="line-clamp-1">{formatPhoneNumber(phoneNumber)}</p>
+          <p className="truncate">{formatPhoneNumber(phoneNumber)}</p>
         </div>
       </div>
       {!isActive && (
         <button
           type="button"
           onClick={toggleActive}
-          className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          className="relative z-10 flex-none group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
         >
           <CommonIcon
             label="dots_vertical_rounded"
@@ -228,7 +229,7 @@ export const ContactPhoneNumberCard = ({
       {isActive && (
         <button
           type="button"
-          className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          className="relative z-10 flex-none group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
         >
           <CommonIcon
             label="dots_vertical_rounded"
@@ -248,7 +249,7 @@ export const ContactEmailCard = ({ email }: { email: string }) => {
   const toggleActive = () => setIsActive((prev) => !prev);
   const isSettings = useLocation().pathname.includes("settings");
   return (
-    <div className="text-sm relative p-2 flex justify-between items-center gap-2 transition-all ease-in-out w-full rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2">
+    <div className="text-sm relative min-w-0 p-2 flex justify-between items-center gap-2 transition-all ease-in-out w-full rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2">
       <ContactInfoCardDropList
         isActive={isActive}
         setIsActive={setIsActive}
@@ -256,11 +257,11 @@ export const ContactEmailCard = ({ email }: { email: string }) => {
         isEmail={true}
         textToCopy={email}
       />
-      <div className="flex gap-3 items-center flex-1">
+      <div className="flex gap-3 items-center flex-1 min-w-0">
         <EmailIcon email={email} className="size-6" />
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <p className="text-xs opacity-80">Email</p>
-          <p className="line-clamp-1">{email}</p>
+          <p className="truncate">{email}</p>
         </div>
       </div>
 
@@ -338,7 +339,7 @@ export const ContactInfoCardDropList = ({
   }, [dropListRef, setIsActive]);
   return (
     <div
-      className={`absolute bottom-5/6 z-50 right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute bottom-4 z-50 right-12 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
       ref={dropListRef}
     >
       {isSettings && (

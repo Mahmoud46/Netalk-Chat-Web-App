@@ -21,7 +21,7 @@ export default function User(): ReactNode {
         <Sidebar />
       </Suspense>
       <Suspense fallback={<Loader />}>
-        <div className="max-h-dvh overflow-auto flex-1">
+        <div className="md:max-h-dvh overflow-auto flex-1">
           <Outlet />
         </div>
       </Suspense>

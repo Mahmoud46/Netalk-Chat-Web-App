@@ -47,11 +47,12 @@ export const UsernameHolder = ({
   isTopProfile?: boolean;
 }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
+  const { authNUser } = useAuth();
   return (
     <div
       className={
         isTopProfile
-          ? "absolute group top-0 left-1/2 bg-background-light-base dark:bg-background-dark-base -translate-x-1/2 p-4 pt-2 rounded-b-3xl username-profile-corners [--shadow-color:#ffffff] dark:[--shadow-color:#0f1115]"
+          ? `absolute group top-0 bg-background-light-base dark:bg-background-dark-base ${authNUser?.username == username ? "left-1/2 max-md:left-0 max-md:rounded-l-none md:-translate-x-1/2" : "left-1/2 -translate-x-1/2"} p-4 pt-2 rounded-b-3xl username-profile-corners [--shadow-color:#ffffff] dark:[--shadow-color:#0f1115]`
           : ""
       }
     >
@@ -85,7 +86,7 @@ export const ContactsInfo = ({
   const { theme } = useTheme();
   return (
     <div
-      className={`w-100 max-h-100 z-10 gap-2 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-3 flex flex-col items-start transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`max-md:w-full md:w-100 max-h-100 z-10 gap-2 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-3 flex flex-col items-start transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <h2 className="font-semibold pt-2">Contact Info</h2>
       <div className="flex flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary w-full">
@@ -143,7 +144,7 @@ export const ProfileHeader = ({
         className="h-full w-full rounded-b-3xl object-cover cursor-pointer"
       />
       {/* Profile pic */}
-      <div className="absolute -bottom-19 rounded-full left-30 bg-background-light-base dark:bg-background-dark-base p-3 flex profile-image-corners [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+      <div className="absolute -bottom-19 rounded-full max-md:rounded-l-none left-0 md:left-30 bg-background-light-base dark:bg-background-dark-base p-3 flex profile-image-corners [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
         {authNUser?.profileImage ? (
           <img
             src={authNUser?.profileImage}
@@ -176,7 +177,7 @@ export const ProfileHeader = ({
         )}
       </div>
       {/* Header buttons */}
-      <div className="absolute flex bottom-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-tl-3xl bottom-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+      <div className="absolute flex bottom-0 right-0 md:pr-5 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-tl-3xl bottom-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
         {!isAuthNUser && authNUser && (
           <ProfileDropList
             user={authNUser}
@@ -389,24 +390,24 @@ export default function Profile(): ReactNode {
     init();
   }, [getUserByUsername, isAuthNUser, username]);
   return (
-    <div className="w-full h-full overflow-x-hidden text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20 pb-4 relative">
+    <div className="w-full h-full text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20 pb-4 relative">
       <ProfileHeader
         authNUser={isAuthNUser ? authNUser : currentUser}
         theme={theme}
         isAuthNUser={isAuthNUser}
         setIsShareProfileActive={setIsShareProfileActive}
       />
-      <div className="pl-30 pr-8 flex items-start gap-6">
-        <div className="flex flex-col gap-4 flex-1">
-          <div className="flex flex-col gap-1">
-            <h2 className="text-5xl">
+      <div className="px-4 md:pl-30 md:pr-8 flex items-start gap-6 flex-wrap">
+        <div className="flex flex-col gap-4 flex-1 max-md:items-center">
+          <div className="flex flex-col gap-1 w-full">
+            <h2 className="max-md:font-semibold text-3xl xl:text-4xl xxl:text-5xl">
               {isAuthNUser ? authNUser?.firstName : currentUser?.firstName}{" "}
               <span className="font-semibold gradient bg-clip-text text-transparent">
                 {isAuthNUser ? authNUser?.lastName : currentUser?.lastName}{" "}
               </span>
             </h2>
             {authNUser?.title && (
-              <h3 className="text-xl">
+              <h3 className="text-lg md:text-xl max-md:font-semibold">
                 {isAuthNUser ? authNUser?.title : currentUser?.title}
               </h3>
             )}
