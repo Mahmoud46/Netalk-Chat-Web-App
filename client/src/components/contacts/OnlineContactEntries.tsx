@@ -53,7 +53,7 @@ const OnlineContactEntries = ({
           </div>
           <button
             type="button"
-            className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+            className="relative flex-none group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
           >
             <CommonIcon label="plus" weight="thin" className="size-6" />
             <Label text="Add" />

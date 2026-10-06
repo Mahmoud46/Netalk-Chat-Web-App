@@ -34,7 +34,7 @@ export default function Sidebar(): ReactNode {
     ) || isLastItemActive;
   return (
     <aside
-      className={`flex flex-col items-center z-50 h-ful py-4 bg-background-light-surface-1 dark:bg-background-dark-surface-1 gap-8 ${isAnyItemActive ? "" : "px-1.5"}`}
+      className={`hidden md:flex flex-col items-center z-50 h-ful py-4 bg-background-light-surface-1 dark:bg-background-dark-surface-1 gap-8 ${isAnyItemActive ? "" : "px-1.5"}`}
     >
       <Link to="/">
         <BrandIcon className="size-8" theme={theme} />
@@ -128,3 +128,68 @@ export default function Sidebar(): ReactNode {
     </aside>
   );
 }
+
+export const Bottombar = (): ReactNode => {
+  const { currentParticipant } = useChat(),
+    { authNUser } = useAuth();
+  const pathname = useLocation().pathname;
+  const lastItem = SIDEBAR_ITEMS.at(-1),
+    isLastItemActive =
+      isRouteActive(location.pathname, lastItem?.path ?? "/") &&
+      location.pathname.split("/").includes(authNUser?.username ?? "");
+  return (
+    <>
+      {(!currentParticipant || !pathname.includes("inbox")) && (
+        <div className="sticky bottom-0 w-full justify-center py-2 hidden max-md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-base dark:bg-background-dark-base">
+          <div className="flex items-center justify-center rounded-3xl px-10 gap-2 w-fit bg-background-light-surface-1 dark:bg-background-dark-surface-1">
+            {SIDEBAR_ITEMS.slice(0, 3).map((item) => {
+              const isActive = isRouteActive(pathname, item.path);
+              return (
+                <Link
+                  key={`bottom-${item.path}`}
+                  to={item.path}
+                  className={`relative aspect-square gap-2 flex justify-center items-center p-2 rounded-b-full flex-col ${isActive ? "-translate-y-2 bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115] bottombar-element-active" : ""}`}
+                >
+                  <div
+                    className={`rounded-full ${isActive ? "p-2 bg-background-light-primary" : "p-0"}`}
+                  >
+                    <MainSidebarIcon
+                      label={item.label}
+                      className="size-7"
+                      isActive={isActive}
+                      weight="thin"
+                    />
+                  </div>
+
+                  {!isActive && (
+                    <p className="text-xs">{capitalize(item.label)}</p>
+                  )}
+                </Link>
+              );
+            })}
+            <Link
+              to={`${lastItem?.path ?? "/"}/${authNUser?.username}`}
+              className={`relative aspect-square flex justify-center items-center p-2 gap-2 rounded-b-full flex-col ${isLastItemActive ? "-translate-y-2 bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115] bottombar-element-active" : ""}`}
+            >
+              <div
+                className={`rounded-full ${isLastItemActive ? "p-2 bg-background-light-surface-1 dark:bg-background-dark-surface-1" : "p-0"}`}
+              >
+                <img
+                  src={authNUser?.profileImage}
+                  alt={authNUser?.firstName}
+                  loading="lazy"
+                  className={`rounded-full size-7`}
+                />
+              </div>
+              {!isLastItemActive && (
+                <p className="text-xs">
+                  {capitalize(SIDEBAR_ITEMS.at(-1)?.label ?? "")}
+                </p>
+              )}
+            </Link>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};

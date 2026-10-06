@@ -389,7 +389,7 @@ export default function Profile(): ReactNode {
     init();
   }, [getUserByUsername, isAuthNUser, username]);
   return (
-    <div className="w-full min-h-dvh overflow-x-hidden text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20 pb-4 relative">
+    <div className="w-full h-full overflow-x-hidden text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20 pb-4 relative">
       <ProfileHeader
         authNUser={isAuthNUser ? authNUser : currentUser}
         theme={theme}
