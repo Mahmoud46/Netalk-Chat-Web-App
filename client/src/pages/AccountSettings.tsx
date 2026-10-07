@@ -361,10 +361,6 @@ export default function AccountSettings() {
           <BioField />
           <BirthdateField />
           <AddressField />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
-          nostrum assumenda eos odit mollitia adipisci quam, nulla optio. Rerum
-          veritatis blanditiis unde repudiandae magni ea amet aspernatur
-          voluptates accusantium libero!
         </div>
         <div className="flex flex-col flex-1 min-w-80">
           <ContactsInfo />
