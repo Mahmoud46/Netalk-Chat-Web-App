@@ -60,7 +60,7 @@ const LanguageOptions = () => {
   const toggleLanguageList = () => setIsActive(true);
 
   return (
-    <div className="flex flex-col gap-1 w-full text-foreground-light-secondary dark:text-foreground-dark-secondary">
+    <div className="flex flex-col gap-1 w-full text-foreground-light-secondary dark:text-foreground-dark-secondary max-md:min-h-50">
       <div className="flex justify-between items-center relative">
         <div className="flex items-center gap-2 font-semibold text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
           <SettingsSidebarIcon
@@ -124,9 +124,9 @@ const LanguageOptions = () => {
 export default function LanguageSettings() {
   return (
     <>
-      <SettingsHeader title="Language Settings" />
-      <div className="flex flex-wrap w-full gap-6 max-w-200">
-        <div className="flex flex-col flex-1 gap-6 pt-3">
+      <SettingsHeader />
+      <div className="flex flex-wrap w-full gap-6 max-w-200 flex-1 max-md:flex-col">
+        <div className="flex flex-col flex-1 gap-6 min-w-80 h-full">
           <TranslateMessageOptions />
         </div>
         <div className="flex flex-col flex-1 gap-6 min-w-80">

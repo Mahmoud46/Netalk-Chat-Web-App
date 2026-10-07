@@ -207,10 +207,10 @@ const BlockedUsers = () => {
 export default function PrivacySecuritySettings() {
   return (
     <>
-      <SettingsHeader title="Privacy & Security Settings" />
+      <SettingsHeader />
 
       <div className="flex flex-wrap w-full gap-6 max-w-200">
-        <div className="flex flex-col flex-1 gap-6 pt-2">
+        <div className="flex flex-col flex-1 gap-6 min-w-80">
           <VerificationCredentials />
           <TwoFactorAuthentication />
         </div>

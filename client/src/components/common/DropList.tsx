@@ -246,7 +246,7 @@ export const BlockedCardDropList = ({
   }, [dropListRef, setIsActive]);
   return (
     <div
-      className={`absolute bottom-5/6 z-10 right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute bottom-4 z-10 right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
       ref={dropListRef}
     >
       <button

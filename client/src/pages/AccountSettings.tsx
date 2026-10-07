@@ -47,7 +47,7 @@ const NameField = () => {
       </p>
 
       <div className="flex gap-2 w-full relative">
-        <div className="relative">
+        <div className="relative flex-1">
           <input
             placeholder="First name"
             value={firstName}
@@ -66,7 +66,7 @@ const NameField = () => {
             </button>
           )}
         </div>
-        <div className="relative">
+        <div className="relative flex-1">
           <input
             placeholder="Last Name"
             value={lastName}
@@ -353,14 +353,18 @@ const ContactsInfo = () => {
 export default function AccountSettings() {
   return (
     <>
-      <SettingsHeader title="Account Settings" />
+      <SettingsHeader />
       <div className="flex flex-wrap w-full gap-6 max-w-200">
-        <div className="flex flex-col flex-1 gap-4 pt-2">
+        <div className="flex flex-col flex-1 gap-4 min-w-80">
           <NameField />
           <TitleField />
           <BioField />
           <BirthdateField />
           <AddressField />
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+          nostrum assumenda eos odit mollitia adipisci quam, nulla optio. Rerum
+          veritatis blanditiis unde repudiandae magni ea amet aspernatur
+          voluptates accusantium libero!
         </div>
         <div className="flex flex-col flex-1 min-w-80">
           <ContactsInfo />

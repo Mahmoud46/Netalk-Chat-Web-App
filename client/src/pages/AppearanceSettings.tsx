@@ -55,7 +55,7 @@ const MessageFontSize = () => {
   const { messageFontSize, changeMessageFontSize } = useTheme();
   const fontSizes = Array.from({ length: 10 }, (_, i) => 12 + i * 2);
   return (
-    <div className="mt-4 flex flex-col text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
+    <div className="flex flex-col text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary">
       <div className="flex font-semibold justify-center text-sm flex-col gap-2">
         <div className="flex font-semibold gap-2 items-center text-sm justify-start text-foreground-light-secondary dark:text-foreground-dark-secondary">
           <CommonIcon label="text_width" weight="thin" className="size-6.5" />
@@ -125,10 +125,10 @@ const MessageFontSize = () => {
 export default function AppearanceSettings() {
   return (
     <>
-      <SettingsHeader title="Appearance Settings" />
+      <SettingsHeader />
 
       <div className="flex items-start justify-start flex-wrap w-full gap-6 max-w-200">
-        <div className="flex-1 flex flex-col gap-4 pt-4">
+        <div className="flex-1 flex flex-col gap-4 min-w-80">
           <DarkModeToggle />
         </div>
         <div className="flex-1 flex flex-col gap-4 min-w-80">

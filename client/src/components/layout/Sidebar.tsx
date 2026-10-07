@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { SIDEBAR_ITEMS } from "../../config/navigation";
+import { SETTINGS_SIDEBAR_ITEMS, SIDEBAR_ITEMS } from "../../config/navigation";
 import {
   capitalize,
   hasCommonElement,
@@ -8,9 +8,16 @@ import {
 } from "../../utils/helpers";
 import { useAuth, useChat, useTheme } from "../../hooks";
 import Label from "../common/Label";
-import { MainSidebarIcon } from "../icons/SidebarIcon";
+import { MainSidebarIcon, SettingsSidebarIcon } from "../icons/SidebarIcon";
 import { BrandIcon } from "../icons/BrandIcon";
 import CommonIcon from "../icons/CommonIcon";
+
+const SRTTINGS_BOTTOMBAR_LABELS_ABBS: Record<string, string> = {
+  account: "ACC",
+  appearance: "APP",
+  "privacy & Security": "P&S",
+  language: "LANG",
+};
 
 export default function Sidebar(): ReactNode {
   const pathname = useLocation().pathname,
@@ -130,13 +137,19 @@ export default function Sidebar(): ReactNode {
 }
 
 export const Bottombar = (): ReactNode => {
-  const { currentParticipant } = useChat(),
+  const { currentParticipant, chats } = useChat(),
     { authNUser } = useAuth();
   const pathname = useLocation().pathname;
   const lastItem = SIDEBAR_ITEMS.at(-1),
     isLastItemActive =
       isRouteActive(location.pathname, lastItem?.path ?? "/") &&
       location.pathname.split("/").includes(authNUser?.username ?? "");
+  const totalUnreadMessages = chats
+    .filter(
+      (chat) =>
+        !hasCommonElement(chat.participants, authNUser?.mutedUsers ?? []),
+    )
+    .reduce((total, current) => total + current.unreadMessages, 0);
   return (
     <>
       {(!currentParticipant || !pathname.includes("inbox")) && (
@@ -150,6 +163,16 @@ export const Bottombar = (): ReactNode => {
                   to={item.path}
                   className={`relative aspect-square gap-2 flex justify-center items-center p-2 rounded-b-full flex-col ${isActive ? "-translate-y-2 bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115] bottombar-element-active" : ""}`}
                 >
+                  {item.label == "inbox" &&
+                    totalUnreadMessages > 0 &&
+                    !isActive && (
+                      <span className="text-white absolute text-xs bg-background-light-primary shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-1 z-10">
+                        {totalUnreadMessages > 99
+                          ? `+${99}`
+                          : totalUnreadMessages}
+                      </span>
+                    )}
+
                   <div
                     className={`rounded-full ${isActive ? "p-2 bg-background-light-primary" : "p-0"}`}
                   >
@@ -190,6 +213,47 @@ export const Bottombar = (): ReactNode => {
           </div>
         </div>
       )}
+    </>
+  );
+};
+
+export const SettingsBottombar = (): ReactNode => {
+  const pathname = useLocation().pathname;
+  return (
+    <>
+      {
+        <div className="sticky bottom-0 w-full justify-center z-10 py-2.5 hidden max-md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-base dark:bg-background-dark-base">
+          <div className="flex items-center justify-center rounded-3xl px-10 gap-2 w-fit bg-background-light-surface-1 dark:bg-background-dark-surface-1">
+            {SETTINGS_SIDEBAR_ITEMS.map((item) => {
+              const isActive = isRouteActive(pathname, item.path);
+              return (
+                <Link
+                  key={`bottom-${item.path}`}
+                  to={item.path}
+                  className={`relative aspect-square gap-2 flex justify-center items-center p-2 rounded-b-full flex-col ${isActive ? "-translate-y-2 bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115] bottombar-element-active" : ""}`}
+                >
+                  <div
+                    className={`rounded-full ${isActive ? "p-2 bg-background-light-primary" : "p-0"}`}
+                  >
+                    <SettingsSidebarIcon
+                      label={item.label}
+                      className="size-7"
+                      isActive={isActive}
+                      weight="thin"
+                    />
+                  </div>
+
+                  {!isActive && (
+                    <p className="text-xs line-clamp-1">
+                      {SRTTINGS_BOTTOMBAR_LABELS_ABBS[item.label]}
+                    </p>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      }
     </>
   );
 };
