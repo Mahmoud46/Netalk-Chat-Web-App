@@ -33,7 +33,7 @@ export const SettingsHeader = ({ isMd = false }: { isMd?: boolean }) => {
 
   return (
     <div
-      className={`sticky flex-wrap top-0 w-full max-w-200 z-40 flex ${isMd ? "md:hidden p-4" : "max-md:hidden"}`}
+      className={`sticky flex-wrap top-0 w-full max-w-200 z-40 flex ${isMd ? "md:hidden p-4 py-2" : "max-md:hidden"}`}
     >
       <div
         className={`flex items-center w-full justify-start md:justify-between gap-3 bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-1.5 pl-3 rounded-full`}
