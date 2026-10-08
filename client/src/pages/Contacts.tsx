@@ -4,13 +4,15 @@ import type { User } from "../types";
 
 import React from "react";
 import Loader from "../components/common/Loader";
-import ContactsEmptyStateScreen from "../components/contacts/ContactsEmptyStateScreen";
 
 const OnlineContactEntries = React.lazy(
     () => import("../components/contacts/OnlineContactEntries"),
   ),
   ContactsFeed = React.lazy(
     () => import("../components/contacts/ContactsFeed"),
+  ),
+  ContactsEmptyStateScreen = React.lazy(
+    () => import("../components/contacts/ContactsEmptyStateScreen"),
   );
 
 export default function Contacts(): ReactNode {

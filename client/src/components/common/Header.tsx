@@ -93,6 +93,8 @@ export const SettingsHeader = ({ isMd = false }: { isMd?: boolean }) => {
               ),
             )}
             isActive={isActive}
+            setIsActive={setIsActive}
+            setOpen={setOpen}
           />
         </div>
       </div>

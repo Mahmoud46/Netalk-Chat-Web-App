@@ -7,7 +7,7 @@ import EmojiIcon from "../icons/EmojiIcon";
 import { PROVIDED_LANGUAGES } from "../../config/languages";
 import type { LanguageCode, User } from "../../types";
 import Label from "./Label";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import { FlagIcon } from "../icons/FlagIcon";
 
@@ -498,6 +498,8 @@ export const LanguageDropList = ({
 export const SettingsSearchDropList = ({
   suggList,
   isActive = false,
+  setIsActive,
+  setOpen,
 }: {
   suggList: {
     keywords: string[];
@@ -505,19 +507,27 @@ export const SettingsSearchDropList = ({
     path: string;
   }[];
   isActive?: boolean;
+  setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const navigate = useNavigate();
   return (
     <div
       className={`absolute max-h-[85dvh] overflow-auto top-7/6 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3  self-end rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50 w-full`}
     >
       {suggList.map((sug) => (
-        <Link
-          to={sug.path}
+        <div
+          onClick={() => {
+            scrollTo(0, 0);
+            navigate(sug.path);
+            setIsActive(false);
+            setOpen(false);
+          }}
           className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
           key={`${sug.label}-${sug.keywords.join("-")}-${sug.path}`}
         >
           {sug.label}
-        </Link>
+        </div>
       ))}
     </div>
   );
