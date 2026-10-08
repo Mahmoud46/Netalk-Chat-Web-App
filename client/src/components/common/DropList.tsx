@@ -513,7 +513,7 @@ export const SettingsSearchDropList = ({
   const navigate = useNavigate();
   return (
     <div
-      className={`absolute max-h-[85dvh] overflow-auto top-7/6 right-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3  self-end rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50 w-full`}
+      className={`absolute max-h-[85dvh] overflow-auto top-7/6 left-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 self-end rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50 w-full`}
     >
       {suggList.map((sug) => (
         <div

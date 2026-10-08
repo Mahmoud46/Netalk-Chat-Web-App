@@ -58,7 +58,7 @@ export const SettingsHeader = ({ isMd = false }: { isMd?: boolean }) => {
         </h1>
 
         <div
-          className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center" : "flex-none py-0.5"} md:max-w-70`}
+          className={`rounded-full z-30 relative flex flex-1 items-center  ${open ? "" : "flex-none py-0.5"} shrink md:max-w-70 min-w-0`}
         >
           <button
             className={`${open ? "absolute opacity-50 hover:opacity-100 left-0.5" : "relative"} hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary group flex-none p-1.5 cursor-pointer rounded-full transition-all ease-in-out`}
@@ -74,7 +74,7 @@ export const SettingsHeader = ({ isMd = false }: { isMd?: boolean }) => {
           {open && (
             <input
               type="text"
-              className="pl-11 bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
+              className="pl-11 shrink bg-background-light-surface-2 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
               placeholder="Search settings..."
               value={searchValue}
               onChange={(e) => {

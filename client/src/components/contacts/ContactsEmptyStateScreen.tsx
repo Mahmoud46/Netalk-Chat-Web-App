@@ -1,13 +1,16 @@
-import { useTheme } from "../../hooks";
-import { BrandIcon } from "../icons/BrandIcon";
 import CommonIcon from "../icons/CommonIcon";
+import empty_contact_icon from "../../assets/images/empty_contacts.png";
 
 const ContactsEmptyStateScreen = () => {
-  const { theme } = useTheme();
   return (
-    <div className="flex-1 flex items-center justify-center flex-col gap-8 max-md:py-20">
-      <BrandIcon theme={theme} className="size-20 md:size-35" />
-      <div className="flex flex-col gap-2 items-center justify-center">
+    <div className="flex-1 flex items-center justify-center flex-col max-md:pt-20">
+      <img
+        src={empty_contact_icon}
+        loading="lazy"
+        alt="empty-icon"
+        className="size-60 md:size-80"
+      />
+      <div className="flex flex-col gap-2 items-center justify-center mb-8">
         <h2 className="text-foreground-light-primary text-2xl font-semibold">
           Let’s fill this space!
         </h2>
