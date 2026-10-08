@@ -67,7 +67,7 @@ const OnlineContactEntries = ({
               </div>
               <div className={`flex items-center ${open && "max-md:flex-1"}`}>
                 <div
-                  className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center mr-1.5" : "flex-none py-0.5"}`}
+                  className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center md:mr-1.5" : "flex-none py-0.5"}`}
                 >
                   <button
                     className={`${open ? "absolute opacity-50 hover:opacity-100 left-0.5" : "relative"} hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary group flex-none p-1.5 cursor-pointer rounded-full transition-all ease-in-out`}
@@ -90,7 +90,7 @@ const OnlineContactEntries = ({
                 </div>
                 <button
                   type="button"
-                  className="relative flex-none group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+                  className={`relative flex-none group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${open && "max-md:hidden"}`}
                 >
                   <CommonIcon label="plus" weight="thin" className="size-6" />
                   <Label text="Add" />

@@ -211,8 +211,10 @@ export default function PrivacySecuritySettings() {
 
       <div className="flex flex-wrap w-full gap-6 max-w-200">
         <div className="flex flex-col flex-1 gap-6 min-w-80">
-          <VerificationCredentials />
-          <TwoFactorAuthentication />
+          <Suspense fallback={<Loader />}>
+            <VerificationCredentials />
+            <TwoFactorAuthentication />
+          </Suspense>
         </div>
         <div className="flex-1 flex flex-col min-w-80">
           <BlockedUsers />

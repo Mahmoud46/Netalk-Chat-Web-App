@@ -1,9 +1,10 @@
-import { type ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import Label from "../components/common/Label";
 import { SETTINGS_SIDEBAR_ITEMS } from "../config/navigation";
 import { capitalize, isRouteActive } from "../utils/helpers";
 import { SettingsSidebarIcon } from "../components/icons/SidebarIcon";
+import Loader from "../components/common/Loader";
 
 const SettingsSidebar = (): ReactNode => {
   const pathname = useLocation().pathname;
@@ -48,7 +49,9 @@ export default function Settings(): ReactNode {
   return (
     <>
       <div className="w-full h-full text-foreground-light-secondary dark:text-foreground-dark-secondary flex max-md:flex-col relative">
-        <SettingsSidebar />
+        <Suspense fallback={<Loader />}>
+          <SettingsSidebar />
+        </Suspense>
         <div className="flex-1 h-full flex items-center flex-col p-4 md:px-10 py-4 overflow-auto dark:text-foreground-dark-secondary gap-4">
           <Outlet />
         </div>

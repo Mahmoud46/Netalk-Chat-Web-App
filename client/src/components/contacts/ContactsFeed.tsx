@@ -64,9 +64,9 @@ const ContactsFeed = ({ contactEntries }: { contactEntries: User[] }) => {
               <div
                 key={`c-${letter}`}
                 id={letter}
-                className="flex gap-4 flex-wrap w-full"
+                className="flex md:gap-4 flex-wrap w-full"
               >
-                <p className="text-xs md:hidden text-foreground-light-secondary dark:text-foreground-dark-secondary">
+                <p className="text-xs md:hidden mb-2 text-foreground-light-secondary dark:text-foreground-dark-secondary">
                   {letter}
                 </p>
                 {entries.map((entry) => (

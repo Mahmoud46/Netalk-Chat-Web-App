@@ -356,14 +356,18 @@ export default function AccountSettings() {
       <SettingsHeader />
       <div className="flex flex-wrap w-full gap-6 max-w-200">
         <div className="flex flex-col flex-1 gap-4 min-w-80">
-          <NameField />
-          <TitleField />
-          <BioField />
-          <BirthdateField />
-          <AddressField />
+          <Suspense fallback={<Loader />}>
+            <NameField />
+            <TitleField />
+            <BioField />
+            <BirthdateField />
+            <AddressField />
+          </Suspense>
         </div>
         <div className="flex flex-col flex-1 min-w-80">
-          <ContactsInfo />
+          <Suspense fallback={<Loader />}>
+            <ContactsInfo />
+          </Suspense>
         </div>
       </div>
     </>

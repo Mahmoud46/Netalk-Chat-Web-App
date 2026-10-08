@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { SettingsHeader } from "../components/common/Header";
 import { useTheme } from "../hooks";
 import CommonIcon from "../components/icons/CommonIcon";
+import Loader from "../components/common/Loader";
 
 export const ToggleButton = ({
   isActive = false,
@@ -129,10 +130,14 @@ export default function AppearanceSettings() {
 
       <div className="flex items-start justify-start flex-wrap w-full gap-6 max-w-200">
         <div className="flex-1 flex flex-col gap-4 min-w-80">
-          <DarkModeToggle />
+          <Suspense fallback={<Loader />}>
+            <DarkModeToggle />
+          </Suspense>
         </div>
         <div className="flex-1 flex flex-col gap-4 min-w-80">
-          <MessageFontSize />
+          <Suspense fallback={<Loader />}>
+            <MessageFontSize />
+          </Suspense>
         </div>
       </div>
     </>

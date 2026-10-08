@@ -1,4 +1,4 @@
-import { lazy, useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { SettingsHeader } from "../../components/common/Header";
 import { ToggleButton } from "../AppearanceSettings";
 import { LANGUAGES_CODE_MAP } from "../../config/languages";
@@ -6,6 +6,7 @@ import Label from "../../components/common/Label";
 import CommonIcon from "../../components/icons/CommonIcon";
 import { SettingsSidebarIcon } from "../../components/icons/SidebarIcon";
 import { useTheme } from "../../hooks";
+import Loader from "../../components/common/Loader";
 
 const LanguageDropList = lazy(() =>
   import("../../components/common/DropList").then((module) => ({
@@ -127,10 +128,14 @@ export default function LanguageSettings() {
       <SettingsHeader />
       <div className="flex flex-wrap w-full gap-6 max-w-200 flex-1 max-md:flex-col">
         <div className="flex flex-col flex-1 gap-6 min-w-80 h-full">
-          <TranslateMessageOptions />
+          <Suspense fallback={<Loader />}>
+            <TranslateMessageOptions />
+          </Suspense>
         </div>
         <div className="flex flex-col flex-1 gap-6 min-w-80">
-          <LanguageOptions />
+          <Suspense fallback={<Loader />}>
+            <LanguageOptions />
+          </Suspense>
         </div>
       </div>
     </>

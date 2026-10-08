@@ -36,12 +36,12 @@ export const SettingsHeader = ({ isMd = false }: { isMd?: boolean }) => {
       className={`sticky top-0 w-full max-w-200 z-40 flex rounded-3xl ${isMd ? "md:hidden p-4 py-2" : "max-md:hidden"}`}
     >
       <div
-        className={`flex items-center w-full justify-start md:justify-between gap-3 bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-1.5 pl-3 rounded-full`}
+        className={`flex items-center w-full justify-start md:justify-between gap-3 bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-1.5 md:pl-3 rounded-full`}
       >
         {isMd && (
           <Link
-            to={"/app"}
-            className="relative flex-none group cursor-pointer z-30 p-1.5 aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+            to={"/app/inbox"}
+            className={`relative flex-none group cursor-pointer z-30 p-1.5 aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${open && "hidden"}`}
           >
             <CommonIcon
               label="chevron_right"
@@ -51,6 +51,7 @@ export const SettingsHeader = ({ isMd = false }: { isMd?: boolean }) => {
             <Label text="Back" />
           </Link>
         )}
+
         <h1
           className={`text-xl max-md:flex-1 md:text-2xl text-foreground-light-secondary dark:text-foreground-dark-secondary line-clamp-1 ${open && "max-md:hidden"}`}
         >
