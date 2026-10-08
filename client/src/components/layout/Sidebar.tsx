@@ -13,10 +13,10 @@ import { BrandIcon } from "../icons/BrandIcon";
 import CommonIcon from "../icons/CommonIcon";
 
 const SRTTINGS_BOTTOMBAR_LABELS_ABBS: Record<string, string> = {
-  account: "ACC",
-  appearance: "APP",
-  "privacy & Security": "P&S",
-  language: "LANG",
+  account: "Account",
+  appearance: "Looks",
+  "privacy & Security": "Privacy",
+  language: "Language",
 };
 
 export default function Sidebar(): ReactNode {
@@ -161,12 +161,12 @@ export const Bottombar = (): ReactNode => {
                 <Link
                   key={`bottom-${item.path}`}
                   to={item.path}
-                  className={`relative aspect-square gap-2 flex justify-center items-center p-2 rounded-b-full flex-col ${isActive ? "-translate-y-2 bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115] bottombar-element-active" : ""}`}
+                  className={`relative aspect-square gap-2 w-15 transition-all ease-in-out flex justify-center items-center p-2 rounded-b-full flex-col ${isActive ? "-translate-y-2 bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115] bottombar-element-active" : ""}`}
                 >
                   {item.label == "inbox" &&
                     totalUnreadMessages > 0 &&
                     !isActive && (
-                      <span className="text-white absolute text-xs bg-background-light-primary shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-1 z-10">
+                      <span className="text-white absolute text-xs bg-background-light-primary shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-1 right-1 z-10">
                         {totalUnreadMessages > 99
                           ? `+${99}`
                           : totalUnreadMessages}
@@ -192,7 +192,7 @@ export const Bottombar = (): ReactNode => {
             })}
             <Link
               to={`${lastItem?.path ?? "/"}/${authNUser?.username}`}
-              className={`relative aspect-square flex justify-center items-center p-2 gap-2 rounded-b-full flex-col ${isLastItemActive ? "-translate-y-2 bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115] bottombar-element-active" : ""}`}
+              className={`relative aspect-square w-15 transition-all ease-in-out flex justify-center items-center p-2 gap-2 rounded-b-full flex-col ${isLastItemActive ? "-translate-y-2 bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115] bottombar-element-active" : ""}`}
             >
               <div
                 className={`rounded-full ${isLastItemActive ? "p-2 bg-background-light-surface-1 dark:bg-background-dark-surface-1" : "p-0"}`}
@@ -230,10 +230,10 @@ export const SettingsBottombar = (): ReactNode => {
                 <Link
                   key={`bottom-${item.path}`}
                   to={item.path}
-                  className={`relative aspect-square gap-2 flex justify-center items-center p-2 rounded-b-full flex-col ${isActive ? "-translate-y-2 bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115] bottombar-element-active" : ""}`}
+                  className={`relative aspect-square w-15 transition-all ease-in-out gap-2 flex justify-center items-center p-2 rounded-b-full flex-col ${isActive ? "-translate-y-2 bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115] bottombar-element-active" : ""}`}
                 >
                   <div
-                    className={`rounded-full ${isActive ? "p-2 bg-background-light-primary" : "p-0"}`}
+                    className={`rounded-full  ${isActive ? "p-2 bg-background-light-primary" : "p-0"}`}
                   >
                     <SettingsSidebarIcon
                       label={item.label}
