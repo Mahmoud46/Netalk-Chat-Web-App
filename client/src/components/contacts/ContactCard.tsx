@@ -27,7 +27,7 @@ export const ContactCard = ({ contactEntry }: { contactEntry: User }) => {
     setIsActiveContactEntryDropList((prev) => !prev);
 
   return (
-    <div className="w-50 aspect-4/5 relative">
+    <div className="w-50 aspect-4/5 relative max-md:hidden">
       <div className="w-full flex flex-col items-center bg-background-light-surface-2 dark:bg-background-dark-surface-2 rounded-3xl">
         <ContactEntryDropList
           contactEntry={contactEntry}
@@ -140,6 +140,122 @@ export const ContactCard = ({ contactEntry }: { contactEntry: User }) => {
   );
 };
 
+export const SmallContactCard = ({ contactEntry }: { contactEntry: User }) => {
+  const { contacts } = useChat();
+  const [isActiveContactEntryDropList, setIsActiveContactEntryDropList] =
+    useState<boolean>(false);
+
+  const toggleContactEntryDropList = () =>
+    setIsActiveContactEntryDropList((prev) => !prev);
+
+  return (
+    <div className="relative p-2 group/card flex justify-between items-center gap-2 transition-all ease-in-out w-full rounded-3xl group/card cursor-pointer hover:bg-background-light-surface-2 hover:dark:bg-background-dark-surface-2 md:hidden">
+      <ContactEntryDropList
+        contactEntry={contactEntry}
+        isActive={isActiveContactEntryDropList}
+        setIsActive={setIsActiveContactEntryDropList}
+        isSmall={true}
+      />
+      <Link
+        to={`/app/profile/${contactEntry.username}`}
+        className="flex gap-2 flex-1 items-center"
+      >
+        <div
+          className={`relative flex-none transition-all ease-in-out rounded-full flex items-center justify-center aspect-square `}
+        >
+          {contactEntry?.isActive && (
+            <span
+              className={`absolute flex items-center size-3 justify-center rounded-full bottom-0 right-0 bg-background-light-base dark:bg-background-dark-base group-hover/card:bg-background-light-surface-2 group-hover/card:dark:bg-background-dark-surface-2`}
+            >
+              <span className="bg-foreground-dark-success size-[0.55rem] aspect-square rounded-full"></span>
+            </span>
+          )}
+          {contactEntry?.profileImage ? (
+            <img
+              src={contactEntry?.profileImage}
+              alt={contactEntry?.firstName}
+              className="size-10 rounded-full object-cover"
+              loading="lazy"
+            />
+          ) : (
+            <div className="size-10 rounded-full flex-none overflow-hidden">
+              <Avatar
+                gender={contactEntry?.gender as Gender}
+                age={calculateAge(contactEntry?.birthdate as string)}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-1 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
+          <div className="flex gap-1 justify-between items-center">
+            <p className="line-clamp-1 text-sm font-semibold flex-1">
+              {contacts[contactEntry?._id ?? ""]
+                ? `${contacts[contactEntry?._id ?? ""]?.firstName} ${contacts[contactEntry?._id ?? ""]?.lastName}`
+                : `${contactEntry?.firstName} ${contactEntry?.lastName}`}
+            </p>
+          </div>
+          <div className="flex items-center">
+            <p className="text-xs text-foreground-light-secondary dark:text-foreground-dark-secondary">
+              {contactEntry?.isActive
+                ? "Active Now"
+                : `Active ${moment(
+                    new Date(contactEntry?.lastSeen as string),
+                  ).fromNow()}`}
+            </p>
+          </div>
+        </div>
+      </Link>
+
+      <div className="flex items-center">
+        <Link
+          to={`/app/inbox/${contactEntry._id}`}
+          className="relative group mr-2 cursor-pointer p-2 rounded-full gradient transition-all ease-in-out"
+        >
+          <CommonIcon
+            label="paper_plane"
+            className="size-6 transition-all ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1"
+            weight="thin"
+            soild={true}
+          />
+          <Label text="Chat" />
+        </Link>
+        <button className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
+          <CommonIcon label="phone" className="size-6" weight="thin" />
+          <Label text="Call" />
+        </button>
+        {!isActiveContactEntryDropList && (
+          <button
+            type="button"
+            className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+            onClick={toggleContactEntryDropList}
+          >
+            <CommonIcon
+              label="dots_vertical_rounded"
+              className="size-6"
+              soild={true}
+            />
+            <Label text="More" />
+          </button>
+        )}
+        {isActiveContactEntryDropList && (
+          <button
+            className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+            type="button"
+          >
+            <CommonIcon
+              label="dots_vertical_rounded"
+              className="size-6"
+              soild={true}
+            />
+            <Label text="Less" />
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
 export const ContactsOnlineCard = ({
   contactEntry,
 }: {

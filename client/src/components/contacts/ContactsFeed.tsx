@@ -10,6 +10,11 @@ const ContactCard = React.lazy(() =>
     default: module.ContactCard,
   })),
 );
+const SmallContactCard = React.lazy(() =>
+  import("./ContactCard").then((module) => ({
+    default: module.SmallContactCard,
+  })),
+);
 
 const AlphabetIndexer = ({
   indexedContactEntries,
@@ -17,7 +22,7 @@ const AlphabetIndexer = ({
   indexedContactEntries: Record<string, User[]>;
 }): ReactNode => {
   return (
-    <div className="text-sm h-fit flex-none sticky top-1/2 -translate-y-1/2 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 rounded-full text-center flex flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary max-h-700 overflow-auto">
+    <div className="max-md:hidden text-sm h-fit flex-none sticky top-1/2 -translate-y-1/2 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 rounded-full text-center flex flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary max-h-700 overflow-auto">
       {Object.entries(indexedContactEntries).map((alphabet) => (
         <a
           href={`#${alphabet[0]}`}
@@ -47,7 +52,7 @@ const ContactsFeed = ({ contactEntries }: { contactEntries: User[] }) => {
     };
 
     mapContactEntries();
-  }, [contactEntries]);
+  }, [contactEntries, contacts]);
 
   return (
     <>
@@ -56,10 +61,18 @@ const ContactsFeed = ({ contactEntries }: { contactEntries: User[] }) => {
           <AlphabetIndexer indexedContactEntries={indexedContactEntries} />
           <div className="flex gap-4 items-start flex-col">
             {Object.entries(indexedContactEntries).map(([letter, entries]) => (
-              <div key={`c-${letter}`} id={letter} className="flex gap-4">
+              <div
+                key={`c-${letter}`}
+                id={letter}
+                className="flex gap-4 flex-wrap w-full"
+              >
+                <p className="text-xs md:hidden text-foreground-light-secondary dark:text-foreground-dark-secondary">
+                  {letter}
+                </p>
                 {entries.map((entry) => (
                   <Suspense fallback={<Loader />} key={entry._id}>
                     <ContactCard contactEntry={entry} />
+                    <SmallContactCard contactEntry={entry} />
                   </Suspense>
                 ))}
               </div>

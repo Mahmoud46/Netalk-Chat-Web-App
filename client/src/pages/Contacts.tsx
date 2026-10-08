@@ -36,15 +36,11 @@ export default function Contacts(): ReactNode {
   }, []);
 
   return (
-    <div className="h-full w-full flex">
+    <div className="w-full h-full text-foreground-light-secondary dark:text-foreground-dark-secondary flex max-md:flex-col relative">
       {Object.keys(contacts).length > 0 ? (
-        <div className="flex-1 h-full flex items-center flex-col px-10 py-4 overflow-auto dark:text-foreground-dark-secondary gap-4 scrollbar-thin mr-2">
+        <div className="flex-1 h-full flex items-center flex-col px-4 md:px-10 py-4 md:overflow-auto text-foreground-light-secondary dark:text-foreground-dark-secondary gap-4">
           <Suspense fallback={<Loader />}>
-            <OnlineContactEntries
-              onlineContactEntries={contactEntries.filter(
-                (entry) => entry.isActive,
-              )}
-            />
+            <OnlineContactEntries />
           </Suspense>
           <Suspense fallback={<Loader />}>
             <ContactsFeed contactEntries={contactEntries} />

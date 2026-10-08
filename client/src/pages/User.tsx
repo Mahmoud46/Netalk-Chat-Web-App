@@ -19,6 +19,9 @@ const SettingsHeader = React.lazy(() =>
     default: module.SettingsHeader,
   })),
 );
+const OnlineContactEntries = React.lazy(
+  () => import("../components/contacts/OnlineContactEntries"),
+);
 
 export default function User(): ReactNode {
   const { currentParticipant } = useChat(),
@@ -27,7 +30,16 @@ export default function User(): ReactNode {
     <section
       className={`flex relative ${(!currentParticipant || !pathname.includes("/inbox")) && "max-md:flex-col"} min-h-dvh bg-background-light-base dark:bg-background-dark-base`}
     >
-      {pathname.includes("/settings") && <SettingsHeader isMd={true} />}
+      {pathname.includes("/settings") && (
+        <Suspense fallback={<Loader />}>
+          <SettingsHeader isMd={true} />
+        </Suspense>
+      )}
+      {pathname.includes("/contacts") && (
+        <Suspense fallback={<Loader />}>
+          <OnlineContactEntries isMd={true} />
+        </Suspense>
+      )}
       <Suspense fallback={<Loader />}>
         <Sidebar />
       </Suspense>

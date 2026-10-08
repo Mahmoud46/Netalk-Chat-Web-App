@@ -51,12 +51,14 @@ export const SettingsHeader = ({ isMd = false }: { isMd?: boolean }) => {
             <Label text="Back" />
           </Link>
         )}
-        <h1 className="text-xl max-md:flex-1 md:text-2xl text-foreground-light-secondary dark:text-foreground-dark-secondary line-clamp-1">
+        <h1
+          className={`text-xl max-md:flex-1 md:text-2xl text-foreground-light-secondary dark:text-foreground-dark-secondary line-clamp-1 ${open && "max-md:hidden"}`}
+        >
           {settingsTitleMap(pathname)}
         </h1>
 
         <div
-          className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center" : "flex-none py-0.5"} max-w-70`}
+          className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center" : "flex-none py-0.5"} md:max-w-70`}
         >
           <button
             className={`${open ? "absolute opacity-50 hover:opacity-100 left-0.5" : "relative"} hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary group flex-none p-1.5 cursor-pointer rounded-full transition-all ease-in-out`}

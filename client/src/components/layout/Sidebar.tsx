@@ -222,7 +222,7 @@ export const SettingsBottombar = (): ReactNode => {
   return (
     <>
       {
-        <div className="sticky bottom-0 w-full justify-center z-10 py-2.5 hidden max-md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-base dark:bg-background-dark-base">
+        <div className="sticky bottom-0 w-full justify-center z-30 py-2.5 hidden max-md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-base dark:bg-background-dark-base">
           <div className="flex items-center justify-center rounded-3xl px-10 gap-2 w-fit bg-background-light-surface-1 dark:bg-background-dark-surface-1">
             {SETTINGS_SIDEBAR_ITEMS.map((item) => {
               const isActive = isRouteActive(pathname, item.path);

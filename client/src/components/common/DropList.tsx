@@ -150,10 +150,12 @@ export const ContactEntryDropList = ({
   contactEntry,
   isActive = false,
   setIsActive,
+  isSmall = false,
 }: {
   contactEntry: User | null;
   isActive?: boolean;
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+  isSmall?: boolean;
 }): ReactNode => {
   const { authNUser } = useAuth(),
     isBlocked: boolean =
@@ -181,7 +183,7 @@ export const ContactEntryDropList = ({
   return (
     <div
       ref={dropListRef}
-      className={`absolute top-0 z-10 -right-10 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute z-10 ${isSmall ? "right-10 z-40 -top-10" : "top-0 -right-10"} bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
         <CommonIcon label="edit" weight="thin" className="size-6.5" />
