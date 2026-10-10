@@ -154,7 +154,7 @@ export const Bottombar = (): ReactNode => {
     <>
       {(!currentParticipant || !pathname.includes("inbox")) && (
         <div
-          className={`sticky bottom-0 w-full justify-center z-50 py-2.5 hidden max-md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary ${pathname.includes("inbox") ? "bg-background-light-surface-2 dark:bg-background-dark-surface-2" : "bg-background-light-base dark:bg-background-dark-base"}`}
+          className={`sticky bottom-0 w-full justify-center z-50 py-2.5 hidden max-md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary ${pathname.includes("inbox") && chats.length > 0 ? "bg-background-light-surface-2 dark:bg-background-dark-surface-2" : "bg-background-light-base dark:bg-background-dark-base"}`}
         >
           <div className="flex items-center justify-center rounded-3xl px-10 gap-2 w-fit bg-background-light-surface-1 dark:bg-background-dark-surface-1">
             {SIDEBAR_ITEMS.slice(0, 3).map((item) => {
@@ -163,7 +163,7 @@ export const Bottombar = (): ReactNode => {
                 <Link
                   key={`bottom-${item.path}`}
                   to={item.path}
-                  className={`relative aspect-square gap-2 w-15 transition-all ease-in-out flex justify-center items-center p-2 rounded-b-full flex-col ${isActive ? `-translate-y-2 ${pathname.includes("inbox") ? "bg-background-light-surface-2 [--shadow-color:#f9f1ff] dark:bg-background-dark-surface-2 dark:[--shadow-color:#16181d]" : "bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115]"}  bottombar-element-active` : ""}`}
+                  className={`relative aspect-square gap-2 w-15 transition-all ease-in-out flex justify-center items-center p-2 rounded-b-full flex-col ${isActive ? `-translate-y-2 ${pathname.includes("inbox") && chats.length > 0 ? "bg-background-light-surface-2 [--shadow-color:#f9f1ff] dark:bg-background-dark-surface-2 dark:[--shadow-color:#16181d]" : "bg-background-light-base [--shadow-color:#fff] dark:bg-background-dark-base dark:[--shadow-color:#0f1115]"}  bottombar-element-active` : ""}`}
                 >
                   {item.label == "inbox" &&
                     totalUnreadMessages > 0 &&

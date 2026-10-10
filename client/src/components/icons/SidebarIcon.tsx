@@ -50,11 +50,13 @@ export const MainSidebarIcon = ({
   isActive = false,
   className = "",
   weight = "base",
+  isDanger = false,
 }: {
   label?: string;
   isActive?: boolean;
   className?: string;
   weight?: IconWeight;
+  isDanger?: boolean;
 }): ReactNode => {
   switch (label) {
     case "inbox":
@@ -122,7 +124,7 @@ export const MainSidebarIcon = ({
               : arrow_out_right_circle_half
           }
           loading="lazy"
-          className={`main-icon ${className ?? ""}`}
+          className={`${isDanger ? "danger-icon" : "main-icon"} ${className ?? ""}`}
         />
       );
   }

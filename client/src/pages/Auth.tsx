@@ -72,7 +72,7 @@ export default function Auth(): ReactNode {
             )}
           </div>
 
-          <p className="text-xs text-center self-end hidden md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary ">
+          <p className="text-xs self-end hidden md:flex text-foreground-light-secondary dark:text-foreground-dark-secondary ">
             © 2026 Netalk. Made for better conversations.
           </p>
         </div>

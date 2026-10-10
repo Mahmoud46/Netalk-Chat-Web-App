@@ -18,6 +18,7 @@ import { Avatar } from "../components/icons/Avatar";
 import Loader from "../components/common/Loader";
 import { QRCodeCanvas } from "qrcode.react";
 import { ProfileDropList } from "../components/common/DropList";
+import { MainSidebarIcon } from "../components/icons/SidebarIcon";
 
 const ContactSocialCard = lazy(() =>
     import("../components/common/Card").then((module) => ({
@@ -122,6 +123,7 @@ export const ProfileHeader = ({
   setIsShareProfileActive: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isMoreActive, setIsMoreActive] = useState<boolean>(false);
+  const { logout } = useAuth();
   return (
     <div className="h-60 w-full relative">
       {isAuthNUser && (
@@ -216,6 +218,19 @@ export const ProfileHeader = ({
           <CommonIcon label="share" weight="thin" className="size-6.5" />
           <Label text="Share" />
         </button>
+        {isAuthNUser && (
+          <button
+            type="button"
+            onClick={logout}
+            className="relative z-10 cursor-pointer p-2 rounded-full bg-background-light-danger dark:bg-background-dark-danger transition-all ease-in-out md:hidden"
+          >
+            <MainSidebarIcon
+              weight="thin"
+              isDanger={true}
+              className="size-6.5"
+            />
+          </button>
+        )}
         {!isAuthNUser && (
           <>
             {!isMoreActive && (
