@@ -25,6 +25,17 @@ const ChatHeader = ({
     <header className="sticky top-0 w-full flex flex-col gap-3 z-20 max-w-200">
       <div className="relative">
         <div className="bg-background-light-surface-3 dark:bg-background-dark-surface-3 p-1.5 rounded-full w-full flex items-center justify-between">
+          <Link
+            to={"/app/inbox"}
+            className={`relative flex-none group cursor-pointer z-30 p-1.5 aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out md:hidden`}
+          >
+            <CommonIcon
+              label="chevron_right"
+              weight="thin"
+              className={`size-7 transition-all ease-in-out rotate-180`}
+            />
+            <Label text="Back" />
+          </Link>
           <div
             className="flex gap-4 items-center flex-1 cursor-pointer"
             onClick={toggleButtonClickAction}

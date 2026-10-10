@@ -25,7 +25,7 @@ const ChatsSidebar = ({
   includesArchivedChats: boolean;
 }): ReactNode => {
   const [open, setOpen] = useState<boolean>(false);
-  const { currentChat } = useChat();
+  const { currentChat, currentParticipant } = useChat();
   const toggleActive = () => setOpen((prev) => !prev);
   const toggleActiveArchiveTab = () => setActiveArchiveTab((prev) => !prev);
 
@@ -48,31 +48,29 @@ const ChatsSidebar = ({
     };
   return (
     <aside
-      className={`flex-none ${open ? "min-w-70 items-start pl-12" : "min-w-20 items-center"} transition-all ease-in-out duration-300 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 pl-10 flex flex-col gap-4`}
+      className={`flex-none ${open ? "min-w-70 items-start md:pl-12" : "min-w-20 items-center"} ${currentParticipant ? "max-md:hidden" : "max-md:w-full max-md:fixed"} transition-all ease-in-out duration-300 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 max-md:px-4 md:pl-10 flex flex-col gap-4 max-md:pb-30`}
     >
       <div className="size-15 w-full relative -translate-y-2 translate-x-2">
-        <div className="absolute flex items-center top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 pt-3 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+        <div className="absolute flex items-center top-0 right-0 max-md:w-full bg-background-light-base dark:bg-background-dark-base p-1.5 pt-3 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
           <div
-            className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center mr-1.5" : "flex-none"}`}
+            className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center md:mr-1.5" : "flex-none"} max-md:flex-1 max-md:items-center`}
           >
             <button
-              className={`${open ? "absolute" : "relative"} flex-none group p-1.5 cursor-pointer rounded-full hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary transition-all ease-in-out ${open ? "pointer-events-none" : ""}`}
+              className={`${open ? "absolute" : "relative"} max-md:absolute flex-none group p-1.5 md:cursor-pointer rounded-full hover:bg-background-light-secondary hover:dark:bg-background-dark-secondary transition-all ease-in-out ${open ? "pointer-events-none" : ""}`}
               onClick={() => (!open ? toggleActive() : null)}
             >
               <CommonIcon
                 label="search"
-                className={`size-7 ${open ? "opacity-50" : ""}`}
+                className={`size-7 ${open ? "opacity-50" : ""} max-md:opacity-50`}
                 weight="thin"
               />
               {!open && <Label text="Search" />}
             </button>
-            {open && (
-              <input
-                type="text"
-                className="bg-background-light-surface-2 pl-11 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all"
-                placeholder="Search chats..."
-              />
-            )}
+            <input
+              type="text"
+              className={`bg-background-light-surface-2 pl-11 dark:bg-background-dark-surface-2 flex-1 p-3 rounded-full text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary focus:outline-none focus:ring-2 focus:ring-background-light-primary/50 dark:focus:ring-background-light-primary/90 transition-all ${!open && "md:hidden"}`}
+              placeholder="Search chats..."
+            />
           </div>
           <button
             onClick={toggleActive}
@@ -81,7 +79,7 @@ const ChatsSidebar = ({
             <CommonIcon
               label="chevron_right"
               weight="thin"
-              className={`size-7 transition-all ease-in-out ${open ? "rotate-180" : ""}`}
+              className={`size-7 transition-all ease-in-out ${open ? "rotate-180" : ""} max-md:hidden`}
             />
             <Label text={open ? "Close" : "Expand"} />
           </button>
@@ -130,10 +128,9 @@ const ChatsSidebar = ({
           </button>
         )}
       </ul>
-
       {currentChat && (
         <button
-          className={`rounded-full gradient mb-4 text-white cursor-pointer relative group transition-all ease-in-out hover:scale-105 font-semibold ${open ? "p-2.5 px-4 flex w-fit rounded-3xl gap-4 self-center" : "p-2"}`}
+          className={`rounded-full gradient mb-4 text-white cursor-pointer relative group transition-all ease-in-out hover:scale-105 font-semibold ${open ? "p-2.5 px-4 flex w-fit rounded-3xl gap-4 self-center" : "p-2"} max-md:hidden`}
         >
           <CommonIcon
             label="plus"
@@ -146,6 +143,18 @@ const ChatsSidebar = ({
           {open && <p>Start Chat</p>}
         </button>
       )}
+      <button
+        type="button"
+        className="w-fit gap-4 flex gradient p-2.5 px-4 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 font-semibold md:hidden"
+      >
+        <CommonIcon
+          label="plus"
+          weight="bold"
+          soild={true}
+          className="size-6"
+        />
+        <p>Start Chat</p>
+      </button>
     </aside>
   );
 };

@@ -6,7 +6,7 @@ import { BrandIcon } from "../icons/BrandIcon";
 const ChatEmptyStateWindow = (): ReactNode => {
   const { theme } = useTheme();
   return (
-    <div className="flex-1 flex items-center justify-center flex-col gap-8">
+    <div className="flex-1 flex items-center justify-center flex-col gap-8 max-md:hidden">
       <BrandIcon theme={theme} className="size-35" />
       <div className="flex flex-col gap-2 items-center justify-center">
         <h2 className="text-foreground-light-primary text-2xl font-semibold">

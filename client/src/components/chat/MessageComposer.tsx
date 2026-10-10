@@ -44,7 +44,7 @@ const MessageComposer = ({
   return (
     <footer className="sticky bottom-0 w-full flex flex-col gap-3 max-w-200">
       {!isBlocked && (
-        <div className="relative">
+        <div className="relative w-full">
           <AttachmentDropList
             isActive={isAttchmentDropListActive}
             setIsActive={setIsAttchmentDropListActive}
@@ -109,9 +109,15 @@ const MessageComposer = ({
             <input
               type="text"
               placeholder="Type a message…"
-              className="flex-1 p-2 outline-none"
+              className="flex-1 p-2 outline-none min-w-0 w-full max-md:text-sm"
               onChange={(e) => setMessageText(e.target.value.trim())}
             />
+            {/* <textarea
+              placeholder="Type a message…"
+              className="flex-1 p-2 outline-none min-w-0 w-full h-full resize-none bg-red-200"
+              onChange={(e) => setMessageText(e.target.value.trim())}
+              rows={1}
+            /> */}
             <button
               className="gradient cursor-pointer rounded-full p-2 group hover:scale-110 flex-none"
               type="submit"

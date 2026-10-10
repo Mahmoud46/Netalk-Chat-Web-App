@@ -81,18 +81,18 @@ export const ArchiveChatsCard = ({
   return (
     chat && (
       <li
-        className={`relative flex group cursor-pointer transition-all ease-in-out p-2 ${
+        className={`relative flex group cursor-pointer transition-all ease-in-out p-2 max-md:gap-2 ${
           isSidebarOpen
-            ? `gap-2 max-w-67 items-center p-1 pr-3 rounded-3xl bg-transparent hover:bg-background-light-base/50 hover:dark:bg-background-dark-base/50`
-            : `gap-0 rounded-full bg-transparent`
-        }`}
+            ? `md:gap-2 md:max-w-67 items-center p-1 pr-3 rounded-3xl bg-transparent hover:bg-background-light-base/50 hover:dark:bg-background-dark-base/50`
+            : `md:gap-0 md:rounded-full md:bg-transparent`
+        } max-md:items-center max-md:p-1 max-md:pr-3 max-md:rounded-3xl max-md:bg-transparent max-md:hover:bg-background-light-base/50 hover:dark:bg-background-dark-base/50`}
         onClick={toggleArchiveTab}
       >
         <div
-          className={`relative flex-none transition-all ease-in-out rounded-full p-2 flex items-center justify-center aspect-square bg-[#e11d48] dark:bg-[#7f1d1d] ${!isSidebarOpen && "hover:scale-110"}`}
+          className={`relative flex-none transition-all ease-in-out rounded-full p-2 flex items-center justify-center aspect-square bg-[#e11d48] dark:bg-[#7f1d1d] ${!isSidebarOpen && "md:hover:scale-110"}`}
         >
           {unreadMessages > 0 && !isSidebarOpen && (
-            <span className="text-white absolute text-xs bg-background-light-primary shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-2 z-10">
+            <span className="text-white md:absolute max-md:hidden text-xs bg-background-light-primary shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-2 z-10">
               {unreadMessages > 99 ? `+${99}` : unreadMessages}
             </span>
           )}
@@ -100,7 +100,7 @@ export const ArchiveChatsCard = ({
           {unreadMessages === 0 &&
             chat.lastMessage.sender == authNUser?._id &&
             !isSidebarOpen && (
-              <span className="absolute bg-background-light-base dark:bg-background-dark-base flex items-center justify-center rounded-full top-0 -right-2 w-6 h-5 shadow-xl/30 overflow-hidden">
+              <span className="max-md:hidden md:absolute bg-background-light-base dark:bg-background-dark-base flex items-center justify-center rounded-full top-0 -right-2 w-6 h-5 shadow-xl/30 overflow-hidden">
                 <MessageStatusIcon
                   weight={chat.lastMessage.status == "sent" ? "base" : "thin"}
                   status={chat.lastMessage.status}
@@ -116,30 +116,33 @@ export const ArchiveChatsCard = ({
             solid={true}
           />
         </div>
-        {isSidebarOpen && (
-          <div className="flex flex-1 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
-            <div className="flex gap-1 justify-between items-center">
-              <p className="line-clamp-1 text-sm font-semibold flex-1">
-                {activeArchiveTab ? "Unarchived Chats" : "Archived Chats"}
-              </p>
-            </div>
-            <div className="flex items-center">
-              {
-                <p className="line-clamp-1 text-xs flex-1">
-                  {chat.lastMessage.text}
-                </p>
-              }
-              {unreadMessages > 0 && isSidebarOpen && (
-                <span className="text-white text-xs bg-background-light-primary w-7 py-0.5 flex items-center justify-center rounded-full">
-                  {unreadMessages > 99 ? `+${99}` : unreadMessages}
-                </span>
-              )}
-            </div>
+
+        <div
+          className={`flex-1 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary ${isSidebarOpen ? "flex" : "flex md:hidden"}`}
+        >
+          <div className="flex gap-1 justify-between items-center">
+            <p className="line-clamp-1 text-sm font-semibold flex-1">
+              {activeArchiveTab ? "Unarchived Chats" : "Archived Chats"}
+            </p>
           </div>
-        )}
+          <div className="flex items-center">
+            {
+              <p className="line-clamp-1 text-xs flex-1">
+                {chat.lastMessage.text}
+              </p>
+            }
+            {unreadMessages > 0 && (
+              <span className="text-white text-xs bg-background-light-primary w-7 py-0.5 flex items-center justify-center rounded-full">
+                {unreadMessages > 99 ? `+${99}` : unreadMessages}
+              </span>
+            )}
+          </div>
+        </div>
+
         {!isSidebarOpen && (
           <Label
             text={activeArchiveTab ? "Unarchived Chats" : "Archived Chats"}
+            className="max-md:hidden"
             isSide={true}
           />
         )}
@@ -182,25 +185,25 @@ const ChatCard = ({
     <li
       className={`relative flex group cursor-pointer transition-all ease-in-out p-2 ${
         isSidebarOpen
-          ? `gap-2 max-w-67 items-center p-1 pr-3 rounded-3xl ${
+          ? `gap-2 md:max-w-67 items-center p-1 pr-3 rounded-3xl ${
               isActive
                 ? "bg-background-light-base dark:bg-background-dark-base"
                 : "bg-transparent hover:bg-background-light-base/50 hover:dark:bg-background-dark-base/50"
             }`
-          : `gap-0 rounded-full ${
+          : `md:gap-0 md:rounded-full ${
               isActive
                 ? "bg-background-light-base dark:bg-background-dark-base translate-x-9 chat-card-shrink-active [--shadow-color:#fff] dark:[--shadow-color:#0f1115]"
                 : "bg-transparent"
             }`
-      }`}
+      } max-md:gap-2 max-md:items-center max-md:p-1 max-md:pr-3 max-md:rounded-3xl`}
       onClick={() => selectChat(participant?._id ?? "")}
     >
       <div
-        className={`relative flex-none transition-all ease-in-out rounded-full p-1 flex items-center justify-center aspect-square ${chat.unreadMessages > 0 && !isActive && !isSidebarOpen ? `${isMuted ? "text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-secondary dark:bg-background-dark-secondary" : "bg-background-light-primary text-white"}` : !isActive ? "bg-background-light-surface-2 dark:bg-background-dark-surface-2" : "bg-background-light-base dark:bg-background-dark-base"} ${isActive && !isSidebarOpen && "bg-background-light-surface-2 dark:bg-background-dark-surface-2"} ${isSidebarOpen ? "" : "group-hover:scale-110"}`}
+        className={`relative flex-none transition-all ease-in-out rounded-full p-1 flex items-center justify-center aspect-square ${chat.unreadMessages > 0 && !isActive && !isSidebarOpen ? `${isMuted ? "text-foreground-light-secondary dark:text-foreground-dark-secondary md:bg-background-light-secondary md:dark:bg-background-dark-secondary" : "md:bg-background-light-primary md:text-white"}` : !isActive ? "md:bg-background-light-surface-2 md:dark:bg-background-dark-surface-2" : "md:bg-background-light-base md:dark:bg-background-dark-base"} ${isActive && !isSidebarOpen && "md:bg-background-light-surface-2 md:dark:bg-background-dark-surface-2"} ${isSidebarOpen ? "" : "group-hover:scale-110"}`}
       >
         {chat.unreadMessages > 0 && !isActive && !isSidebarOpen && (
           <span
-            className={`absolute text-xs shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-2 ${isMuted ? "text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-secondary dark:bg-background-dark-secondary" : "bg-background-light-primary text-white"}`}
+            className={`max-md:hidden md:absolute text-xs shadow-xl/30 w-6 py-0.5 flex items-center justify-center rounded-full top-0 -right-2 ${isMuted ? "text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-secondary dark:bg-background-dark-secondary" : "bg-background-light-primary text-white"}`}
           >
             {chat.unreadMessages > 99 ? `+${99}` : chat.unreadMessages}
           </span>
@@ -209,7 +212,7 @@ const ChatCard = ({
         {chat.unreadMessages === 0 &&
           chat.lastMessage.sender == authNUser?._id &&
           !isSidebarOpen && (
-            <span className="absolute bg-background-light-base dark:bg-background-dark-base flex items-center justify-center rounded-full top-0 -right-2 w-6 h-5 shadow-xl/30 overflow-hidden">
+            <span className="max-md:hidden md:absolute bg-background-light-base dark:bg-background-dark-base flex items-center justify-center rounded-full top-0 -right-2 w-6 h-5 shadow-xl/30 overflow-hidden">
               <MessageStatusIcon
                 weight={chat.lastMessage.status == "sent" ? "base" : "thin"}
                 status={chat.lastMessage.status}
@@ -242,58 +245,57 @@ const ChatCard = ({
           </div>
         )}
       </div>
-      {isSidebarOpen && (
-        <div className="flex flex-1 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
-          <div className="flex gap-1 justify-between items-center">
-            <p className="line-clamp-1 text-sm font-semibold flex-1">
-              {contacts[participant?._id ?? ""]
-                ? `${contacts[participant?._id ?? ""]?.firstName} ${contacts[participant?._id ?? ""]?.lastName}`
-                : `${participant?.firstName} ${participant?.lastName}`}
+
+      <div
+        className={`flex flex-1 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary ${isSidebarOpen ? "flex" : "flex md:hidden"} `}
+      >
+        <div className="flex gap-1 justify-between items-center">
+          <p className="line-clamp-1 text-sm font-semibold flex-1">
+            {contacts[participant?._id ?? ""]
+              ? `${contacts[participant?._id ?? ""]?.firstName} ${contacts[participant?._id ?? ""]?.lastName}`
+              : `${participant?.firstName} ${participant?.lastName}`}
+          </p>
+          {isMuted && (
+            <CommonIcon label="bell_slash" weight="thin" className="size-4.5" />
+          )}
+          <time
+            dateTime={chat.lastMessage?.createdAt}
+            className={`${chat.unreadMessages > 0 && !isActive && !isMuted ? "text-foreground-light-primary" : "text-foreground-light-secondary dark:text-foreground-dark-secondary"} text-xs self-end`}
+          >
+            {formatDate(new Date(chat.lastMessage?.createdAt)) ==
+            formatDate(new Date())
+              ? formatTime12Hours(new Date(chat.lastMessage?.createdAt))
+              : formatDateShort(new Date(chat.lastMessage?.createdAt))}
+          </time>
+        </div>
+        <div className="flex items-center">
+          {
+            <p className="line-clamp-1 text-xs flex-1">
+              {chat.lastMessage.text}
             </p>
-            {isMuted && (
-              <CommonIcon
-                label="bell_slash"
-                weight="thin"
-                className="size-4.5"
-              />
-            )}
-            <time
-              dateTime={chat.lastMessage?.createdAt}
-              className={`${chat.unreadMessages > 0 && !isActive && !isMuted ? "text-foreground-light-primary" : "text-foreground-light-secondary dark:text-foreground-dark-secondary"} text-xs self-end`}
+          }
+          {chat.unreadMessages > 0 && !isActive && (
+            <span
+              className={`text-xs  w-7 py-0.5 flex items-center justify-center rounded-full ${isMuted ? "text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-secondary dark:bg-background-dark-secondary" : "bg-background-light-primary text-white"} ${isSidebarOpen ? "flex" : "flex md:hidden"}`}
             >
-              {formatDate(new Date(chat.lastMessage?.createdAt)) ==
-              formatDate(new Date())
-                ? formatTime12Hours(new Date(chat.lastMessage?.createdAt))
-                : formatDateShort(new Date(chat.lastMessage?.createdAt))}
-            </time>
-          </div>
-          <div className="flex items-center">
-            {
-              <p className="line-clamp-1 text-xs flex-1">
-                {chat.lastMessage.text}
-              </p>
-            }
-            {chat.unreadMessages > 0 && !isActive && isSidebarOpen && (
+              {chat.unreadMessages > 99 ? `+${99}` : chat.unreadMessages}
+            </span>
+          )}
+          {chat.unreadMessages === 0 &&
+            chat.lastMessage.sender == authNUser?._id && (
               <span
-                className={`text-xs  w-7 py-0.5 flex items-center justify-center rounded-full ${isMuted ? "text-foreground-light-secondary dark:text-foreground-dark-secondary bg-background-light-secondary dark:bg-background-dark-secondary" : "bg-background-light-primary text-white"}`}
+                className={`flex items-center justify-center rounded-full size-6 ${isSidebarOpen ? "flex" : "flex md:hidden"}`}
               >
-                {chat.unreadMessages > 99 ? `+${99}` : chat.unreadMessages}
+                <MessageStatusIcon
+                  weight={chat.lastMessage.status == "sent" ? "base" : "thin"}
+                  status={chat.lastMessage.status}
+                  className={`${chat.lastMessage.status === "sent" && "size-3"}`}
+                />
               </span>
             )}
-            {chat.unreadMessages === 0 &&
-              chat.lastMessage.sender == authNUser?._id &&
-              isSidebarOpen && (
-                <span className="flex items-center justify-center rounded-full size-6">
-                  <MessageStatusIcon
-                    weight={chat.lastMessage.status == "sent" ? "base" : "thin"}
-                    status={chat.lastMessage.status}
-                    className={`${chat.lastMessage.status === "sent" && "size-3"}`}
-                  />
-                </span>
-              )}
-          </div>
         </div>
-      )}
+      </div>
+
       {!isSidebarOpen && (
         <Label
           text={

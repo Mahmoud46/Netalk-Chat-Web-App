@@ -45,7 +45,7 @@ const ProfilePanelHeader = ({
   toggleButtonClickAction?: () => void;
 }) => {
   return (
-    <div className="relative flex flex-col">
+    <div className="relative flex flex-col max-md:h-40">
       {/* Close buttoon */}
       <div className="absolute top-0 left-0 bg-background-light-base dark:bg-background-dark-base p-1.5 pt-3 rounded-br-3xl top-left-cornered-btn  [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
         <button
@@ -55,7 +55,7 @@ const ProfilePanelHeader = ({
           <CommonIcon
             label="chevron_right"
             weight="thin"
-            className="size-7 transition-all ease-in-out"
+            className="size-7 transition-all ease-in-out max-md:rotate-180"
           />
           <Label text="Close" />
         </button>
@@ -67,7 +67,7 @@ const ProfilePanelHeader = ({
         }
         alt="participant-profile-cover"
         loading="lazy"
-        className="w-full rounded-b-3xl"
+        className="w-full h-full object-cover rounded-b-3xl"
       />
 
       <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 rounded-full side-porfile-panel-image [--shadow-color:#f9f1ff] dark:[--shadow-color:#16181d]">
@@ -329,7 +329,7 @@ const SideProfilePanel = ({
     isMuted: boolean = authNUser?.mutedUsers.includes(user?._id ?? "") ?? false;
   return (
     <aside
-      className={`sticky top-0 shrink-0 h-dvh overflow-hidden transition-all duration-300 ease-in-out flex flex-col bg-background-light-surface-2 dark:bg-background-dark-surface-2 ${isActive ? "w-70 opacity-100" : "w-0 opacity-0"}`}
+      className={`sticky top-0 shrink-0 h-dvh overflow-hidden transition-all duration-300 ease-in-out flex flex-col bg-background-light-surface-2 dark:bg-background-dark-surface-2 ${isActive ? "md:w-70 opacity-100 max-md:fixed max-md:w-full max-md:z-50 max-md:left-0" : "w-0 opacity-0"}`}
     >
       <ProfilePanelHeader
         user={user}
