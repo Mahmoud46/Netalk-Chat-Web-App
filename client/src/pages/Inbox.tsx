@@ -81,7 +81,7 @@ export default function Inbox(): ReactNode {
 
       {currentParticipant && (
         <>
-          <div className="flex-1 max-md:min-w-full md:min-w-120 max-h-dvh h-full flex items-center flex-col px-4 md:px-10 py-4 pt-2 overflow-auto stable-gutter-container dark:text-foreground-dark-secondary gap-4 scrollbar-thin mr-2">
+          <div className="flex-1 max-md:min-w-full md:min-w-120 max-h-dvh h-full flex items-center flex-col px-4 md:px-10 py-4 pt-2 overflow-auto stable-gutter-container dark:text-foreground-dark-secondary gap-4 scrollbar-thin md:mr-2">
             <Suspense fallback={<Loader />}>
               <ChatHeader
                 toggleButtonClickAction={() => setActiveSideProfilePanel(true)}

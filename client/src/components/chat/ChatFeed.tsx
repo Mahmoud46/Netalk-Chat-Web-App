@@ -42,7 +42,7 @@ const ChatFeed = ({
 
   return (
     <>
-      <div className="flex-1 w-full flex flex-col gap-3 items-center px-4">
+      <div className="flex-1 w-full flex flex-col gap-3 items-center md:px-4">
         {Object.keys(messagesTimeline).length > 0 &&
           Object.entries(messagesTimeline).map(([date, messages]) => (
             <div
