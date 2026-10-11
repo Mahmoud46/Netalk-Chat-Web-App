@@ -58,7 +58,7 @@ const MessageComposer = ({
               {!isAttchmentDropListActive && (
                 <button
                   type="button"
-                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isAttchmentDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
+                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
                   onClick={toggleAttachmentDropList}
                 >
                   <ChatIcon
@@ -71,7 +71,7 @@ const MessageComposer = ({
               {isAttchmentDropListActive && (
                 <button
                   type="button"
-                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isAttchmentDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
+                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
                 >
                   <ChatIcon
                     label="paperclip"
@@ -83,7 +83,7 @@ const MessageComposer = ({
               {!isEmojisDropListActive && (
                 <button
                   type="button"
-                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isEmojisDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
+                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
                   onClick={toggleEmojisDropList}
                 >
                   <ChatIcon
@@ -96,7 +96,7 @@ const MessageComposer = ({
               {isEmojisDropListActive && (
                 <button
                   type="button"
-                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out ${isEmojisDropListActive && "bg-background-light-secondary dark:bg-background-dark-secondary"}`}
+                  className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
                 >
                   <ChatIcon
                     label="sticker"
