@@ -68,7 +68,7 @@ const MessageBubble = ({
           <div className="flex flex-col">
             {message.text && (
               <p
-                className="text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary"
+                className="text-xs md:text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary"
                 style={{ fontSize: `${messageFontSize}px` }}
               >
                 {message.text}
