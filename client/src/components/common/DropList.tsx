@@ -347,22 +347,19 @@ export const MessageDropList = ({
   }, [dropListRef, setIsActive]);
   return (
     <div
-      className={`absolute z-20 -top-30 ${isLeft ? "left-0" : "right-0"} flex flex-col gap-2 items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
+      className={`absolute z-40 -top-20 ${isLeft ? "left-0 max-md:right-0" : "right-0 max-md:left-0"} flex flex-col gap-2 items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
       ref={dropListRef}
     >
       {/* Emojis */}
       <div className="flex flex-col">
-        {
+        <div
+          className={`flex w-max ${activeEmojiDropList ? "flex-col items-start" : "flex-row flex-none items-center"} p-1.5 rounded-3xl bg-background-light-surface-3 dark:bg-background-dark-surface-3 shadow-lg dark:shadow-neutral-900/50`}
+        >
           <div
-            className={`flex ${activeEmojiDropList ? "flex-col items-start" : "flex-row flex-none items-center w-full"} p-1.5 rounded-3xl bg-background-light-surface-3 dark:bg-background-dark-surface-3 shadow-lg dark:shadow-neutral-900/50`}
+            className={`${activeEmojiDropList ? "grid grid-cols-4" : "flex flex-none"} max-h-40 overflow-auto`}
           >
-            <div
-              className={`${activeEmojiDropList ? "grid grid-cols-4" : "flex flex-none"} max-h-20 overflow-auto`}
-            >
-              {(activeEmojiDropList
-                ? EMOJIS_LIST
-                : EMOJIS_LIST.slice(0, 4)
-              ).map((emoji) => (
+            {(activeEmojiDropList ? EMOJIS_LIST : EMOJIS_LIST.slice(0, 4)).map(
+              (emoji) => (
                 <button
                   key={emoji}
                   className="group cursor-pointer p-2 flex-none text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary flex justify-start items-center rounded-xl"
@@ -372,64 +369,70 @@ export const MessageDropList = ({
                     className="size-6 group-hover:scale-150 ease-in-out transition-all"
                   />
                 </button>
-              ))}
-            </div>
-            <button
-              onClick={() => setActiveEmojiDropList((prev) => !prev)}
-              className="relative group cursor-pointer p-1.5 flex-none aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-            >
-              <CommonIcon
-                label="chevron_right"
-                weight="thin"
-                className={`size-7 flex-none ${activeEmojiDropList ? "rotate-270 hover:-translate-y-1" : "rotate-90 hover:translate-y-1"} ease-in-out transition-all`}
-              />
-              <Label text={activeEmojiDropList ? "Less" : "More"} />
-            </button>
+              ),
+            )}
           </div>
-        }
+          <button
+            onClick={() => setActiveEmojiDropList((prev) => !prev)}
+            className="relative group cursor-pointer p-1.5 flex-none aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          >
+            <CommonIcon
+              label="chevron_right"
+              weight="thin"
+              className={`size-7 flex-none ${activeEmojiDropList ? "rotate-270 hover:-translate-y-1" : "rotate-90 hover:translate-y-1"} ease-in-out transition-all`}
+            />
+            <Label text={activeEmojiDropList ? "Less" : "More"} />
+          </button>
+        </div>
       </div>
       {/* Options */}
-      <div
-        className={`relative bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${!activeEmojiDropList && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
-      >
-        <button
-          type="button"
-          className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+      {!activeEmojiDropList && (
+        <div
+          className={`relative bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
         >
-          <ChatIcon label="reply_stroke" weight="thin" className="size-6.5" />
-          Reply
-        </button>
-        <button
-          type="button"
-          className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
-        >
-          <CommonIcon label="edit" weight="thin" className="size-6.5" />
-          Edit
-        </button>
-        <button
-          type="button"
-          className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
-        >
-          <CommonIcon label="copy" weight="thin" className="size-6.5" />
-          Copy
-        </button>
-        {showTranslateButton && (
           <button
             type="button"
             className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
           >
-            <CommonIcon label="translate" weight="thin" className="size-6.5" />
-            Translate
+            <ChatIcon label="reply_stroke" weight="thin" className="size-6.5" />
+            Reply
           </button>
-        )}
-        <button
-          type="button"
-          className="cursor-pointer p-2 text-sm text-foreground-light-danger dark:text-foreground-dark-danger hover:bg-background-light-danger dark:hover:bg-background-dark-danger w-full flex justify-start gap-3 items-center rounded-2xl"
-        >
-          <CommonIcon label="trash" weight="thin" className="size-6.5" />
-          Delete
-        </button>
-      </div>
+          <button
+            type="button"
+            className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+          >
+            <CommonIcon label="edit" weight="thin" className="size-6.5" />
+            Edit
+          </button>
+          <button
+            type="button"
+            className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+          >
+            <CommonIcon label="copy" weight="thin" className="size-6.5" />
+            Copy
+          </button>
+          {showTranslateButton && (
+            <button
+              type="button"
+              className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+            >
+              <CommonIcon
+                label="translate"
+                weight="thin"
+                className="size-6.5"
+              />
+              Translate
+            </button>
+          )}
+          <button
+            type="button"
+            className="cursor-pointer p-2 text-sm text-foreground-light-danger dark:text-foreground-dark-danger hover:bg-background-light-danger dark:hover:bg-background-dark-danger w-full flex justify-start gap-3 items-center rounded-2xl"
+          >
+            <CommonIcon label="trash" weight="thin" className="size-6.5" />
+            Delete
+          </button>
+        </div>
+      )}
     </div>
   );
 };

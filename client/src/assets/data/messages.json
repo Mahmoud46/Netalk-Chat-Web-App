@@ -46,6 +46,7 @@
     "sender": "j28m8o6naMLU4863413jyRNbD_FHvH",
     "text": "Did you check the latest UI mockups?",
     "status": "read",
+    "emojiReact": "thumbs_up",
     "createdAt": "2026-09-27T10:00:00.000Z"
   },
 
@@ -73,6 +74,7 @@
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Perfect, I’ll start integration after that.",
     "status": "read",
+    "emojiReact": "thumbs_up",
     "createdAt": "2026-09-27T10:03:40.000Z"
   },
 
@@ -81,6 +83,7 @@
     "chatId": "chat_002",
     "sender": "kEPFoc8Y5mhQENfPLkEHoLaSsVLVHf",
     "text": "Here is the updated UI export file.",
+    "emojiReact": "thumbs_up",
     "attachment": {
       "fileId": "file_ui_002",
       "url": "https://cdn.example.com/files/ui-kit-v2.fig",
@@ -196,6 +199,14 @@
     "chatId": "chat_005",
     "sender": "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo",
     "text": "Frontend is almost done.",
+    "status": "read",
+    "createdAt": "2026-09-27T06:15:00.000Z"
+  },
+  {
+    "_id": "msg_50002",
+    "chatId": "chat_005",
+    "sender": "Iavn5FD0QdEPAJmAnDhSKWZsoH5JLo",
+    "emoji": "handshake",
     "status": "read",
     "createdAt": "2026-09-27T06:15:00.000Z"
   },

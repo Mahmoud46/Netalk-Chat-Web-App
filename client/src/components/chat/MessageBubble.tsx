@@ -1,6 +1,6 @@
 import { useState, lazy } from "react";
 import { useAuth, useChat, useTheme } from "../../hooks";
-import type { Gender, Message } from "../../types";
+import type { EmojiType, Gender, Message } from "../../types";
 import { formatTime12Hours } from "../../utils/format";
 import { MessageStatusIcon } from "../icons/ChatIcon";
 import CommonIcon from "../icons/CommonIcon";
@@ -8,6 +8,7 @@ import { MediaFile } from "../common/Attachment";
 import { Link } from "react-router-dom";
 import { Avatar } from "../icons/Avatar";
 import { calculateAge } from "../../utils/helpers";
+import EmojiIcon from "../icons/EmojiIcon";
 
 const AttachmentCard = lazy(() =>
     import("../common/Attachment").then((module) => ({
@@ -56,7 +57,7 @@ const MessageBubble = ({
 
       <div className={`flex flex-col max-w-100`}>
         <div
-          className={`flex flex-col relative w-fit max-w-100 min-w-40 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl gap-2`}
+          className={`flex flex-col relative w-fit max-w-100 min-w-20 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl gap-2`}
         >
           {message.attachment &&
             (message.attachment.type == "image" ||
@@ -73,6 +74,11 @@ const MessageBubble = ({
               >
                 {message.text}
               </p>
+            )}
+            {message.emoji && (
+              <div className="flex justify-center w-full">
+                <EmojiIcon label={message.emoji} className="size-12" />
+              </div>
             )}
             <div
               className={`self-end flex items-center ${message.status == "sent" && "gap-1"}`}
@@ -92,6 +98,19 @@ const MessageBubble = ({
               )}
             </div>
           </div>
+          {message.emojiReact && (
+            <div
+              className={`absolute -bottom-3 ${flowRight ? "left-2" : "right-2"} z-10 shadow-xl bg-background-light-base dark:bg-background-dark-base rounded-3xl px-2 py-1`}
+            >
+              <EmojiIcon
+                label={
+                  message.emojiReact ??
+                  ("ace_with_bags_under_eyes" as EmojiType)
+                }
+                className="size-6"
+              />
+            </div>
+          )}
         </div>
 
         {showProfileImage && (

@@ -42,7 +42,7 @@ const MessageComposer = ({
     };
 
   return (
-    <footer className="sticky bottom-0 w-full flex flex-col gap-3 max-w-200">
+    <footer className="sticky z-30 bottom-0 w-full flex flex-col gap-3 max-w-200">
       {!isBlocked && (
         <div className="relative w-full">
           <AttachmentDropList

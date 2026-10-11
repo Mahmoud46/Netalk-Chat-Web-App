@@ -72,12 +72,17 @@ export default function EmojiIcon({
   label,
   className = "",
 }: {
-  label?: EmojiType;
+  label?: EmojiType | string;
   className?: string;
 }) {
   if (!label || !(label in emojiIcons)) return <></>;
 
   return (
-    <img src={emojiIcons[label]} alt="" loading="lazy" className={className} />
+    <img
+      src={emojiIcons[label as EmojiType]}
+      alt=""
+      loading="lazy"
+      className={className}
+    />
   );
 }

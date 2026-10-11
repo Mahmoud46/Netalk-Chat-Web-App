@@ -36,6 +36,8 @@ export interface Message {
   attachment?: Attachment;
   emoji?: EmojiType;
 
+  emojiReact?: EmojiType;
+
   replyTo?: string;
 
   status: MessageStatus;
