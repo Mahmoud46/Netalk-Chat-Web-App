@@ -40,7 +40,7 @@ const MessageBubble = ({
 
   return (
     <div
-      className={`flex relative items-start gap-2 w-full ${flowRight && "self-end"} ${!flowRight && "flex-row-reverse self-start"}`}
+      className={`flex relative items-start gap-2  ${flowRight && "self-end"} ${!flowRight && "flex-row-reverse self-start"}`}
     >
       <button
         className={`cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}

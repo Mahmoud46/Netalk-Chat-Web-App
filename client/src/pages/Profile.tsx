@@ -68,7 +68,7 @@ export const UsernameHolder = ({
           }, 1000);
         }}
       >
-        <span className="font-semibold">@{username}</span>
+        <span className="font-semibold line-clamp-1">@{username}</span>
         <CommonIcon
           label={isCopied ? "copy_check" : "copy"}
           className={`${isXs ? "size-4 ml-1" : "size-4.5 ml-2"}`}

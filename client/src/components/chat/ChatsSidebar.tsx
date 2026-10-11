@@ -50,7 +50,7 @@ const ChatsSidebar = ({
     <aside
       className={`flex-none ${open ? "min-w-70 items-start md:pl-12" : "min-w-20 items-center"} ${currentParticipant ? "max-md:hidden" : "max-md:w-full max-md:fixed"} transition-all ease-in-out duration-300 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 max-md:px-4 md:pl-10 flex flex-col gap-4 max-md:pb-30`}
     >
-      <div className="size-15 w-full relative -translate-y-2 translate-x-2">
+      <div className="size-15 w-full relative -translate-y-2 translate-x-2 max-md:translate-x-3.5">
         <div className="absolute flex items-center top-0 right-0 max-md:w-full bg-background-light-base dark:bg-background-dark-base p-1.5 pt-3 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
           <div
             className={`rounded-full z-30 relative flex ${open ? "flex-1 items-center md:mr-1.5" : "flex-none"} max-md:flex-1 max-md:items-center`}
@@ -74,7 +74,7 @@ const ChatsSidebar = ({
           </div>
           <button
             onClick={toggleActive}
-            className="relative flex-none group cursor-pointer z-30 p-1.5 aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+            className="relative flex-none max-md:hidden group cursor-pointer z-30 p-1.5 aspect-square rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
           >
             <CommonIcon
               label="chevron_right"
