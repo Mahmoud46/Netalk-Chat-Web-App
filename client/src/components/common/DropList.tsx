@@ -347,7 +347,7 @@ export const MessageDropList = ({
   }, [dropListRef, setIsActive]);
   return (
     <div
-      className={`absolute z-40 -top-20 ${isLeft ? "left-0 max-md:right-0" : "right-0 max-md:left-0"} flex flex-col gap-2 items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
+      className={`absolute z-40 -top-20 ${isLeft ? "left-0" : "right-0"} flex flex-col gap-2 items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out`}
       ref={dropListRef}
     >
       {/* Emojis */}
