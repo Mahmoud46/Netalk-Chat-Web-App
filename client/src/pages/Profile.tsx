@@ -438,7 +438,7 @@ export default function Profile(): ReactNode {
             )}
           </div>
           {authNUser?.bio && (
-            <div className="flex flex-col gap-2 min-w-80">
+            <div className="flex flex-col gap-2 min-w-80 max-md:w-full">
               <h2 className="font-semibold">About</h2>
               <p>{isAuthNUser ? authNUser?.bio : currentUser?.bio}</p>
             </div>

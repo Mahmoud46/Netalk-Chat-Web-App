@@ -49,11 +49,11 @@ const ChatsSidebar = ({
     };
   return (
     <aside
-      className={`flex-none ${open ? "min-w-70 items-start md:pl-12" : "min-w-20 items-center"} ${currentParticipant ? "max-md:hidden" : "max-md:w-full max-md:fixed"} transition-all ease-in-out duration-300 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 max-md:px-4 md:pl-10 flex flex-col gap-4 max-md:pb-25`}
+      className={`flex-none ${open ? "min-w-70 items-start md:pl-12" : "min-w-20 items-center"} ${currentParticipant ? "max-md:hidden" : "max-md:w-full max-md:fixed"} transition-all ease-in-out duration-300 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 max-md:px-4 md:pl-10 flex flex-col gap-4`}
     >
       <div className="flex w-full">
-        <div className="pt-3 md:hidden ">
-          <BrandIcon className="size-7" />
+        <div className="pt-3 md:hidden flex-none">
+          <BrandIcon className="size-7 flex-none" />
         </div>
         <div className="size-15 w-full flex relative -translate-y-2 translate-x-2 max-md:translate-x-3.5">
           <div className="absolute flex items-center top-0 right-0 max-md:w-full bg-background-light-base dark:bg-background-dark-base p-1.5 pt-3 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
@@ -92,7 +92,7 @@ const ChatsSidebar = ({
         </div>
       </div>
       <ul
-        className={`flex flex-col flex-1 ${open && "overflow-auto"} max-md:overflow-auto`}
+        className={`flex flex-col flex-1 ${open && "overflow-auto"} max-md:overflow-auto max-md:pb-30`}
       >
         {includesArchivedChats && (
           <Suspense fallback={<Loader />}>
@@ -165,18 +165,12 @@ const ChatsSidebar = ({
           {open && <p>Start Chat</p>}
         </button>
       )}
-      <div className="w-full px-4 md:hidden">
+      <div className="px-4 md:hidden fixed bottom-25 right-4 flex justify-end">
         <button
           type="button"
-          className="w-full gap-4 flex justify-center gradient p-2.5 px-4 rounded-3xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 font-semibold"
+          className="gap-4 flex justify-center gradient p-2 rounded-3xl shadow-xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 font-semibold"
         >
-          <CommonIcon
-            label="plus"
-            weight="bold"
-            soild={true}
-            className="size-6"
-          />
-          <p>Start Chat</p>
+          <CommonIcon label="plus" soild={true} className="size-7" />
         </button>
       </div>
     </aside>
