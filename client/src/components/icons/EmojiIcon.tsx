@@ -30,6 +30,7 @@ import upside_down_face from "../../assets/icons/emojis/upside_down_face.png";
 import victory_hand from "../../assets/icons/emojis/victory_hand.png";
 import vulcan_salute from "../../assets/icons/emojis/vulcan_salute.png";
 import waving_hand from "../../assets/icons/emojis/waving_hand.png";
+import type { EmojiType } from "../../types";
 
 const emojiIcons = {
   winking_face,
@@ -66,13 +67,11 @@ const emojiIcons = {
   waving_hand,
 } as const;
 
-export type EmojiType = keyof typeof emojiIcons;
-
 export default function EmojiIcon({
   label,
   className = "",
 }: {
-  label?: EmojiType | string;
+  label: EmojiType;
   className?: string;
 }) {
   if (!label || !(label in emojiIcons)) return <></>;

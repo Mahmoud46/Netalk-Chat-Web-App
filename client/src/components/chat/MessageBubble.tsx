@@ -57,7 +57,7 @@ const MessageBubble = ({
 
       <div className={`flex flex-col max-w-100`}>
         <div
-          className={`flex flex-col relative w-fit max-w-100 min-w-20 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl gap-2`}
+          className={`flex flex-col relative w-fit max-w-100 min-w-40 bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-3 rounded-3xl gap-2`}
         >
           {message.attachment &&
             (message.attachment.type == "image" ||
@@ -98,17 +98,24 @@ const MessageBubble = ({
               )}
             </div>
           </div>
-          {message.emojiReact && (
+          {message.reacts && (
             <div
-              className={`absolute -bottom-3 ${flowRight ? "left-2" : "right-2"} z-10 shadow-xl bg-background-light-base dark:bg-background-dark-base rounded-3xl px-2 py-1`}
+              className={`absolute flex items-center -bottom-3 ${flowRight ? "left-2" : "right-2"} z-10 shadow-xl bg-background-light-base dark:bg-background-dark-base rounded-3xl px-2 py-1`}
             >
-              <EmojiIcon
-                label={
-                  message.emojiReact ??
-                  ("ace_with_bags_under_eyes" as EmojiType)
-                }
-                className="size-6"
-              />
+              {[...new Set(message.reacts.map((react) => react.emoji))].map(
+                (emoji) => (
+                  <EmojiIcon
+                    key={emoji}
+                    label={emoji ?? ("ace_with_bags_under_eyes" as EmojiType)}
+                    className="size-6"
+                  />
+                ),
+              )}
+              {message.reacts.length > 1 && (
+                <span className="text-xs text-foreground-light-secondary dark:text-foreground-dark-secondary size-6 flex justify-center items-center">
+                  {message.reacts.length}
+                </span>
+              )}
             </div>
           )}
         </div>
