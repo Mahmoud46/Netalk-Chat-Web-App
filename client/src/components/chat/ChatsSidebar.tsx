@@ -49,7 +49,7 @@ const ChatsSidebar = ({
     };
   return (
     <aside
-      className={`flex-none ${open ? "min-w-70 items-start md:pl-12" : "min-w-20 items-center"} ${currentParticipant ? "max-md:hidden" : "max-md:w-full max-md:fixed"} transition-all ease-in-out duration-300 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 max-md:px-4 md:pl-10 flex flex-col gap-4`}
+      className={`flex-none ${open ? "min-w-70 items-start md:pl-12 relative" : "min-w-20 items-center"} ${currentParticipant ? "max-md:hidden" : "max-md:w-full max-md:fixed"} transition-all ease-in-out duration-300 h-dvh bg-background-light-surface-2 dark:bg-background-dark-surface-2 p-2 max-md:px-4 md:pl-10 flex flex-col gap-4`}
     >
       <div className="flex w-full">
         <div className="pt-3 md:hidden flex-none">
@@ -150,7 +150,7 @@ const ChatsSidebar = ({
           </button>
         )}
       </ul>
-      {currentChat && (
+      {/* {currentChat && (
         <button
           className={`rounded-full gradient mb-4 text-white cursor-pointer relative group transition-all ease-in-out hover:scale-105 font-semibold ${open ? "p-2.5 px-4 flex w-full rounded-3xl gap-4 self-center justify-center" : "p-2"} max-md:hidden`}
         >
@@ -164,7 +164,24 @@ const ChatsSidebar = ({
           {!open && <Label text="Start Chat" isSide={true} className="w-max" />}
           {open && <p>Start Chat</p>}
         </button>
+      )} */}
+
+      {currentChat && (
+        <button
+          className={`rounded-full gradient mb-4 text-white cursor-pointer group transition-all z-40 ease-in-out font-semibold ${open ? "p-2 flex self-center justify-center absolute bottom-2 right-6" : "p-2 relative"} max-md:hidden`}
+        >
+          <CommonIcon
+            label="plus"
+            soild={true}
+            weight={"base"}
+            className={`${"size-7"} transition-all ease-in-out group-hover:rotate-180 duration-300`}
+          />
+
+          <Label text="Start Chat" isSide={true} className="w-max" />
+          {/* {open && <p>Start Chat</p>} */}
+        </button>
       )}
+
       <div className="px-4 md:hidden fixed bottom-25 right-4 flex justify-end">
         <button
           type="button"

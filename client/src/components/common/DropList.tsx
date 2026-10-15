@@ -542,11 +542,15 @@ export const SideProfilePanelDropList = ({
   isContact,
   isBlocked,
   setIsActive,
+  isMuted = false,
+  isHorizontal = false,
 }: {
   isActive: boolean;
   isContact: boolean;
   isBlocked: boolean;
+  isMuted?: boolean;
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+  isHorizontal?: boolean;
 }) => {
   const dropListRef = useRef<HTMLDivElement | null>(null);
 
@@ -569,8 +573,18 @@ export const SideProfilePanelDropList = ({
   return (
     <div
       ref={dropListRef}
-      className={`absolute bottom-full z-10 right-1/3 bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute ${isHorizontal ? "top-full right-5 z-50" : "bottom-full z-10 right-1/3"} bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
+      {isHorizontal && (
+        <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
+          <CommonIcon
+            label={isMuted ? "bell" : "bell_slash"}
+            weight="thin"
+            className="size-6.5"
+          />
+          {isMuted ? "Unmute" : "Mute"}
+        </button>
+      )}
       {isContact && (
         <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
           <CommonIcon label="edit" weight="thin" className="size-6.5" />

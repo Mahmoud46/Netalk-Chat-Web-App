@@ -20,7 +20,7 @@ export const SharedMedia = ({
 }): ReactNode => {
   return (
     <div className="flex gap-3 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <h2 className="font-semibold text-sm sticky top-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 pt-3 w-full z-20">
+      <h2 className="font-semibold text-sm bg-background-light-surface-3 dark:bg-background-dark-surface-3">
         Shared Media{" "}
         <span className="opacity-50 text-xs">({sharedMedia.length})</span>
       </h2>
@@ -50,7 +50,7 @@ export const SharedFiles = ({
 }): ReactNode => {
   return (
     <div className="flex relative gap-3 flex-col text-foreground-light-secondary dark:text-foreground-dark-secondary">
-      <h2 className="font-semibold text-sm sticky top-0 bg-background-light-surface-3 dark:bg-background-dark-surface-3 pt-3 w-full z-10">
+      <h2 className="font-semibold text-sm w-full">
         Shared Files{" "}
         <span className="opacity-50 text-xs">({sharedFiles.length})</span>
       </h2>
