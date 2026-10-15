@@ -114,7 +114,7 @@ const HorizontalProfileHeader = ({
   const { contacts } = useChat();
   const [isActive, setIsActive] = useState<boolean>(false);
   return (
-    <header className="flex items-center w-full p-1.5 relative">
+    <header className="flex items-center w-full p-1.5 relative bg-background-light-surface-3 dark:bg-background-dark-surface-3 shadow-2xl rounded-3xl dark:shadow-neutral-900/50">
       <button
         type="button"
         onClick={toggleButtonClickAction}
@@ -190,18 +190,33 @@ const HorizontalProfileHeader = ({
           <CommonIcon label="user" weight="thin" className="size-6.5" />
           <Label text="Profile" />
         </Link>
-        <button
-          type="button"
-          onClick={() => setIsActive((prev) => !prev)}
-          className={`group cursor-pointer relative p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
-        >
-          <CommonIcon
-            label="dots_vertical_rounded"
-            className="size-6.5"
-            soild={true}
-          />
-          <Label text="More" />
-        </button>
+        {!isActive && (
+          <button
+            type="button"
+            onClick={() => setIsActive((prev) => !prev)}
+            className={`group cursor-pointer relative p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
+          >
+            <CommonIcon
+              label="dots_vertical_rounded"
+              className="size-6.5"
+              soild={true}
+            />
+            <Label text="More" />
+          </button>
+        )}
+        {isActive && (
+          <button
+            type="button"
+            className={`group cursor-pointer relative p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
+          >
+            <CommonIcon
+              label="dots_vertical_rounded"
+              className="size-6.5"
+              soild={true}
+            />
+            <Label text="Less" />
+          </button>
+        )}
       </div>
     </header>
   );
@@ -316,7 +331,7 @@ const SharedMediaFilesButtons = ({
   setSharedItemsActiveTab: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   return (
-    <div className="flex w-fit self-center items-center p-1.5 bg-background-light-base dark:bg-background-dark-base rounded-full">
+    <div className="flex w-fit self-center items-center p-1.5 bg-background-light-base dark:bg-background-dark-base rounded-full shadow-xl dark:shadow-neutral-900/50">
       {currentChat && currentChat?.sharedMedia && (
         <button
           type="button"
@@ -475,10 +490,11 @@ const SideProfilePanel = ({
   }, []);
   return (
     <aside
-      className={`sticky top-0 shrink-0 overflow-hidden h-dvh transition-all duration-300 ease-in-out flex flex-col bg-background-light-surface-2 dark:bg-background-dark-surface-2 ${isActive ? "md:w-80 opacity-100 max-md:fixed max-md:w-full max-md:z-50 max-md:left-0" : "w-0 opacity-0"}`}
+      ref={scrollableSidebar}
+      className={`sticky top-0 shrink-0 overflow-auto h-dvh transition-all duration-300 ease-in-out flex flex-col bg-background-light-surface-2 dark:bg-background-dark-surface-2 ${isActive ? "md:w-80 opacity-100 max-md:fixed max-md:w-full max-md:z-50 max-md:left-0" : "w-0 opacity-0"}`}
     >
       {scrollTop > 200 && (
-        <div className="flex flex-col items-center bg-background-light-surface-3 dark:bg-background-dark-surface-3 pb-1.5">
+        <div className="flex flex-col sticky top-0 z-20 items-center p-2 gap-2">
           <HorizontalProfileHeader
             user={user}
             toggleButtonClickAction={toggleButtonClickAction}
@@ -495,10 +511,7 @@ const SideProfilePanel = ({
           )}
         </div>
       )}
-      <div
-        className="flex-1 overflow-auto flex flex-col"
-        ref={scrollableSidebar}
-      >
+      <div className="flex-1 flex flex-col">
         <ProfilePanelHeader
           user={user}
           theme={theme}

@@ -168,7 +168,7 @@ const ChatsSidebar = ({
 
       {currentChat && (
         <button
-          className={`rounded-full gradient mb-4 text-white cursor-pointer group transition-all z-40 ease-in-out font-semibold ${open ? "p-2 flex self-center justify-center absolute bottom-2 right-6" : "p-2 relative"} max-md:hidden`}
+          className={`rounded-full gradient mb-4 text-white cursor-pointer group transition-all z-40 ease-in-out font-semibold ${open ? "p-2 flex self-center justify-center absolute bottom-2 right-6" : "p-2 relative"} max-md:hidden shadow-xl`}
         >
           <CommonIcon
             label="plus"
@@ -182,7 +182,7 @@ const ChatsSidebar = ({
         </button>
       )}
 
-      <div className="px-4 md:hidden fixed bottom-25 right-4 flex justify-end">
+      <div className="px-4 md:hidden fixed bottom-25 right-4 flex justify-end shadow-xl">
         <button
           type="button"
           className="gap-4 flex justify-center gradient p-2 rounded-3xl shadow-xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 font-semibold"

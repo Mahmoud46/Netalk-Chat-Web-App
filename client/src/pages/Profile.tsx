@@ -125,7 +125,7 @@ export const ProfileHeader = ({
   const [isMoreActive, setIsMoreActive] = useState<boolean>(false);
   const { logout } = useAuth();
   return (
-    <div className="h-60 w-full relative">
+    <div className="h-50 md:h-60 w-full relative">
       {isAuthNUser && (
         <div className="absolute top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
           <button className="relative group cursor-pointer z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
@@ -143,19 +143,19 @@ export const ProfileHeader = ({
         }
         alt="participant-profile-cover"
         loading="lazy"
-        className="h-full w-full rounded-b-3xl object-cover cursor-pointer"
+        className="h-full w-full rounded-b-3xl max-md:rounded-bl-none object-cover cursor-pointer"
       />
       {/* Profile pic */}
-      <div className="absolute -bottom-19 rounded-full max-md:rounded-l-none left-0 md:left-30 bg-background-light-base dark:bg-background-dark-base p-3 flex profile-image-corners [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+      <div className="absolute -bottom-17 md:-bottom-19 rounded-full left-5 md:left-30 bg-background-light-base dark:bg-background-dark-base p-3 flex profile-image-corners [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
         {authNUser?.profileImage ? (
           <img
             src={authNUser?.profileImage}
             alt="profile-image"
             loading="lazy"
-            className="size-35 rounded-full cursor-pointer"
+            className="size-30 md:size-35 rounded-full cursor-pointer"
           />
         ) : (
-          <div className="size-35 rounded-full flex-none overflow-hidden cursor-pointer">
+          <div className="size-30 md:size-35 rounded-full flex-none overflow-hidden cursor-pointer">
             <Avatar
               gender={authNUser?.gender as Gender}
               age={calculateAge(authNUser?.birthdate as string)}
@@ -165,7 +165,7 @@ export const ProfileHeader = ({
         )}
 
         {isAuthNUser && (
-          <div className="bg-background-light-base dark:bg-background-dark-base p-1.5 absolute rounded-full bottom-1.5 right-1.5 transition-all ease-in-out">
+          <div className="bg-background-light-base dark:bg-background-dark-base p-1.5 absolute rounded-full bottom-0 right-0 md:bottom-1.5 md:right-1.5 transition-all ease-in-out">
             <button className="relative group cursor-pointer z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
               <CommonIcon label="edit" weight="thin" className="size-6" />
               <Label text="Edit" />
@@ -173,8 +173,8 @@ export const ProfileHeader = ({
           </div>
         )}
         {!isAuthNUser && authNUser?.isActive && (
-          <div className="bg-background-light-base dark:bg-background-dark-base p-1.5 absolute rounded-full bottom-1.5 right-1.5 transition-all ease-in-out flex items-center">
-            <span className="bg-foreground-dark-success size-[1.925rem] aspect-square rounded-full"></span>
+          <div className="bg-background-light-base dark:bg-background-dark-base p-1.5 absolute rounded-full bottom-2.5 right-2.5 md:bottom-1.5 md:right-1.5 transition-all ease-in-out flex items-center">
+            <span className="bg-foreground-dark-success size-[1.65rem] md:size-[1.925rem] aspect-square rounded-full"></span>
           </div>
         )}
       </div>
@@ -405,14 +405,14 @@ export default function Profile(): ReactNode {
     init();
   }, [getUserByUsername, isAuthNUser, username]);
   return (
-    <div className="w-full h-full text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20 pb-4 relative">
+    <div className="w-full h-full text-foreground-light-secondary dark:text-foreground-dark-secondary flex flex-col gap-20  relative">
       <ProfileHeader
         authNUser={isAuthNUser ? authNUser : currentUser}
         theme={theme}
         isAuthNUser={isAuthNUser}
         setIsShareProfileActive={setIsShareProfileActive}
       />
-      <div className="px-4 md:pl-30 md:pr-8 flex items-start gap-6 flex-wrap">
+      <div className="px-4 md:pl-30 md:pr-8 flex items-start gap-6 flex-wrap md:pb-4">
         <div className="flex flex-col gap-4 flex-1 max-md:items-center">
           <div className="flex flex-col gap-1 w-full">
             <h2 className="max-md:font-semibold text-3xl xl:text-4xl xxl:text-5xl">
