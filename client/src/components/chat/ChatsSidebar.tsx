@@ -182,7 +182,7 @@ const ChatsSidebar = ({
         </button>
       )}
 
-      <div className="px-4 md:hidden fixed bottom-25 right-4 flex justify-end shadow-xl">
+      <div className="px-4 md:hidden fixed bottom-25 right-4 flex justify-end">
         <button
           type="button"
           className="gap-4 flex justify-center gradient p-2 rounded-3xl shadow-xl text-white cursor-pointer transition-all ease-in-out hover:scale-105 font-semibold"
