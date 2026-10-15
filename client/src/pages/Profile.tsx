@@ -18,7 +18,6 @@ import { Avatar } from "../components/icons/Avatar";
 import Loader from "../components/common/Loader";
 import { QRCodeCanvas } from "qrcode.react";
 import { ProfileDropList } from "../components/common/DropList";
-import { MainSidebarIcon } from "../components/icons/SidebarIcon";
 
 const ContactSocialCard = lazy(() =>
     import("../components/common/Card").then((module) => ({
@@ -48,12 +47,11 @@ export const UsernameHolder = ({
   isTopProfile?: boolean;
 }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
-  const { authNUser } = useAuth();
   return (
     <div
       className={
         isTopProfile
-          ? `absolute group top-0 bg-background-light-base dark:bg-background-dark-base ${authNUser?.username == username ? "left-1/2 max-md:left-0 max-md:rounded-l-none md:-translate-x-1/2" : "left-1/2 -translate-x-1/2"} p-4 pt-2 rounded-b-3xl username-profile-corners [--shadow-color:#ffffff] dark:[--shadow-color:#0f1115]`
+          ? `absolute group top-0 left-0 bg-background-light-base dark:bg-background-dark-base p-4 pt-2 rounded-br-3xl username-profile-corners [--shadow-color:#ffffff] dark:[--shadow-color:#0f1115]`
           : ""
       }
     >
@@ -123,17 +121,55 @@ export const ProfileHeader = ({
   setIsShareProfileActive: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isMoreActive, setIsMoreActive] = useState<boolean>(false);
-  const { logout } = useAuth();
   return (
     <div className="h-50 md:h-60 w-full relative">
-      {isAuthNUser && (
-        <div className="absolute top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+      <div className="absolute top-0 right-0 bg-background-light-base dark:bg-background-dark-base p-1.5 md:pr-3 rounded-bl-3xl top-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
+        {authNUser && (
+          <ProfileDropList
+            user={authNUser}
+            isActive={isMoreActive}
+            setIsActive={setIsMoreActive}
+            isAuthNUser={isAuthNUser}
+          />
+        )}
+
+        {isAuthNUser && (
           <button className="relative group cursor-pointer z-30 p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out">
             <CommonIcon label="edit" weight="thin" className="size-6" />
             <Label text="Edit" />
           </button>
-        </div>
-      )}
+        )}
+        {!isMoreActive && (
+          <button
+            onClick={() => setIsMoreActive((prev) => !prev)}
+            type="button"
+            className={`relative z-30 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out`}
+          >
+            <CommonIcon
+              label="dots_vertical_rounded"
+              weight="thin"
+              soild={true}
+              className="size-6.5"
+            />
+            <Label text="More" />
+          </button>
+        )}
+        {isMoreActive && (
+          <button
+            type="button"
+            className="relative z-30 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          >
+            <CommonIcon
+              label="dots_vertical_rounded"
+              weight="thin"
+              soild={true}
+              className="size-6.5"
+            />
+            <Label text="Less" />
+          </button>
+        )}
+      </div>
+
       <UsernameHolder username={authNUser?.username} />
 
       <img
@@ -181,16 +217,9 @@ export const ProfileHeader = ({
       {/* Header buttons */}
       <div className="absolute flex bottom-0 right-0 md:pr-5 bg-background-light-base dark:bg-background-dark-base p-1.5 rounded-tl-3xl bottom-right-cornered-btn [--shadow-color:#fff] dark:[--shadow-color:#0f1115]">
         {!isAuthNUser && authNUser && (
-          <ProfileDropList
-            user={authNUser}
-            isActive={isMoreActive}
-            setIsActive={setIsMoreActive}
-          />
-        )}
-        {!isAuthNUser && authNUser && (
           <Link
             to={`/app/inbox/${authNUser._id}`}
-            className="relative group mr-2 cursor-pointer p-2 rounded-full gradient transition-all ease-in-out"
+            className="relative group md:mr-2 cursor-pointer p-2 rounded-full gradient transition-all ease-in-out"
           >
             <CommonIcon
               label="paper_plane"
@@ -202,14 +231,19 @@ export const ProfileHeader = ({
           </Link>
         )}
         {isAuthNUser && (
-          <Link
-            to={"/app/settings/account"}
-            className="relative group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
+          <button
+            type="button"
+            className="relative group md:mr-2 cursor-pointer p-2 rounded-full gradient transition-all ease-in-out"
           >
-            <CommonIcon label="cog" weight="thin" className="size-6.5" />
-            <Label text="Settings" />
-          </Link>
+            <CommonIcon
+              label="plus"
+              className="size-6.5 transition-all ease-in-out group-hover:rotate-180 duration-300"
+              soild={true}
+            />
+            <Label text="New" />
+          </button>
         )}
+
         <button
           type="button"
           onClick={() => setIsShareProfileActive(true)}
@@ -218,52 +252,6 @@ export const ProfileHeader = ({
           <CommonIcon label="share" weight="thin" className="size-6.5" />
           <Label text="Share" />
         </button>
-        {isAuthNUser && (
-          <button
-            type="button"
-            onClick={logout}
-            className="relative z-10 cursor-pointer p-2 rounded-full bg-background-light-danger dark:bg-background-dark-danger transition-all ease-in-out md:hidden"
-          >
-            <MainSidebarIcon
-              weight="thin"
-              isDanger={true}
-              className="size-6.5"
-            />
-          </button>
-        )}
-        {!isAuthNUser && (
-          <>
-            {!isMoreActive && (
-              <button
-                onClick={() => setIsMoreActive((prev) => !prev)}
-                type="button"
-                className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-              >
-                <CommonIcon
-                  label="dots_vertical_rounded"
-                  weight="thin"
-                  soild={true}
-                  className="size-6.5"
-                />
-                <Label text="More" />
-              </button>
-            )}
-            {isMoreActive && (
-              <button
-                type="button"
-                className="relative z-10 group cursor-pointer p-2 rounded-full hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary transition-all ease-in-out"
-              >
-                <CommonIcon
-                  label="dots_vertical_rounded"
-                  weight="thin"
-                  soild={true}
-                  className="size-6.5"
-                />
-                <Label text="Less" />
-              </button>
-            )}
-          </>
-        )}
       </div>
     </div>
   );

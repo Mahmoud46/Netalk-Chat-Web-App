@@ -10,6 +10,7 @@ import Label from "./Label";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import { FlagIcon } from "../icons/FlagIcon";
+import { MainSidebarIcon } from "../icons/SidebarIcon";
 
 export const ChatDropList = ({
   isActive = false,
@@ -573,7 +574,7 @@ export const SideProfilePanelDropList = ({
   return (
     <div
       ref={dropListRef}
-      className={`absolute ${isHorizontal ? "top-full right-5 z-50" : "bottom-full z-10 right-1/3"} bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute ${isHorizontal ? "top-full right-5 z-50 mt-2" : "bottom-full z-10 right-1/3"} bg-background-light-surface-3 dark:bg-background-dark-surface-3 max-w-fit rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
       {isHorizontal && (
         <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
@@ -617,14 +618,17 @@ export const ProfileDropList = ({
   isActive,
   user,
   setIsActive,
+  isAuthNUser = false,
 }: {
   isActive: boolean;
+  isAuthNUser?: boolean;
   user: User | null;
   setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const dropListRef = useRef<HTMLDivElement | null>(null);
-  const { authNUser } = useAuth(),
+  const { authNUser, logout } = useAuth(),
     { contacts } = useChat();
+  const navigate = useNavigate();
   const isBlocked: boolean =
       authNUser?.blockedUsers.includes(user?._id ?? "") ?? false,
     isContact: boolean = (user?._id ?? "") in contacts,
@@ -649,46 +653,77 @@ export const ProfileDropList = ({
   return (
     <div
       ref={dropListRef}
-      className={`absolute w-full top-full z-20 right-1/3 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
+      className={`absolute w-max top-full z-20 right-1/3 bg-background-light-surface-3 dark:bg-background-dark-surface-3 rounded-3xl p-1.5 flex flex-col items-start scale-0 ${isActive && "scale-100"} transition-all ease-in-out shadow-lg dark:shadow-neutral-900/50`}
     >
-      {!isBlocked && (
-        <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
-          <CommonIcon label="phone" weight="thin" className="size-6.5" />
-          Call
-        </button>
+      {!isAuthNUser && (
+        <>
+          {!isBlocked && (
+            <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
+              <CommonIcon label="phone" weight="thin" className="size-6.5" />
+              Call
+            </button>
+          )}
+          {isContact && (
+            <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
+              <CommonIcon label="edit" weight="thin" className="size-6.5" />
+              Edit
+            </button>
+          )}
+          <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
+            <CommonIcon
+              label={isContact ? "user_minus" : "user_plus"}
+              weight="thin"
+              className="size-6.5"
+            />
+            {isContact ? "Delete" : "Add"}
+          </button>
+          <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
+            <CommonIcon
+              label={isMuted ? "bell" : "bell_slash"}
+              weight="thin"
+              className="size-6.5"
+            />
+            {isMuted ? "Unmute" : "Mute"}
+          </button>
+          <button
+            className={`cursor-pointer p-2 text-sm ${isBlocked ? "text-foreground-dark-success hover:bg-background-dark-success" : "text-foreground-dark-danger hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl transition-all ease-in-out`}
+          >
+            <CommonIcon
+              label={isBlocked ? "user_check" : "user_x"}
+              weight="thin"
+              className="size-6.5"
+            />
+            {isBlocked ? "Unblock" : "Block"}
+          </button>
+        </>
       )}
-      {isContact && (
-        <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
-          <CommonIcon label="edit" weight="thin" className="size-6.5" />
-          Edit
-        </button>
+      {isAuthNUser && (
+        <>
+          <button
+            type="button"
+            onClick={() => {
+              navigate("/app/settings/account");
+              scrollTo(0, 0);
+            }}
+            className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl"
+          >
+            <CommonIcon label="cog" weight="thin" className="size-6.5" />
+            Settings
+          </button>
+          <button
+            type="button"
+            onClick={logout}
+            className={`cursor-pointer p-2 text-sm md:hidden text-foreground-dark-danger hover:bg-background-dark-danger w-full flex justify-start gap-3 items-center rounded-2xl transition-all ease-in-out`}
+          >
+            <MainSidebarIcon
+              weight="thin"
+              isDanger={true}
+              className="size-6.5"
+            />
+            Logout
+          </button>
+        </>
       )}
-      <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
-        <CommonIcon
-          label={isContact ? "user_minus" : "user_plus"}
-          weight="thin"
-          className="size-6.5"
-        />
-        {isContact ? "Delete" : "Add"}
-      </button>
-      <button className="cursor-pointer p-2 text-sm text-foreground-light-secondary dark:text-foreground-dark-secondary hover:bg-background-light-secondary dark:hover:bg-background-dark-secondary w-full flex justify-start gap-3 items-center rounded-2xl">
-        <CommonIcon
-          label={isMuted ? "bell" : "bell_slash"}
-          weight="thin"
-          className="size-6.5"
-        />
-        {isMuted ? "Unmute" : "Mute"}
-      </button>
-      <button
-        className={`cursor-pointer p-2 text-sm ${isBlocked ? "text-foreground-dark-success hover:bg-background-dark-success" : "text-foreground-dark-danger hover:bg-background-dark-danger"} w-full flex justify-start gap-3 items-center rounded-2xl transition-all ease-in-out`}
-      >
-        <CommonIcon
-          label={isBlocked ? "user_check" : "user_x"}
-          weight="thin"
-          className="size-6.5"
-        />
-        {isBlocked ? "Unblock" : "Block"}
-      </button>
     </div>
   );
 };

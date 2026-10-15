@@ -480,7 +480,7 @@ const SideProfilePanel = ({
     if (!scrollablePanel) return;
 
     const handleScroll = () => {
-      console.log(scrollablePanel.scrollTop);
+      // console.log(scrollablePanel.scrollTop);
       setScrollTop(scrollablePanel.scrollTop as number);
     };
 
@@ -502,7 +502,7 @@ const SideProfilePanel = ({
             isBlocked={isBlocked}
             isMuted={isMuted}
           />
-          {scrollTop > 420 && sharedItemsActiveTab != -1 && (
+          {scrollTop > 422 && sharedItemsActiveTab != -1 && (
             <SharedMediaFilesButtons
               currentChat={currentChat}
               sharedItemsActiveTab={sharedItemsActiveTab}

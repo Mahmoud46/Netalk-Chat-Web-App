@@ -650,13 +650,13 @@ a:focus {
   background: transparent;
   width: 27px;
   height: 27px;
-  top: 0;
-  left: -27px;
-  z-index: -1;
-  border-top-right-radius: 1.5rem;
-  box-shadow: 8px -8px 0px 1px var(--shadow-color);
-  -webkit-box-shadow: 8px -8px 0px 1px var(--shadow-color);
-  -moz-box-shadow: 8px -8px 0px 1px var(--shadow-color);
+  bottom: -27px;
+  left: 0;
+  z-index: 2;
+  border-top-left-radius: 1.5rem;
+  box-shadow: -8px -8px 0px 1px var(--shadow-color);
+  -webkit-box-shadow: -8px -8px 0px 1px var(--shadow-color);
+  -moz-box-shadow: -8px -8px 0px 1px var(--shadow-color);
 }
 .username-profile-corners::after {
   position: absolute;
@@ -666,7 +666,7 @@ a:focus {
   height: 27px;
   top: 0;
   right: -27px;
-  z-index: -1;
+  z-index: 2;
   border-top-left-radius: 1.5rem;
   box-shadow: -8px -8px 0px 1px var(--shadow-color);
   -webkit-box-shadow: -8px -8px 0px 1px var(--shadow-color);
