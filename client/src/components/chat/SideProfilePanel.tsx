@@ -390,7 +390,7 @@ const ProfilePanelMinorInfo = ({
   }, [currentChat, currentChat?._id, setSharedItemsActiveTab]);
 
   return (
-    <div className="gap-4 bg-background-light-surface-3 dark:bg-background-dark-surface-3 flex flex-col transition-all ease-in-out">
+    <div className="gap-4 flex-1 bg-background-light-surface-3 dark:bg-background-dark-surface-3 flex flex-col transition-all ease-in-out">
       <div className="h-full overflow-y-auto px-3 py-5 pt-0 flex flex-col gap-6">
         {sharedItemsActiveTab != -1 && (
           <SharedMediaFilesButtons
@@ -478,7 +478,7 @@ const SideProfilePanel = ({
       className={`sticky top-0 shrink-0 overflow-hidden h-dvh transition-all duration-300 ease-in-out flex flex-col bg-background-light-surface-2 dark:bg-background-dark-surface-2 ${isActive ? "md:w-80 opacity-100 max-md:fixed max-md:w-full max-md:z-50 max-md:left-0" : "w-0 opacity-0"}`}
     >
       {scrollTop > 200 && (
-        <div className="flex flex-col items-center bg-background-light-surface-3 dark:bg-background-dark-surface-3">
+        <div className="flex flex-col items-center bg-background-light-surface-3 dark:bg-background-dark-surface-3 pb-1.5">
           <HorizontalProfileHeader
             user={user}
             toggleButtonClickAction={toggleButtonClickAction}
