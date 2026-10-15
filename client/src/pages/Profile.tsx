@@ -412,7 +412,7 @@ export default function Profile(): ReactNode {
         isAuthNUser={isAuthNUser}
         setIsShareProfileActive={setIsShareProfileActive}
       />
-      <div className="px-4 md:pl-30 md:pr-8 flex items-start gap-6 flex-wrap md:pb-4">
+      <div className="px-4 md:pl-30 md:pr-8 flex items-start gap-6 flex-wrap pb-4">
         <div className="flex flex-col gap-4 flex-1 max-md:items-center">
           <div className="flex flex-col gap-1 w-full">
             <h2 className="max-md:font-semibold text-3xl xl:text-4xl xxl:text-5xl">
