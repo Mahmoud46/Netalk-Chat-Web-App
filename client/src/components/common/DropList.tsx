@@ -713,7 +713,7 @@ export const ProfileDropList = ({
           <button
             type="button"
             onClick={logout}
-            className={`cursor-pointer p-2 text-sm md:hidden text-foreground-dark-danger hover:bg-background-dark-danger w-full flex justify-start gap-3 items-center rounded-2xl transition-all ease-in-out`}
+            className={`cursor-pointer p-2 text-sm text-foreground-dark-danger hover:bg-background-dark-danger w-full flex justify-start gap-3 items-center rounded-2xl transition-all ease-in-out`}
           >
             <MainSidebarIcon
               weight="thin"
